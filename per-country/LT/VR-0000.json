@@ -1,0 +1,36 @@
+{
+  "t": "VR",
+  "c": "LT",
+  "n": "0000",
+  "Identifier": "VR-LT-0000",
+  "Type": "Acceptance",
+  "Country": "LT",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "1.0.0",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "lt",
+      "desc": "Vienas skiepijimo įvykis"
+    },
+    {
+      "lang": "en",
+      "desc": "One type of event of vaccination"
+    }
+  ],
+  "ValidFrom": "2021-07-04T15:00:00Z",
+  "ValidTo": "2023-07-04T00:00:00Z",
+  "AffectedFields": [
+    "v.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.v.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.v.1)"
+}

@@ -1,0 +1,69 @@
+{
+  "t": "RR",
+  "c": "EE",
+  "n": "0001",
+  "Identifier": "RR-EE-0001",
+  "Type": "Acceptance",
+  "Country": "EE",
+  "Version": "1.0.2",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The Verification Datetime must be between 11 days and 180 days after the test date."
+    },
+    {
+      "lang": "ee",
+      "desc": "Proovivõtu kuupäevast ei tohi olla möödas vähem kui 11 ja rohkem kui 180 päeva."
+    }
+  ],
+  "ValidFrom": "2021-09-06T00:00:00Z",
+  "ValidTo": "2022-09-01T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.fr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              11,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              180,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/payload.r.0.fr +11 days) not-after (/external.validationClock +0 days) not-after (/payload.r.0.fr +180 days) else true"
+}

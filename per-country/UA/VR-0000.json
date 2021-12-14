@@ -1,0 +1,36 @@
+{
+  "t": "VR",
+  "c": "UA",
+  "n": "0000",
+  "Identifier": "VR-UA-0000",
+  "Type": "Acceptance",
+  "Country": "UA",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "At most one v-event."
+    },
+    {
+      "lang": "ua",
+      "desc": "Не більше одного набору даних про вакцинацію."
+    }
+  ],
+  "ValidFrom": "2021-08-22T10:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.v.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.v.1)"
+}

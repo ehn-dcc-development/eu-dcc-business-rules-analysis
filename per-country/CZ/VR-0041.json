@@ -1,0 +1,74 @@
+{
+  "t": "VR",
+  "c": "CZ",
+  "n": "0041",
+  "Identifier": "VR-CZ-0041",
+  "Type": "Acceptance",
+  "Country": "CZ",
+  "Version": "2.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The vaccine VAXZEVRIA must have been administered no longer than 1440 days ago."
+    },
+    {
+      "lang": "cs",
+      "desc": "Očkování VAXZEVRIA nesmí být starší než 1440 dní."
+    }
+  ],
+  "ValidFrom": "2021-11-21T23:00:00Z",
+  "ValidTo": "2031-11-21T23:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.mp",
+    "v.0.dt"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "payload.v.0.mp"
+              },
+              "EU/1/21/1529"
+            ]
+          },
+          {
+            "not-after": [
+              {
+                "plusTime": [
+                  {
+                    "var": "external.validationClock"
+                  },
+                  0,
+                  "day"
+                ]
+              },
+              {
+                "plusTime": [
+                  {
+                    "var": "payload.v.0.dt"
+                  },
+                  1440,
+                  "day"
+                ]
+              }
+            ]
+          },
+          true
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/21/1529\") then (/external.validationClock +0 days) not-after (/payload.v.0.dt +1440 days) else true else true"
+}

@@ -1,0 +1,36 @@
+{
+  "t": "TR",
+  "c": "LT",
+  "n": "0000",
+  "Identifier": "TR-LT-0000",
+  "Type": "Acceptance",
+  "Country": "LT",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "1.0.0",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "lt",
+      "desc": "Vieno tipo tyrimo rezultatų įvykis"
+    },
+    {
+      "lang": "en",
+      "desc": "One type of test result event"
+    }
+  ],
+  "ValidFrom": "2021-07-04T15:00:00Z",
+  "ValidTo": "2023-07-04T00:00:00Z",
+  "AffectedFields": [
+    "t.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.t.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.t.1)"
+}

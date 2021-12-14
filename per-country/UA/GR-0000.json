@@ -1,0 +1,68 @@
+{
+  "t": "GR",
+  "c": "UA",
+  "n": "0000",
+  "Identifier": "GR-UA-0000",
+  "Type": "Acceptance",
+  "Country": "UA",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "General",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Exactly one type of event."
+    },
+    {
+      "lang": "ua",
+      "desc": "В сертифікаті лише один тип медичних даних."
+    }
+  ],
+  "ValidFrom": "2021-08-22T10:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "r",
+    "t",
+    "v"
+  ],
+  "Logic": {
+    "===": [
+      {
+        "reduce": [
+          [
+            {
+              "var": "payload.r"
+            },
+            {
+              "var": "payload.t"
+            },
+            {
+              "var": "payload.v"
+            }
+          ],
+          {
+            "+": [
+              {
+                "var": "accumulator"
+              },
+              {
+                "if": [
+                  {
+                    "var": "current.0"
+                  },
+                  1,
+                  0
+                ]
+              }
+            ]
+          },
+          0
+        ]
+      },
+      1
+    ]
+  },
+  "expr-as-text": "(([ /payload.r, /payload.t, /payload.v ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
+}

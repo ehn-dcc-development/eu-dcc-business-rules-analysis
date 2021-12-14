@@ -1,0 +1,103 @@
+{
+  "t": "VR",
+  "c": "CZ",
+  "n": "0022",
+  "Identifier": "VR-CZ-0022",
+  "Type": "Acceptance",
+  "Country": "CZ",
+  "Version": "2.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The vaccine COVID-19 Vaccine Janssen must have been administered at least more than 14 day ago. Booster dose is valid immediately."
+    },
+    {
+      "lang": "cs",
+      "desc": "Od dokončeného očkování COVID-19 Vaccine Janssen musí uplynout alespoň 14 dnů. Posilovací dávka je platná ihned."
+    }
+  ],
+  "ValidFrom": "2021-11-21T23:00:00Z",
+  "ValidTo": "2031-11-21T23:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dn",
+    "v.0.sd",
+    "v.0.mp",
+    "v.0.dt"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "if": [
+          {
+            "and": [
+              {
+                ">=": [
+                  {
+                    "var": "payload.v.0.dn"
+                  },
+                  {
+                    "var": "payload.v.0.sd"
+                  }
+                ]
+              },
+              {
+                "===": [
+                  {
+                    "var": "payload.v.0.mp"
+                  },
+                  "EU/1/20/1525"
+                ]
+              }
+            ]
+          },
+          {
+            "if": [
+              {
+                ">": [
+                  {
+                    "var": "payload.v.0.dn"
+                  },
+                  1
+                ]
+              },
+              true,
+              {
+                "not-before": [
+                  {
+                    "plusTime": [
+                      {
+                        "var": "external.validationClock"
+                      },
+                      0,
+                      "day"
+                    ]
+                  },
+                  {
+                    "plusTime": [
+                      {
+                        "var": "payload.v.0.dt"
+                      },
+                      14,
+                      "day"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          true
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then if (/payload.v.0.dn) > (1) then true else (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) else true else true"
+}

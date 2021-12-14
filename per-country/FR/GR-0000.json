@@ -1,0 +1,60 @@
+{
+  "t": "GR",
+  "c": "FR",
+  "n": "0000",
+  "Identifier": "GR-FR-0000",
+  "Type": "Acceptance",
+  "Country": "FR",
+  "Version": "1.0.3",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "General",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Only test is allowed, and in a EU standard format."
+    },
+    {
+      "lang": "fr",
+      "desc": "Seuls un test est autorisé, et dans un format au standard UE."
+    }
+  ],
+  "ValidFrom": "2021-12-11T12:00:00Z",
+  "ValidTo": "2030-12-11T00:00:00Z",
+  "AffectedFields": [
+    "t"
+  ],
+  "Logic": {
+    "===": [
+      {
+        "reduce": [
+          [
+            {
+              "var": "payload.t"
+            }
+          ],
+          {
+            "+": [
+              {
+                "var": "accumulator"
+              },
+              {
+                "if": [
+                  {
+                    "var": "current.0"
+                  },
+                  1,
+                  0
+                ]
+              }
+            ]
+          },
+          0
+        ]
+      },
+      1
+    ]
+  },
+  "expr-as-text": "(([ /payload.t ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
+}

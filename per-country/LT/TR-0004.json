@@ -1,0 +1,65 @@
+{
+  "t": "TR",
+  "c": "LT",
+  "n": "0004",
+  "Identifier": "TR-LT-0004",
+  "Type": "Acceptance",
+  "Country": "LT",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "1.0.0",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "lt",
+      "desc": "Greitasis antigeno testas turi būti atliktas ne daugiau kaip prieš 48 val."
+    },
+    {
+      "lang": "en",
+      "desc": "DateTime of RAT Sample Collection must be less than 48 hours before the Verification Datetime."
+    }
+  ],
+  "ValidFrom": "2021-07-04T15:00:00Z",
+  "ValidTo": "2023-07-04T00:00:00Z",
+  "AffectedFields": [
+    "t.0.tt",
+    "t.0.sc"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "===": [
+          {
+            "var": "payload.t.0.tt"
+          },
+          "LP217198-3"
+        ]
+      },
+      {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.t.0.sc"
+              },
+              48,
+              "hour"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +48 hours) else true"
+}

@@ -1,0 +1,70 @@
+{
+  "t": "RR",
+  "c": "LT",
+  "n": "0001",
+  "Identifier": "RR-LT-0001",
+  "Type": "Acceptance",
+  "Country": "LT",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "1.0.0",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "lt",
+      "desc": "Pažymėjimas turi būti galiojantis."
+    },
+    {
+      "lang": "en",
+      "desc": "The certificate must be valid."
+    }
+  ],
+  "ValidFrom": "2021-07-04T15:00:00Z",
+  "ValidTo": "2023-07-04T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.df",
+    "r.0.du"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.df"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.du"
+              },
+              0,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/payload.r.0.df +0 days) not-after (/external.validationClock +0 days) not-after (/payload.r.0.du +0 days) else true"
+}

@@ -1,0 +1,60 @@
+{
+  "t": "VR",
+  "c": "EE",
+  "n": "0003",
+  "Identifier": "VR-EE-0003",
+  "Type": "Acceptance",
+  "Country": "EE",
+  "Version": "1.0.2",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Verification Datetime must be less than 365 days after the last date of vaccination."
+    },
+    {
+      "lang": "ee",
+      "desc": "Vaktsineerimisest ei tohi olla möödas rohkem kui 365 päeva"
+    }
+  ],
+  "ValidFrom": "2021-09-06T00:00:00Z",
+  "ValidTo": "2022-09-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dt"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.v.0.dt"
+              },
+              365,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true"
+}

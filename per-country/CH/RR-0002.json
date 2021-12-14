@@ -1,0 +1,56 @@
+{
+  "t": "RR",
+  "c": "CH",
+  "n": "0002",
+  "Identifier": "RR-CH-0002",
+  "Type": "Acceptance",
+  "Country": "CH",
+  "Version": "1.0.6",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "desc": "The validation date must be after the date of first positive test plus 10 day",
+      "lang": "en"
+    }
+  ],
+  "ValidFrom": "2021-12-06T00:00:00Z",
+  "ValidTo": "2031-01-01T00:00:00Z",
+  "AffectedFields": [
+    "r.0.fr",
+    "r.0"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              10,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) after (/payload.r.0.fr +10 days) else true"
+}

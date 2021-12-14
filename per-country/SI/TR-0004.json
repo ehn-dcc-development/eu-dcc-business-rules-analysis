@@ -1,0 +1,46 @@
+{
+  "t": "TR",
+  "c": "SI",
+  "n": "0004",
+  "Identifier": "TR-SI-0004",
+  "Type": "Acceptance",
+  "Country": "SI",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Test result must be negative (\"not detected\")."
+    },
+    {
+      "lang": "si",
+      "desc": "Rezultata testa mora biti negativen (\"not detected\")."
+    }
+  ],
+  "ValidFrom": "2021-07-30T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "t.0",
+    "t.0.tr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.t.0"
+      },
+      {
+        "===": [
+          {
+            "var": "payload.t.0.tr"
+          },
+          "260415000"
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
+}

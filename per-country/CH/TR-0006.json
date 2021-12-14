@@ -1,0 +1,61 @@
+{
+  "t": "TR",
+  "c": "CH",
+  "n": "0006",
+  "Identifier": "TR-CH-0006",
+  "Type": "Acceptance",
+  "Country": "CH",
+  "Version": "1.0.6",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "desc": "If the test type is \\\"RAT\\\" then the validation date must be before the date of sample collection plus 24 hours",
+      "lang": "en"
+    }
+  ],
+  "ValidFrom": "2021-12-06T00:00:00Z",
+  "ValidTo": "2031-01-01T00:00:00Z",
+  "AffectedFields": [
+    "t.0.tt",
+    "t.0.sc"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "===": [
+          {
+            "var": "payload.t.0.tt"
+          },
+          "LP217198-3"
+        ]
+      },
+      {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.t.0.sc"
+              },
+              24,
+              "hour"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +24 hours) else true"
+}

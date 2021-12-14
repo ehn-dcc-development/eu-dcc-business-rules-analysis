@@ -1,0 +1,81 @@
+{
+  "t": "GR",
+  "c": "FR",
+  "n": "0001",
+  "Identifier": "GR-FR-0001",
+  "Type": "Acceptance",
+  "Country": "FR",
+  "Version": "1.0.1",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "General",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The \"disease or agent targeted\" must be COVID-19 of the value set list."
+    },
+    {
+      "lang": "fr",
+      "desc": "La maladie ciblée doit etre le COVID-19 de la value set."
+    }
+  ],
+  "ValidFrom": "2021-09-06T00:00:00Z",
+  "ValidTo": "2030-09-06T00:00:00Z",
+  "AffectedFields": [
+    "r.0.tg",
+    "t.0.tg",
+    "v.0.tg"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "and": [
+          {
+            "!": [
+              {
+                "in": [
+                  {
+                    "var": "payload.r.0.tg"
+                  },
+                  {
+                    "var": "external.valueSets.disease-agent-targeted"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "!": [
+              {
+                "in": [
+                  {
+                    "var": "payload.t.0.tg"
+                  },
+                  {
+                    "var": "external.valueSets.disease-agent-targeted"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "!": [
+              {
+                "in": [
+                  {
+                    "var": "payload.v.0.tg"
+                  },
+                  {
+                    "var": "external.valueSets.disease-agent-targeted"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "expr-as-text": "not ((not ((/payload.r.0.tg) in (/external.valueSets.disease-agent-targeted))) and (not ((/payload.t.0.tg) in (/external.valueSets.disease-agent-targeted))) and (not ((/payload.v.0.tg) in (/external.valueSets.disease-agent-targeted))))"
+}

@@ -1,0 +1,36 @@
+{
+  "t": "RR",
+  "c": "SI",
+  "n": "0000",
+  "Identifier": "RR-SI-0000",
+  "Type": "Acceptance",
+  "Country": "SI",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "At most one r-event."
+    },
+    {
+      "lang": "si",
+      "desc": "Največ en dogodek prebolelosti."
+    }
+  ],
+  "ValidFrom": "2021-07-30T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "r.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.r.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.r.1)"
+}

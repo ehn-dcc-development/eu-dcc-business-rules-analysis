@@ -1,0 +1,76 @@
+{
+  "t": "RR",
+  "c": "AL",
+  "n": "0002",
+  "Identifier": "RR-AL-0002",
+  "Type": "Acceptance",
+  "Country": "AL",
+  "Version": "1.1.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The positive NAA test result (e.g., PCR) must be older than 11 days."
+    },
+    {
+      "lang": "de",
+      "desc": "Der positive NAA-Test (z.B. PCR) muss mindestens 11 Tage zurückliegen."
+    },
+    {
+      "lang": "fr",
+      "desc": "Le test TAN positif (p. ex. PCR) doit dater d‘au moins 11 jours."
+    },
+    {
+      "lang": "es",
+      "desc": "Deben haber transcurrido como mínimo 11 días desde que una prueba de amplificación de ácidos nucleicos (por ejemplo, una PCR) diese positivo."
+    },
+    {
+      "lang": "it",
+      "desc": "Il NAAT positivo (ad es. test PRC) deve risalire minimo a 11 giorni fa."
+    },
+    {
+      "lang": "sq",
+      "desc": "Rezultati pozitiv i testit NAA (p.sh., PCR) duhet të jetë më i vjetër se 11 ditë."
+    }
+  ],
+  "ValidFrom": "2021-12-10T16:00:00Z",
+  "ValidTo": "2022-12-10T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.fr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "not-before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              11,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +11 days) else true"
+}

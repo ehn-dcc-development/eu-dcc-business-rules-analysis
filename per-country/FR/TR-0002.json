@@ -1,0 +1,60 @@
+{
+  "t": "TR",
+  "c": "FR",
+  "n": "0002",
+  "Identifier": "TR-FR-0002",
+  "Type": "Acceptance",
+  "Country": "FR",
+  "Version": "1.0.2",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime."
+    },
+    {
+      "lang": "fr",
+      "desc": "La date du prélèvement de l'échantillon doit avoir été réalisée moins de 48 heures avant la date de vérification."
+    }
+  ],
+  "ValidFrom": "2021-12-11T12:00:00Z",
+  "ValidTo": "2030-12-11T00:00:00Z",
+  "AffectedFields": [
+    "t.0",
+    "t.0.sc"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.t.0"
+      },
+      {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.t.0.sc"
+              },
+              48,
+              "hour"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.t.0 then (/external.validationClock +0 days) before (/payload.t.0.sc +48 hours) else true"
+}

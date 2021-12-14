@@ -1,0 +1,53 @@
+{
+  "t": "TR",
+  "c": "LT",
+  "n": "0002",
+  "Identifier": "TR-LT-0002",
+  "Type": "Acceptance",
+  "Country": "LT",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "1.0.0",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "lt",
+      "desc": "Jei greitas antigeno tyrimas, testas turi būti iš patvirtintų testų sąrašo"
+    },
+    {
+      "lang": "en",
+      "desc": "If the test type is RAT then the test must be in the list of accepted RAT tests."
+    }
+  ],
+  "ValidFrom": "2021-07-04T15:00:00Z",
+  "ValidTo": "2023-07-04T00:00:00Z",
+  "AffectedFields": [
+    "t.0.ma",
+    "t.0.tt"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "===": [
+          {
+            "var": "payload.t.0.tt"
+          },
+          "LP217198-3"
+        ]
+      },
+      {
+        "in": [
+          {
+            "var": "payload.t.0.ma"
+          },
+          {
+            "var": "external.valueSets.covid-19-lab-test-manufacturer-and-name"
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name) else true"
+}
