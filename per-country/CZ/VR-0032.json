@@ -5,7 +5,7 @@
   "Identifier": "VR-CZ-0032",
   "Type": "Acceptance",
   "Country": "CZ",
-  "Version": "2.0.0",
+  "Version": "3.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,15 +13,15 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The vaccine Comirnaty must have been administered at least more than 14 day ago. Booster dose is valid immediately."
+      "desc": "Vaccination Comirnaty must must be older than 14 days"
     },
     {
       "lang": "cs",
-      "desc": "Od dokončeného očkování Comirnaty musí uplynout alespoň 14 dnů. Posilovací dávka je platná ihned."
+      "desc": "Od dokončeného očkování Comirnaty musí uplynout alespoň 14 dnů"
     }
   ],
-  "ValidFrom": "2021-11-21T23:00:00Z",
-  "ValidTo": "2031-11-21T23:00:00Z",
+  "ValidFrom": "2021-12-15T23:00:00Z",
+  "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.dn",

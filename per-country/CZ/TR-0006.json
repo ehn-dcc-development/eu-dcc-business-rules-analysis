@@ -1,8 +1,8 @@
 {
   "t": "TR",
   "c": "CZ",
-  "n": "0002",
-  "Identifier": "TR-CZ-0002",
+  "n": "0006",
+  "Identifier": "TR-CZ-0006",
   "Type": "Acceptance",
   "Country": "CZ",
   "Version": "3.0.0",
@@ -13,18 +13,18 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The PCR test may ot be older than 72 hours ago"
+      "desc": "The PCR test must have a certificate issuer"
     },
     {
       "lang": "cs",
-      "desc": "PCR test nesmí být starší více než 72 hodin"
+      "desc": "PCR test musí mít vydavatele certifikátu"
     }
   ],
   "ValidFrom": "2021-12-15T23:00:00Z",
   "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
     "t.0",
-    "t.0.sc",
+    "t.0.is",
     "t.0.tt"
   ],
   "Logic": {
@@ -43,25 +43,12 @@
             ]
           },
           {
-            "not-after": [
+            "if": [
               {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
+                "var": "payload.t.0.is"
               },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.t.0.sc"
-                  },
-                  72,
-                  "hour"
-                ]
-              }
+              true,
+              false
             ]
           },
           true
@@ -70,5 +57,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +72 hours) else true else true"
+  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then if /payload.t.0.is then true else false else true else true"
 }

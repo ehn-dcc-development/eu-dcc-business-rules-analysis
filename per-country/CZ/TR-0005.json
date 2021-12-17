@@ -1,8 +1,8 @@
 {
   "t": "TR",
   "c": "CZ",
-  "n": "0003",
-  "Identifier": "TR-CZ-0003",
+  "n": "0005",
+  "Identifier": "TR-CZ-0005",
   "Type": "Acceptance",
   "Country": "CZ",
   "Version": "3.0.0",
@@ -13,18 +13,18 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The antigen test  must be included in the EU’s Common list of COVID-19 rapid antigen tests"
+      "desc": "The Antigen test must have a certificate issuer. "
     },
     {
       "lang": "cs",
-      "desc": "Antigenní test musí mít výrobce uznávaného v rámci EU a musí být součástí seznamu publikovaných výrobců"
+      "desc": "Antigenní test musí mít vydavatele certifikátu"
     }
   ],
   "ValidFrom": "2021-12-15T23:00:00Z",
   "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
     "t.0",
-    "t.0.ma",
+    "t.0.is",
     "t.0.tt"
   ],
   "Logic": {
@@ -43,13 +43,12 @@
             ]
           },
           {
-            "in": [
+            "if": [
               {
-                "var": "payload.t.0.ma"
+                "var": "payload.t.0.is"
               },
-              {
-                "var": "external.valueSets.covid-19-lab-test-manufacturer-and-name"
-              }
+              true,
+              false
             ]
           },
           true
@@ -58,5 +57,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then (/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name) else true else true"
+  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then if /payload.t.0.is then true else false else true else true"
 }

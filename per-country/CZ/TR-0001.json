@@ -5,7 +5,7 @@
   "Identifier": "TR-CZ-0001",
   "Type": "Acceptance",
   "Country": "CZ",
-  "Version": "2.0.0",
+  "Version": "3.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,15 +13,15 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The sample for an antigen test (e.g., rapid test) must have been taken no longer than 24 hours ago."
+      "desc": "The antigen test may not be older than 48 hours ago"
     },
     {
       "lang": "cs",
-      "desc": "Vzorek antigenního testu nesmí být starší než 24 hodin."
+      "desc": "Antigenní test nesmí být starší více než 48 hodin"
     }
   ],
-  "ValidFrom": "2021-11-21T23:00:00Z",
-  "ValidTo": "2031-11-21T23:00:00Z",
+  "ValidFrom": "2021-12-15T23:00:00Z",
+  "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
     "t.0",
     "t.0.sc",
@@ -58,7 +58,7 @@
                   {
                     "var": "payload.t.0.sc"
                   },
-                  24,
+                  48,
                   "hour"
                 ]
               }
@@ -70,5 +70,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +24 hours) else true else true"
+  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +48 hours) else true else true"
 }

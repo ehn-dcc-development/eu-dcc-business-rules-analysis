@@ -1,23 +1,27 @@
 {
   "t": "VR",
-  "c": "CH",
-  "n": "0001",
-  "Identifier": "VR-CH-0001",
+  "c": "FR",
+  "n": "0002",
+  "Identifier": "VR-FR-0002",
   "Type": "Acceptance",
-  "Country": "CH",
-  "Version": "1.0.7",
+  "Country": "FR",
+  "Version": "1.0.3",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
   "CertificateType": "Vaccination",
   "Description": [
     {
-      "desc": "Vaccination doses must be equal or greater than expected doses.",
-      "lang": "en"
+      "lang": "en",
+      "desc": "Vaccination doses must be equal or greater than expected doses."
+    },
+    {
+      "lang": "fr",
+      "desc": "Le nombre de doses prises doit etre superieur ou égale au nombre de doses attendues."
     }
   ],
-  "ValidFrom": "2021-12-17T00:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
+  "ValidFrom": "2021-12-17T18:00:00Z",
+  "ValidTo": "2031-12-17T18:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.dn",

@@ -1,45 +1,45 @@
 {
-  "t": "TR",
+  "t": "VR",
   "c": "CZ",
-  "n": "0002",
-  "Identifier": "TR-CZ-0002",
+  "n": "0051",
+  "Identifier": "VR-CZ-0051",
   "Type": "Acceptance",
   "Country": "CZ",
   "Version": "3.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
+  "CertificateType": "Vaccination",
   "Description": [
     {
       "lang": "en",
-      "desc": "The PCR test may ot be older than 72 hours ago"
+      "desc": "Vaccination VAXZEVRIA may not be older than 1440 days"
     },
     {
       "lang": "cs",
-      "desc": "PCR test nesmí být starší více než 72 hodin"
+      "desc": "Očkování VAXZEVRIA nesmí být starší než 1440 dní"
     }
   ],
   "ValidFrom": "2021-12-15T23:00:00Z",
   "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
-    "t.0",
-    "t.0.sc",
-    "t.0.tt"
+    "v.0",
+    "v.0.mp",
+    "v.0.dt"
   ],
   "Logic": {
     "if": [
       {
-        "var": "payload.t.0"
+        "var": "payload.v.0"
       },
       {
         "if": [
           {
             "===": [
               {
-                "var": "payload.t.0.tt"
+                "var": "payload.v.0.mp"
               },
-              "LP6464-4"
+              "EU/1/21/1529"
             ]
           },
           {
@@ -56,10 +56,10 @@
               {
                 "plusTime": [
                   {
-                    "var": "payload.t.0.sc"
+                    "var": "payload.v.0.dt"
                   },
-                  72,
-                  "hour"
+                  1440,
+                  "day"
                 ]
               }
             ]
@@ -70,5 +70,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +72 hours) else true else true"
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/21/1529\") then (/external.validationClock +0 days) not-after (/payload.v.0.dt +1440 days) else true else true"
 }

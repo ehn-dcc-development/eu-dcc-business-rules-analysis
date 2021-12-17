@@ -5,7 +5,7 @@
   "Identifier": "VR-CZ-0021",
   "Type": "Acceptance",
   "Country": "CZ",
-  "Version": "2.0.0",
+  "Version": "3.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,15 +13,15 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The vaccine COVID-19 Vaccine Janssen must have been administered no longer than 1440 days ago."
+      "desc": "Vaccination COVID-19 Vaccine Janssen may not be older than 1440 days"
     },
     {
       "lang": "cs",
-      "desc": "Očkování COVID-19 Vaccine Janssen nesmí být starší než 1440 dní."
+      "desc": "Očkování COVID-19 Vaccine Janssen nesmí být starší než 1440 dní"
     }
   ],
-  "ValidFrom": "2021-11-21T23:00:00Z",
-  "ValidTo": "2031-11-21T23:00:00Z",
+  "ValidFrom": "2021-12-15T23:00:00Z",
+  "ValidTo": "2031-12-15T23:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.mp",

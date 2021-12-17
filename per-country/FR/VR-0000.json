@@ -1,0 +1,36 @@
+{
+  "t": "VR",
+  "c": "FR",
+  "n": "0000",
+  "Identifier": "VR-FR-0000",
+  "Type": "Acceptance",
+  "Country": "FR",
+  "Version": "1.0.4",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Vaccin format is not EU standard."
+    },
+    {
+      "lang": "fr",
+      "desc": "Le format lié au vaccin n'est pas au standard UE."
+    }
+  ],
+  "ValidFrom": "2021-12-17T18:00:00Z",
+  "ValidTo": "2031-12-17T18:00:00Z",
+  "AffectedFields": [
+    "v.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.v.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.v.1)"
+}

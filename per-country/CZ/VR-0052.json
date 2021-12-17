@@ -1,8 +1,8 @@
 {
   "t": "VR",
   "c": "CZ",
-  "n": "0042",
-  "Identifier": "VR-CZ-0042",
+  "n": "0052",
+  "Identifier": "VR-CZ-0052",
   "Type": "Acceptance",
   "Country": "CZ",
   "Version": "3.0.0",
@@ -13,11 +13,11 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Vaccination Comirnaty 5-11 must must be older than 14 days"
+      "desc": "Vaccination VAXZEVRIA must must be older than 14 days"
     },
     {
       "lang": "cs",
-      "desc": "Od dokončeného očkování Comirnaty 5-11 musí uplynout alespoň 14 dnů"
+      "desc": "Od dokončeného očkování VAXZEVRIA musí uplynout alespoň 14 dnů"
     }
   ],
   "ValidFrom": "2021-12-15T23:00:00Z",
@@ -53,7 +53,7 @@
                   {
                     "var": "payload.v.0.mp"
                   },
-                  "EU/1/20/1528"
+                  "EU/1/21/1529"
                 ]
               }
             ]
@@ -121,5 +121,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/20/1528\")) then (true) in ([ (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days), (/payload.v.0.dn) > (2), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ]) else true else true"
+  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/21/1529\")) then (true) in ([ (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days), (/payload.v.0.dn) > (2), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ]) else true else true"
 }
