@@ -4,6 +4,7 @@
     "certlogic-js": "^1.0.4",
     "dcc-business-rules-utils": "^0.1.0",
     "deep-equal": "^2.0.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "semver": "^7.3.5"
   }
 }

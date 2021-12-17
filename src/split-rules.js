@@ -1,5 +1,6 @@
-const { join } = require("path")
 const { normalCopyOf } = require("dcc-business-rules-utils")
+const { gt } = require("semver")
+const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
 const { renderAsText } = require("./render")
@@ -32,15 +33,33 @@ const normalised = (rule) => {
     return copy
 }
 
+const now = new Date()
+
 for (const c in map) {
     const countryPath = join("per-country", c)
     mkDir(countryPath)
+    const ruleMap = {}
     for (const rule of map[c]) {
-        if (new Date(rule.ValidTo) > new Date()) {
-            writeJson(join(countryPath, `${rule.t}-${rule.n}.json`), normalised(rule))
+        const id = rule.Identifier
+        const version = rule.Version
+        if (new Date(rule.ValidTo) > now) {
+            if (id in ruleMap) {
+                const prevRule = ruleMap[id]
+                if (gt(version, prevRule.Version)) {
+                    ruleMap[id] = rule
+                    console.log(`favoured version "${version}" of rule with id="${id}" over version "${prevRule.Version}"`)
+                } else {
+                    console.log(`favoured version "${prevRule.Version}" of rule with id="${id}" over version "${version}"`)
+                }
+            } else {
+                ruleMap[id] = rule
+            }
         } else {
-            console.warn(`skipped rule with id="${rule.Identifier}" because it's not valid anymore`)
+            console.warn(`skipped rule with id="${id}" and version="${version}" because it's not valid anymore`)
         }
     }
+    Object.values(ruleMap).forEach((rule) => {
+        writeJson(join(countryPath, `${rule.t}-${rule.n}.json`), normalised(rule))
+    })
 }
 
