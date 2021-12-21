@@ -29,7 +29,7 @@ const asDisplayName = (vaccineId) =>
 const vaccineInfoAsHtml = (vaccineInfo) =>
 `<tr>
     <td class="vaccines">${vaccineInfo.vaccineIds.map(asDisplayName).join(", ")}</td>
-${[ "1/1", "2/2", "3/3", "3/2", "4/4" ].map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
+${[ "1/1", "2/2", "2/1", "3/3", "3/2", "4/4" ].map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
 </tr>
 `
 
@@ -47,6 +47,7 @@ const theadContents = () =>
     <th>Accepted vaccines</th>
     <th>1/1</th>
     <th>2/2</th>
+    <th>2/1</th>
     <th>3/3</th>
     <th>3/2</th>
     <th>n/n, n > 3</th>
@@ -78,7 +79,7 @@ const infoAsHtml = (infoPerCountry) =>
         }
         td.vaccines {
             text-align: left;
-            width: 84%;
+            width: 80%;
         }
     </style>
   </head>

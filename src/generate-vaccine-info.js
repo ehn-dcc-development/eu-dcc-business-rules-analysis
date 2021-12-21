@@ -103,6 +103,7 @@ const infoForVaccine = (co, mp) => ({
     combos: {
         "1/1": infoForCombo(co, mp, 1, 1),
         "2/2": infoForCombo(co, mp, 2, 2),
+        "2/1": infoForCombo(co, mp, 2, 1),
         "3/3": infoForCombo(co, mp, 3, 3),
         "3/2": infoForCombo(co, mp, 3, 2),
         "4/4": infoForCombo(co, mp, 4, 4)
