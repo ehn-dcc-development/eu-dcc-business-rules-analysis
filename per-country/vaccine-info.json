@@ -503,30 +503,48 @@
           "EU/1/20/1525"
         ],
         "combos": {
-          "1/1": [
-            14,
-            181
-          ],
-          "2/2": [
-            14,
-            181
-          ],
-          "2/1": [
-            14,
-            181
-          ],
-          "3/3": [
-            14,
-            181
-          ],
-          "3/2": [
-            14,
-            181
-          ],
-          "4/4": [
-            14,
-            181
-          ]
+          "1/1": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          },
+          "2/2": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          },
+          "2/1": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          },
+          "3/3": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          },
+          "3/2": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          },
+          "4/4": {
+            "$translationInvariant": false,
+            "value": [
+              14,
+              181
+            ]
+          }
         }
       },
       {
@@ -536,30 +554,48 @@
           "EU/1/21/1529"
         ],
         "combos": {
-          "1/1": [
-            15,
-            181
-          ],
-          "2/2": [
-            15,
-            181
-          ],
-          "2/1": [
-            15,
-            181
-          ],
-          "3/3": [
-            15,
-            181
-          ],
-          "3/2": [
-            15,
-            181
-          ],
-          "4/4": [
-            15,
-            181
-          ]
+          "1/1": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          },
+          "2/2": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          },
+          "2/1": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          },
+          "3/3": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          },
+          "3/2": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          },
+          "4/4": {
+            "$translationInvariant": false,
+            "value": [
+              15,
+              181
+            ]
+          }
         }
       },
       {
@@ -567,30 +603,48 @@
           "EU/1/20/1528"
         ],
         "combos": {
-          "1/1": [
-            7,
-            181
-          ],
-          "2/2": [
-            7,
-            181
-          ],
-          "2/1": [
-            7,
-            181
-          ],
-          "3/3": [
-            7,
-            181
-          ],
-          "3/2": [
-            7,
-            181
-          ],
-          "4/4": [
-            7,
-            181
-          ]
+          "1/1": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          },
+          "2/2": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          },
+          "2/1": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          },
+          "3/3": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          },
+          "3/2": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          },
+          "4/4": {
+            "$translationInvariant": false,
+            "value": [
+              7,
+              181
+            ]
+          }
         }
       }
     ]

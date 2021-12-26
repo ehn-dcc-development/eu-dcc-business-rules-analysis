@@ -85,14 +85,23 @@ const infoForCombo = (co, mp, dn, sd) => {
         acceptedByVaccineRules(co, mp, checkValidFrom, dn, sd, dateWithOffset(checkValidFrom, nDays))
     )
     const checkRleAcceptance = rle(checkAcceptance)
-    if (!deepEqual(rleAcceptance, checkRleAcceptance)) {
+    const translationInvariant = deepEqual(rleAcceptance, checkRleAcceptance)
+    if (!translationInvariant) {
         console.log(`[ERROR] business rules for country "${co}", vaccine "${mp}", and ${dn}/${sd} are not invariant under datetime translations!`)
     }
 
+    const wrapForInInvariance = (value) =>
+        translationInvariant
+            ? value
+            : ({
+                $translationInvariant: false,
+                value
+            })
+
     switch (rleAcceptance.length) {
-        case 1: return null // not accepted
-        case 2: return rleAcceptance[0]
-        case 3: return [ rleAcceptance[0], rleAcceptance[1] ]
+        case 1: return wrapForInInvariance(null) // not accepted
+        case 2: return wrapForInInvariance(rleAcceptance[0])
+        case 3: return wrapForInInvariance([ rleAcceptance[0], rleAcceptance[1] ])
         default: throw new Error(`unexpected RLE: ${rleAcceptance}`)
     }
 }
@@ -136,12 +145,17 @@ const dedupEqualSpecs = (countryInfo) => {
 
 const optimise = (countryInfo) => dedupEqualSpecs(removeUnaccepted(countryInfo))
 
+const nowInMs = () => new Date().getTime()
+const startTime = nowInMs()
 
 const infoPerCountry = Object.keys(vaccineRulesPerCountry)
     .map((country) => ({
         country,
         vaccineSpecs: optimise(infoForCountry(country))
     }))
+
+const elapsedInMs = nowInMs() - startTime
+console.log(`Computing vaccine info took ${Math.floor(elapsedInMs/1000)}s.${elapsedInMs%1000}ms.`)
 
 writeJson("per-country/vaccine-info.json", infoPerCountry)
 

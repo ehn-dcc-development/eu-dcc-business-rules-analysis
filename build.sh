@@ -41,8 +41,9 @@ echo "Checked (validated) all rules."
 
 #exit 1
 
-node src/generate-vaccine-info.js > tmp/vaccine-info-problems.txt
-echo "Generated vaccine info per country."
+echo "Computing vaccine info per country, per vaccine, per combo..."
+node src/compute-vaccine-info.js > tmp/vaccine-info-log.txt
+echo "Computed vaccine info."
 
 node src/generate-vaccine-inventory.js
 echo "Generated vaccine inventory."

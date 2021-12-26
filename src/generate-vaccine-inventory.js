@@ -1,8 +1,9 @@
 const { readJson, writeHtml } = require("./file-utils")
 
 const redCrossMark = "&#x274c;"
+const redExclamationMark = "&#x2757;"
 
-const comboValueAsText = (comboValue) => {
+const comboValueAsUnannotatedText = (comboValue) => {
     if (comboValue === null) {
         return redCrossMark
     }
@@ -10,6 +11,14 @@ const comboValueAsText = (comboValue) => {
         return `${comboValue}-`
     }
     return `${comboValue[0]}-${comboValue[1]}`
+}
+
+const comboValueAsText = (comboValue) => {
+    const notTranslationInvariant = comboValue !== null && typeof comboValue === "object" && !Array.isArray(comboValue) && comboValue.$translationInvariant === false
+    const value = notTranslationInvariant
+        ? comboValue.value
+        : comboValue
+    return comboValueAsUnannotatedText(value) + (notTranslationInvariant ? redExclamationMark : "")
 }
 
 const comboAsHtml = (comboValue) =>
@@ -89,7 +98,8 @@ const infoAsHtml = (infoPerCountry) =>
         Below is a table that details which country accepts which vaccines, and with what validity period.
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
         This algorithm makes a couple of assumptions.
-        The most important one is that the logic of the vaccination-related business rules is essentially independent from actual dates, but only on the difference between the verification time and the date value of the <tt>dt</tt> field.
+        The most important one of those is that the logic of the vaccination-related business rules only depends the difference between the verification time and the date value of the <tt>dt</tt> field.
+        Where a violation of that assumption is suspected, the corresponding entry is marked with a “${redExclamationMark}”.
     </p>
     <p>
         Date of generation: <em>${new Date().toISOString()}</em>
