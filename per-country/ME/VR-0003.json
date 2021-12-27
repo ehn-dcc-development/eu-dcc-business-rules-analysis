@@ -1,0 +1,60 @@
+{
+  "t": "VR",
+  "c": "ME",
+  "n": "0003",
+  "Identifier": "VR-ME-0003",
+  "Type": "Acceptance",
+  "Country": "ME",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "sr",
+      "desc": "Osobe koje su 180 dana od pozitivnog PCR testa primile bar jednu dozu vakcine."
+    },
+    {
+      "lang": "en",
+      "desc": "For those who received at least one dose of vaccine 180 days after a positive PCR test."
+    }
+  ],
+  "ValidFrom": "2021-12-24T12:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dn",
+    "v.0.sd"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "payload.v.0.sd"
+              },
+              1
+            ]
+          },
+          {
+            ">=": [
+              {
+                "var": "payload.v.0.dn"
+              },
+              1
+            ]
+          },
+          true
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (1) then (/payload.v.0.dn) >= (1) else true else true"
+}

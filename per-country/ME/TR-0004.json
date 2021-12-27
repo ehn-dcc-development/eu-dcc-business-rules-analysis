@@ -1,0 +1,46 @@
+{
+  "t": "TR",
+  "c": "ME",
+  "n": "0004",
+  "Identifier": "TR-ME-0004",
+  "Type": "Acceptance",
+  "Country": "ME",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "The test result must be negative."
+    },
+    {
+      "lang": "sr",
+      "desc": "Rezultat testa mora biti negativan."
+    }
+  ],
+  "ValidFrom": "2021-12-24T12:00:00Z",
+  "ValidTo": "2030-01-01T00:00:00Z",
+  "AffectedFields": [
+    "t.0",
+    "t.0.tr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.t.0"
+      },
+      {
+        "===": [
+          {
+            "var": "payload.t.0.tr"
+          },
+          "260415000"
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
+}
