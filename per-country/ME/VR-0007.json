@@ -1,8 +1,8 @@
 {
   "t": "VR",
   "c": "ME",
-  "n": "0004",
-  "Identifier": "VR-ME-0004",
+  "n": "0007",
+  "Identifier": "VR-ME-0007",
   "Type": "Acceptance",
   "Country": "ME",
   "Version": "1.0.0",
@@ -17,10 +17,10 @@
     },
     {
       "lang": "sr",
-      "desc": "Za lica koja nisu primila drugu dozu, prva doza vakcine koja se prima u jednoj dozi je validna 6 meseci od datuma prijema."
+      "desc": "Za lica koja nisu primila drugu dozu, prva doza vakcine koja se prima u jednoj dozi je validna 6 mjeseci od datuma primanja."
     }
   ],
-  "ValidFrom": "2021-12-24T12:00:00Z",
+  "ValidFrom": "2021-12-29T12:00:00Z",
   "ValidTo": "2030-06-01T00:00:00Z",
   "AffectedFields": [
     "v.0",
