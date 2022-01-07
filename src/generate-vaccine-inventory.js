@@ -69,7 +69,7 @@ const infoAsHtml = (infoPerCountry) =>
     <title>Vaccination inventory</title>
     <style>
         body {
-            font-family: "Helvetica Neue";
+            font-family: sans-serif, "Helvetica Neue";
             font-size: 10pt;
         }
         table {
@@ -90,6 +90,9 @@ const infoAsHtml = (infoPerCountry) =>
             text-align: left;
             width: 80%;
         }
+        span.tt {
+            font-family: monospace;
+        }
     </style>
   </head>
   <body>
@@ -98,7 +101,7 @@ const infoAsHtml = (infoPerCountry) =>
         Below is a table that details which country accepts which vaccines, and with what validity period.
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
         This algorithm makes a couple of assumptions.
-        The most important one of those is that the logic of the vaccination-related business rules only depends the difference between the verification time and the date value of the <tt>dt</tt> field.
+        The most important one of those is that the logic of the vaccination-related business rules only depends the difference between the verification time and the date value of the <span class="tt">dt</span> field.
         Where a violation of that assumption is suspected, the corresponding entry is marked with a “${redExclamationMark}”.
     </p>
     <p>
@@ -120,11 +123,11 @@ ${theadContents()}
     </p>
     <ul>
         <li>The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.</li>
-        <li>Validity periods are dependent on the values of the <tt>dn/sd</tt> fields: <b>1/1, 2/2, 3/3, <em>3/2</em>, n/n, with n > 3</b>.</li>
+        <li>Validity periods are dependent on the values of the <span class="tt">dn/sd</span> fields: <b>1/1, 2/2, 3/3, <em>3/2</em>, n/n, with n > 3</b>.</li>
         <li>A validity period is expressed in the format "<em>from</em>-<em>until</em>" which means:
-            "the vaccine is accepted (with the indicated values for the <tt>dn/sd</tt> fields) from the <em>from</em>-th day after the vaccination date (the value of the <tt>dt</tt> field), until the <em>until</em>-th day.”</li>
+            "the vaccine is accepted (with the indicated values for the <span class="tt">dn/sd</span> fields) from the <em>from</em>-th day after the vaccination date (the value of the <span class="tt">dt</span> field), until the <em>until</em>-th day.”</li>
         <li>If the <em>until</em>-part is empty, the vaccine is accepted “forever”.</li>
-        <li>A red cross mark (${redCrossMark}) means that the vaccine is not accepted at all for those values of <tt>dn/sd</tt>.</li>
+        <li>A red cross mark (${redCrossMark}) means that the vaccine is not accepted at all for those values of <span class="tt">dn/sd</span>.</li>
     </ul>
     <p>
     </p>

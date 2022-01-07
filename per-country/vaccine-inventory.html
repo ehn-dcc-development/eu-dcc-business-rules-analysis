@@ -5,7 +5,7 @@
     <title>Vaccination inventory</title>
     <style>
       body {
-        font-family: "Helvetica Neue";
+        font-family: sans-serif, "Helvetica Neue";
         font-size: 10pt;
       }
       table {
@@ -27,6 +27,9 @@
         text-align: left;
         width: 80%;
       }
+      span.tt {
+        font-family: monospace;
+      }
     </style>
   </head>
   <body>
@@ -38,10 +41,11 @@
       Gateway. This algorithm makes a couple of assumptions. The most important
       one of those is that the logic of the vaccination-related business rules
       only depends the difference between the verification time and the date
-      value of the <tt>dt</tt> field. Where a violation of that assumption is
-      suspected, the corresponding entry is marked with a “&#x2757;”.
+      value of the <span class="tt">dt</span> field. Where a violation of that
+      assumption is suspected, the corresponding entry is marked with a
+      “&#x2757;”.
     </p>
-    <p>Date of generation: <em>2022-01-05T15:18:39.591Z</em></p>
+    <p>Date of generation: <em>2022-01-07T08:09:41.699Z</em></p>
     <table>
       <thead>
         <tr>
@@ -533,22 +537,22 @@
       </li>
       <li>
         Validity periods are dependent on the values of the
-        <tt>dn/sd</tt> fields:
+        <span class="tt">dn/sd</span> fields:
         <b>1/1, 2/2, 3/3, <em>3/2</em>, n/n, with n > 3</b>.
       </li>
       <li>
         A validity period is expressed in the format
         "<em>from</em>-<em>until</em>" which means: "the vaccine is accepted
-        (with the indicated values for the <tt>dn/sd</tt> fields) from the
-        <em>from</em>-th day after the vaccination date (the value of the
-        <tt>dt</tt> field), until the <em>until</em>-th day.”
+        (with the indicated values for the <span class="tt">dn/sd</span> fields)
+        from the <em>from</em>-th day after the vaccination date (the value of
+        the <span class="tt">dt</span> field), until the <em>until</em>-th day.”
       </li>
       <li>
         If the <em>until</em>-part is empty, the vaccine is accepted “forever”.
       </li>
       <li>
         A red cross mark (&#x274c;) means that the vaccine is not accepted at
-        all for those values of <tt>dn/sd</tt>.
+        all for those values of <span class="tt">dn/sd</span>.
       </li>
     </ul>
     <p></p>

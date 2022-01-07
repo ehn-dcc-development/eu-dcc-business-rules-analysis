@@ -1,11 +1,11 @@
 {
   "t": "VR",
   "c": "IE",
-  "n": "0003",
-  "Identifier": "VR-IE-0003",
+  "n": "0011",
+  "Identifier": "VR-IE-0011",
   "Type": "Acceptance",
   "Country": "IE",
-  "Version": "1.0.3",
+  "Version": "1.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,7 +13,7 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Vaccine certificate is invalid for entry at this time as the date is outside the window."
+      "desc": "Effective dates on vaccine certificate not valid for entry at this time."
     }
   ],
   "ValidFrom": "2022-01-07T00:00:00Z",
@@ -29,22 +29,12 @@
       {
         "if": [
           {
-            "and": [
+            ">": [
               {
-                "===": [
-                  {
-                    "var": "payload.v.0.mp"
-                  },
-                  "EU/1/20/1528"
-                ]
+                "var": "payload.v.0.dn"
               },
               {
-                "<=": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  2
-                ]
+                "var": "payload.v.0.sd"
               }
             ]
           },
@@ -55,7 +45,7 @@
                   {
                     "var": "payload.v.0.dt"
                   },
-                  7,
+                  0,
                   "day"
                 ]
               },
@@ -83,5 +73,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.mp) === (\"EU/1/20/1528\")) and ((/payload.v.0.dn) <= (2)) then (/payload.v.0.dt +7 days) not-after (/external.validationClock +0 days) not-after (\"2022-06-30T23:59:59-00:00\" +0 days) else true else true"
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) > (/payload.v.0.sd) then (/payload.v.0.dt +0 days) not-after (/external.validationClock +0 days) not-after (\"2022-06-30T23:59:59-00:00\" +0 days) else true else true"
 }
