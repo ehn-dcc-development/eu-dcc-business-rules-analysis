@@ -42,11 +42,19 @@ ${[ "1/1", "2/2", "2/1", "3/3", "3/2", "4/4" ].map((combo) => comboAsHtml(vaccin
 </tr>
 `
 
+const charCodes = (str) =>
+    [...Array(str.length).keys()]
+        .map((idx) => str.charCodeAt(idx))
+
+const flagEmoji = (country) =>
+    String.fromCodePoint(...(
+        charCodes(country).map((charCode) => 127397 + charCode)
+    ))
 
 const countryCode2DisplayName = require("./country-code-to-display-name.json")
 const countryInfoAsHtml = ({ country, vaccineSpecs }) =>
 `<tr>
-    <td colspan="6" class="country">${countryCode2DisplayName[country]} (${country})</td>
+    <td colspan="6" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>
 </tr>
 ${vaccineSpecs.map(vaccineInfoAsHtml).join("\n")}
 `
