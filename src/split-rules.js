@@ -3,7 +3,7 @@ const { gt } = require("semver")
 const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
-const { renderAsText } = require("./render")
+const { renderAsText } = require("./render-expression-as-text")
 
 
 const allRules = require("../tmp/all-rules-exploded-IDs.json")

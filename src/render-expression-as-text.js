@@ -1,7 +1,9 @@
+/*
 const indent = (str, n = 1) => str
     .split(/[\n]/)
     .map((line) => "\t".repeat(n) + line)
     .join("\n")
+ */
 
 const renderAsText = (expr) => {
     if (Array.isArray(expr)) {
@@ -43,4 +45,9 @@ ${indent(renderAsText(operands[2]), 2)}`
     return JSON.stringify(expr, null, 2)
 }
 module.exports.renderAsText = renderAsText
+
+/*
+ * Note: this performs the same function as the `renderAsCompactText` from the sub package certlogic-js/misc,
+ * except for that this version doesn't wrap every sub expression in a parenthesis pair (`(&hellip;)`).
+ */
 
