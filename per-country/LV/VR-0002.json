@@ -1,0 +1,48 @@
+{
+  "t": "VR",
+  "c": "LV",
+  "n": "0002",
+  "Identifier": "VR-LV-0002",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Vakcinācijas sertifikāts ir izsniegts par Covid-19 vakcināciju."
+    },
+    {
+      "lang": "en",
+      "desc": "Disease or agent targeted is ICD-10 or SNOMED CT (GPS) 840539006."
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.tg"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "in": [
+          {
+            "var": "payload.v.0.tg"
+          },
+          [
+            "840539006"
+          ]
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then (/payload.v.0.tg) in ([ \"840539006\" ]) else true"
+}

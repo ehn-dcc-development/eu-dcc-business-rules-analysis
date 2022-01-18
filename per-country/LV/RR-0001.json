@@ -1,0 +1,48 @@
+{
+  "t": "RR",
+  "c": "LV",
+  "n": "0001",
+  "Identifier": "RR-LV-0001",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Pārslimošanas sertifikāts ir izsniegts par Covid-19 saslimšanu"
+    },
+    {
+      "lang": "en",
+      "desc": "Disease or agent targeted is ICD-10 or SNOMED CT (GPS) 840539006"
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.tg"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "in": [
+          {
+            "var": "payload.r.0.tg"
+          },
+          [
+            "840539006"
+          ]
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/payload.r.0.tg) in ([ \"840539006\" ]) else true"
+}

@@ -5,7 +5,7 @@
   "Identifier": "VR-LU-0003",
   "Type": "Acceptance",
   "Country": "LU",
-  "Version": "1.0.0",
+  "Version": "1.4.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,30 +13,35 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The vaccine must have been administered no longer than one year ago."
+      "desc": "Vaccination doses must be equal or greater than expected doses."
     },
     {
       "lang": "de",
-      "desc": "Seit der Impfung darf maximal ein Jahr vergangen sein."
+      "desc": "Die Impfdosen müssen gleich oder höher sein als die erwarteten Dosen."
     },
     {
       "lang": "fr",
-      "desc": "La vaccination ne doit pas dater de plus d’un an."
+      "desc": "Les doses de vaccination doivent être égales ou supérieures aux doses prévues."
     },
     {
       "lang": "es",
-      "desc": "Debe haber transcurrido como máximo un año desde la vacuna."
+      "desc": "Las dosis de vacunación deben ser iguales o superiores a las previstas."
     },
     {
       "lang": "it",
-      "desc": "La vaccinazione non può risalire a più di un anno fa."
+      "desc": "Le dosi di vaccinazione devono essere uguali o superiori alle dosi previste."
+    },
+    {
+      "lang": "nl",
+      "desc": "Vaccinatiedoses moeten gelijk of groter zijn dan de verwachte doses."
     }
   ],
-  "ValidFrom": "2021-07-16T12:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
+  "ValidFrom": "2022-01-09T15:30:00Z",
+  "ValidTo": "2031-01-05T00:00:00Z",
   "AffectedFields": [
     "v.0",
-    "v.0.dt"
+    "v.0.dn",
+    "v.0.sd"
   ],
   "Logic": {
     "if": [
@@ -44,29 +49,17 @@
         "var": "payload.v.0"
       },
       {
-        "not-after": [
+        ">=": [
           {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
+            "var": "payload.v.0.dn"
           },
           {
-            "plusTime": [
-              {
-                "var": "payload.v.0.dt"
-              },
-              366,
-              "day"
-            ]
+            "var": "payload.v.0.sd"
           }
         ]
       },
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then (/external.validationClock +0 days) not-after (/payload.v.0.dt +366 days) else true"
+  "expr-as-text": "if /payload.v.0 then (/payload.v.0.dn) >= (/payload.v.0.sd) else true"
 }

@@ -1,0 +1,90 @@
+{
+  "t": "VR",
+  "c": "SK",
+  "n": "0005",
+  "Identifier": "VR-SK-0005",
+  "Type": "Acceptance",
+  "Country": "SK",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.1.0",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days must have elapsed since the second dose of COVID-19 vaccine was administered. For full vaccination, both, vaccination certificate of the first dose administration and digital certificate of recovery need to be considered."
+    },
+    {
+      "lang": "sk",
+      "desc": "Nevyhovuje podmienke plnej očkovanosti. Od podania druhej dávky očkovacej látky proti ochoreniu COVID-19 neuplynulo najmenej 14 dní. Pre plnú očkovanosť je nutné posúdiť doklad o podaní prvej dávky v kombinácii s dokladom o prekonaní COVID-19."
+    }
+  ],
+  "ValidFrom": "2022-01-16T15:24:18Z",
+  "ValidTo": "2030-07-26T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dn",
+    "v.0.sd",
+    "v.0.dt"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "payload.v.0.sd"
+              },
+              2
+            ]
+          },
+          {
+            "if": [
+              {
+                ">=": [
+                  {
+                    "var": "payload.v.0.dn"
+                  },
+                  {
+                    "var": "payload.v.0.sd"
+                  }
+                ]
+              },
+              {
+                "not-before": [
+                  {
+                    "plusTime": [
+                      {
+                        "var": "external.validationClock"
+                      },
+                      0,
+                      "day"
+                    ]
+                  },
+                  {
+                    "plusTime": [
+                      {
+                        "var": "payload.v.0.dt"
+                      },
+                      14,
+                      "day"
+                    ]
+                  }
+                ]
+              },
+              true
+            ]
+          },
+          true
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (2) then if (/payload.v.0.dn) >= (/payload.v.0.sd) then (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) else true else true else true"
+}

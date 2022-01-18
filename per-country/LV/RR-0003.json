@@ -1,0 +1,69 @@
+{
+  "t": "RR",
+  "c": "LV",
+  "n": "0003",
+  "Identifier": "RR-LV-0003",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Pārslimošanas sertifikāts ir spēkā"
+    },
+    {
+      "lang": "en",
+      "desc": "Recovery certificate is valid"
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.fr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              11,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              180,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/payload.r.0.fr +11 days) not-after (/external.validationClock +0 days) not-after (/payload.r.0.fr +180 days) else true"
+}

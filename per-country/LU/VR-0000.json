@@ -1,0 +1,52 @@
+{
+  "t": "VR",
+  "c": "LU",
+  "n": "0000",
+  "Identifier": "VR-LU-0000",
+  "Type": "Acceptance",
+  "Country": "LU",
+  "Version": "1.4.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "At most one vaccination-event."
+    },
+    {
+      "lang": "de",
+      "desc": "Höchstens ein impfung-Ereignis."
+    },
+    {
+      "lang": "fr",
+      "desc": "Au maximum un événement de vaccination."
+    },
+    {
+      "lang": "es",
+      "desc": "Como máximo un evento de vacunación."
+    },
+    {
+      "lang": "it",
+      "desc": "Al massimo una vaccinazione-evento."
+    },
+    {
+      "lang": "nl",
+      "desc": "Ten hoogste één vaccinatie-gebeurtenis."
+    }
+  ],
+  "ValidFrom": "2022-01-09T13:00:00Z",
+  "ValidTo": "2031-01-05T00:00:00Z",
+  "AffectedFields": [
+    "v.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.v.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.v.1)"
+}

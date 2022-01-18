@@ -1,0 +1,50 @@
+{
+  "t": "VR",
+  "c": "LV",
+  "n": "0003",
+  "Identifier": "VR-LV-0003",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Vakcinācija ir veikta ar apstiprinātu vakcīnas veidu: mRNA vai antigēna vakcīnu."
+    },
+    {
+      "lang": "en",
+      "desc": "Vaccine/prophylaxis is 1119349007 COVID-19 mRNA vaccine OR 1119305005 COVID-19 antigen vaccine."
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.vp"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "in": [
+          {
+            "var": "payload.v.0.vp"
+          },
+          [
+            "1119349007",
+            "1119305005",
+            "J07BX03"
+          ]
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then (/payload.v.0.vp) in ([ \"1119349007\", \"1119305005\", \"J07BX03\" ]) else true"
+}

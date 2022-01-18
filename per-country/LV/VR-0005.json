@@ -1,0 +1,58 @@
+{
+  "t": "VR",
+  "c": "LV",
+  "n": "0005",
+  "Identifier": "VR-LV-0005",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Saņemtā vakcīnas deva ir robežās no 1 līdz 12"
+    },
+    {
+      "lang": "en",
+      "desc": "Number in a series of vaccinations is between 1 and 12"
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dn"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "and": [
+          {
+            ">=": [
+              {
+                "var": "payload.v.0.dn"
+              },
+              1
+            ]
+          },
+          {
+            "<=": [
+              {
+                "var": "payload.v.0.dn"
+              },
+              12
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then ((/payload.v.0.dn) >= (1)) and ((/payload.v.0.dn) <= (12)) else true"
+}

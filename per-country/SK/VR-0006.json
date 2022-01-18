@@ -1,0 +1,62 @@
+{
+  "t": "VR",
+  "c": "SK",
+  "n": "0006",
+  "Identifier": "VR-SK-0006",
+  "Type": "Acceptance",
+  "Country": "SK",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.1.0",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Does not meet full vaccination criteria. A person is fully vaccinated when at least 14 days and not more than 12 months have elapsed since the first dose of COVID-19 vaccine was administered and the first dose was administered within 180 days since the person had recovered from COVID-19."
+    },
+    {
+      "lang": "sk",
+      "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná, ak ubehlo najmenej 14 dní a nie viac než 12 mesiacov po aplikácii prvej dávky očkovacej látky proti ochoreniu COVID-19, ak bola prvá dávka očkovania proti ochoreniu podaná v intervale do 180 dní od prekonania ochorenia COVID-19."
+    }
+  ],
+  "ValidFrom": "2022-01-16T15:24:18Z",
+  "ValidTo": "2030-07-26T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.dn",
+    "v.0.sd"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "if": [
+          {
+            ">": [
+              {
+                "var": "payload.v.0.sd"
+              },
+              1
+            ]
+          },
+          {
+            ">=": [
+              {
+                "var": "payload.v.0.dn"
+              },
+              {
+                "var": "payload.v.0.sd"
+              }
+            ]
+          },
+          true
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) > (1) then (/payload.v.0.dn) >= (/payload.v.0.sd) else true else true"
+}

@@ -5,7 +5,7 @@
   "Identifier": "VR-LU-0002",
   "Type": "Acceptance",
   "Country": "LU",
-  "Version": "1.1.0",
+  "Version": "1.5.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,30 +13,24 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Only the following vaccines are accepted: AstraZeneca, Biontech, Janssen, Moderna, Covishield, R-Covi, Covid-19 (recombinant)."
-    },
-    {
-      "lang": "de",
-      "desc": "Nur die folgenden Impfstoffe werden akzeptiert: AstraZeneca, Biontech, Janssen, Moderna, Covishield, R-Covi, Covid-19 (recombinant)."
+      "desc": "The vaccine must have been administered no longer than 9 months ago."
     },
     {
       "lang": "fr",
-      "desc": "Seuls les vaccins suivants sont acceptés : AstraZeneca, Biontech, Janssen, Moderna, Covishield, R-Covi, Covid-19 (recombinant)."
-    },
-    {
-      "lang": "es",
-      "desc": "Solo se aceptan las siguientes vacunas: AstraZeneca, Biontech, Janssen, Moderna, Covishield, R-Covi, Covid-19 (recombinant)."
+      "desc": "La vaccination ne doit pas dater de plus de neuf mois"
     },
     {
       "lang": "it",
-      "desc": "Saranno accettati solamente i seguenti vaccini: AstraZeneca, Biontech, Janssen, Moderna, Covishield, R-Covi, Covid-19 (recombinant)."
+      "desc": "La vaccinazione non può risalire a più di 9 mesi fa."
     }
   ],
-  "ValidFrom": "2021-11-26T12:00:00Z",
+  "ValidFrom": "2022-01-13T18:00:00Z",
   "ValidTo": "2030-06-01T00:00:00Z",
   "AffectedFields": [
     "v.0",
-    "v.0.mp"
+    "v.0.dn",
+    "v.0.sd",
+    "v.0.dt"
   ],
   "Logic": {
     "if": [
@@ -44,23 +38,99 @@
         "var": "payload.v.0"
       },
       {
-        "in": [
+        "if": [
           {
-            "var": "payload.v.0.mp"
+            "===": [
+              {
+                "var": "payload.v.0.dn"
+              },
+              {
+                "var": "payload.v.0.sd"
+              }
+            ]
           },
-          [
-            "EU/1/20/1528",
-            "EU/1/20/1507",
-            "EU/1/21/1529",
-            "EU/1/20/1525",
-            "Covishield",
-            "R-COVI",
-            "Covid-19-recombinant"
-          ]
+          {
+            "if": [
+              {
+                "<": [
+                  {
+                    "var": "payload.v.0.dn"
+                  },
+                  3
+                ]
+              },
+              {
+                "not-after": [
+                  {
+                    "plusTime": [
+                      {
+                        "var": "external.validationClock"
+                      },
+                      0,
+                      "day"
+                    ]
+                  },
+                  {
+                    "plusTime": [
+                      {
+                        "var": "payload.v.0.dt"
+                      },
+                      270,
+                      "day"
+                    ]
+                  }
+                ]
+              },
+              {
+                "not-after": [
+                  {
+                    "plusTime": [
+                      {
+                        "var": "external.validationClock"
+                      },
+                      0,
+                      "day"
+                    ]
+                  },
+                  {
+                    "plusTime": [
+                      {
+                        "var": "payload.v.0.dt"
+                      },
+                      366,
+                      "day"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "not-after": [
+              {
+                "plusTime": [
+                  {
+                    "var": "external.validationClock"
+                  },
+                  0,
+                  "day"
+                ]
+              },
+              {
+                "plusTime": [
+                  {
+                    "var": "payload.v.0.dt"
+                  },
+                  366,
+                  "day"
+                ]
+              }
+            ]
+          }
         ]
       },
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then (/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"R-COVI\", \"Covid-19-recombinant\" ]) else true"
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) === (/payload.v.0.sd) then if (/payload.v.0.dn) < (3) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +366 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +366 days) else true"
 }

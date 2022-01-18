@@ -1,0 +1,58 @@
+{
+  "t": "VR",
+  "c": "LV",
+  "n": "0006",
+  "Identifier": "VR-LV-0006",
+  "Type": "Acceptance",
+  "Country": "LV",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.7.5",
+  "CertificateType": "Vaccination",
+  "Description": [
+    {
+      "lang": "lv",
+      "desc": "Devu skaits pilnam vakcinācijas ciklam ir robežās no 1 līdz 12"
+    },
+    {
+      "lang": "en",
+      "desc": "Number of vaccine vaccination doses for full vaccination cycle is between 1 and 12"
+    }
+  ],
+  "ValidFrom": "2022-01-10T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "v.0",
+    "v.0.sd"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.v.0"
+      },
+      {
+        "and": [
+          {
+            ">=": [
+              {
+                "var": "payload.v.0.sd"
+              },
+              1
+            ]
+          },
+          {
+            "<=": [
+              {
+                "var": "payload.v.0.sd"
+              },
+              12
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.v.0 then ((/payload.v.0.sd) >= (1)) and ((/payload.v.0.sd) <= (12)) else true"
+}

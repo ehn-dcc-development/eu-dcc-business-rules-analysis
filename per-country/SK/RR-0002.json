@@ -1,0 +1,60 @@
+{
+  "t": "RR",
+  "c": "SK",
+  "n": "0002",
+  "Identifier": "RR-SK-0002",
+  "Type": "Acceptance",
+  "Country": "SK",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.1.0",
+  "CertificateType": "Recovery",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "Proof of recovery COVID-19 must be no more than 180 days ago."
+    },
+    {
+      "lang": "sk",
+      "desc": "Od prekonania COVID-19 ubehlo viac ako 180 dní."
+    }
+  ],
+  "ValidFrom": "2022-01-16T15:24:17Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "r.0",
+    "r.0.fr"
+  ],
+  "Logic": {
+    "if": [
+      {
+        "var": "payload.r.0"
+      },
+      {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.r.0.fr"
+              },
+              180,
+              "day"
+            ]
+          }
+        ]
+      },
+      true
+    ]
+  },
+  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-after (/payload.r.0.fr +180 days) else true"
+}

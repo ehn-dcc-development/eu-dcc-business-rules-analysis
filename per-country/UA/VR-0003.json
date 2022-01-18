@@ -5,7 +5,7 @@
   "Identifier": "VR-UA-0003",
   "Type": "Acceptance",
   "Country": "UA",
-  "Version": "1.2.0",
+  "Version": "1.3.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -20,7 +20,7 @@
       "desc": "Verification Datetime має бути більше 0 днів і менше 365 днів після дати останньої дати вакцинації."
     }
   ],
-  "ValidFrom": "2021-09-24T19:00:00Z",
+  "ValidFrom": "2022-01-13T11:01:00Z",
   "ValidTo": "2030-06-01T00:00:00Z",
   "AffectedFields": [
     "v.0",
@@ -56,7 +56,7 @@
               {
                 "var": "payload.v.0.dt"
               },
-              120,
+              30,
               "day"
             ]
           }
@@ -78,7 +78,7 @@
               {
                 "var": "payload.v.0.dt"
               },
-              365,
+              270,
               "day"
             ]
           }
@@ -86,5 +86,5 @@
       }
     ]
   },
-  "expr-as-text": "if (/payload.v.0.dn) < (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +120 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days)"
+  "expr-as-text": "if (/payload.v.0.dn) < (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days)"
 }

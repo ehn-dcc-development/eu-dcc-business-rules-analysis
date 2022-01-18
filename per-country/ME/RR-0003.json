@@ -1,8 +1,8 @@
 {
   "t": "RR",
   "c": "ME",
-  "n": "0001",
-  "Identifier": "RR-ME-0001",
+  "n": "0003",
+  "Identifier": "RR-ME-0003",
   "Type": "Acceptance",
   "Country": "ME",
   "Version": "1.0.0",
@@ -13,14 +13,14 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The positive NAA test result (e.g., PCR) must be older than 10 days."
+      "desc": "The positive NAA test result (e.g., PCR) must be older than 7 days."
     },
     {
       "lang": "sr",
-      "desc": "Pozitivan rezultat NAA testa (npr. PCR testa) mora biti stariji od 10 dana."
+      "desc": "Pozitivan rezultat NAA testa (npr. PCR testa) mora biti stariji od 7 dana."
     }
   ],
-  "ValidFrom": "2021-12-24T12:00:00Z",
+  "ValidFrom": "2022-01-15T12:00:00Z",
   "ValidTo": "2030-01-01T00:00:00Z",
   "AffectedFields": [
     "r.0",
@@ -47,7 +47,7 @@
               {
                 "var": "payload.r.0.fr"
               },
-              10,
+              7,
               "day"
             ]
           }
@@ -56,5 +56,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +10 days) else true"
+  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +7 days) else true"
 }

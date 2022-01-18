@@ -5,7 +5,7 @@
   "Identifier": "RR-RO-0002",
   "Type": "Acceptance",
   "Country": "RO",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,26 +13,26 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "The positive test result must be older than 14 days."
+      "desc": "The positive test result must be older than 10 days."
     },
     {
       "lang": "de",
-      "desc": "Das positive Testergebnis muss älter als 14 Tage sein."
+      "desc": "Das positive Testergebnis muss älter als 10 Tage sein."
     },
     {
       "lang": "fr",
-      "desc": "Le résultat positif du test doit dater de plus de 14 jours."
+      "desc": "Le résultat positif du test doit dater de plus de 10 jours."
     },
     {
       "lang": "es",
-      "desc": "El resultado positivo de la prueba debe tener más de 14 días."
+      "desc": "El resultado positivo de la prueba debe tener más de 10 días."
     },
     {
       "lang": "it",
-      "desc": "Il risultato positivo del test deve essere più vecchio di 14 giorni."
+      "desc": "Il risultato positivo del test deve essere più vecchio di 10 giorni."
     }
   ],
-  "ValidFrom": "2021-08-13T00:00:00Z",
+  "ValidFrom": "2022-01-14T14:00:00Z",
   "ValidTo": "2031-01-01T00:00:00Z",
   "AffectedFields": [
     "r.0",
@@ -59,7 +59,7 @@
               {
                 "var": "payload.r.0.fr"
               },
-              14,
+              10,
               "day"
             ]
           }
@@ -68,5 +68,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +14 days) else true"
+  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +10 days) else true"
 }

@@ -1,0 +1,36 @@
+{
+  "t": "TR",
+  "c": "SK",
+  "n": "0000",
+  "Identifier": "TR-SK-0000",
+  "Type": "Acceptance",
+  "Country": "SK",
+  "Version": "1.0.0",
+  "SchemaVersion": "1.0.0",
+  "Engine": "CERTLOGIC",
+  "EngineVersion": "0.1.0",
+  "CertificateType": "Test",
+  "Description": [
+    {
+      "lang": "en",
+      "desc": "At most one t-event."
+    },
+    {
+      "lang": "sk",
+      "desc": "QR kód obsahuje viac preukazov o testovaní. Nie je možné ho overiť."
+    }
+  ],
+  "ValidFrom": "2022-01-16T15:24:17Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
+  "AffectedFields": [
+    "t.1"
+  ],
+  "Logic": {
+    "!": [
+      {
+        "var": "payload.t.1"
+      }
+    ]
+  },
+  "expr-as-text": "not (/payload.t.1)"
+}
