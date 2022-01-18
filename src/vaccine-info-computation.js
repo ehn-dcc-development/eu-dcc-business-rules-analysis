@@ -2,6 +2,7 @@ const { evaluate } = require("certlogic-js")
 const deepEqual = require("deep-equal")
 
 const { rle } = require("./rle-util")
+const { lowerTriangular, range } = require("./func-utils")
 
 const valueSets = require("./valueSets.json")
 
@@ -37,10 +38,6 @@ const safeEvaluate = (expr, data) => {
 
 const acceptedByVaccineRules = (rules, mp, dt, dn, sd, nowDate) =>
     rules.every((rule) => safeEvaluate(rule, inputDataFrom(mp, dt, dn, sd, nowDate)))
-
-
-const range = (n) =>
-    Array.from(Array(n).keys())
 
 
 const dateWithOffset = (dateStr, nDays) => {
@@ -87,14 +84,11 @@ const infoForCombo = (rules, co, mp, dn, sd) => {
 
 const infoForVaccine = (rules, co, mp) => ({
     vaccineIds: [mp],
-    combos: {
-        "1/1": infoForCombo(rules, co, mp, 1, 1),
-        "2/2": infoForCombo(rules, co, mp, 2, 2),
-        "2/1": infoForCombo(rules, co, mp, 2, 1),
-        "3/3": infoForCombo(rules, co, mp, 3, 3),
-        "3/2": infoForCombo(rules, co, mp, 3, 2),
-        "4/4": infoForCombo(rules, co, mp, 4, 4)
-    }
+    combos: Object.fromEntries(
+        lowerTriangular(6).map(([ i, j ]) =>
+            [ `${i+1}/${j+1}`, infoForCombo(rules, co, mp, i + 1, j + 1) ]
+        )
+    )
 })
 
 

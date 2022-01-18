@@ -1,3 +1,6 @@
+const { range, lowerTriangular} = require("./func-utils")
+
+
 const redCrossMark = "&#x274c;"
 const redExclamationMark = "&#x2757;"
 
@@ -33,7 +36,7 @@ const vaccineId2PopularName = {
 const asDisplayName = (vaccineId) =>
     vaccineId2PopularName[vaccineId] || vaccineId
 
-const combosShown = [ "1/1", "2/2", "2/1", "3/3", "3/2", "4/4" ]
+const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)
 const vaccineInfoAsHtml = (vaccineInfo) =>
     `<tr>
     <td class="vaccines">${vaccineInfo.vaccineIds.map(asDisplayName).join(", ")}</td>
@@ -42,8 +45,7 @@ ${combosShown.map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
 `
 
 const charCodes = (str) =>
-    [...Array(str.length).keys()]
-        .map((idx) => str.charCodeAt(idx))
+    range(str.length).map((idx) => str.charCodeAt(idx))
 
 const flagEmoji = (country) =>
     String.fromCodePoint(...(
@@ -61,12 +63,7 @@ ${vaccineSpecs.map(vaccineInfoAsHtml).join("\n")}
 const theadContents = () =>
     `<tr>
     <th>Accepted vaccines</th>
-    <th>1/1</th>
-    <th>2/2</th>
-    <th>2/1</th>
-    <th>3/3</th>
-    <th>3/2</th>
-    <th>4/4</th>
+${combosShown.map((combo) => `  <th>${combo}</th>`).join("\n")}
 </tr>`
 
 const infoAsHtml = (infoPerCountry) =>
@@ -95,7 +92,7 @@ const infoAsHtml = (infoPerCountry) =>
         }
         td.vaccines {
             text-align: left;
-            width: 80%;
+            width: 30em;
         }
         span.tt {
             font-family: monospace;
@@ -130,9 +127,8 @@ ${theadContents()}
     </p>
     <ul>
         <li>The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.</li>
-        <li>Validity periods are dependent on the values of the <span class="tt">dn/sd</span> fields: <b>${combosShown.join(", ")}</b>.
-            The entry for 4/4 can be interpreted as “n/n, with n > 3”.
-            Note that 3/2 is not allowed anymore according to the EU Regulations, but it's likely DCCs have been issued like that.
+        <li>Validity periods are dependent on the values of the <span class="tt">dn/sd</span> fields: <b>1/1, 2/2, 2/1, 3/3, 3/2, etc.</b>
+            Note that values like 3/2, 5/3, etc. are not allowed anymore according to the EU Regulations, but it's not unlikely DCCs have been issued like that.
         </li>
         <li>A validity period is expressed in the format "<em>from</em>-<em>until</em>" which means:
             "the vaccine is accepted (with the indicated values for the <span class="tt">dn/sd</span> fields) from the <em>from</em>-th day after the vaccination date (the value of the <span class="tt">dt</span> field), until the <em>until</em>-th day.”</li>
