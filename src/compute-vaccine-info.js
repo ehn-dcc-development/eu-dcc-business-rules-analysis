@@ -1,16 +1,20 @@
 const { writeJson } = require("./file-utils")
+const { parseId } = require("./rules-utils")
 const { vaccineSpecsFromRules } = require("./vaccine-info")
 
-const allRules = require("../tmp/all-rules-exploded-IDs.json")
+
+const allRules = require("../tmp/all-rules.json")
+
 
 const vaccineRulesPerCountry = {}
 
 for (const rule of allRules) {
-    if (rule.t === "VR" && new Date(rule.ValidFrom) < new Date()) {
-        if (!(rule.c in vaccineRulesPerCountry)) {
-            vaccineRulesPerCountry[rule.c] = []
+    const { c, t } = parseId(rule.Identifier)
+    if (t === "VR" && new Date(rule.ValidFrom) < new Date()) {
+        if (!(c in vaccineRulesPerCountry)) {
+            vaccineRulesPerCountry[c] = []
         }
-        vaccineRulesPerCountry[rule.c].push(rule.Logic)
+        vaccineRulesPerCountry[c].push(rule.Logic)
     }
 }
 

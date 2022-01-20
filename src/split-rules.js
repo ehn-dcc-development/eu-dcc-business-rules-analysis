@@ -4,16 +4,19 @@ const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
 const { renderAsText } = require("./render-expression-as-text")
+const { parseId } = require("./rules-utils")
 
 
-const allRules = require("../tmp/all-rules-exploded-IDs.json")
+const allRules = require("../tmp/all-rules.json")
+
 
 const map = {}
 for (const rule of allRules) {
-    if (!(rule.c in map)) {
-        map[rule.c] = []
+    const { c } = parseId(rule.Identifier)
+    if (!(c in map)) {
+        map[c] = []
     }
-    map[rule.c].push(rule)
+    map[c].push(rule)
 }
 
 /*
@@ -28,7 +31,7 @@ const comparatorFor = (propertyName) =>
  */
 
 const normalised = (rule) => {
-    const copy = normalCopyOf(rule, { t: rule.t, c: rule.c, n: rule.n })
+    const copy = normalCopyOf(rule, parseId(rule.Identifier))
     copy["expr-as-text"] = renderAsText(rule.Logic)
     return copy
 }
@@ -59,7 +62,8 @@ for (const c in map) {
         }
     }
     Object.values(ruleMap).forEach((rule) => {
-        writeJson(join(countryPath, `${rule.t}-${rule.n}.json`), normalised(rule))
+        const { t, n } = parseId(rule.Identifier)
+        writeJson(join(countryPath, `${t}-${n}.json`), normalised(rule))
     })
 }
 

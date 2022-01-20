@@ -1,15 +1,19 @@
-const allRules = require("../tmp/all-rules-exploded-IDs.json")
 const { validateRulesOfCountry } = require("./rules-checking")
 const { writeJson } = require("./file-utils")
+const { parseId } = require("./rules-utils")
+
+
+const allRules = require("../tmp/all-rules.json")
 
 
 const rulesPerCountry = {}
 
 for (const rule of allRules) {
-    if (!(rule.c in rulesPerCountry)) {
-        rulesPerCountry[rule.c] = []
+    const { c } = parseId(rule.Identifier)
+    if (!(c in rulesPerCountry)) {
+        rulesPerCountry[c] = []
     }
-    rulesPerCountry[rule.c].push(rule)
+    rulesPerCountry[c].push(rule)
 }
 
 writeJson(

@@ -12,7 +12,7 @@ curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck
 # ACC: https://verifier-api.acc.coronacheck.nl/v4/dcbs/business_rules
 echo "Downloaded rules."
 
-cat tmp/all-rules.json | jq 'map((.Identifier|capture("(?<t>[A-Z]+)-(?<c>[A-Z]+)-(?<n>[0-9]+)")) + .)' > tmp/all-rules-exploded-IDs.json
+#cat tmp/all-rules.json | jq 'map((.Identifier|capture("(?<t>[A-Z]+)-(?<c>[A-Z]+)-(?<n>[0-9]+)")) + .)' > tmp/all-rules-exploded-IDs.json
 rm -rf per-country/*
 node src/split-rules.js
 echo "Split rules up per country."
