@@ -17,15 +17,15 @@ rm -rf per-country/*
 node src/split-rules.js
 echo "Split rules up per country."
 
-rm tmp/*.txt
+rm tmp/*.log
 
-node src/check-rules.js > tmp/check-results.txt
+node src/check-rules.js > tmp/check-rules.log
 echo "Checked (validated) all rules."
 
 #exit 1
 
 echo "Computing vaccine info per country, per vaccine, per combo..."
-node src/compute-vaccine-info.js > tmp/vaccine-info-log.txt
+node src/compute-vaccine-info.js > tmp/vaccine-info.log
 echo "Computed vaccine info."
 
 node src/generate-vaccine-inventory.js

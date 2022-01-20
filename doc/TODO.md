@@ -17,9 +17,9 @@
 * [ ] Also derive RAT, NAAT, and recovery validities.
 * [ ] Use compiler and/or Cluster (https://nodejs.org/api/cluster.html) to speed up computation?
 * [ ] Re-organise generated/derived file, e.g.:
-  * `analysis/` for `vaccine-inventory.html`
-  * persist `valueSets.json`
-  * persist logs, especially validation issues
+  * [&#10003;] `analysis/` for `vaccine-inventory.html`
+  * [&#10003;] persist `valueSets.json`
+  * [&#10003;] persist validation issues
   * (remove “exploded IDs” step)
 
 * [ ] [Issue #1](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/1): Automate high-over analysis (“dashboard”)

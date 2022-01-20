@@ -1,5 +1,5 @@
 const { normalCopyOf, hasRulesForAllEventTypes, validateRule } = require("dcc-business-rules-utils")
-const { treeFlatMap, couldBeOperation, operationDataFrom } = require("./tree-walker")
+const { couldBeOperation, operationDataFrom, treeFlatMap } = require("./tree-walker")
 
 
 const isVaccineIdDataAccess = (expr) => {
@@ -43,23 +43,19 @@ const validateRuleIncludingWarnings = (rule) => {
             }
 
         }
-        return emptyArray
+        return emptyArray   // return a singleton [] to satisfy treeFlatMap type-wise
     })
-
-    const validationResult = validateRule(normalCopyOf(rule))
-    if (validationResult.hasErrors) {
-        console.dir(validationResult)
-    }
-    return validationResult.hasErrors
 }
 
 
 const validateRulesOfCountry = (rules, co) => {
-    const nInvalids = rules.map(validateRuleIncludingWarnings).reduce((acc, hasErrors) => acc += hasErrors ? 1 : 0, 0)
+    rules.forEach(validateRuleIncludingWarnings)    // --> log
+    const validationErrorsPerInvalidRule = rules.map((rule) => validateRule(normalCopyOf(rule))).filter((result) => result.hasErrors)
+    console.log(`#invalids(${co})=${(validationErrorsPerInvalidRule.length)}`)    // --> log
     if (!hasRulesForAllEventTypes(rules)) {
-        console.log(`[WARNING] rules of country "${co}" don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`)
+        console.log(`[WARNING] rules of country "${co}" don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`) // --> log
     }
-    return nInvalids
+    return validationErrorsPerInvalidRule
 }
 module.exports.validateRulesOfCountry = validateRulesOfCountry
 

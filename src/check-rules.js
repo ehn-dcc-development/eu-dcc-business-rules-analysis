@@ -1,5 +1,6 @@
 const allRules = require("../tmp/all-rules-exploded-IDs.json")
 const { validateRulesOfCountry } = require("./rules-checking")
+const { writeJson } = require("./file-utils")
 
 
 const rulesPerCountry = {}
@@ -11,8 +12,11 @@ for (const rule of allRules) {
     rulesPerCountry[rule.c].push(rule)
 }
 
-Object.entries(rulesPerCountry)
-    .forEach(([ co, rules ]) => {
-        console.log(`#invalids(${co})=${validateRulesOfCountry(rules, co)}`)
-    })
+writeJson(
+    "analysis/validation-errors.json",
+    Object.entries(rulesPerCountry)
+        .flatMap(([ co, rules ]) =>
+            validateRulesOfCountry(rules, co)
+        )
+)
 
