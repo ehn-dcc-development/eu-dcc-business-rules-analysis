@@ -5,7 +5,7 @@
   "Identifier": "VR-SK-0005",
   "Type": "Acceptance",
   "Country": "SK",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.1.0",
@@ -20,7 +20,7 @@
       "desc": "Nevyhovuje podmienke plnej očkovanosti. Od podania druhej dávky očkovacej látky proti ochoreniu COVID-19 neuplynulo najmenej 14 dní. Pre plnú očkovanosť je nutné posúdiť doklad o podaní prvej dávky v kombinácii s dokladom o prekonaní COVID-19."
     }
   ],
-  "ValidFrom": "2022-01-16T15:24:18Z",
+  "ValidFrom": "2022-01-19T18:09:30Z",
   "ValidTo": "2030-07-26T00:00:00Z",
   "AffectedFields": [
     "v.0",

@@ -1,11 +1,11 @@
 {
   "t": "TR",
-  "c": "SK",
-  "n": "0003",
-  "Identifier": "TR-SK-0003",
+  "c": "MT",
+  "n": "0002",
+  "Identifier": "TR-MT-0002",
   "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
+  "Country": "MT",
+  "Version": "1.1.1",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -13,14 +13,10 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Test result must be negative (\"not detected\")."
-    },
-    {
-      "lang": "sk",
-      "desc": "Výsledok testu musí byť negatívny."
+      "desc": "Test result must be negative (NOT DETECTED)."
     }
   ],
-  "ValidFrom": "2022-01-19T18:09:29Z",
+  "ValidFrom": "2022-01-20T00:00:00Z",
   "ValidTo": "2030-06-01T00:00:00Z",
   "AffectedFields": [
     "t.0",

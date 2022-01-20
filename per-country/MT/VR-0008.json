@@ -1,46 +1,55 @@
 {
   "t": "VR",
-  "c": "SK",
-  "n": "0002",
-  "Identifier": "VR-SK-0002",
+  "c": "MT",
+  "n": "0008",
+  "Identifier": "VR-MT-0008",
   "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
+  "Country": "MT",
+  "Version": "1.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
+  "EngineVersion": "0.7.5",
   "CertificateType": "Vaccination",
   "Description": [
     {
       "lang": "en",
-      "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days and not more than 365 days must have elapsed since the first dose of COVID-19 vaccine was administered."
-    },
-    {
-      "lang": "sk",
-      "desc": "Nevyhovuje podmienke plnej očkovanosti. V čase kontroly musí uplynúť najmenej 14 dní a nie viac ako jeden rok po aplikácii poslednej dávky."
+      "desc": "Verification Datetime must be less than 365 days after vaccination for 2nd dose for age <18"
     }
   ],
-  "ValidFrom": "2022-01-19T18:09:30Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
+  "ValidFrom": "2022-01-20T00:00:00Z",
+  "ValidTo": "2030-06-01T00:00:00Z",
   "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.sd",
-    "v.0.dt"
+    "dob",
+    "v.0.dt",
+    "v.0.sd"
   ],
   "Logic": {
     "if": [
       {
-        "var": "payload.v.0"
+        "var": "payload.dob"
       },
       {
         "if": [
           {
-            ">=": [
+            "not-after": [
               {
-                "var": "payload.v.0.sd"
+                "plusTime": [
+                  {
+                    "var": "external.validationClock"
+                  },
+                  0,
+                  "day"
+                ]
               },
-              1
+              {
+                "plusTime": [
+                  {
+                    "var": "payload.dob"
+                  },
+                  5844,
+                  "day"
+                ]
+              }
             ]
           },
           {
@@ -48,9 +57,9 @@
               {
                 "===": [
                   {
-                    "var": "payload.v.0.dn"
+                    "var": "payload.v.0.sd"
                   },
-                  1
+                  2
                 ]
               },
               {
@@ -60,7 +69,7 @@
                       {
                         "var": "payload.v.0.dt"
                       },
-                      14,
+                      0,
                       "day"
                     ]
                   },
@@ -93,5 +102,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) >= (1) then if (/payload.v.0.dn) === (1) then (/payload.v.0.dt +14 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
+  "expr-as-text": "if /payload.dob then if (/external.validationClock +0 days) not-after (/payload.dob +5844 days) then if (/payload.v.0.sd) === (2) then (/payload.v.0.dt +0 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
 }

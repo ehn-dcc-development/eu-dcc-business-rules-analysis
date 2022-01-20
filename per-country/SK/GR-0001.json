@@ -5,7 +5,7 @@
   "Identifier": "GR-SK-0001",
   "Type": "Acceptance",
   "Country": "SK",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.1.0",
@@ -20,7 +20,7 @@
       "desc": "QR kód neobsahuje validný digitálny COVID preukaz EÚ."
     }
   ],
-  "ValidFrom": "2022-01-16T15:24:16Z",
+  "ValidFrom": "2022-01-19T18:09:28Z",
   "ValidTo": "2030-07-26T00:00:00Z",
   "AffectedFields": [
     "r.0.tg",
