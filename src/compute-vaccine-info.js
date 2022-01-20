@@ -1,5 +1,5 @@
 const { writeJson } = require("./file-utils")
-const { vaccineSpecsFromRules } = require("./vaccine-info-computation")
+const { vaccineSpecsFromRules } = require("./vaccine-info")
 
 const allRules = require("../tmp/all-rules-exploded-IDs.json")
 
@@ -26,5 +26,5 @@ const infoPerCountry = Object.entries(vaccineRulesPerCountry)
 const elapsedInMs = nowInMs() - startTime
 console.log(`Computing vaccine info took ${Math.floor(elapsedInMs/1000)}s.${elapsedInMs%1000}ms.`)
 
-writeJson("per-country/vaccine-info.json", infoPerCountry)
+writeJson("analysis/vaccine-info.json", infoPerCountry)
 
