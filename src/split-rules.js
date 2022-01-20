@@ -31,7 +31,7 @@ const comparatorFor = (propertyName) =>
  */
 
 const normalised = (rule) => {
-    const copy = normalCopyOf(rule, parseId(rule.Identifier))
+    const copy = normalCopyOf(rule)
     copy["expr-as-text"] = renderAsText(rule.Logic)
     return copy
 }
