@@ -3,29 +3,12 @@
 npm install
 mkdir -p tmp
 
-valueSets="country-2-codes.json \
-  disease-agent-targeted.json\
-  test-manf.json\
-  test-result.json\
-  test-type.json\
-  vaccine-mah-manf.json\
-  vaccine-medicinal-product.json\
-  vaccine-prophylaxis.json\
-"
-
-for vs in $valueSets; do
-  curl "https://raw.githubusercontent.com/ehn-dcc-development/ehn-dcc-valuesets/main/$vs" > $vs
-done
-
-jq --slurp 'map( { (.valueSetId): .valueSetValues|keys }) | add' $valueSets > src/valueSets.json
-
-for vs in $valueSets; do
-  rm $vs
-done
+source retrieve-and-compress-value-sets.sh
 
 echo "Compressed value sets."
 
 curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck.nl/v4/dcbs/business_rules | jq --raw-output '.payload' | base64 --decode | jq '.' > tmp/all-rules.json
+# {Note: all that "jq '.'" does is to pretty-print the rules' JSON.}
 # ACC: https://verifier-api.acc.coronacheck.nl/v4/dcbs/business_rules
 echo "Downloaded rules."
 
