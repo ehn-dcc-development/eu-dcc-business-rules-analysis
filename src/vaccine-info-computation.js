@@ -30,7 +30,10 @@ const safeEvaluate = (expr, data) => {
     try {
         return evaluate(expr, data)
     } catch (e) {
+        // to warn on the console:
         console.error(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
+        // for logging:
+        console.log(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
         console.dir(expr)
         console.dir(data)
     }
