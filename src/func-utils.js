@@ -30,3 +30,15 @@ const lowerTriangular = (n) =>
     )
 module.exports.lowerTriangular = lowerTriangular
 
+
+const groupBy = (array, keyFunc) =>
+    array.reduce((acc, value) => {
+        const key = keyFunc(value)
+        if (acc[key] === undefined) {
+            acc[key] = []
+        }
+        acc[key].push(value)
+        return acc
+    }, {})
+module.exports.groupBy = groupBy
+

@@ -3,21 +3,14 @@ const { gt } = require("semver")
 const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
+const { groupBy } = require("./func-utils")
 const { renderAsText } = require("./render-expression-as-text")
 const { parseId } = require("./rules-utils")
 
 
 const allRules = require("../tmp/all-rules.json")
 
-
-const map = {}
-for (const rule of allRules) {
-    const { c } = parseId(rule.Identifier)
-    if (!(c in map)) {
-        map[c] = []
-    }
-    map[c].push(rule)
-}
+const map = groupBy(allRules, (rule) => parseId(rule.Identifier).c)
 
 /*
 const comparatorFor = (propertyName) =>
