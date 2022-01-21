@@ -1,4 +1,5 @@
-const { range, lowerTriangular} = require("./func-utils")
+const { countryCode2DisplayName, flagEmoji } = require("./country-utils")
+const { lowerTriangular} = require("./func-utils")
 
 
 const redCrossMark = "&#x274c;"
@@ -44,15 +45,6 @@ ${combosShown.map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
 </tr>
 `
 
-const charCodes = (str) =>
-    range(str.length).map((idx) => str.charCodeAt(idx))
-
-const flagEmoji = (country) =>
-    String.fromCodePoint(...(
-        charCodes(country).map((charCode) => 127397 + charCode)
-    ))
-
-const countryCode2DisplayName = require("./country-code-to-display-name.json")
 const countryInfoAsHtml = ({ country, vaccineSpecs }) =>
     `<tr>
     <td colspan="${1 + combosShown.length}" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>

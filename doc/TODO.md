@@ -13,19 +13,22 @@
 * [&#10005;] Use `degit` instead of `git clone` &larr; not necessary anymore, due to relying on retrieving from Gateway (via proxy).
 * [&hellip;] Separate knowledge of rules from CI tooling (to re-use in analysis).
 
-* [ ] Show EU status (EU MS, EEA member, candidate-EU MS, other) next to country code and flag.
+* [&#10003;] Show EU status (EU MS, EEA member, candidate-EU MS, other) next to country code and flag. -- done in dashboard
 * [ ] Also derive RAT, NAAT, and recovery validities.
 * [ ] Use compiler and/or Cluster (https://nodejs.org/api/cluster.html) to speed up computation?
-* [ ] Re-organise generated/derived file, e.g.:
+* [&#10003;] Re-organise generated/derived file, e.g.:
   * [&#10003;] `analysis/` for `vaccine-inventory.html`
   * [&#10003;] persist `valueSets.json`
   * [&#10003;] persist validation issues
-  * (remove “exploded IDs” step)
+  * [&#10003;] remove “exploded IDs” step
 
-* [ ] [Issue #1](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/1): Automate high-over analysis (“dashboard”)
-* [ ] [Issue #2](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/2): Remove reliance on `jq`
+* [&#10003;] Dashboard:
+  * [&#10003;] Number of types of rules.
+  * [&#10003;] Number of EU MS, EEA/EFTA MS, EU candidate-MS, 3rd country.
 
-* Thoughts about rule format:
-    1. `AffectedFields` should be either derived, or actively validated by the Gateway.
-    2. `CertificateType` should either be derived, and doesn't make much sense: `EventType` would be a better name, with a `null` value corresponding to “General”.
+* [&#10003;] [Issue #1](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/1): Automate high-over analysis (“dashboard”)
+* [&#10005;] [Issue #2](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/2): Remove reliance on `jq` --
+    Not doing this entirely, but more intricate usages have been moved to JavaScript.
+
+* [ ] Update `README.md`.
 

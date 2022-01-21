@@ -3,16 +3,14 @@
 npm install
 mkdir -p tmp
 
-source retrieve-and-compress-value-sets.sh
+curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck.nl/v4/dcbs/value_sets | jq --raw-output '.payload' | base64 --decode | jq '.' > tmp/valueSets-uncompressed.json
+node src/compress-value-sets.js
+echo "Retrieved and compressed value sets."
 
-echo "Compressed value sets."
-
-curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck.nl/v4/dcbs/business_rules | jq --raw-output '.payload' | base64 --decode | jq '.' > tmp/all-rules.json
-# {Note: all that "jq '.'" does is to pretty-print the rules' JSON.}
+curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck.nl/v4/dcbs/business_rules | jq --raw-output '.payload' | base64 --decode > tmp/all-rules.json
 # ACC: https://verifier-api.acc.coronacheck.nl/v4/dcbs/business_rules
 echo "Downloaded rules."
 
-#cat tmp/all-rules.json | jq 'map((.Identifier|capture("(?<t>[A-Z]+)-(?<c>[A-Z]+)-(?<n>[0-9]+)")) + .)' > tmp/all-rules-exploded-IDs.json
 rm -rf per-country/*
 node src/split-rules.js
 echo "Split rules up per country."
@@ -30,4 +28,7 @@ echo "Computed vaccine info."
 
 node src/generate-vaccine-inventory.js
 echo "Generated vaccine inventory."
+
+node src/generate-dashboard.js
+echo "Generated dashboard."
 

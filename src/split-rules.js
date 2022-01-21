@@ -10,18 +10,8 @@ const { parseId } = require("./rules-utils")
 
 const allRules = require("../tmp/all-rules.json")
 
-const map = groupBy(allRules, (rule) => parseId(rule.Identifier).c)
 
-/*
-const comparatorFor = (propertyName) =>
-    (leftObj, rightObj) => {
-        const left = leftObj[propertyName]
-        const right = rightObj[propertyName]
-        return left === right
-            ? 0
-            : (left < right ? -1 : 1)
-    }
- */
+const rulesPerCountry = groupBy(allRules, (rule) => parseId(rule.Identifier).c)
 
 const normalised = (rule) => {
     const copy = normalCopyOf(rule)
@@ -31,11 +21,11 @@ const normalised = (rule) => {
 
 const now = new Date()
 
-for (const c in map) {
+for (const c in rulesPerCountry) {
     const countryPath = join("per-country", c)
     mkDir(countryPath)
     const ruleMap = {}
-    for (const rule of map[c]) {
+    for (const rule of rulesPerCountry[c]) {
         const id = rule.Identifier
         const version = rule.Version
         if (new Date(rule.ValidTo) > now) {
@@ -59,4 +49,12 @@ for (const c in map) {
         writeJson(join(countryPath, `${t}-${n}.json`), normalised(rule))
     })
 }
+
+writeJson(
+    "analysis/n-rules-per-country.json",
+    Object.entries(rulesPerCountry)
+        .map(([ co, rules ]) =>
+            ({ co, n: rules.length })
+        )
+)
 

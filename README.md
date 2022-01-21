@@ -16,7 +16,7 @@
 The [Digital COVID Certificate (DCC)](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) allows to determine whether a person is deemed fit-for-travel into a country-of-arrival (CoA) based on their vaccination, test, and recovery status.
 To make such determinations, [business (or validation, or verification) rules](https://github.com/ehn-dcc-development/dgc-business-rules) can be implemented in verifier apps.
 
-This repository contains a rolling analysis of the business rules that are  uploaded to the EU DCC Gateway.
+This repository contains a rolling analysis of the business rules that have been uploaded to the EU DCC Gateway.
 The analysis revolves mostly around rules pertaining to DCCs with the _vaccination_ event/certificate type.
 
 Further documentation: **TODO**
