@@ -19,7 +19,30 @@ To make such determinations, [business (or validation, or verification) rules](h
 This repository contains a rolling analysis of the business rules that have been uploaded to the EU DCC Gateway.
 The analysis revolves mostly around rules pertaining to DCCs with the _vaccination_ event/certificate type.
 
-Further documentation: **TODO**
+Triggering the analysis is done by running the [build script](./build.sh) from the command-line:
+
+    $ ./build.sh
+
+This produces several JSON files, and two standalone HTML files in the `analysis/` directory:
+
+* [An inventory of what countries accept which vaccines, including waiting time and validity](./analysis/vaccine-inventory.html)
+* [A dashboard detailing which countries have uploaded how many business rules](./analysis/dashboard.html)
+
+These analysis files are persisted in this repository to be able to easily track changes to the business rules over time.
+That also makes it easy to look at the analysis without needing to clone this repository, and trigger the analysis.
+You can do this from the command-line as follows:
+
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-inventory.html?TOKEN=..." > vaccine-inventory.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/dashboard.html?TOKEN=..." > dashboard.html
+
+
+### Dependencies
+
+The analysis has the following dependencies:
+
+* UNIX/zsh-like shell for running the [build script](./build.sh)
+* [Node.js, NPM](https://nodejs.org/en/)
+* [`jq`](https://stedolan.github.io/jq/) (&larr; =link)
 
 
 ## Testing & Status
