@@ -75,6 +75,11 @@ const infoAsHtml = (infoPerCountry) =>
             border: 1px black solid;
             padding: 2pt;
         }
+        th {
+          position: sticky;
+          top: 0;
+          background: lightyellow;
+        }
         td {
             text-align: right;
         }
