@@ -2,7 +2,7 @@
   "Identifier": "VR-CZ-0051",
   "Type": "Acceptance",
   "Country": "CZ",
-  "Version": "3.0.0",
+  "Version": "4.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -10,19 +10,21 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Vaccination VAXZEVRIA may not be older than 1440 days"
+      "desc": "Vaccination VAXZEVRIA may not be older than 9 months"
     },
     {
       "lang": "cs",
-      "desc": "Očkování VAXZEVRIA nesmí být starší než 1440 dní"
+      "desc": "Očkování VAXZEVRIA nesmí být starší než 9 měsíců"
     }
   ],
-  "ValidFrom": "2021-12-15T23:00:00Z",
-  "ValidTo": "2031-12-15T23:00:00Z",
+  "ValidFrom": "2022-01-31T23:00:00Z",
+  "ValidTo": "2032-01-31T23:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.mp",
-    "v.0.dt"
+    "v.0.dt",
+    "v.0.dn",
+    "v.0.sd"
   ],
   "Logic": {
     "if": [
@@ -32,11 +34,37 @@
       {
         "if": [
           {
-            "===": [
+            "and": [
               {
-                "var": "payload.v.0.mp"
+                "===": [
+                  {
+                    "var": "payload.v.0.mp"
+                  },
+                  "EU/1/21/1529"
+                ]
               },
-              "EU/1/21/1529"
+              {
+                "and": [
+                  {
+                    "===": [
+                      {
+                        "var": "payload.v.0.dn"
+                      },
+                      {
+                        "var": "payload.v.0.sd"
+                      }
+                    ]
+                  },
+                  {
+                    "<=": [
+                      {
+                        "var": "payload.v.0.dn"
+                      },
+                      2
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {
@@ -55,8 +83,8 @@
                   {
                     "var": "payload.v.0.dt"
                   },
-                  1440,
-                  "day"
+                  9,
+                  "month"
                 ]
               }
             ]
@@ -67,5 +95,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/21/1529\") then (/external.validationClock +0 days) not-after (/payload.v.0.dt +1440 days) else true else true"
+  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.mp) === (\"EU/1/21/1529\")) and (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2))) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +9 months) else true else true"
 }

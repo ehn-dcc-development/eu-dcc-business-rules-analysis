@@ -2,7 +2,7 @@
   "Identifier": "VR-CZ-0012",
   "Type": "Acceptance",
   "Country": "CZ",
-  "Version": "3.0.0",
+  "Version": "4.0.0",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -17,8 +17,8 @@
       "desc": "Od dokončeného očkování SPIKEVAX musí uplynout alespoň 14 dnů"
     }
   ],
-  "ValidFrom": "2021-12-15T23:00:00Z",
-  "ValidTo": "2031-12-15T23:00:00Z",
+  "ValidFrom": "2022-01-31T23:00:00Z",
+  "ValidTo": "2032-01-31T23:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.dn",
@@ -90,6 +90,16 @@
                   ]
                 },
                 {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
                   "and": [
                     {
                       "===": [
@@ -118,5 +128,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/20/1507\")) then (true) in ([ (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days), (/payload.v.0.dn) > (2), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ]) else true else true"
+  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/20/1507\")) then (true) in ([ (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days), (/payload.v.0.dn) > (2), (/payload.v.0.dn) > (/payload.v.0.sd), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ]) else true else true"
 }

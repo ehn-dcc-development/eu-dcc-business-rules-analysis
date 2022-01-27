@@ -131,6 +131,26 @@
     "metaDataErrors": []
   },
   {
+    "ruleId": "VR-EE-0007",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dt",
+        "v.0.sd",
+        "v.0.dn"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt"
+      ]
+    },
+    "metaDataErrors": []
+  },
+  {
     "ruleId": "VR-FR-0006",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -448,6 +468,16 @@
     "metaDataErrors": []
   },
   {
+    "ruleId": "VR-MT-0010",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": null,
+    "metaDataErrors": [
+      "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
+    ]
+  },
+  {
     "ruleId": "VR-MT-0008",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -469,26 +499,6 @@
   },
   {
     "ruleId": "TR-SK-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "TR-SK-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "GR-SK-0000",
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
@@ -528,37 +538,7 @@
     ]
   },
   {
-    "ruleId": "GR-SK-0001",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
     "ruleId": "TR-SK-0006",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "TR-SK-0006",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "TR-SK-0000",
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
@@ -588,26 +568,6 @@
     ]
   },
   {
-    "ruleId": "TR-SK-0001",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "RR-SK-0002",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
     "ruleId": "RR-SK-0002",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -619,26 +579,6 @@
   },
   {
     "ruleId": "VR-SK-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "VR-SK-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "VR-SK-0004",
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
@@ -678,26 +618,6 @@
     ]
   },
   {
-    "ruleId": "VR-SK-0006",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "VR-SK-0001",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
     "ruleId": "VR-SK-0001",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -709,26 +629,6 @@
   },
   {
     "ruleId": "VR-SK-0000",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "VR-SK-0000",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "EngineVersion 0.1.0 must be 0.7.5 or newer"
-    ]
-  },
-  {
-    "ruleId": "VR-SK-0002",
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],

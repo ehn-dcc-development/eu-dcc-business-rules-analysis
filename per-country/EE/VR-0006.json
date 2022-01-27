@@ -1,5 +1,5 @@
 {
-  "Identifier": "VR-EE-0003",
+  "Identifier": "VR-EE-0006",
   "Type": "Acceptance",
   "Country": "EE",
   "Version": "1.0.4",
@@ -10,11 +10,11 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Verification Datetime must be less than 270 days after the last date of full vaccination."
+      "desc": "Verification Datetime must be less than 365 days after the date of booster dose."
     },
     {
       "lang": "ee",
-      "desc": "Täisvaktsineeritusest ei tohi olla möödas rohkem kui 270 päeva."
+      "desc": "Tõhustusdoosist ei tohi olla möödas rohkem kui 365 päeva."
     }
   ],
   "ValidFrom": "2022-02-01T00:00:00Z",
@@ -33,24 +33,12 @@
       {
         "if": [
           {
-            "and": [
+            ">": [
               {
-                "===": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  {
-                    "var": "payload.v.0.sd"
-                  }
-                ]
+                "var": "payload.v.0.dn"
               },
               {
-                "<=": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  2
-                ]
+                "var": "payload.v.0.sd"
               }
             ]
           },
@@ -70,7 +58,7 @@
                   {
                     "var": "payload.v.0.dt"
                   },
-                  270,
+                  365,
                   "day"
                 ]
               }
@@ -82,5 +70,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else true else true"
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) > (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true"
 }

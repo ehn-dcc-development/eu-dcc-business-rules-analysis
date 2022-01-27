@@ -2,7 +2,7 @@
   "Identifier": "VR-EE-0004",
   "Type": "Acceptance",
   "Country": "EE",
-  "Version": "1.0.3",
+  "Version": "1.0.4",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
@@ -14,11 +14,11 @@
     },
     {
       "lang": "ee",
-      "desc": "Vaktsineerimisest peab Comirnaty vaktsiini puhul olema möödas vähemalt 7 päeva (va lisa- ja tõhustusdoosi puhul)"
+      "desc": "Vaktsineerimisest peab Comirnaty vaktsiini puhul olema möödas vähemalt 7 päeva (va tõhustusdoosi puhul)."
     }
   ],
-  "ValidFrom": "2021-10-24T14:00:00Z",
-  "ValidTo": "2022-10-24T00:00:00Z",
+  "ValidFrom": "2022-02-01T00:00:00Z",
+  "ValidTo": "2023-02-01T00:00:00Z",
   "AffectedFields": [
     "v.0",
     "v.0.dt",
@@ -41,6 +41,16 @@
                     "var": "payload.v.0.mp"
                   },
                   "EU/1/20/1528"
+                ]
+              },
+              {
+                "<=": [
+                  {
+                    "var": "payload.v.0.dn"
+                  },
+                  {
+                    "var": "payload.v.0.sd"
+                  }
                 ]
               },
               {
@@ -81,5 +91,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.mp) === (\"EU/1/20/1528\")) and ((/payload.v.0.dn) <= (2)) then (/external.validationClock +0 days) not-before (/payload.v.0.dt +7 days) else true else true"
+  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.mp) === (\"EU/1/20/1528\")) and ((/payload.v.0.dn) <= (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2)) then (/external.validationClock +0 days) not-before (/payload.v.0.dt +7 days) else true else true"
 }

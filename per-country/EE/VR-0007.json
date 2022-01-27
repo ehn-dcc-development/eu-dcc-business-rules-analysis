@@ -1,42 +1,43 @@
 {
-  "Identifier": "TR-CZ-0002",
+  "Identifier": "VR-EE-0007",
   "Type": "Acceptance",
-  "Country": "CZ",
-  "Version": "4.0.0",
+  "Country": "EE",
+  "Version": "1.0.4",
   "SchemaVersion": "1.0.0",
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
+  "CertificateType": "Vaccination",
   "Description": [
     {
       "lang": "en",
-      "desc": "The PCR test may ot be older than 72 hours ago"
+      "desc": "Verification Datetime must be less than 365 days after the date of booster dose."
     },
     {
-      "lang": "cs",
-      "desc": "PCR test nesmí být starší více než 72 hodin"
+      "lang": "ee",
+      "desc": "Tõhustusdoosist ei tohi olla möödas rohkem kui 365 päeva"
     }
   ],
-  "ValidFrom": "2022-01-31T23:00:00Z",
-  "ValidTo": "2032-01-31T23:00:00Z",
+  "ValidFrom": "2022-02-01T00:00:00Z",
+  "ValidTo": "2023-02-01T00:00:00Z",
   "AffectedFields": [
-    "t.0",
-    "t.0.sc",
-    "t.0.tt"
+    "v.0",
+    "v.0.dt",
+    "v.0.sd",
+    "v.0.dn"
   ],
   "Logic": {
     "if": [
       {
-        "var": "payload.t.0"
+        "var": "payload.v.0"
       },
       {
         "if": [
           {
-            "===": [
+            ">=": [
               {
-                "var": "payload.t.0.tt"
+                "var": "payload.v.0.dn"
               },
-              "LP6464-4"
+              3
             ]
           },
           {
@@ -53,10 +54,10 @@
               {
                 "plusTime": [
                   {
-                    "var": "payload.t.0.sc"
+                    "var": "payload.v.0.dt"
                   },
-                  72,
-                  "hour"
+                  365,
+                  "day"
                 ]
               }
             ]
@@ -67,5 +68,5 @@
       true
     ]
   },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +72 hours) else true else true"
+  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) >= (3) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true"
 }
