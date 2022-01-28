@@ -1,22 +1,20 @@
 const { writeJson } = require("./file-utils")
+const { groupBy, mapValues } = require("./func-utils")
 const { parseId } = require("./rules-utils")
 const { vaccineSpecsFromRules } = require("./vaccine-info")
 
 
 const allRules = require("../tmp/all-rules.json")
 
-
-const vaccineRulesPerCountry = {}
-
-for (const rule of allRules) {
-    const { c, t } = parseId(rule.Identifier)
-    if (t === "VR" && new Date(rule.ValidFrom) < new Date()) {
-        if (!(c in vaccineRulesPerCountry)) {
-            vaccineRulesPerCountry[c] = []
-        }
-        vaccineRulesPerCountry[c].push(rule.Logic)
-    }
-}
+const vaccineRulesPerCountry = mapValues(
+    groupBy(
+        allRules
+            .filter((rule) => parseId(rule.Identifier).t === "VR"),
+        (rule) => parseId(rule.Identifier).c
+    ),
+    (rules) => rules.map((rule) => rule.Logic)
+    // FIXME  keep ValidFrom to be able to check whether a rule is applicable at the time of the “now” passed, but then also not throw away versions in split-rules.json
+)
 
 const nowInMs = () => new Date().getTime()
 const startTime = nowInMs()

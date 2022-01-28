@@ -42,3 +42,11 @@ const groupBy = (array, keyFunc) =>
     }, {})
 module.exports.groupBy = groupBy
 
+
+const mapValues = (map, valueFunc) =>
+    Object.fromEntries(
+        Object.entries(map)
+            .map(([ key, value ]) => [ key, valueFunc(value) ])
+    )
+module.exports.mapValues = mapValues
+
