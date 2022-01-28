@@ -10,11 +10,11 @@
   "Description": [
     {
       "lang": "en",
-      "desc": "Verification Datetime must be less than 270 days after the last date of full vaccination."
+      "desc": "Verification Datetime must be less than 270 days after the last date of full vaccination. Check the age! The certificate is valid if the owner is under 18 years of age."
     },
     {
       "lang": "ee",
-      "desc": "Täisvaktsineeritusest ei tohi olla möödas rohkem kui 270 päeva."
+      "desc": "Vaktsineerimisest on möödas üle 9 kuu. Kontrolli vanust! Tõend kehtib, kui omanik on alla 18-aastane."
     }
   ],
   "ValidFrom": "2022-02-01T00:00:00Z",

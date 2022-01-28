@@ -51,14 +51,14 @@ const dateWithOffset = (dateStr, nDays) => {
 
 
 const infoForCombo = (rules, co, mp, dn, sd) => {
-    const validFrom = "2022-01-01"
+    const validFrom = "2022-03-01"
     const justOverTwoYears = range(2*366 + 1)
     const acceptance = justOverTwoYears.map((nDays) =>
         acceptedByVaccineRules(rules, mp, validFrom, dn, sd, dateWithOffset(validFrom, nDays))
     )
     const rleAcceptance = rle(acceptance)
 
-    const checkValidFrom = "2022-03-01"
+    const checkValidFrom = "2022-05-01"
     const checkAcceptance = justOverTwoYears.map((nDays) =>
         acceptedByVaccineRules(rules, mp, checkValidFrom, dn, sd, dateWithOffset(checkValidFrom, nDays))
     )
