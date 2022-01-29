@@ -41,7 +41,7 @@ for (const c in rulesPerCountry) {
                 ruleMap[id] = rule
             }
         } else {
-            console.warn(`skipped rule with id="${id}" and version="${version}" because it's not valid anymore`)
+            console.log(`skipped rule with id="${id}" and version="${version}" because it's not valid anymore`)
         }
     }
     Object.values(ruleMap).forEach((rule) => {
@@ -54,7 +54,12 @@ writeJson(
     "analysis/n-rules-per-country.json",
     Object.entries(rulesPerCountry)
         .map(([ co, rules ]) =>
-            ({ co, n: rules.length })
+            ({
+                co,
+                n: rules.length,
+                nAcceptance: rules.filter((rule) => rule.Type === "Acceptance").length,
+                nInvalidation: rules.filter((rule) => rule.Type === "Invalidation").length
+            })
         )
 )
 

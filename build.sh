@@ -12,7 +12,7 @@ curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck
 echo "Downloaded rules."
 
 rm -rf per-country/*
-node src/split-rules.js
+node src/split-rules.js > tmp/split-rules.log
 echo "Split rules up per country."
 
 rm tmp/*.log

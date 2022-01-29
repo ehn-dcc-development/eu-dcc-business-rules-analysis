@@ -1,90 +1,134 @@
 [
   {
     "co": "AL",
-    "n": 9
+    "n": 9,
+    "nAcceptance": 9,
+    "nInvalidation": 0
   },
   {
     "co": "AT",
-    "n": 14
+    "n": 14,
+    "nAcceptance": 14,
+    "nInvalidation": 0
   },
   {
     "co": "CH",
-    "n": 23
+    "n": 23,
+    "nAcceptance": 23,
+    "nInvalidation": 0
   },
   {
     "co": "CZ",
-    "n": 51
+    "n": 51,
+    "nAcceptance": 51,
+    "nInvalidation": 0
   },
   {
     "co": "DE",
-    "n": 11
+    "n": 11,
+    "nAcceptance": 11,
+    "nInvalidation": 0
   },
   {
     "co": "EE",
-    "n": 15
+    "n": 15,
+    "nAcceptance": 15,
+    "nInvalidation": 0
   },
   {
     "co": "ES",
-    "n": 10
+    "n": 10,
+    "nAcceptance": 10,
+    "nInvalidation": 0
   },
   {
     "co": "FR",
-    "n": 20
+    "n": 20,
+    "nAcceptance": 20,
+    "nInvalidation": 0
   },
   {
     "co": "IE",
-    "n": 22
+    "n": 22,
+    "nAcceptance": 22,
+    "nInvalidation": 0
   },
   {
     "co": "LT",
-    "n": 16
+    "n": 16,
+    "nAcceptance": 16,
+    "nInvalidation": 0
   },
   {
     "co": "LU",
-    "n": 11
+    "n": 11,
+    "nAcceptance": 11,
+    "nInvalidation": 0
   },
   {
     "co": "LV",
-    "n": 12
+    "n": 12,
+    "nAcceptance": 12,
+    "nInvalidation": 0
   },
   {
     "co": "ME",
-    "n": 11
+    "n": 11,
+    "nAcceptance": 11,
+    "nInvalidation": 0
   },
   {
     "co": "MT",
-    "n": 9
+    "n": 9,
+    "nAcceptance": 9,
+    "nInvalidation": 0
   },
   {
     "co": "NL",
-    "n": 16
+    "n": 16,
+    "nAcceptance": 16,
+    "nInvalidation": 0
   },
   {
     "co": "PL",
-    "n": 13
+    "n": 13,
+    "nAcceptance": 13,
+    "nInvalidation": 0
   },
   {
     "co": "RO",
-    "n": 6
+    "n": 6,
+    "nAcceptance": 6,
+    "nInvalidation": 0
   },
   {
     "co": "RS",
-    "n": 10
+    "n": 10,
+    "nAcceptance": 10,
+    "nInvalidation": 0
   },
   {
     "co": "SI",
-    "n": 11
+    "n": 11,
+    "nAcceptance": 11,
+    "nInvalidation": 0
   },
   {
     "co": "SK",
-    "n": 16
+    "n": 16,
+    "nAcceptance": 16,
+    "nInvalidation": 0
   },
   {
     "co": "TG",
-    "n": 1
+    "n": 1,
+    "nAcceptance": 1,
+    "nInvalidation": 0
   },
   {
     "co": "UA",
-    "n": 16
+    "n": 16,
+    "nAcceptance": 16,
+    "nInvalidation": 0
   }
 ]

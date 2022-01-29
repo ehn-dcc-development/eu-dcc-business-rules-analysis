@@ -5,13 +5,15 @@ const { groupBy } = require("./func-utils")
 
 const rulesInfoPerCountry = readJson("analysis/n-rules-per-country.json")
 
-const countryInfoAsHtml = ({ co, n }) =>
+const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }) =>
     `<tr>
   <td>${co}</td>
-  <td>${countryCode2DisplayName[co]}</td>
   <td>${flagEmoji(co)}</td>
-  <td class="number">${n}</td>
+  <td>${countryCode2DisplayName[co]}</td>
   <td>${memberAnnotation(co)}</td>
+  <td class="number">${n}</td>
+  <td class="number">${nAcceptance}</td>
+  <td class="number">${nInvalidation}</td>
 </tr>
 `
 
@@ -56,10 +58,12 @@ const html = `<html lang="en">
       <thead>
         <tr>
           <th>code</th>
-          <th>name</th>
           <th></th>
-          <th>#rules</th>
+          <th>name</th>
           <th>status</th>
+          <th>#rules</th>
+          <th>#Acc's</th>
+          <th>#Inv's</th>
         </tr>
       </thead>
       <tbody>
