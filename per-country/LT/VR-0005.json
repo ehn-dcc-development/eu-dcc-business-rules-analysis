@@ -1,155 +1,157 @@
-{
-  "Identifier": "VR-LT-0005",
-  "Type": "Acceptance",
-  "Country": "LT",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "1.0.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "lt",
-      "desc": "Pažymėjimas galioja 270 dienų po pilnos vakcinacijos"
+[
+  {
+    "Identifier": "VR-LT-0005",
+    "Type": "Acceptance",
+    "Country": "LT",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "1.0.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "lt",
+        "desc": "Pažymėjimas galioja 270 dienų po pilnos vakcinacijos"
+      },
+      {
+        "lang": "en",
+        "desc": "DCC is valid 270 days after full vacination"
+      }
+    ],
+    "ValidFrom": "2022-02-01T06:00:00Z",
+    "ValidTo": "2024-11-29T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.mp",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    270,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  "and": [
+                    {
+                      "===": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        2
+                      ]
+                    },
+                    {
+                      "===": [
+                        {
+                          "var": "payload.v.0.sd"
+                        },
+                        1
+                      ]
+                    }
+                  ]
+                },
+                true,
+                {
+                  "if": [
+                    {
+                      "===": [
+                        {
+                          "var": "payload.v.0.mp"
+                        },
+                        "EU/1/20/1525"
+                      ]
+                    },
+                    {
+                      "if": [
+                        {
+                          "and": [
+                            {
+                              "===": [
+                                {
+                                  "var": "payload.v.0.dn"
+                                },
+                                2
+                              ]
+                            },
+                            {
+                              "===": [
+                                {
+                                  "var": "payload.v.0.sd"
+                                },
+                                2
+                              ]
+                            }
+                          ]
+                        },
+                        true,
+                        false
+                      ]
+                    },
+                    {
+                      "if": [
+                        {
+                          "and": [
+                            {
+                              "===": [
+                                {
+                                  "var": "payload.v.0.dn"
+                                },
+                                3
+                              ]
+                            },
+                            {
+                              "<=": [
+                                2,
+                                {
+                                  "var": "payload.v.0.sd"
+                                },
+                                3
+                              ]
+                            }
+                          ]
+                        },
+                        true,
+                        false
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "DCC is valid 270 days after full vacination"
-    }
-  ],
-  "ValidFrom": "2022-02-01T06:00:00Z",
-  "ValidTo": "2024-11-29T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.mp",
-    "v.0.dn",
-    "v.0.sd"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  270,
-                  "day"
-                ]
-              }
-            ]
-          },
-          {
-            "if": [
-              {
-                "and": [
-                  {
-                    "===": [
-                      {
-                        "var": "payload.v.0.dn"
-                      },
-                      2
-                    ]
-                  },
-                  {
-                    "===": [
-                      {
-                        "var": "payload.v.0.sd"
-                      },
-                      1
-                    ]
-                  }
-                ]
-              },
-              true,
-              {
-                "if": [
-                  {
-                    "===": [
-                      {
-                        "var": "payload.v.0.mp"
-                      },
-                      "EU/1/20/1525"
-                    ]
-                  },
-                  {
-                    "if": [
-                      {
-                        "and": [
-                          {
-                            "===": [
-                              {
-                                "var": "payload.v.0.dn"
-                              },
-                              2
-                            ]
-                          },
-                          {
-                            "===": [
-                              {
-                                "var": "payload.v.0.sd"
-                              },
-                              2
-                            ]
-                          }
-                        ]
-                      },
-                      true,
-                      false
-                    ]
-                  },
-                  {
-                    "if": [
-                      {
-                        "and": [
-                          {
-                            "===": [
-                              {
-                                "var": "payload.v.0.dn"
-                              },
-                              3
-                            ]
-                          },
-                          {
-                            "<=": [
-                              2,
-                              {
-                                "var": "payload.v.0.sd"
-                              },
-                              3
-                            ]
-                          }
-                        ]
-                      },
-                      true,
-                      false
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) after (/payload.v.0.dt +270 days) then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (1)) then true else if (/payload.v.0.mp) === (\"EU/1/20/1525\") then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2)) then true else false else if ((/payload.v.0.dn) === (3)) and ((2) <= (/payload.v.0.sd) <= (3)) then true else false else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) after (/payload.v.0.dt +270 days) then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (1)) then true else if (/payload.v.0.mp) === (\"EU/1/20/1525\") then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2)) then true else false else if ((/payload.v.0.dn) === (3)) and ((2) <= (/payload.v.0.sd) <= (3)) then true else false else true else true"
+  }
+]

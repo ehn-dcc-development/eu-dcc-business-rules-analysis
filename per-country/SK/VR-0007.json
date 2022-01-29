@@ -1,96 +1,98 @@
-{
-  "Identifier": "VR-SK-0007",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Verification Datetime must be less than 365 days after vaccination date (and vaccination date not in the future)."
+[
+  {
+    "Identifier": "VR-SK-0007",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Verification Datetime must be less than 365 days after vaccination date (and vaccination date not in the future)."
+      },
+      {
+        "lang": "sk",
+        "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná po aplikácii druhej dávky očkovacej látky proti ochoreniu COVID-19 s dvojdávkovou schémou, avšak nie viac ako jeden rok po aplikácii poslednej dávky."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidTo": "2030-07-26T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.sd"
+                },
+                2
+              ]
+            },
+            {
+              "if": [
+                {
+                  ">=": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
+                  "not-after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        365,
+                        "day"
+                      ]
+                    }
+                  ]
+                },
+                true
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sk",
-      "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná po aplikácii druhej dávky očkovacej látky proti ochoreniu COVID-19 s dvojdávkovou schémou, avšak nie viac ako jeden rok po aplikácii poslednej dávky."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:30Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.sd",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.sd"
-              },
-              2
-            ]
-          },
-          {
-            "if": [
-              {
-                ">=": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  {
-                    "var": "payload.v.0.sd"
-                  }
-                ]
-              },
-              {
-                "not-after": [
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      0,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "external.validationClock"
-                      },
-                      0,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      365,
-                      "day"
-                    ]
-                  }
-                ]
-              },
-              true
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (2) then if (/payload.v.0.dn) >= (/payload.v.0.sd) then (/payload.v.0.dt +0 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (2) then if (/payload.v.0.dn) >= (/payload.v.0.sd) then (/payload.v.0.dt +0 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
+  }
+]

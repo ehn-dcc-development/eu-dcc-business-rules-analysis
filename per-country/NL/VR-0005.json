@@ -1,101 +1,103 @@
-{
-  "Identifier": "VR-NL-0005",
-  "Type": "Acceptance",
-  "Country": "NL",
-  "Version": "1.2.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "A vaccination is considered to be protective at the earliest 14 days after the second vaccination date."
-    },
-    {
-      "lang": "nl",
-      "desc": "Een vaccinatie wordt vanaf 14 dagen na de tweede vaccinatiedatum als beschermend aangemerkt."
-    },
-    {
-      "lang": "de",
-      "desc": "Eine Impfung gilt ab frühestens 14 Tage nach dem zweiten Impftermin als schützend."
-    },
-    {
-      "lang": "fr",
-      "desc": "Une vaccination est considérée comme protectrice au plus tôt à partir de 14 jours après la deuxième date de vaccination.."
-    },
-    {
-      "lang": "es",
-      "desc": "Una vacuna se considera protectora a partir de los 14 días posteriores a la fecha de la segunda vacunación."
-    },
-    {
-      "lang": "it",
-      "desc": "Una vaccinazione è considerata protettiva a partire da 14 giorni dopo la seconda data di vaccinazione."
-    }
-  ],
-  "ValidFrom": "2021-12-06T00:00:00+01:00",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.dt",
-    "v.0.mp"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-NL-0005",
+    "Type": "Acceptance",
+    "Country": "NL",
+    "Version": "1.2.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.0"
+        "lang": "en",
+        "desc": "A vaccination is considered to be protective at the earliest 14 days after the second vaccination date."
       },
       {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.mp"
-              },
-              "EU/1/20/1525"
-            ]
-          },
-          true,
-          {
-            "if": [
-              {
-                ">": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  2
-                ]
-              },
-              true,
-              {
-                "not-before": [
-                  {
-                    "plusTime": [
-                      {
-                        "var": "external.validationClock"
-                      },
-                      0,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      14,
-                      "day"
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "lang": "nl",
+        "desc": "Een vaccinatie wordt vanaf 14 dagen na de tweede vaccinatiedatum als beschermend aangemerkt."
       },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then true else if (/payload.v.0.dn) > (2) then true else (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) else true"
-}
+      {
+        "lang": "de",
+        "desc": "Eine Impfung gilt ab frühestens 14 Tage nach dem zweiten Impftermin als schützend."
+      },
+      {
+        "lang": "fr",
+        "desc": "Une vaccination est considérée comme protectrice au plus tôt à partir de 14 jours après la deuxième date de vaccination.."
+      },
+      {
+        "lang": "es",
+        "desc": "Una vacuna se considera protectora a partir de los 14 días posteriores a la fecha de la segunda vacunación."
+      },
+      {
+        "lang": "it",
+        "desc": "Una vaccinazione è considerata protettiva a partire da 14 giorni dopo la seconda data di vaccinazione."
+      }
+    ],
+    "ValidFrom": "2021-12-06T00:00:00+01:00",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.dt",
+      "v.0.mp"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/20/1525"
+              ]
+            },
+            true,
+            {
+              "if": [
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                },
+                true,
+                {
+                  "not-before": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        14,
+                        "day"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then true else if (/payload.v.0.dn) > (2) then true else (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) else true"
+  }
+]

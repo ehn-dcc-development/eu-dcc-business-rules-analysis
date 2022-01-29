@@ -1,62 +1,64 @@
-{
-  "Identifier": "TR-EE-0003",
-  "Type": "Acceptance",
-  "Country": "EE",
-  "Version": "1.0.2",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime for a test of type RAT (rapid antigen test)."
+[
+  {
+    "Identifier": "TR-EE-0003",
+    "Type": "Acceptance",
+    "Country": "EE",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime for a test of type RAT (rapid antigen test)."
+      },
+      {
+        "lang": "ee",
+        "desc": "Antigeeni kiirtest (RAT) peab olema tehtud kuni 48 tundi enne tõendi kontrolli."
+      }
+    ],
+    "ValidFrom": "2021-09-06T00:00:00Z",
+    "ValidTo": "2022-09-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tt"
+            },
+            "LP217198-3"
+          ]
+        },
+        {
+          "before": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.t.0.sc"
+                },
+                48,
+                "hour"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ee",
-      "desc": "Antigeeni kiirtest (RAT) peab olema tehtud kuni 48 tundi enne tõendi kontrolli."
-    }
-  ],
-  "ValidFrom": "2021-09-06T00:00:00Z",
-  "ValidTo": "2022-09-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0.sc",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tt"
-          },
-          "LP217198-3"
-        ]
-      },
-      {
-        "before": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.t.0.sc"
-              },
-              48,
-              "hour"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +48 hours) else true"
-}
+    "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +48 hours) else true"
+  }
+]

@@ -1,42 +1,44 @@
-{
-  "Identifier": "VR-CH-0003",
-  "Type": "Acceptance",
-  "Country": "CH",
-  "Version": "1.0.7",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "desc": "Date of vaccination must exist",
-      "lang": "en"
-    }
-  ],
-  "ValidFrom": "2021-12-17T00:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-CH-0003",
+    "Type": "Acceptance",
+    "Country": "CH",
+    "Version": "1.0.7",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.0"
-      },
-      {
-        "!": [
-          {
-            "!": [
-              {
-                "var": "payload.v.0.dt"
-              }
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then not (not (/payload.v.0.dt)) else true"
-}
+        "desc": "Date of vaccination must exist",
+        "lang": "en"
+      }
+    ],
+    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "!": [
+            {
+              "!": [
+                {
+                  "var": "payload.v.0.dt"
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then not (not (/payload.v.0.dt)) else true"
+  }
+]

@@ -1,46 +1,48 @@
-{
-  "Identifier": "TR-ME-0001",
-  "Type": "Acceptance",
-  "Country": "ME",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "sr",
-      "desc": "Uzimaju se u obzir antigenski test ili NAA test (npr., PCR)."
-    },
-    {
-      "lang": "en",
-      "desc": "This must be an antigen test or NAA test (e.g., PCR)."
-    }
-  ],
-  "ValidFrom": "2021-12-24T12:00:00Z",
-  "ValidTo": "2030-01-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "TR-ME-0001",
+    "Type": "Acceptance",
+    "Country": "ME",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
       {
-        "var": "payload.t.0"
+        "lang": "sr",
+        "desc": "Uzimaju se u obzir antigenski test ili NAA test (npr., PCR)."
       },
       {
-        "in": [
-          {
-            "var": "payload.t.0.tt"
-          },
-          [
-            "LP217198-3",
-            "LP6464-4"
+        "lang": "en",
+        "desc": "This must be an antigen test or NAA test (e.g., PCR)."
+      }
+    ],
+    "ValidFrom": "2021-12-24T12:00:00Z",
+    "ValidTo": "2030-01-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "in": [
+            {
+              "var": "payload.t.0.tt"
+            },
+            [
+              "LP217198-3",
+              "LP6464-4"
+            ]
           ]
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tt) in ([ \"LP217198-3\", \"LP6464-4\" ]) else true"
-}
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tt) in ([ \"LP217198-3\", \"LP6464-4\" ]) else true"
+  }
+]

@@ -1,33 +1,35 @@
-{
-  "Identifier": "VR-SI-0000",
-  "Type": "Acceptance",
-  "Country": "SI",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "At most one v-event."
-    },
-    {
-      "lang": "si",
-      "desc": "Največ en dogodek cepljenja."
-    }
-  ],
-  "ValidFrom": "2021-07-30T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.1"
-  ],
-  "Logic": {
-    "!": [
+[
+  {
+    "Identifier": "VR-SI-0000",
+    "Type": "Acceptance",
+    "Country": "SI",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.1"
+        "lang": "en",
+        "desc": "At most one v-event."
+      },
+      {
+        "lang": "si",
+        "desc": "Največ en dogodek cepljenja."
       }
-    ]
-  },
-  "expr-as-text": "not (/payload.v.1)"
-}
+    ],
+    "ValidFrom": "2021-07-30T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.1"
+    ],
+    "Logic": {
+      "!": [
+        {
+          "var": "payload.v.1"
+        }
+      ]
+    },
+    "expr-as-text": "not (/payload.v.1)"
+  }
+]

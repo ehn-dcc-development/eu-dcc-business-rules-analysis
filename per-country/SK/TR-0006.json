@@ -1,62 +1,64 @@
-{
-  "Identifier": "TR-SK-0006",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "DateTime of Sample Collection must be less than 72 hours before the Verification Datetime for a test of type NAA (PCR test). After time limit expiration of 72 hours, the test is valid only for the enter of the employee on the working place, or for commuters on the base of the evidence"
+[
+  {
+    "Identifier": "TR-SK-0006",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 72 hours before the Verification Datetime for a test of type NAA (PCR test). After time limit expiration of 72 hours, the test is valid only for the enter of the employee on the working place, or for commuters on the base of the evidence"
+      },
+      {
+        "lang": "sk",
+        "desc": "Od odberu vzorky pre test typu NAA (PCR test) ubehlo viac ako 72 hodín. Po uplynutí 72 hodín je test platný IBA PRE VSTUP zamestnanca na pracovisko, alebo pre pendlerov na základe osobitej evidencie."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:29Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tt"
+            },
+            "LP6464-4"
+          ]
+        },
+        {
+          "before": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.t.0.sc"
+                },
+                72,
+                "hour"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sk",
-      "desc": "Od odberu vzorky pre test typu NAA (PCR test) ubehlo viac ako 72 hodín. Po uplynutí 72 hodín je test platný IBA PRE VSTUP zamestnanca na pracovisko, alebo pre pendlerov na základe osobitej evidencie."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:29Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0.sc",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tt"
-          },
-          "LP6464-4"
-        ]
-      },
-      {
-        "before": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.t.0.sc"
-              },
-              72,
-              "hour"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
-}
+    "expr-as-text": "if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
+  }
+]

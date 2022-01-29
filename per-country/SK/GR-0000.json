@@ -1,65 +1,67 @@
-{
-  "Identifier": "GR-SK-0000",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "General",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Exactly one type of event."
-    },
-    {
-      "lang": "sk",
-      "desc": "QR kód obsahuje staršiu verziu preukazu, ktorú nie je možné vyhodnotiť."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:28Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
-  "AffectedFields": [
-    "r",
-    "t",
-    "v"
-  ],
-  "Logic": {
-    "===": [
+[
+  {
+    "Identifier": "GR-SK-0000",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "General",
+    "Description": [
       {
-        "reduce": [
-          [
-            {
-              "var": "payload.r"
-            },
-            {
-              "var": "payload.t"
-            },
-            {
-              "var": "payload.v"
-            }
-          ],
-          {
-            "+": [
+        "lang": "en",
+        "desc": "Exactly one type of event."
+      },
+      {
+        "lang": "sk",
+        "desc": "QR kód obsahuje staršiu verziu preukazu, ktorú nie je možné vyhodnotiť."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:28Z",
+    "ValidTo": "2030-07-26T00:00:00Z",
+    "AffectedFields": [
+      "r",
+      "t",
+      "v"
+    ],
+    "Logic": {
+      "===": [
+        {
+          "reduce": [
+            [
               {
-                "var": "accumulator"
+                "var": "payload.r"
               },
               {
-                "if": [
-                  {
-                    "var": "current.0"
-                  },
-                  1,
-                  0
-                ]
+                "var": "payload.t"
+              },
+              {
+                "var": "payload.v"
               }
-            ]
-          },
-          0
-        ]
-      },
-      1
-    ]
-  },
-  "expr-as-text": "(([ /payload.r, /payload.t, /payload.v ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
-}
+            ],
+            {
+              "+": [
+                {
+                  "var": "accumulator"
+                },
+                {
+                  "if": [
+                    {
+                      "var": "current.0"
+                    },
+                    1,
+                    0
+                  ]
+                }
+              ]
+            },
+            0
+          ]
+        },
+        1
+      ]
+    },
+    "expr-as-text": "(([ /payload.r, /payload.t, /payload.v ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
+  }
+]

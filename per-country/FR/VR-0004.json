@@ -1,71 +1,73 @@
-{
-  "Identifier": "VR-FR-0004",
-  "Type": "Acceptance",
-  "Country": "FR",
-  "Version": "1.0.4",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "With Jansen vaccine, a finished vaccination course is considered protective earliest from 28 days after the date of the last vaccination."
+[
+  {
+    "Identifier": "VR-FR-0004",
+    "Type": "Acceptance",
+    "Country": "FR",
+    "Version": "1.0.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "With Jansen vaccine, a finished vaccination course is considered protective earliest from 28 days after the date of the last vaccination."
+      },
+      {
+        "lang": "fr",
+        "desc": "Avec le vaccin Jansen, un parcours vaccinal terminé est consideré comme protecteur au plus tôt à partir de 28 jours après la date de la dernière injection."
+      }
+    ],
+    "ValidFrom": "2021-12-17T18:00:00Z",
+    "ValidTo": "2031-12-17T18:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.mp"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/20/1525"
+              ]
+            },
+            {
+              "not-before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    28,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "fr",
-      "desc": "Avec le vaccin Jansen, un parcours vaccinal terminé est consideré comme protecteur au plus tôt à partir de 28 jours après la date de la dernière injection."
-    }
-  ],
-  "ValidFrom": "2021-12-17T18:00:00Z",
-  "ValidTo": "2031-12-17T18:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.mp"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.mp"
-              },
-              "EU/1/20/1525"
-            ]
-          },
-          {
-            "not-before": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  28,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then (/external.validationClock +0 days) not-before (/payload.v.0.dt +28 days) else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then (/external.validationClock +0 days) not-before (/payload.v.0.dt +28 days) else true else true"
+  }
+]

@@ -1,85 +1,87 @@
-{
-  "Identifier": "RR-UA-0002",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "2.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Recovery",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The validity start date must be greater than or equal to the first positive test date  +14 days and validity end date must be less than or equal to the first postive test date +180."
+[
+  {
+    "Identifier": "RR-UA-0002",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "2.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Recovery",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The validity start date must be greater than or equal to the first positive test date  +14 days and validity end date must be less than or equal to the first postive test date +180."
+      },
+      {
+        "lang": "ua",
+        "desc": "Дата початку дійсності повинна бути більшою або дорівнювати першій позитивній тестовій даті +14 днів, а дата закінчення дійсності повинна бути меншою або рівною першій позитивній тестовій даті +180."
+      }
+    ],
+    "ValidFrom": "2021-08-22T10:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r.0",
+      "r.0.df",
+      "r.0.du",
+      "r.0.fr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.r.0"
+        },
+        {
+          "and": [
+            {
+              "not-before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.r.0.fr"
+                    },
+                    14,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.r.0.du"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.r.0.fr"
+                    },
+                    180,
+                    "day"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ua",
-      "desc": "Дата початку дійсності повинна бути більшою або дорівнювати першій позитивній тестовій даті +14 днів, а дата закінчення дійсності повинна бути меншою або рівною першій позитивній тестовій даті +180."
-    }
-  ],
-  "ValidFrom": "2021-08-22T10:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "r.0",
-    "r.0.df",
-    "r.0.du",
-    "r.0.fr"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.r.0"
-      },
-      {
-        "and": [
-          {
-            "not-before": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.r.0.fr"
-                  },
-                  14,
-                  "day"
-                ]
-              }
-            ]
-          },
-          {
-            "not-after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.r.0.du"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.r.0.fr"
-                  },
-                  180,
-                  "day"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.r.0 then ((/external.validationClock +0 days) not-before (/payload.r.0.fr +14 days)) and ((/payload.r.0.du +0 days) not-after (/payload.r.0.fr +180 days)) else true"
-}
+    "expr-as-text": "if /payload.r.0 then ((/external.validationClock +0 days) not-before (/payload.r.0.fr +14 days)) and ((/payload.r.0.du +0 days) not-after (/payload.r.0.fr +180 days)) else true"
+  }
+]

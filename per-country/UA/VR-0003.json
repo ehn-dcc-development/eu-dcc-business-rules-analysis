@@ -1,87 +1,89 @@
-{
-  "Identifier": "VR-UA-0003",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.3.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Verification Datetime must be more than 0 days and less than 365 days after the last date of vaccination."
-    },
-    {
-      "lang": "ua",
-      "desc": "Verification Datetime має бути більше 0 днів і менше 365 днів після дати останньої дати вакцинації."
-    }
-  ],
-  "ValidFrom": "2022-01-13T11:01:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.dn",
-    "v.0.sd"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-UA-0003",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.3.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "<": [
-          {
-            "var": "payload.v.0.dn"
-          },
-          {
-            "var": "payload.v.0.sd"
-          }
-        ]
+        "lang": "en",
+        "desc": "Verification Datetime must be more than 0 days and less than 365 days after the last date of vaccination."
       },
       {
-        "not-after": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.v.0.dt"
-              },
-              30,
-              "day"
-            ]
-          }
-        ]
-      },
-      {
-        "not-after": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.v.0.dt"
-              },
-              270,
-              "day"
-            ]
-          }
-        ]
+        "lang": "ua",
+        "desc": "Verification Datetime має бути більше 0 днів і менше 365 днів після дати останньої дати вакцинації."
       }
-    ]
-  },
-  "expr-as-text": "if (/payload.v.0.dn) < (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days)"
-}
+    ],
+    "ValidFrom": "2022-01-13T11:01:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "<": [
+            {
+              "var": "payload.v.0.dn"
+            },
+            {
+              "var": "payload.v.0.sd"
+            }
+          ]
+        },
+        {
+          "not-after": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.v.0.dt"
+                },
+                30,
+                "day"
+              ]
+            }
+          ]
+        },
+        {
+          "not-after": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.v.0.dt"
+                },
+                270,
+                "day"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0.dn) < (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days)"
+  }
+]

@@ -1,59 +1,61 @@
-{
-  "Identifier": "TR-AL-0004",
-  "Type": "Acceptance",
-  "Country": "AL",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The test result must be negative."
-    },
-    {
-      "lang": "de",
-      "desc": "Das Ergebnis des Tests muss negativ sein."
-    },
-    {
-      "lang": "fr",
-      "desc": "Le résultat du test doit être négatif."
-    },
-    {
-      "lang": "es",
-      "desc": "El resultado de la prueba debe ser negativo."
-    },
-    {
-      "lang": "it",
-      "desc": "Il risultato del test deve essere negativo."
-    },
-    {
-      "lang": "sq",
-      "desc": "Rezultati i testit duhet të jetë negativ."
-    }
-  ],
-  "ValidFrom": "2021-09-17T12:00:00Z",
-  "ValidTo": "2022-09-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0",
-    "t.0.tr"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "TR-AL-0004",
+    "Type": "Acceptance",
+    "Country": "AL",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
       {
-        "var": "payload.t.0"
+        "lang": "en",
+        "desc": "The test result must be negative."
       },
       {
-        "===": [
-          {
-            "var": "payload.t.0.tr"
-          },
-          "260415000"
-        ]
+        "lang": "de",
+        "desc": "Das Ergebnis des Tests muss negativ sein."
       },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
-}
+      {
+        "lang": "fr",
+        "desc": "Le résultat du test doit être négatif."
+      },
+      {
+        "lang": "es",
+        "desc": "El resultado de la prueba debe ser negativo."
+      },
+      {
+        "lang": "it",
+        "desc": "Il risultato del test deve essere negativo."
+      },
+      {
+        "lang": "sq",
+        "desc": "Rezultati i testit duhet të jetë negativ."
+      }
+    ],
+    "ValidFrom": "2021-09-17T12:00:00Z",
+    "ValidTo": "2022-09-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.tr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tr"
+            },
+            "260415000"
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
+  }
+]

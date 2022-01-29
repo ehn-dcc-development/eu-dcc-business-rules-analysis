@@ -1,71 +1,73 @@
-{
-  "Identifier": "TR-LV-0018",
-  "Type": "Acceptance",
-  "Country": "LV",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "lv",
-      "desc": "Kopš NAAT testa veikšanas nav pagājis vairāk kā 72 stundas"
+[
+  {
+    "Identifier": "TR-LV-0018",
+    "Type": "Acceptance",
+    "Country": "LV",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "lv",
+        "desc": "Kopš NAAT testa veikšanas nav pagājis vairāk kā 72 stundas"
+      },
+      {
+        "lang": "en",
+        "desc": "The sample for an NAAT test (e.g., PCR) must have been taken no longer than 72 hours ago."
+      }
+    ],
+    "ValidFrom": "2022-01-10T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.t.0.tt"
+                },
+                "LP6464-4"
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.t.0.sc"
+                    },
+                    72,
+                    "hour"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "The sample for an NAAT test (e.g., PCR) must have been taken no longer than 72 hours ago."
-    }
-  ],
-  "ValidFrom": "2022-01-10T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0",
-    "t.0.sc",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.t.0"
-      },
-      {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.t.0.tt"
-              },
-              "LP6464-4"
-            ]
-          },
-          {
-            "not-after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.t.0.sc"
-                  },
-                  72,
-                  "hour"
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +72 hours) else true else true"
-}
+    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +72 hours) else true else true"
+  }
+]

@@ -1,80 +1,82 @@
-{
-  "Identifier": "VR-UA-0006",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.2.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "When the vaccine COVID-19 Vaccine Janssen, the certificate is not valid until 15 days from the date of vaccination."
+[
+  {
+    "Identifier": "VR-UA-0006",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.2.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "When the vaccine COVID-19 Vaccine Janssen, the certificate is not valid until 15 days from the date of vaccination."
+      },
+      {
+        "lang": "ua",
+        "desc": "Коли вакцина COVID-19 Vaccine Janssen, то сертифікат не дійсний до 15 дня від дати щеплення."
+      }
+    ],
+    "ValidFrom": "2022-01-13T11:02:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.mp",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/20/1525"
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    15,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    270,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ua",
-      "desc": "Коли вакцина COVID-19 Vaccine Janssen, то сертифікат не дійсний до 15 дня від дати щеплення."
-    }
-  ],
-  "ValidFrom": "2022-01-13T11:02:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.mp",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.mp"
-              },
-              "EU/1/20/1525"
-            ]
-          },
-          {
-            "not-after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  15,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  270,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then (/payload.v.0.dt +15 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then (/payload.v.0.dt +15 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else true else true"
+  }
+]

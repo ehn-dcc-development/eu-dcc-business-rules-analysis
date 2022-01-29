@@ -1,62 +1,64 @@
-{
-  "Identifier": "TR-UA-0005",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.1.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime for a test of type RAT (rapid antigen test)."
+[
+  {
+    "Identifier": "TR-UA-0005",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.1.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime for a test of type RAT (rapid antigen test)."
+      },
+      {
+        "lang": "en",
+        "desc": "DateTime відбору проб повинен бути менше ніж за 48 годин до дати верифікації для тесту типу RAT (швидкий тест на антиген)."
+      }
+    ],
+    "ValidFrom": "2021-09-20T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tt"
+            },
+            "LP217198-3"
+          ]
+        },
+        {
+          "before": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "hour"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.t.0.sc"
+                },
+                48,
+                "hour"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "DateTime відбору проб повинен бути менше ніж за 48 годин до дати верифікації для тесту типу RAT (швидкий тест на антиген)."
-    }
-  ],
-  "ValidFrom": "2021-09-20T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0.sc",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tt"
-          },
-          "LP217198-3"
-        ]
-      },
-      {
-        "before": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "hour"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.t.0.sc"
-              },
-              48,
-              "hour"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 hours) before (/payload.t.0.sc +48 hours) else true"
-}
+    "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 hours) before (/payload.t.0.sc +48 hours) else true"
+  }
+]

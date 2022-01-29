@@ -50,3 +50,8 @@ const mapValues = (map, valueFunc) =>
     )
 module.exports.mapValues = mapValues
 
+
+const sortBy = (array, keyFunc) =>
+    [ ...array ].sort((l, r) => keyFunc(l) - keyFunc(r))
+module.exports.sortBy = sortBy
+

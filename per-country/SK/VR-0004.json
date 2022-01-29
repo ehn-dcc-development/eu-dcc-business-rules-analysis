@@ -1,87 +1,89 @@
-{
-  "Identifier": "VR-SK-0004",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Does not meet full vaccination criteria. At the moment of check, at least 21 must have elapsed since a single-shot of COVID-19 vaccine was administered. For full vaccination the digital certificate of recovery needs to be considered."
+[
+  {
+    "Identifier": "VR-SK-0004",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Does not meet full vaccination criteria. At the moment of check, at least 21 must have elapsed since a single-shot of COVID-19 vaccine was administered. For full vaccination the digital certificate of recovery needs to be considered."
+      },
+      {
+        "lang": "sk",
+        "desc": "Nevyhovuje podmienke plnej očkovanosti. Od podania prvej dávky očkovacej látky proti ochoreniu COVID-19 s jednodávkovou schémou neuplynulo najmenej 21 dní. Pre plnú očkovanosť je nutné posúdiť doklad o prekonaní COVID-19."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidTo": "2030-07-26T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.sd"
+                },
+                1
+              ]
+            },
+            {
+              "if": [
+                {
+                  ">=": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
+                  "not-before": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        21,
+                        "day"
+                      ]
+                    }
+                  ]
+                },
+                true
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sk",
-      "desc": "Nevyhovuje podmienke plnej očkovanosti. Od podania prvej dávky očkovacej látky proti ochoreniu COVID-19 s jednodávkovou schémou neuplynulo najmenej 21 dní. Pre plnú očkovanosť je nutné posúdiť doklad o prekonaní COVID-19."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:30Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.sd",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.sd"
-              },
-              1
-            ]
-          },
-          {
-            "if": [
-              {
-                ">=": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  {
-                    "var": "payload.v.0.sd"
-                  }
-                ]
-              },
-              {
-                "not-before": [
-                  {
-                    "plusTime": [
-                      {
-                        "var": "external.validationClock"
-                      },
-                      0,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      21,
-                      "day"
-                    ]
-                  }
-                ]
-              },
-              true
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (1) then if (/payload.v.0.dn) >= (/payload.v.0.sd) then (/external.validationClock +0 days) not-before (/payload.v.0.dt +21 days) else true else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) === (1) then if (/payload.v.0.dn) >= (/payload.v.0.sd) then (/external.validationClock +0 days) not-before (/payload.v.0.dt +21 days) else true else true else true"
+  }
+]

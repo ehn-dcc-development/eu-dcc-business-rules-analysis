@@ -1,42 +1,44 @@
-{
-  "Identifier": "RR-CH-0001",
-  "Type": "Acceptance",
-  "Country": "CH",
-  "Version": "1.0.7",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Recovery",
-  "Description": [
-    {
-      "desc": "Date of first positive test must exist",
-      "lang": "en"
-    }
-  ],
-  "ValidFrom": "2021-12-17T00:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
-  "AffectedFields": [
-    "r.0.fr",
-    "r.0"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "RR-CH-0001",
+    "Type": "Acceptance",
+    "Country": "CH",
+    "Version": "1.0.7",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Recovery",
+    "Description": [
       {
-        "var": "payload.r.0"
-      },
-      {
-        "!": [
-          {
-            "!": [
-              {
-                "var": "payload.r.0.fr"
-              }
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.r.0 then not (not (/payload.r.0.fr)) else true"
-}
+        "desc": "Date of first positive test must exist",
+        "lang": "en"
+      }
+    ],
+    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "r.0.fr",
+      "r.0"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.r.0"
+        },
+        {
+          "!": [
+            {
+              "!": [
+                {
+                  "var": "payload.r.0.fr"
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.r.0 then not (not (/payload.r.0.fr)) else true"
+  }
+]

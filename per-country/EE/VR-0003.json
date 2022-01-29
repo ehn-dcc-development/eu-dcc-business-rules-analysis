@@ -1,86 +1,88 @@
-{
-  "Identifier": "VR-EE-0003",
-  "Type": "Acceptance",
-  "Country": "EE",
-  "Version": "1.0.4",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Verification Datetime must be less than 270 days after the last date of full vaccination. Check the age! The certificate is valid if the owner is under 18 years of age."
+[
+  {
+    "Identifier": "VR-EE-0003",
+    "Type": "Acceptance",
+    "Country": "EE",
+    "Version": "1.0.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Verification Datetime must be less than 270 days after the last date of full vaccination. Check the age! The certificate is valid if the owner is under 18 years of age."
+      },
+      {
+        "lang": "ee",
+        "desc": "Vaktsineerimisest on möödas üle 9 kuu. Kontrolli vanust! Tõend kehtib, kui omanik on alla 18-aastane."
+      }
+    ],
+    "ValidFrom": "2022-02-01T00:00:00Z",
+    "ValidTo": "2023-02-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.sd",
+      "v.0.dn"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
+                  "<=": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    270,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ee",
-      "desc": "Vaktsineerimisest on möödas üle 9 kuu. Kontrolli vanust! Tõend kehtib, kui omanik on alla 18-aastane."
-    }
-  ],
-  "ValidFrom": "2022-02-01T00:00:00Z",
-  "ValidTo": "2023-02-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.sd",
-    "v.0.dn"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "and": [
-              {
-                "===": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  {
-                    "var": "payload.v.0.sd"
-                  }
-                ]
-              },
-              {
-                "<=": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  2
-                ]
-              }
-            ]
-          },
-          {
-            "not-after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  270,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else true else true"
+  }
+]

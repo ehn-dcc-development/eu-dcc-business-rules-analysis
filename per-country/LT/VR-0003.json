@@ -1,131 +1,133 @@
-{
-  "Identifier": "VR-LT-0003",
-  "Type": "Acceptance",
-  "Country": "LT",
-  "Version": "3.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "1.0.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "lt",
-      "desc": "Skiepijimo apsauga prasideda po 14 dienų po pilno skiepijimo kurso, ir iškarto po sustiprinančio skiepo"
+[
+  {
+    "Identifier": "VR-LT-0003",
+    "Type": "Acceptance",
+    "Country": "LT",
+    "Version": "3.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "1.0.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "lt",
+        "desc": "Skiepijimo apsauga prasideda po 14 dienų po pilno skiepijimo kurso, ir iškarto po sustiprinančio skiepo"
+      },
+      {
+        "lang": "en",
+        "desc": "The full vaccination protection starts up 14 days after full vaccination and right away after booster"
+      }
+    ],
+    "ValidFrom": "2022-01-08T12:00:00Z",
+    "ValidTo": "2024-11-29T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.mp",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "not-before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    14,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true,
+            {
+              "if": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.mp"
+                    },
+                    "EU/1/20/1525"
+                  ]
+                },
+                {
+                  "if": [
+                    {
+                      ">": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        1
+                      ]
+                    },
+                    true,
+                    false
+                  ]
+                },
+                {
+                  "if": [
+                    {
+                      "and": [
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.dn"
+                            },
+                            2
+                          ]
+                        },
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.sd"
+                            },
+                            1
+                          ]
+                        }
+                      ]
+                    },
+                    true,
+                    {
+                      "if": [
+                        {
+                          ">": [
+                            {
+                              "var": "payload.v.0.dn"
+                            },
+                            2
+                          ]
+                        },
+                        true,
+                        false
+                      ]
+                    },
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "The full vaccination protection starts up 14 days after full vaccination and right away after booster"
-    }
-  ],
-  "ValidFrom": "2022-01-08T12:00:00Z",
-  "ValidTo": "2024-11-29T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.mp",
-    "v.0.dn",
-    "v.0.sd"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "not-before": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  14,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true,
-          {
-            "if": [
-              {
-                "===": [
-                  {
-                    "var": "payload.v.0.mp"
-                  },
-                  "EU/1/20/1525"
-                ]
-              },
-              {
-                "if": [
-                  {
-                    ">": [
-                      {
-                        "var": "payload.v.0.dn"
-                      },
-                      1
-                    ]
-                  },
-                  true,
-                  false
-                ]
-              },
-              {
-                "if": [
-                  {
-                    "and": [
-                      {
-                        "===": [
-                          {
-                            "var": "payload.v.0.dn"
-                          },
-                          2
-                        ]
-                      },
-                      {
-                        "===": [
-                          {
-                            "var": "payload.v.0.sd"
-                          },
-                          1
-                        ]
-                      }
-                    ]
-                  },
-                  true,
-                  {
-                    "if": [
-                      {
-                        ">": [
-                          {
-                            "var": "payload.v.0.dn"
-                          },
-                          2
-                        ]
-                      },
-                      true,
-                      false
-                    ]
-                  },
-                  false
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) then true else if (/payload.v.0.mp) === (\"EU/1/20/1525\") then if (/payload.v.0.dn) > (1) then true else false else if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (1)) then true else if (/payload.v.0.dn) > (2) then true else false else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) not-before (/payload.v.0.dt +14 days) then true else if (/payload.v.0.mp) === (\"EU/1/20/1525\") then if (/payload.v.0.dn) > (1) then true else false else if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (1)) then true else if (/payload.v.0.dn) > (2) then true else false else true"
+  }
+]

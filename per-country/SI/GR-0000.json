@@ -1,65 +1,67 @@
-{
-  "Identifier": "GR-SI-0000",
-  "Type": "Acceptance",
-  "Country": "SI",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "General",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Exactly one type of event."
-    },
-    {
-      "lang": "si",
-      "desc": "Zgolj ena vrsta podatka."
-    }
-  ],
-  "ValidFrom": "2021-07-30T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "r",
-    "t",
-    "v"
-  ],
-  "Logic": {
-    "===": [
+[
+  {
+    "Identifier": "GR-SI-0000",
+    "Type": "Acceptance",
+    "Country": "SI",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "General",
+    "Description": [
       {
-        "reduce": [
-          [
-            {
-              "var": "payload.r"
-            },
-            {
-              "var": "payload.t"
-            },
-            {
-              "var": "payload.v"
-            }
-          ],
-          {
-            "+": [
+        "lang": "en",
+        "desc": "Exactly one type of event."
+      },
+      {
+        "lang": "si",
+        "desc": "Zgolj ena vrsta podatka."
+      }
+    ],
+    "ValidFrom": "2021-07-30T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r",
+      "t",
+      "v"
+    ],
+    "Logic": {
+      "===": [
+        {
+          "reduce": [
+            [
               {
-                "var": "accumulator"
+                "var": "payload.r"
               },
               {
-                "if": [
-                  {
-                    "var": "current.0"
-                  },
-                  1,
-                  0
-                ]
+                "var": "payload.t"
+              },
+              {
+                "var": "payload.v"
               }
-            ]
-          },
-          0
-        ]
-      },
-      1
-    ]
-  },
-  "expr-as-text": "(([ /payload.r, /payload.t, /payload.v ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
-}
+            ],
+            {
+              "+": [
+                {
+                  "var": "accumulator"
+                },
+                {
+                  "if": [
+                    {
+                      "var": "current.0"
+                    },
+                    1,
+                    0
+                  ]
+                }
+              ]
+            },
+            0
+          ]
+        },
+        1
+      ]
+    },
+    "expr-as-text": "(([ /payload.r, /payload.t, /payload.v ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
+  }
+]

@@ -1,57 +1,59 @@
-{
-  "Identifier": "RR-ME-0003",
-  "Type": "Acceptance",
-  "Country": "ME",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Recovery",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The positive NAA test result (e.g., PCR) must be older than 7 days."
+[
+  {
+    "Identifier": "RR-ME-0003",
+    "Type": "Acceptance",
+    "Country": "ME",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Recovery",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The positive NAA test result (e.g., PCR) must be older than 7 days."
+      },
+      {
+        "lang": "sr",
+        "desc": "Pozitivan rezultat NAA testa (npr. PCR testa) mora biti stariji od 7 dana."
+      }
+    ],
+    "ValidFrom": "2022-01-15T12:00:00Z",
+    "ValidTo": "2030-01-01T00:00:00Z",
+    "AffectedFields": [
+      "r.0",
+      "r.0.fr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.r.0"
+        },
+        {
+          "not-before": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.r.0.fr"
+                },
+                7,
+                "day"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sr",
-      "desc": "Pozitivan rezultat NAA testa (npr. PCR testa) mora biti stariji od 7 dana."
-    }
-  ],
-  "ValidFrom": "2022-01-15T12:00:00Z",
-  "ValidTo": "2030-01-01T00:00:00Z",
-  "AffectedFields": [
-    "r.0",
-    "r.0.fr"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.r.0"
-      },
-      {
-        "not-before": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.r.0.fr"
-              },
-              7,
-              "day"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +7 days) else true"
-}
+    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +7 days) else true"
+  }
+]

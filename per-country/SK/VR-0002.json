@@ -1,94 +1,96 @@
-{
-  "Identifier": "VR-SK-0002",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days and not more than 365 days must have elapsed since the first dose of COVID-19 vaccine was administered."
+[
+  {
+    "Identifier": "VR-SK-0002",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days and not more than 365 days must have elapsed since the first dose of COVID-19 vaccine was administered."
+      },
+      {
+        "lang": "sk",
+        "desc": "Nevyhovuje podmienke plnej očkovanosti. V čase kontroly musí uplynúť najmenej 14 dní a nie viac ako jeden rok po aplikácii poslednej dávky."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidTo": "2030-07-26T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              ">=": [
+                {
+                  "var": "payload.v.0.sd"
+                },
+                1
+              ]
+            },
+            {
+              "if": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    1
+                  ]
+                },
+                {
+                  "not-after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        14,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        365,
+                        "day"
+                      ]
+                    }
+                  ]
+                },
+                true
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sk",
-      "desc": "Nevyhovuje podmienke plnej očkovanosti. V čase kontroly musí uplynúť najmenej 14 dní a nie viac ako jeden rok po aplikácii poslednej dávky."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:30Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.sd",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            ">=": [
-              {
-                "var": "payload.v.0.sd"
-              },
-              1
-            ]
-          },
-          {
-            "if": [
-              {
-                "===": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  1
-                ]
-              },
-              {
-                "not-after": [
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      14,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "external.validationClock"
-                      },
-                      0,
-                      "day"
-                    ]
-                  },
-                  {
-                    "plusTime": [
-                      {
-                        "var": "payload.v.0.dt"
-                      },
-                      365,
-                      "day"
-                    ]
-                  }
-                ]
-              },
-              true
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) >= (1) then if (/payload.v.0.dn) === (1) then (/payload.v.0.dt +14 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.sd) >= (1) then if (/payload.v.0.dn) === (1) then (/payload.v.0.dt +14 days) not-after (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true else true"
+  }
+]

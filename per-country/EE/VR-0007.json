@@ -1,72 +1,74 @@
-{
-  "Identifier": "VR-EE-0007",
-  "Type": "Acceptance",
-  "Country": "EE",
-  "Version": "1.0.4",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Verification Datetime must be less than 365 days after the date of booster dose."
+[
+  {
+    "Identifier": "VR-EE-0007",
+    "Type": "Acceptance",
+    "Country": "EE",
+    "Version": "1.0.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Verification Datetime must be less than 365 days after the date of booster dose."
+      },
+      {
+        "lang": "ee",
+        "desc": "Tõhustusdoosist ei tohi olla möödas rohkem kui 365 päeva"
+      }
+    ],
+    "ValidFrom": "2022-02-01T00:00:00Z",
+    "ValidTo": "2023-02-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.sd",
+      "v.0.dn"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              ">=": [
+                {
+                  "var": "payload.v.0.dn"
+                },
+                3
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    365,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ee",
-      "desc": "Tõhustusdoosist ei tohi olla möödas rohkem kui 365 päeva"
-    }
-  ],
-  "ValidFrom": "2022-02-01T00:00:00Z",
-  "ValidTo": "2023-02-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.sd",
-    "v.0.dn"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            ">=": [
-              {
-                "var": "payload.v.0.dn"
-              },
-              3
-            ]
-          },
-          {
-            "not-after": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  365,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) >= (3) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true"
-}
+    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) >= (3) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +365 days) else true else true"
+  }
+]

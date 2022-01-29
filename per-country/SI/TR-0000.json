@@ -1,33 +1,35 @@
-{
-  "Identifier": "TR-SI-0000",
-  "Type": "Acceptance",
-  "Country": "SI",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "At most one t-event."
-    },
-    {
-      "lang": "si",
-      "desc": "Največ en dogodek testa."
-    }
-  ],
-  "ValidFrom": "2021-07-30T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "t.1"
-  ],
-  "Logic": {
-    "!": [
+[
+  {
+    "Identifier": "TR-SI-0000",
+    "Type": "Acceptance",
+    "Country": "SI",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
       {
-        "var": "payload.t.1"
+        "lang": "en",
+        "desc": "At most one t-event."
+      },
+      {
+        "lang": "si",
+        "desc": "Največ en dogodek testa."
       }
-    ]
-  },
-  "expr-as-text": "not (/payload.t.1)"
-}
+    ],
+    "ValidFrom": "2021-07-30T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "t.1"
+    ],
+    "Logic": {
+      "!": [
+        {
+          "var": "payload.t.1"
+        }
+      ]
+    },
+    "expr-as-text": "not (/payload.t.1)"
+  }
+]

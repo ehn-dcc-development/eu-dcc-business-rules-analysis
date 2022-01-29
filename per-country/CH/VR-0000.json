@@ -1,64 +1,66 @@
-{
-  "Identifier": "VR-CH-0000",
-  "Type": "Acceptance",
-  "Country": "CH",
-  "Version": "1.0.7",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "desc": "At most one v-event.",
-      "lang": "en"
-    }
-  ],
-  "ValidFrom": "2021-12-17T00:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
-  "AffectedFields": [
-    "r.0",
-    "t.0",
-    "v.1",
-    "v.0"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-CH-0000",
+    "Type": "Acceptance",
+    "Country": "CH",
+    "Version": "1.0.7",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.0"
-      },
-      {
-        "if": [
-          {
-            "and": [
-              {
-                "!": [
-                  {
-                    "var": "payload.v.1"
-                  }
-                ]
-              },
-              {
-                "!": [
-                  {
-                    "var": "payload.r.0"
-                  }
-                ]
-              },
-              {
-                "!": [
-                  {
-                    "var": "payload.t.0"
-                  }
-                ]
-              }
-            ]
-          },
-          true,
-          false
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (not (/payload.v.1)) and (not (/payload.r.0)) and (not (/payload.t.0)) then true else false else true"
-}
+        "desc": "At most one v-event.",
+        "lang": "en"
+      }
+    ],
+    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "r.0",
+      "t.0",
+      "v.1",
+      "v.0"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "!": [
+                    {
+                      "var": "payload.v.1"
+                    }
+                  ]
+                },
+                {
+                  "!": [
+                    {
+                      "var": "payload.r.0"
+                    }
+                  ]
+                },
+                {
+                  "!": [
+                    {
+                      "var": "payload.t.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            true,
+            false
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then if (not (/payload.v.1)) and (not (/payload.r.0)) and (not (/payload.t.0)) then true else false else true"
+  }
+]

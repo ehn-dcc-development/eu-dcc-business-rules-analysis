@@ -1,43 +1,45 @@
-{
-  "Identifier": "TR-LT-0005",
-  "Type": "Acceptance",
-  "Country": "LT",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "1.0.0",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "lt",
-      "desc": "Testo rezultatas turi būti - Nerasta"
+[
+  {
+    "Identifier": "TR-LT-0005",
+    "Type": "Acceptance",
+    "Country": "LT",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "1.0.0",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "lt",
+        "desc": "Testo rezultatas turi būti - Nerasta"
+      },
+      {
+        "lang": "en",
+        "desc": "Test result must be negative (not detected)."
+      }
+    ],
+    "ValidFrom": "2021-07-04T15:00:00Z",
+    "ValidTo": "2023-07-04T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.tr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tr"
+            },
+            "260415000"
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "Test result must be negative (not detected)."
-    }
-  ],
-  "ValidFrom": "2021-07-04T15:00:00Z",
-  "ValidTo": "2023-07-04T00:00:00Z",
-  "AffectedFields": [
-    "t.0",
-    "t.0.tr"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.t.0"
-      },
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tr"
-          },
-          "260415000"
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
-}
+    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
+  }
+]

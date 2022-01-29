@@ -1,54 +1,56 @@
-{
-  "Identifier": "TR-CH-0008",
-  "Type": "Acceptance",
-  "Country": "CH",
-  "Version": "1.0.7",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "desc": "For serum antibody tests, the result must be positive.",
-      "lang": "en"
-    }
-  ],
-  "ValidFrom": "2021-12-17T00:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0.tr",
-    "t.0",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "TR-CH-0008",
+    "Type": "Acceptance",
+    "Country": "CH",
+    "Version": "1.0.7",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
       {
-        "and": [
-          {
-            "var": "payload.t.0"
-          },
-          {
-            "in": [
-              {
-                "var": "payload.t.0.tt"
-              },
-              [
-                "94504-8"
+        "desc": "For serum antibody tests, the result must be positive.",
+        "lang": "en"
+      }
+    ],
+    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0.tr",
+      "t.0",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "and": [
+            {
+              "var": "payload.t.0"
+            },
+            {
+              "in": [
+                {
+                  "var": "payload.t.0.tt"
+                },
+                [
+                  "94504-8"
+                ]
               ]
-            ]
-          }
-        ]
-      },
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tr"
-          },
-          "260373001"
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if (/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\" ])) then (/payload.t.0.tr) === (\"260373001\") else true"
-}
+            }
+          ]
+        },
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tr"
+            },
+            "260373001"
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\" ])) then (/payload.t.0.tr) === (\"260373001\") else true"
+  }
+]

@@ -1,43 +1,45 @@
-{
-  "Identifier": "TR-EE-0002",
-  "Type": "Acceptance",
-  "Country": "EE",
-  "Version": "1.0.2",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The test result must be negative."
+[
+  {
+    "Identifier": "TR-EE-0002",
+    "Type": "Acceptance",
+    "Country": "EE",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The test result must be negative."
+      },
+      {
+        "lang": "ee",
+        "desc": "Analüüsi tulemus peab olema negatiivne."
+      }
+    ],
+    "ValidFrom": "2021-09-06T00:00:00Z",
+    "ValidTo": "2022-09-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.tr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tr"
+            },
+            "260415000"
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ee",
-      "desc": "Analüüsi tulemus peab olema negatiivne."
-    }
-  ],
-  "ValidFrom": "2021-09-06T00:00:00Z",
-  "ValidTo": "2022-09-01T00:00:00Z",
-  "AffectedFields": [
-    "t.0",
-    "t.0.tr"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.t.0"
-      },
-      {
-        "===": [
-          {
-            "var": "payload.t.0.tr"
-          },
-          "260415000"
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
-}
+    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tr) === (\"260415000\") else true"
+  }
+]

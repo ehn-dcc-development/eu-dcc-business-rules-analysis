@@ -1,46 +1,48 @@
-{
-  "Identifier": "VR-LT-0002",
-  "Type": "Acceptance",
-  "Country": "LT",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "1.0.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "lt",
-      "desc": "Turi būti pilnas skiepijimo dozių kursas."
+[
+  {
+    "Identifier": "VR-LT-0002",
+    "Type": "Acceptance",
+    "Country": "LT",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "1.0.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "lt",
+        "desc": "Turi būti pilnas skiepijimo dozių kursas."
+      },
+      {
+        "lang": "en",
+        "desc": "The vaccination course must be completed to provide enough protection."
+      }
+    ],
+    "ValidFrom": "2021-07-04T15:00:00Z",
+    "ValidTo": "2023-07-04T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          ">=": [
+            {
+              "var": "payload.v.0.dn"
+            },
+            {
+              "var": "payload.v.0.sd"
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "en",
-      "desc": "The vaccination course must be completed to provide enough protection."
-    }
-  ],
-  "ValidFrom": "2021-07-04T15:00:00Z",
-  "ValidTo": "2023-07-04T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dn",
-    "v.0.sd"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        ">=": [
-          {
-            "var": "payload.v.0.dn"
-          },
-          {
-            "var": "payload.v.0.sd"
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then (/payload.v.0.dn) >= (/payload.v.0.sd) else true"
-}
+    "expr-as-text": "if /payload.v.0 then (/payload.v.0.dn) >= (/payload.v.0.sd) else true"
+  }
+]

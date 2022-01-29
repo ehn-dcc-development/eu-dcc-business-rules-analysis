@@ -1,75 +1,77 @@
-{
-  "Identifier": "VR-UA-0030",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Certificates based on a single dose of two-dose vaccine are valid for 30 days."
+[
+  {
+    "Identifier": "VR-UA-0030",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Certificates based on a single dose of two-dose vaccine are valid for 30 days."
+      },
+      {
+        "lang": "ua",
+        "desc": "Сертифікати на підставі однієї дози дводозної вакцини діють 30 днів."
+      }
+    ],
+    "ValidFrom": "2021-12-06T00:00:01Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.co"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "and": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.dn"
+                },
+                1
+              ]
+            },
+            {
+              ">=": [
+                {
+                  "var": "payload.v.0.sd"
+                },
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "not-after": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.v.0.dt"
+                },
+                30,
+                "day"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "ua",
-      "desc": "Сертифікати на підставі однієї дози дводозної вакцини діють 30 днів."
-    }
-  ],
-  "ValidFrom": "2021-12-06T00:00:01Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.co"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "and": [
-          {
-            "===": [
-              {
-                "var": "payload.v.0.dn"
-              },
-              1
-            ]
-          },
-          {
-            ">=": [
-              {
-                "var": "payload.v.0.sd"
-              },
-              2
-            ]
-          }
-        ]
-      },
-      {
-        "not-after": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.v.0.dt"
-              },
-              30,
-              "day"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if ((/payload.v.0.dn) === (1)) and ((/payload.v.0.sd) >= (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else true"
-}
+    "expr-as-text": "if ((/payload.v.0.dn) === (1)) and ((/payload.v.0.sd) >= (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else true"
+  }
+]

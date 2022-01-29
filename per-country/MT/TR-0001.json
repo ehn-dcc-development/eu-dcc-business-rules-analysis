@@ -1,61 +1,63 @@
-{
-  "Identifier": "TR-MT-0001",
-  "Type": "Acceptance",
-  "Country": "MT",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Test",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "DateTime of Sample Collection must be less than 72 hours before the Verification Datetime for NAAT/RAT."
-    }
-  ],
-  "ValidFrom": "2022-01-20T00:00:00Z",
-  "ValidTo": "2030-10-11T00:00:00Z",
-  "AffectedFields": [
-    "t.0.sc",
-    "t.0.tt"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "TR-MT-0001",
+    "Type": "Acceptance",
+    "Country": "MT",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
       {
-        "in": [
-          {
-            "var": "payload.t.0.tt"
-          },
-          [
-            "LP6464-4",
-            "LP217198-3"
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 72 hours before the Verification Datetime for NAAT/RAT."
+      }
+    ],
+    "ValidFrom": "2022-01-20T00:00:00Z",
+    "ValidTo": "2030-10-11T00:00:00Z",
+    "AffectedFields": [
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "in": [
+            {
+              "var": "payload.t.0.tt"
+            },
+            [
+              "LP6464-4",
+              "LP217198-3"
+            ]
           ]
-        ]
-      },
-      {
-        "before": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.t.0.sc"
-              },
-              72,
-              "hour"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if (/payload.t.0.tt) in ([ \"LP6464-4\", \"LP217198-3\" ]) then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
-}
+        },
+        {
+          "before": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.t.0.sc"
+                },
+                72,
+                "hour"
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0.tt) in ([ \"LP6464-4\", \"LP217198-3\" ]) then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
+  }
+]

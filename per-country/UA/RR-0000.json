@@ -1,33 +1,35 @@
-{
-  "Identifier": "RR-UA-0000",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Recovery",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "At most one r-event."
-    },
-    {
-      "lang": "ua",
-      "desc": "Тільки результат одного тесту."
-    }
-  ],
-  "ValidFrom": "2021-08-22T10:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "r.1"
-  ],
-  "Logic": {
-    "!": [
+[
+  {
+    "Identifier": "RR-UA-0000",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Recovery",
+    "Description": [
       {
-        "var": "payload.r.1"
+        "lang": "en",
+        "desc": "At most one r-event."
+      },
+      {
+        "lang": "ua",
+        "desc": "Тільки результат одного тесту."
       }
-    ]
-  },
-  "expr-as-text": "not (/payload.r.1)"
-}
+    ],
+    "ValidFrom": "2021-08-22T10:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r.1"
+    ],
+    "Logic": {
+      "!": [
+        {
+          "var": "payload.r.1"
+        }
+      ]
+    },
+    "expr-as-text": "not (/payload.r.1)"
+  }
+]

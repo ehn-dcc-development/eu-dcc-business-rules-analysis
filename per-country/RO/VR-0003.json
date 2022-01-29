@@ -1,131 +1,133 @@
-{
-  "Identifier": "VR-RO-0003",
-  "Type": "Acceptance",
-  "Country": "RO",
-  "Version": "1.0.3",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "At least 10 days must have elapsed since completing the primary course of immunization. A booster shot is valid immediately as long as it is clearly identified as such."
-    },
-    {
-      "lang": "de",
-      "desc": "Seit Abschluss der Grundimmunisierung müssen mindestens 10 Tage vergangen sein. Eine Auffrischimpfung ist sofort gültig, solange sie eindeutig als solche gekennzeichnet ist."
-    },
-    {
-      "lang": "fr",
-      "desc": "Au moins 10 jours doivent s'être écoulés depuis la fin de la primovaccination. Un rappel est valable immédiatement tant qu'il est clairement identifié comme tel."
-    },
-    {
-      "lang": "es",
-      "desc": "Deben haber transcurrido al menos 10 días desde que se completó el ciclo primario de inmunización. Una vacuna de refuerzo es válida de inmediato siempre que esté claramente identificada como tal."
-    },
-    {
-      "lang": "it",
-      "desc": "Devono essere trascorsi almeno 10 giorni dal completamento del ciclo primario di immunizzazione. Un colpo di richiamo è valido immediatamente purché sia chiaramente identificato come tale."
-    }
-  ],
-  "ValidFrom": "2021-11-10T09:00:00Z",
-  "ValidTo": "2031-01-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt",
-    "v.0.mp",
-    "v.0.dn",
-    "v.0.sd"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-RO-0003",
+    "Type": "Acceptance",
+    "Country": "RO",
+    "Version": "1.0.3",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.0"
+        "lang": "en",
+        "desc": "At least 10 days must have elapsed since completing the primary course of immunization. A booster shot is valid immediately as long as it is clearly identified as such."
       },
       {
-        "if": [
-          {
-            "not-before": [
-              {
-                "plusTime": [
-                  {
-                    "var": "external.validationClock"
-                  },
-                  0,
-                  "day"
-                ]
-              },
-              {
-                "plusTime": [
-                  {
-                    "var": "payload.v.0.dt"
-                  },
-                  10,
-                  "day"
-                ]
-              }
-            ]
-          },
-          true,
-          {
-            "if": [
-              {
-                ">": [
-                  {
-                    "var": "payload.v.0.dn"
-                  },
-                  2
-                ]
-              },
-              true,
-              {
-                "if": [
-                  {
-                    "and": [
-                      {
-                        ">": [
-                          {
-                            "var": "payload.v.0.dn"
-                          },
-                          1
-                        ]
-                      },
-                      {
-                        "===": [
-                          {
-                            "var": "payload.v.0.mp"
-                          },
-                          "EU/1/20/1525"
-                        ]
-                      }
-                    ]
-                  },
-                  true,
-                  {
-                    "if": [
-                      {
-                        ">": [
-                          {
-                            "var": "payload.v.0.dn"
-                          },
-                          {
-                            "var": "payload.v.0.sd"
-                          }
-                        ]
-                      },
-                      true,
-                      false
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "lang": "de",
+        "desc": "Seit Abschluss der Grundimmunisierung müssen mindestens 10 Tage vergangen sein. Eine Auffrischimpfung ist sofort gültig, solange sie eindeutig als solche gekennzeichnet ist."
       },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) not-before (/payload.v.0.dt +10 days) then true else if (/payload.v.0.dn) > (2) then true else if ((/payload.v.0.dn) > (1)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then true else if (/payload.v.0.dn) > (/payload.v.0.sd) then true else false else true"
-}
+      {
+        "lang": "fr",
+        "desc": "Au moins 10 jours doivent s'être écoulés depuis la fin de la primovaccination. Un rappel est valable immédiatement tant qu'il est clairement identifié comme tel."
+      },
+      {
+        "lang": "es",
+        "desc": "Deben haber transcurrido al menos 10 días desde que se completó el ciclo primario de inmunización. Una vacuna de refuerzo es válida de inmediato siempre que esté claramente identificada como tal."
+      },
+      {
+        "lang": "it",
+        "desc": "Devono essere trascorsi almeno 10 giorni dal completamento del ciclo primario di immunizzazione. Un colpo di richiamo è valido immediatamente purché sia chiaramente identificato come tale."
+      }
+    ],
+    "ValidFrom": "2021-11-10T09:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.mp",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "not-before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    10,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true,
+            {
+              "if": [
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                },
+                true,
+                {
+                  "if": [
+                    {
+                      "and": [
+                        {
+                          ">": [
+                            {
+                              "var": "payload.v.0.dn"
+                            },
+                            1
+                          ]
+                        },
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.mp"
+                            },
+                            "EU/1/20/1525"
+                          ]
+                        }
+                      ]
+                    },
+                    true,
+                    {
+                      "if": [
+                        {
+                          ">": [
+                            {
+                              "var": "payload.v.0.dn"
+                            },
+                            {
+                              "var": "payload.v.0.sd"
+                            }
+                          ]
+                        },
+                        true,
+                        false
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) not-before (/payload.v.0.dt +10 days) then true else if (/payload.v.0.dn) > (2) then true else if ((/payload.v.0.dn) > (1)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then true else if (/payload.v.0.dn) > (/payload.v.0.sd) then true else false else true"
+  }
+]

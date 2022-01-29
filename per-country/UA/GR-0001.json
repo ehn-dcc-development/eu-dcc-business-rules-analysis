@@ -1,89 +1,91 @@
-{
-  "Identifier": "GR-UA-0001",
-  "Type": "Acceptance",
-  "Country": "UA",
-  "Version": "1.0.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "General",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The \"disease or agent targeted\" must be COVID-19 of the value set list."
-    },
-    {
-      "lang": "ua",
-      "desc": "Причина захворювання наявна в довіднику захворювань як COVID-19."
-    }
-  ],
-  "ValidFrom": "2021-08-22T10:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "r.0",
-    "r.0.tg",
-    "t.0",
-    "t.0.tg",
-    "v.0",
-    "v.0.tg"
-  ],
-  "Logic": {
-    "and": [
+[
+  {
+    "Identifier": "GR-UA-0001",
+    "Type": "Acceptance",
+    "Country": "UA",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "General",
+    "Description": [
       {
-        "if": [
-          {
-            "var": "payload.r.0"
-          },
-          {
-            "in": [
-              {
-                "var": "payload.r.0.tg"
-              },
-              {
-                "var": "external.valueSets.disease-agent-targeted"
-              }
-            ]
-          },
-          true
-        ]
+        "lang": "en",
+        "desc": "The \"disease or agent targeted\" must be COVID-19 of the value set list."
       },
       {
-        "if": [
-          {
-            "var": "payload.t.0"
-          },
-          {
-            "in": [
-              {
-                "var": "payload.t.0.tg"
-              },
-              {
-                "var": "external.valueSets.disease-agent-targeted"
-              }
-            ]
-          },
-          true
-        ]
-      },
-      {
-        "if": [
-          {
-            "var": "payload.v.0"
-          },
-          {
-            "in": [
-              {
-                "var": "payload.v.0.tg"
-              },
-              {
-                "var": "external.valueSets.disease-agent-targeted"
-              }
-            ]
-          },
-          true
-        ]
+        "lang": "ua",
+        "desc": "Причина захворювання наявна в довіднику захворювань як COVID-19."
       }
-    ]
-  },
-  "expr-as-text": "(if /payload.r.0 then (/payload.r.0.tg) in (/external.valueSets.disease-agent-targeted) else true) and (if /payload.t.0 then (/payload.t.0.tg) in (/external.valueSets.disease-agent-targeted) else true) and (if /payload.v.0 then (/payload.v.0.tg) in (/external.valueSets.disease-agent-targeted) else true)"
-}
+    ],
+    "ValidFrom": "2021-08-22T10:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r.0",
+      "r.0.tg",
+      "t.0",
+      "t.0.tg",
+      "v.0",
+      "v.0.tg"
+    ],
+    "Logic": {
+      "and": [
+        {
+          "if": [
+            {
+              "var": "payload.r.0"
+            },
+            {
+              "in": [
+                {
+                  "var": "payload.r.0.tg"
+                },
+                {
+                  "var": "external.valueSets.disease-agent-targeted"
+                }
+              ]
+            },
+            true
+          ]
+        },
+        {
+          "if": [
+            {
+              "var": "payload.t.0"
+            },
+            {
+              "in": [
+                {
+                  "var": "payload.t.0.tg"
+                },
+                {
+                  "var": "external.valueSets.disease-agent-targeted"
+                }
+              ]
+            },
+            true
+          ]
+        },
+        {
+          "if": [
+            {
+              "var": "payload.v.0"
+            },
+            {
+              "in": [
+                {
+                  "var": "payload.v.0.tg"
+                },
+                {
+                  "var": "external.valueSets.disease-agent-targeted"
+                }
+              ]
+            },
+            true
+          ]
+        }
+      ]
+    },
+    "expr-as-text": "(if /payload.r.0 then (/payload.r.0.tg) in (/external.valueSets.disease-agent-targeted) else true) and (if /payload.t.0 then (/payload.t.0.tg) in (/external.valueSets.disease-agent-targeted) else true) and (if /payload.v.0 then (/payload.v.0.tg) in (/external.valueSets.disease-agent-targeted) else true)"
+  }
+]

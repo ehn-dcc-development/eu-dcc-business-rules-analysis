@@ -1,57 +1,59 @@
-{
-  "Identifier": "VR-RS-0003",
-  "Type": "Acceptance",
-  "Country": "RS",
-  "Version": "1.1.0",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "The vaccine must have been administered no longer than seven months ago."
+[
+  {
+    "Identifier": "VR-RS-0003",
+    "Type": "Acceptance",
+    "Country": "RS",
+    "Version": "1.1.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The vaccine must have been administered no longer than seven months ago."
+      },
+      {
+        "lang": "sr",
+        "desc": "Вакцинација мора бити обављена пре највише 7 месеци."
+      }
+    ],
+    "ValidFrom": "2021-12-04T01:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "not-after": [
+            {
+              "plusTime": [
+                {
+                  "var": "external.validationClock"
+                },
+                0,
+                "day"
+              ]
+            },
+            {
+              "plusTime": [
+                {
+                  "var": "payload.v.0.dt"
+                },
+                210,
+                "day"
+              ]
+            }
+          ]
+        },
+        true
+      ]
     },
-    {
-      "lang": "sr",
-      "desc": "Вакцинација мора бити обављена пре највише 7 месеци."
-    }
-  ],
-  "ValidFrom": "2021-12-04T01:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.dt"
-  ],
-  "Logic": {
-    "if": [
-      {
-        "var": "payload.v.0"
-      },
-      {
-        "not-after": [
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "payload.v.0.dt"
-              },
-              210,
-              "day"
-            ]
-          }
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then (/external.validationClock +0 days) not-after (/payload.v.0.dt +210 days) else true"
-}
+    "expr-as-text": "if /payload.v.0 then (/external.validationClock +0 days) not-after (/payload.v.0.dt +210 days) else true"
+  }
+]

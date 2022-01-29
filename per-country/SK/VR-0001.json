@@ -1,49 +1,51 @@
-{
-  "Identifier": "VR-SK-0001",
-  "Type": "Acceptance",
-  "Country": "SK",
-  "Version": "1.0.1",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.1.0",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "Only the following vaccines are accepted (EMA or ŠÚKL): AstraZeneca, Biontech, Janssen, Moderna, Sputnik-V."
-    },
-    {
-      "lang": "sk",
-      "desc": "Povolené sú iba vakcíny (EMA alebo ŠÚKL): AstraZeneca, Biontech, Janssen, Moderna, Sputnik-V."
-    }
-  ],
-  "ValidFrom": "2022-01-19T18:09:30Z",
-  "ValidTo": "2030-07-26T00:00:00Z",
-  "AffectedFields": [
-    "v.0",
-    "v.0.mp"
-  ],
-  "Logic": {
-    "if": [
+[
+  {
+    "Identifier": "VR-SK-0001",
+    "Type": "Acceptance",
+    "Country": "SK",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.1.0",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.0"
+        "lang": "en",
+        "desc": "Only the following vaccines are accepted (EMA or ŠÚKL): AstraZeneca, Biontech, Janssen, Moderna, Sputnik-V."
       },
       {
-        "in": [
-          {
-            "var": "payload.v.0.mp"
-          },
-          [
-            "EU/1/20/1528",
-            "EU/1/20/1507",
-            "EU/1/21/1529",
-            "EU/1/20/1525",
-            "Sputnik-V"
+        "lang": "sk",
+        "desc": "Povolené sú iba vakcíny (EMA alebo ŠÚKL): AstraZeneca, Biontech, Janssen, Moderna, Sputnik-V."
+      }
+    ],
+    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidTo": "2030-07-26T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.mp"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "in": [
+            {
+              "var": "payload.v.0.mp"
+            },
+            [
+              "EU/1/20/1528",
+              "EU/1/20/1507",
+              "EU/1/21/1529",
+              "EU/1/20/1525",
+              "Sputnik-V"
+            ]
           ]
-        ]
-      },
-      true
-    ]
-  },
-  "expr-as-text": "if /payload.v.0 then (/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Sputnik-V\" ]) else true"
-}
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then (/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Sputnik-V\" ]) else true"
+  }
+]

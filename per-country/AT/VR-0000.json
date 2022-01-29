@@ -1,29 +1,31 @@
-{
-  "Identifier": "VR-AT-0000",
-  "Type": "Acceptance",
-  "Country": "AT",
-  "Version": "1.0.12",
-  "SchemaVersion": "1.0.0",
-  "Engine": "CERTLOGIC",
-  "EngineVersion": "0.7.5",
-  "CertificateType": "Vaccination",
-  "Description": [
-    {
-      "lang": "en",
-      "desc": "At most one v-event."
-    }
-  ],
-  "ValidFrom": "2021-12-09T00:00:00Z",
-  "ValidTo": "2030-06-01T00:00:00Z",
-  "AffectedFields": [
-    "v.1"
-  ],
-  "Logic": {
-    "!": [
+[
+  {
+    "Identifier": "VR-AT-0000",
+    "Type": "Acceptance",
+    "Country": "AT",
+    "Version": "1.0.12",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
       {
-        "var": "payload.v.1"
+        "lang": "en",
+        "desc": "At most one v-event."
       }
-    ]
-  },
-  "expr-as-text": "not (/payload.v.1)"
-}
+    ],
+    "ValidFrom": "2021-12-09T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.1"
+    ],
+    "Logic": {
+      "!": [
+        {
+          "var": "payload.v.1"
+        }
+      ]
+    },
+    "expr-as-text": "not (/payload.v.1)"
+  }
+]
