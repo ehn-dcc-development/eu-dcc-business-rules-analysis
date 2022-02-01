@@ -3,7 +3,7 @@ const { normalCopyOf, parseRuleId } = require("dcc-business-rules-utils")
 const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
-const { groupBy, sortBy } = require("./func-utils")
+const { groupBy, sortArrayBy } = require("./func-utils")
 
 
 const allRules = require("../tmp/all-rules.json")
@@ -24,7 +24,7 @@ for (const c in rulesPerCountry) {
         groupBy(rulesPerCountry[c], (rule) => rule.Identifier)
     ).forEach(([ id, ruleVersions ]) => {
         const { type, number } = parseRuleId(id)
-        const sortedRuleVersions = sortBy(ruleVersions, (ruleVersion) => ruleVersion.Version).reverse()
+        const sortedRuleVersions = sortArrayBy(ruleVersions, (ruleVersion) => ruleVersion.Version).reverse()
         writeJson(join(countryPath, `${type}-${number}.json`), sortedRuleVersions.map((ruleVersion) => normalised(ruleVersion)))
     })
 }

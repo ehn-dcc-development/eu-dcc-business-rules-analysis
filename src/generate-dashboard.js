@@ -27,7 +27,7 @@ const statusCounts = (info) =>
 const html = `<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Vaccination inventory</title>
+    <title>Dashboard Business Rules</title>
     <style>
         body {
             font-family: sans-serif, "Helvetica Neue";

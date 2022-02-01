@@ -21,6 +21,10 @@ rm tmp/*.log
 node src/check-rules.js > tmp/check-rules.log
 echo "Checked (validated) all rules."
 
+node src/serialise-version-meta-data.js
+node src/present-version-meta-data.js
+echo "Extracted and presented rules' versions' meta data."
+
 #exit 1
 
 echo "Computing vaccine info per country, per vaccine, per combo..."
