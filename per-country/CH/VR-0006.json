@@ -79,6 +79,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) and ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/21/1618\", \"NVX-CoV2373\", \"CoronaVac\", \"BBIBP-CorV\", \"Covishield\", \"Covaxin\", \"R-COVI\", \"Covid-19-recombinant\", \"COVOVAX\", \"BBIBP-CorV_T\", \"CoronaVac_T\", \"Covaxin_T\" ])) then (/external.validationClock +0 days) before (/payload.v.0.dt +270 days) else true"
+    "expr-as-text": "if ((/payload.v.0) and ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/21/1618\", \"NVX-CoV2373\", \"CoronaVac\", \"BBIBP-CorV\", \"Covishield\", \"Covaxin\", \"R-COVI\", \"Covid-19-recombinant\", \"COVOVAX\", \"BBIBP-CorV_T\", \"CoronaVac_T\", \"Covaxin_T\" ]))) then (((/external.validationClock) +0 days) before ((/payload.v.0.dt) +270 days)) else (true)"
   }
 ]

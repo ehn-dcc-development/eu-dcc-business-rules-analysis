@@ -68,6 +68,6 @@
         true
       ]
     },
-    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) and ((/payload.t.0.tr) === (\"260373001\")) then (/external.validationClock +0 days) after (/payload.t.0.sc +10 days) else true"
+    "expr-as-text": "if (((/payload.t.0.tt) === (\"LP217198-3\")) and ((/payload.t.0.tr) === (\"260373001\"))) then (((/external.validationClock) +0 days) after ((/payload.t.0.sc) +10 days)) else (true)"
   }
 ]

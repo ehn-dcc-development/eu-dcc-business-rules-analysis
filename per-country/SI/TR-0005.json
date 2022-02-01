@@ -59,7 +59,7 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +24 hours) else true"
+    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +24 hours)) else (true)"
   },
   {
     "Identifier": "TR-SI-0005",
@@ -121,6 +121,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/external.validationClock +0 days) before (/payload.t.0.sc +24 hours) else true"
+    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +24 hours)) else (true)"
   }
 ]

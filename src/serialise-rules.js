@@ -1,9 +1,9 @@
+const { renderAsCompactText } = require("certlogic-js/dist/misc")
 const { normalCopyOf, parseRuleId } = require("dcc-business-rules-utils")
 const { join } = require("path")
 
 const { mkDir, writeJson } = require("./file-utils")
 const { groupBy, sortBy } = require("./func-utils")
-const { renderAsText } = require("./render-expression-as-text")
 
 
 const allRules = require("../tmp/all-rules.json")
@@ -13,7 +13,7 @@ const rulesPerCountry = groupBy(allRules, (rule) => parseRuleId(rule.Identifier)
 
 const normalised = (rule) => {
     const copy = normalCopyOf(rule)
-    copy["expr-as-text"] = renderAsText(rule.Logic)
+    copy["expr-as-text"] = renderAsCompactText(rule.Logic)
     return copy
 }
 

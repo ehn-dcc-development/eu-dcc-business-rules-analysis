@@ -68,6 +68,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) not-after (/payload.t.0.sc +7 days) else true else true"
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP6464-4\")) then (((/external.validationClock) +0 days) not-after ((/payload.t.0.sc) +7 days)) else (true)) else (true)"
   }
 ]

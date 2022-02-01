@@ -52,6 +52,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\", \"medical-exemption\" ])) then (/payload.t.0.tr) === (\"260373001\") else true"
+    "expr-as-text": "if ((/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\", \"medical-exemption\" ]))) then ((/payload.t.0.tr) === (\"260373001\")) else (true)"
   }
 ]

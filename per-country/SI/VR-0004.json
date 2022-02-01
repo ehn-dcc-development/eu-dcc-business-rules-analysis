@@ -81,7 +81,7 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +271 days) else true else true"
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2))) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +271 days)) else (true)) else (true)"
   },
   {
     "Identifier": "VR-SI-0004",
@@ -196,6 +196,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2)) and ((/external.validationClock +0 days) after (/payload.v.0.dt +271 days)) then if /payload.dob then (/external.validationClock +0 days) before (/payload.dob +18 years) else false else true else true"
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2)) and (((/external.validationClock) +0 days) after ((/payload.v.0.dt) +271 days))) then (if (/payload.dob) then (((/external.validationClock) +0 days) before ((/payload.dob) +18 years)) else (false)) else (true)) else (true)"
   }
 ]

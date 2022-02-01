@@ -47,6 +47,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0.tt) === (\"LP217198-3\") then (/payload.t.0.ma) in (/valueSets.covid-19-lab-test-manufacturer-and-name) else true"
+    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) then ((/payload.t.0.ma) in (/valueSets.covid-19-lab-test-manufacturer-and-name)) else (true)"
   }
 ]

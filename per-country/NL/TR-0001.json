@@ -58,6 +58,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tt) in (/external.valueSets.covid-19-lab-test-type) else true"
+    "expr-as-text": "if (/payload.t.0) then ((/payload.t.0.tt) in (/external.valueSets.covid-19-lab-test-type)) else (true)"
   }
 ]

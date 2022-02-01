@@ -54,7 +54,7 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-after (/payload.r.0.fr +180 days) else true"
+    "expr-as-text": "if (/payload.r.0) then (((/external.validationClock) +0 days) not-after ((/payload.r.0.fr) +180 days)) else (true)"
   },
   {
     "Identifier": "RR-CZ-0002",
@@ -111,6 +111,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-after (/payload.r.0.fr +180 days) else true"
+    "expr-as-text": "if (/payload.r.0) then (((/external.validationClock) +0 days) not-after ((/payload.r.0.fr) +180 days)) else (true)"
   }
 ]

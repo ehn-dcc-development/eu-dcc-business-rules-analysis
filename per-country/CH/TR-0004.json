@@ -39,6 +39,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then not (not (/payload.t.0.sc)) else true"
+    "expr-as-text": "if (/payload.t.0) then (not (not (/payload.t.0.sc))) else (true)"
   }
 ]

@@ -84,6 +84,6 @@
         }
       ]
     },
-    "expr-as-text": "if (/payload.v.0.dn) < (/payload.v.0.sd) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +30 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days)"
+    "expr-as-text": "if ((/payload.v.0.dn) < (/payload.v.0.sd)) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +30 days)) else (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days))"
   }
 ]

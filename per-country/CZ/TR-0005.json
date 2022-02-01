@@ -55,7 +55,7 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then if /payload.t.0.is then true else false else true else true"
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then (if (/payload.t.0.is) then (true) else (false)) else (true)) else (true)"
   },
   {
     "Identifier": "TR-CZ-0005",
@@ -113,6 +113,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then if /payload.t.0.is then true else false else true else true"
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then (if (/payload.t.0.is) then (true) else (false)) else (true)) else (true)"
   }
 ]

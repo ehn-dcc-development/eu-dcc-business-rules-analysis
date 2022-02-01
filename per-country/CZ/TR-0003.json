@@ -56,7 +56,7 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then (/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name) else true else true"
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then ((/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name)) else (true)) else (true)"
   },
   {
     "Identifier": "TR-CZ-0003",
@@ -115,6 +115,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then if (/payload.t.0.tt) === (\"LP217198-3\") then (/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name) else true else true"
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then ((/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name)) else (true)) else (true)"
   }
 ]

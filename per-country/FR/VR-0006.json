@@ -68,6 +68,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1528\") then (/external.validationClock +0 days) not-before (/payload.v.0.dt +7 days) else true else true"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/20/1528\")) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +7 days)) else (true)) else (true)"
   }
 ]

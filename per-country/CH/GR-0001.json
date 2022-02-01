@@ -82,6 +82,6 @@
         }
       ]
     },
-    "expr-as-text": "(if /payload.r.0 then (/payload.r.0.tg) in ([ \"840539006\" ]) else true) and (if /payload.t.0 then (/payload.t.0.tg) in ([ \"840539006\" ]) else true) and (if /payload.v.0 then (/payload.v.0.tg) in ([ \"840539006\" ]) else true)"
+    "expr-as-text": "(if (/payload.r.0) then ((/payload.r.0.tg) in ([ \"840539006\" ])) else (true)) and (if (/payload.t.0) then ((/payload.t.0.tg) in ([ \"840539006\" ])) else (true)) and (if (/payload.v.0) then ((/payload.v.0.tg) in ([ \"840539006\" ])) else (true))"
   }
 ]

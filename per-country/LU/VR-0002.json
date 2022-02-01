@@ -130,6 +130,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.dn) === (/payload.v.0.sd) then if (/payload.v.0.dn) < (3) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +270 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +366 days) else (/external.validationClock +0 days) not-after (/payload.v.0.dt +366 days) else true"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) === (/payload.v.0.sd)) then (if ((/payload.v.0.dn) < (3)) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days)) else (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +366 days))) else (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +366 days))) else (true)"
   }
 ]

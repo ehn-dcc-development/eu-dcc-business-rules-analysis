@@ -58,6 +58,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0.tt) in ([ \"LP6464-4\", \"LP217198-3\" ]) then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
+    "expr-as-text": "if ((/payload.t.0.tt) in ([ \"LP6464-4\", \"LP217198-3\" ])) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +72 hours)) else (true)"
   }
 ]

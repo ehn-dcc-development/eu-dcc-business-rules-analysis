@@ -128,6 +128,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if (/external.validationClock +0 days) not-before (/payload.v.0.dt +10 days) then true else if (/payload.v.0.dn) > (2) then true else if ((/payload.v.0.dn) > (1)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then true else if (/payload.v.0.dn) > (/payload.v.0.sd) then true else false else true"
+    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +10 days)) then (true) else (if ((/payload.v.0.dn) > (2)) then (true) else (if (((/payload.v.0.dn) > (1)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (true) else (if ((/payload.v.0.dn) > (/payload.v.0.sd)) then (true) else (false))))) else (true)"
   }
 ]

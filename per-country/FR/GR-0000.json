@@ -58,6 +58,6 @@
         1
       ]
     },
-    "expr-as-text": "(([ /payload.v, /payload.t ]).reduce((current, accumulator) → (/accumulator) + (if /current.0 then 1 else 0), 0)) === (1)"
+    "expr-as-text": "(([ /payload.v, /payload.t ]).reduce((current, accumulator) → (/accumulator) + (if (/current.0) then (1) else (0)), 0)) === (1)"
   }
 ]

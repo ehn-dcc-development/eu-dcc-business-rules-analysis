@@ -54,6 +54,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) not-before (/payload.r.0.fr +7 days) else true"
+    "expr-as-text": "if (/payload.r.0) then (((/external.validationClock) +0 days) not-before ((/payload.r.0.fr) +7 days)) else (true)"
   }
 ]

@@ -68,7 +68,7 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if (/payload.v.0.mp) === (\"EU/1/20/1525\") then (/external.validationClock +0 days) not-after (/payload.v.0.dt +1440 days) else true else true"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +1440 days)) else (true)) else (true)"
   },
   {
     "Identifier": "VR-CZ-0021",
@@ -167,6 +167,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.mp) === (\"EU/1/20/1525\")) and (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (1))) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +9 months) else true else true"
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.mp) === (\"EU/1/20/1525\")) and (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (1)))) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +9 months)) else (true)) else (true)"
   }
 ]

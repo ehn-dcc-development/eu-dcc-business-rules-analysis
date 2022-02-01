@@ -42,6 +42,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.t.0 then (/payload.t.0.tg) in ([ \"840539006\" ]) else true"
+    "expr-as-text": "if (/payload.t.0) then ((/payload.t.0.tg) in ([ \"840539006\" ])) else (true)"
   }
 ]
