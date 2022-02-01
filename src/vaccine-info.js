@@ -2,7 +2,7 @@ const { evaluate } = require("certlogic-js")
 const deepEqual = require("deep-equal")
 
 const { rle } = require("./rle-util")
-const { lowerTriangular, range } = require("./func-utils")
+const { lowerTriangular, range, groupBy, sortArrayBy } = require("./func-utils")
 
 const valueSets = require("./valueSets.json")
 
@@ -40,7 +40,21 @@ const safeEvaluate = (expr, data) => {
 }
 
 const acceptedByVaccineRules = (rules, mp, dt, dn, sd, nowDate) =>
-    rules.every((rule) => safeEvaluate(rule, inputDataFrom(mp, dt, dn, sd, nowDate)))
+    Object.values(
+        groupBy(rules, (rule) => rule.Identifier)
+    ).every((ruleVersions) => {
+        // explicitly find applicable version of every rule:
+        const applicableRuleVersion = sortArrayBy(ruleVersions, (ruleVersion) => new Date(ruleVersion.ValidFrom).getTime())
+            .reverse()
+            .find((ruleVersion) => new Date(ruleVersion.ValidFrom) <= new Date(nowDate) && new Date(nowDate) < new Date(ruleVersion.ValidTo))
+        /*
+         * This can happen rather often/easily, e.g. when a rule has a window of validity (across all its versions) shorter than 2 years.
+        if (applicableRuleVersion === undefined) {
+            console.log(`no applicable version of rule with ID "${ruleVersions[0].Identifier}" found at date: ${nowDate}`)
+        }
+         */
+        return applicableRuleVersion === undefined ? true : safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+    })
 
 
 const dateWithOffset = (dateStr, nDays) => {
@@ -80,7 +94,10 @@ const infoForCombo = (rules, co, mp, dn, sd) => {
         case 1: return wrapForInInvariance(null) // not accepted
         case 2: return wrapForInInvariance(rleAcceptance[0])
         case 3: return wrapForInInvariance([ rleAcceptance[0], rleAcceptance[1] ])
-        default: throw new Error(`unexpected RLE: ${rleAcceptance}`)
+        default: {
+            console.log(`[WARN] unexpected RLE for rules of ${co}, vaccine "${mp}", ${dn}/${sd}: ${rleAcceptance} - truncating to 2 entries`)
+            return wrapForInInvariance([ rleAcceptance[0], rleAcceptance[1] ])
+        }
     }
 }
 

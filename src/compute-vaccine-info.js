@@ -1,21 +1,20 @@
 const { parseRuleId } = require("dcc-business-rules-utils")
 
 const { writeJson } = require("./file-utils")
-const { groupBy, mapValues } = require("./func-utils")
+const { groupBy } = require("./func-utils")
 const { vaccineSpecsFromRules } = require("./vaccine-info")
 
 
 const allRules = require("../tmp/all-rules.json")
 
-const vaccineRulesPerCountry = mapValues(
+const vaccineRulesPerCountry =
     groupBy(
         allRules
             .filter((rule) => parseRuleId(rule.Identifier).type === "VR"),
+                // TODO  don't select on type (as it can be inaccurate) when using partial evaluation
+                //          (since true non-V-rules should evaluate rather trivially to true)
         (rule) => parseRuleId(rule.Identifier).country
-    ),
-    (rules) => rules.map((rule) => rule.Logic)
-    // FIXME  keep ValidFrom to be able to check whether a rule is applicable at the time of the “now” passed, but then also not throw away versions in split-rules.json
-)
+    )
 
 const nowInMs = () => new Date().getTime()
 const startTime = nowInMs()
