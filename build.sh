@@ -16,6 +16,9 @@ rm -rf per-country/*
 node src/serialise-rules.js
 echo "Split rules up per country."
 
+node src/generate-dashboard.js
+echo "Generated dashboard."
+
 rm tmp/*.log
 
 node src/check-rules.js > tmp/check-rules.log
@@ -33,7 +36,4 @@ echo "Computed vaccine info."
 
 node src/generate-vaccine-inventory.js
 echo "Generated vaccine inventory."
-
-node src/generate-dashboard.js
-echo "Generated dashboard."
 

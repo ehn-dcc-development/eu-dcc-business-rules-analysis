@@ -3,7 +3,7 @@
     "Identifier": "VR-CZ-0022",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "3.0.0",
+    "Version": "4.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Od dokončeného očkování COVID-19 Vaccine Janssen musí uplynout alespoň 14 dnů"
       }
     ],
-    "ValidFrom": "2021-12-15T23:00:00Z",
-    "ValidTo": "2031-12-15T23:00:00Z",
+    "ValidFrom": "2022-01-31T23:00:00Z",
+    "ValidTo": "2032-01-31T23:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dn",
@@ -103,7 +103,7 @@
     "Identifier": "VR-CZ-0022",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "4.0.0",
+    "Version": "3.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -118,8 +118,8 @@
         "desc": "Od dokončeného očkování COVID-19 Vaccine Janssen musí uplynout alespoň 14 dnů"
       }
     ],
-    "ValidFrom": "2022-01-31T23:00:00Z",
-    "ValidTo": "2032-01-31T23:00:00Z",
+    "ValidFrom": "2021-12-15T23:00:00Z",
+    "ValidTo": "2031-12-15T23:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dn",

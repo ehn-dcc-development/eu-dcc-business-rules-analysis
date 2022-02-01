@@ -24,7 +24,7 @@ for (const c in rulesPerCountry) {
         groupBy(rulesPerCountry[c], (rule) => rule.Identifier)
     ).forEach(([ id, ruleVersions ]) => {
         const { type, number } = parseRuleId(id)
-        const sortedRuleVersions = sortArrayBy(ruleVersions, (ruleVersion) => ruleVersion.Version).reverse()
+        const sortedRuleVersions = sortArrayBy(ruleVersions, (ruleVersion) => new Date(ruleVersion.ValidFrom).getTime()).reverse()
         writeJson(join(countryPath, `${type}-${number}.json`), sortedRuleVersions.map((ruleVersion) => normalised(ruleVersion)))
     })
 }

@@ -3,7 +3,7 @@
     "Identifier": "TR-CZ-0005",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "3.0.0",
+    "Version": "4.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Antigenní test musí mít vydavatele certifikátu"
       }
     ],
-    "ValidFrom": "2021-12-15T23:00:00Z",
-    "ValidTo": "2031-12-15T23:00:00Z",
+    "ValidFrom": "2022-01-31T23:00:00Z",
+    "ValidTo": "2032-01-31T23:00:00Z",
     "AffectedFields": [
       "t.0",
       "t.0.is",
@@ -61,7 +61,7 @@
     "Identifier": "TR-CZ-0005",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "4.0.0",
+    "Version": "3.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -76,8 +76,8 @@
         "desc": "Antigenní test musí mít vydavatele certifikátu"
       }
     ],
-    "ValidFrom": "2022-01-31T23:00:00Z",
-    "ValidTo": "2032-01-31T23:00:00Z",
+    "ValidFrom": "2021-12-15T23:00:00Z",
+    "ValidTo": "2031-12-15T23:00:00Z",
     "AffectedFields": [
       "t.0",
       "t.0.is",
