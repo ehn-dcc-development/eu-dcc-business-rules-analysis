@@ -3,7 +3,7 @@
     "Identifier": "RR-CH-0003",
     "Type": "Acceptance",
     "Country": "CH",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -14,7 +14,7 @@
         "lang": "en"
       }
     ],
-    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidFrom": "2022-01-31T00:00:00Z",
     "ValidTo": "2031-01-01T00:00:00Z",
     "AffectedFields": [
       "r.0.fr",
@@ -41,7 +41,7 @@
                 {
                   "var": "payload.r.0.fr"
                 },
-                365,
+                270,
                 "day"
               ]
             }
@@ -50,6 +50,6 @@
         true
       ]
     },
-    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) before (/payload.r.0.fr +365 days) else true"
+    "expr-as-text": "if /payload.r.0 then (/external.validationClock +0 days) before (/payload.r.0.fr +270 days) else true"
   }
 ]

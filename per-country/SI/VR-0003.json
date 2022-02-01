@@ -1,0 +1,201 @@
+[
+  {
+    "Identifier": "VR-SI-0003",
+    "Type": "Acceptance",
+    "Country": "SI",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.3.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "A vaccination cycle is finished 270 days after a finished primary vaccination 1/1, unless it's followed by booster vaccinations."
+      },
+      {
+        "lang": "si",
+        "desc": "Cikel cepljenj se zaključi 270 dni po zaključenem osnovnem cepljenju 1/1, razen če mu sledijo poživitveni odmerki."
+      }
+    ],
+    "ValidFrom": "2022-02-01T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    1
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.sd"
+                    },
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    271,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (1)) and ((/payload.v.0.sd) === (1)) then (/external.validationClock +0 days) not-after (/payload.v.0.dt +271 days) else true else true"
+  },
+  {
+    "Identifier": "VR-SI-0003",
+    "Type": "Acceptance",
+    "Country": "SI",
+    "Version": "1.1.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "For a person over 18 years of age, a vaccination cycle is finished 270 days after a finished primary vaccination 1/1, unless it's followed by booster vaccinations."
+      },
+      {
+        "lang": "si",
+        "desc": "Za osebo, starejšo od 18 let, se cikel cepljenj zaključi 270 dni po zaključenem osnovnem cepljenju 1/1, razen če mu sledijo poživitveni odmerki."
+      }
+    ],
+    "ValidFrom": "2022-02-01T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "dob",
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    1
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.sd"
+                    },
+                    1
+                  ]
+                },
+                {
+                  "after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        271,
+                        "day"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  "var": "payload.dob"
+                },
+                {
+                  "before": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.dob"
+                        },
+                        18,
+                        "year"
+                      ]
+                    }
+                  ]
+                },
+                false
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if /payload.v.0 then if ((/payload.v.0.dn) === (1)) and ((/payload.v.0.sd) === (1)) and ((/external.validationClock +0 days) after (/payload.v.0.dt +271 days)) then if /payload.dob then (/external.validationClock +0 days) before (/payload.dob +18 years) else false else true else true"
+  }
+]

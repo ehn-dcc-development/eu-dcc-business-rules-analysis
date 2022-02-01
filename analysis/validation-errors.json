@@ -67,16 +67,6 @@
     ]
   },
   {
-    "ruleId": "RR-CH-0000",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": null,
-    "metaDataErrors": [
-      "CertificateType Recovery doesn't match with its AffectedFields [ \"r.1\", \"r.0\", \"t.0\", \"v.0\" ]"
-    ]
-  },
-  {
     "ruleId": "TR-CH-0000",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -84,6 +74,16 @@
     "affectedFields": null,
     "metaDataErrors": [
       "CertificateType Test doesn't match with its AffectedFields [ \"r.0\", \"t.1\", \"t.0\", \"v.0\" ]"
+    ]
+  },
+  {
+    "ruleId": "RR-CH-0000",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": null,
+    "metaDataErrors": [
+      "CertificateType Recovery doesn't match with its AffectedFields [ \"r.1\", \"r.0\", \"t.0\", \"v.0\" ]"
     ]
   },
   {
@@ -495,6 +495,26 @@
     "affectedFields": null,
     "metaDataErrors": [
       "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.dn\" ]"
+    ]
+  },
+  {
+    "ruleId": "VR-SI-0003",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": null,
+    "metaDataErrors": [
+      "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
+    ]
+  },
+  {
+    "ruleId": "VR-SI-0004",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": null,
+    "metaDataErrors": [
+      "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
     ]
   },
   {

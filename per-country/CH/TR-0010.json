@@ -1,6 +1,6 @@
 [
   {
-    "Identifier": "TR-CH-0007",
+    "Identifier": "TR-CH-0010",
     "Type": "Acceptance",
     "Country": "CH",
     "Version": "1.0.8",
@@ -10,7 +10,7 @@
     "CertificateType": "Test",
     "Description": [
       {
-        "desc": "If the test type is \\\"PCR\\\" then the validation date must be before the date of sample collection plus 72 hours",
+        "desc": "Exemption certificates are valid for 365 days",
         "lang": "en"
       }
     ],
@@ -27,7 +27,7 @@
             {
               "var": "payload.t.0.tt"
             },
-            "LP6464-4"
+            "medical-exemption"
           ]
         },
         {
@@ -46,8 +46,8 @@
                 {
                   "var": "payload.t.0.sc"
                 },
-                72,
-                "hour"
+                365,
+                "day"
               ]
             }
           ]
@@ -55,6 +55,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0.tt) === (\"LP6464-4\") then (/external.validationClock +0 days) before (/payload.t.0.sc +72 hours) else true"
+    "expr-as-text": "if (/payload.t.0.tt) === (\"medical-exemption\") then (/external.validationClock +0 days) before (/payload.t.0.sc +365 days) else true"
   }
 ]

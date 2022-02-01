@@ -3,7 +3,7 @@
     "Identifier": "RR-CH-0000",
     "Type": "Acceptance",
     "Country": "CH",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -14,7 +14,7 @@
         "lang": "en"
       }
     ],
-    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidFrom": "2022-01-31T00:00:00Z",
     "ValidTo": "2031-01-01T00:00:00Z",
     "AffectedFields": [
       "r.1",

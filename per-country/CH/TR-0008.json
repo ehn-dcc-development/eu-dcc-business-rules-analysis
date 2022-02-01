@@ -3,18 +3,18 @@
     "Identifier": "TR-CH-0008",
     "Type": "Acceptance",
     "Country": "CH",
-    "Version": "1.0.7",
+    "Version": "1.0.8",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
     "CertificateType": "Test",
     "Description": [
       {
-        "desc": "For serum antibody tests, the result must be positive.",
+        "desc": "For serum antibody tests and exemption certificates, the result must be positive.",
         "lang": "en"
       }
     ],
-    "ValidFrom": "2021-12-17T00:00:00Z",
+    "ValidFrom": "2022-01-31T00:00:00Z",
     "ValidTo": "2031-01-01T00:00:00Z",
     "AffectedFields": [
       "t.0.tr",
@@ -34,7 +34,8 @@
                   "var": "payload.t.0.tt"
                 },
                 [
-                  "94504-8"
+                  "94504-8",
+                  "medical-exemption"
                 ]
               ]
             }
@@ -51,6 +52,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\" ])) then (/payload.t.0.tr) === (\"260373001\") else true"
+    "expr-as-text": "if (/payload.t.0) and ((/payload.t.0.tt) in ([ \"94504-8\", \"medical-exemption\" ])) then (/payload.t.0.tr) === (\"260373001\") else true"
   }
 ]
