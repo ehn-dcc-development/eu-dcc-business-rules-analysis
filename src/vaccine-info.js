@@ -2,7 +2,7 @@ const { evaluate } = require("certlogic-js")
 const deepEqual = require("deep-equal")
 
 const { rle } = require("./rle-util")
-const { lowerTriangular, range, groupBy, sortArrayBy } = require("./func-utils")
+const { lowerTriangular, range, groupBy } = require("./func-utils")
 
 const valueSets = require("./valueSets.json")
 
@@ -43,17 +43,15 @@ const acceptedByVaccineRules = (rules, mp, dt, dn, sd, nowDate) =>
     Object.values(
         groupBy(rules, (rule) => rule.Identifier)
     ).every((ruleVersions) => {
-        // explicitly find applicable version of every rule:
-        const applicableRuleVersion = sortArrayBy(ruleVersions, (ruleVersion) => new Date(ruleVersion.ValidFrom).getTime())
-            .reverse()
-            .find((ruleVersion) => new Date(ruleVersion.ValidFrom) <= new Date(nowDate) && new Date(nowDate) < new Date(ruleVersion.ValidTo))
-        /*
-         * This can happen rather often/easily, e.g. when a rule has a window of validity (across all its versions) shorter than 2 years.
-        if (applicableRuleVersion === undefined) {
-            console.log(`no applicable version of rule with ID "${ruleVersions[0].Identifier}" found at date: ${nowDate}`)
+        const applicableRuleVersions = ruleVersions.filter((ruleVersion) =>
+            new Date(ruleVersion.ValidFrom) <= new Date(nowDate) && new Date(nowDate) < new Date(ruleVersion.ValidTo)
+        )
+        if (applicableRuleVersions.length === 0) {
+            // This can happen rather often/easily, e.g. when a rule has a window of validity (across all its versions) shorter than 2 years.
+            return true
         }
-         */
-        return applicableRuleVersion === undefined ? true : safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+        const applicableRuleVersion = applicableRuleVersions.reduce((acc, cur) => acc.Version > cur.Version ? acc : cur)
+        return safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
     })
 
 
