@@ -1,6 +1,7 @@
+const { parseRuleId } = require("dcc-business-rules-utils")
+
 const { writeJson } = require("./file-utils")
 const { groupBy, mapValues } = require("./func-utils")
-const { parseId } = require("./rules-utils")
 const { vaccineSpecsFromRules } = require("./vaccine-info")
 
 
@@ -9,8 +10,8 @@ const allRules = require("../tmp/all-rules.json")
 const vaccineRulesPerCountry = mapValues(
     groupBy(
         allRules
-            .filter((rule) => parseId(rule.Identifier).t === "VR"),
-        (rule) => parseId(rule.Identifier).c
+            .filter((rule) => parseRuleId(rule.Identifier).type === "VR"),
+        (rule) => parseRuleId(rule.Identifier).country
     ),
     (rules) => rules.map((rule) => rule.Logic)
     // FIXME  keep ValidFrom to be able to check whether a rule is applicable at the time of the “now” passed, but then also not throw away versions in split-rules.json

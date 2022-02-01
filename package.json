@@ -1,10 +1,9 @@
 {
   "devDependencies": {
-    "@types/node": "^16.11.12",
-    "certlogic-js": "^1.0.4",
-    "dcc-business-rules-utils": "^0.1.0",
+    "@types/node": "^17.0.14",
+    "certlogic-js": "^1.1.0",
+    "dcc-business-rules-utils": "^0.2.0",
     "deep-equal": "^2.0.5",
-    "prettier": "^2.5.1",
-    "semver": "^7.3.5"
+    "prettier": "^2.5.1"
   }
 }
