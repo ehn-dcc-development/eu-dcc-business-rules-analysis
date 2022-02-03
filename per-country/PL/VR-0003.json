@@ -3,7 +3,7 @@
     "Identifier": "VR-PL-0003",
     "Type": "Acceptance",
     "Country": "PL",
-    "Version": "1.0.0",
+    "Version": "1.1.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -11,18 +11,18 @@
     "Description": [
       {
         "lang": "pl",
-        "desc": "Od daty szczepienia może upłynąć nie więcej niż 365 dni."
+        "desc": "Od daty szczepienia może upłynąć nie więcej niż 270 dni."
       },
       {
         "lang": "en",
-        "desc": "The vaccine must have been administered no longer than one year ago."
+        "desc": "The vaccine must have been administered no longer than 270 days ago."
       },
       {
         "lang": "de",
-        "desc": "Seit der Impfung darf maximal ein Jahr vergangen sein."
+        "desc": "Seit der Impfung darf maximal 270 tage vergangen sein."
       }
     ],
-    "ValidFrom": "2021-10-11T00:00:00Z",
+    "ValidFrom": "2022-02-03T00:00:00Z",
     "ValidTo": "2030-10-11T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -49,7 +49,7 @@
                 {
                   "var": "payload.v.0.dt"
                 },
-                365,
+                270,
                 "day"
               ]
             }
@@ -58,6 +58,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days)) else (true)"
   }
 ]

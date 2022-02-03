@@ -87,50 +87,6 @@
     ]
   },
   {
-    "ruleId": "VR-EE-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0",
-        "v.0.dt",
-        "v.0.mp",
-        "v.0.sd",
-        "v.0.dn"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-EE-0004",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0",
-        "v.0.dt",
-        "v.0.mp",
-        "v.0.sd",
-        "v.0.dn"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
     "ruleId": "VR-EE-0007",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -219,6 +175,24 @@
     "metaDataErrors": []
   },
   {
+    "ruleId": "VR-IE-0003",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp"
+      ]
+    },
+    "metaDataErrors": []
+  },
+  {
     "ruleId": "VR-IE-0011",
     "hasErrors": true,
     "schemaValidationsErrors": [],
@@ -232,6 +206,41 @@
         "v.0.dn",
         "v.0.dt",
         "v.0.sd"
+      ]
+    },
+    "metaDataErrors": []
+  },
+  {
+    "ruleId": "VR-IE-0011",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.sd"
+      ]
+    },
+    "metaDataErrors": []
+  },
+  {
+    "ruleId": "VR-IE-0012",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt"
       ]
     },
     "metaDataErrors": []
@@ -272,79 +281,7 @@
     "metaDataErrors": []
   },
   {
-    "ruleId": "VR-IE-0007",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-IE-0004",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-IE-0005",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-IE-0008",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-IE-0009",
+    "ruleId": "VR-IE-0006",
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
@@ -373,24 +310,6 @@
       "computed": [
         "r.0",
         "r.0.fr"
-      ]
-    },
-    "metaDataErrors": []
-  },
-  {
-    "ruleId": "VR-IE-0010",
-    "hasErrors": true,
-    "schemaValidationsErrors": [],
-    "logicValidationErrors": [],
-    "affectedFields": {
-      "actual": [
-        "v.0"
-      ],
-      "computed": [
-        "v.0",
-        "v.0.dn",
-        "v.0.dt",
-        "v.0.mp"
       ]
     },
     "metaDataErrors": []

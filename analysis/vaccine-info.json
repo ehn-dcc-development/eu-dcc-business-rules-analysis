@@ -857,312 +857,45 @@
         "vaccineIds": [
           "BBIBP-CorV",
           "CoronaVac",
-          "EU/1/20/1507"
-        ],
-        "combos": {
-          "1/1": {
-            "$translationInvariant": false,
-            "value": [
-              14,
-              122
-            ]
-          },
-          "2/2": {
-            "$translationInvariant": false,
-            "value": [
-              14,
-              122
-            ]
-          },
-          "2/1": {
-            "$translationInvariant": false,
-            "value": [
-              14,
-              122
-            ]
-          },
-          "3/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/6": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          }
-        }
-      },
-      {
-        "vaccineIds": [
           "Covaxin",
           "Covishield",
-          "EU/1/21/1529"
+          "EU/1/20/1507",
+          "EU/1/20/1528",
+          "EU/1/21/1529",
+          "EU/1/21/1618",
+          "NVX-CoV2373"
         ],
         "combos": {
-          "1/1": {
-            "$translationInvariant": false,
-            "value": [
-              15,
-              122
-            ]
-          },
-          "2/2": {
-            "$translationInvariant": false,
-            "value": [
-              15,
-              122
-            ]
-          },
-          "2/1": {
-            "$translationInvariant": false,
-            "value": [
-              15,
-              122
-            ]
-          },
-          "3/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/6": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          }
+          "1/1": [
+            14,
+            270
+          ],
+          "2/2": [
+            14,
+            270
+          ],
+          "2/1": [
+            14,
+            270
+          ],
+          "3/3": 0,
+          "3/2": 0,
+          "3/1": 0,
+          "4/4": 0,
+          "4/3": 0,
+          "4/2": 0,
+          "4/1": 0,
+          "5/5": 0,
+          "5/4": 0,
+          "5/3": 0,
+          "5/2": 0,
+          "5/1": 0,
+          "6/6": 0,
+          "6/5": 0,
+          "6/4": 0,
+          "6/3": 0,
+          "6/2": 0,
+          "6/1": 0
         }
       },
       {
@@ -1170,301 +903,30 @@
           "EU/1/20/1525"
         ],
         "combos": {
-          "1/1": {
-            "$translationInvariant": false,
-            "value": [
-              14,
-              122
-            ]
-          },
+          "1/1": [
+            14,
+            270
+          ],
           "2/2": 0,
-          "2/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/6": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          }
-        }
-      },
-      {
-        "vaccineIds": [
-          "EU/1/20/1528"
-        ],
-        "combos": {
-          "1/1": {
-            "$translationInvariant": false,
-            "value": [
-              7,
-              122
-            ]
-          },
-          "2/2": {
-            "$translationInvariant": false,
-            "value": [
-              7,
-              122
-            ]
-          },
-          "2/1": {
-            "$translationInvariant": false,
-            "value": [
-              7,
-              122
-            ]
-          },
-          "3/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "3/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "4/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "5/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/6": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/5": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/4": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/3": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/2": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          },
-          "6/1": {
-            "$translationInvariant": false,
-            "value": [
-              0,
-              122
-            ]
-          }
+          "2/1": 0,
+          "3/3": 0,
+          "3/2": 0,
+          "3/1": 0,
+          "4/4": 0,
+          "4/3": 0,
+          "4/2": 0,
+          "4/1": 0,
+          "5/5": 0,
+          "5/4": 0,
+          "5/3": 0,
+          "5/2": 0,
+          "5/1": 0,
+          "6/6": 0,
+          "6/5": 0,
+          "6/4": 0,
+          "6/3": 0,
+          "6/2": 0,
+          "6/1": 0
         }
       }
     ]
@@ -1742,6 +1204,8 @@
           "EU/1/20/1525",
           "EU/1/20/1528",
           "EU/1/21/1529",
+          "EU/1/21/1618",
+          "NVX-CoV2373",
           "R-COVI"
         ],
         "combos": {
@@ -2108,184 +1572,94 @@
       {
         "vaccineIds": [
           "EU/1/20/1507",
+          "EU/1/20/1525",
           "EU/1/20/1528",
           "EU/1/21/1529"
         ],
         "combos": {
           "1/1": [
             14,
-            365
+            270
           ],
           "2/2": [
             14,
-            365
-          ],
-          "2/1": [
-            14,
-            365
-          ],
-          "3/3": [
-            0,
-            365
-          ],
-          "3/2": [
-            0,
-            365
-          ],
-          "3/1": [
-            0,
-            365
-          ],
-          "4/4": [
-            0,
-            365
-          ],
-          "4/3": [
-            0,
-            365
-          ],
-          "4/2": [
-            0,
-            365
-          ],
-          "4/1": [
-            0,
-            365
-          ],
-          "5/5": [
-            0,
-            365
-          ],
-          "5/4": [
-            0,
-            365
-          ],
-          "5/3": [
-            0,
-            365
-          ],
-          "5/2": [
-            0,
-            365
-          ],
-          "5/1": [
-            0,
-            365
-          ],
-          "6/6": [
-            0,
-            365
-          ],
-          "6/5": [
-            0,
-            365
-          ],
-          "6/4": [
-            0,
-            365
-          ],
-          "6/3": [
-            0,
-            365
-          ],
-          "6/2": [
-            0,
-            365
-          ],
-          "6/1": [
-            0,
-            365
-          ]
-        }
-      },
-      {
-        "vaccineIds": [
-          "EU/1/20/1525"
-        ],
-        "combos": {
-          "1/1": [
-            14,
-            365
-          ],
-          "2/2": [
-            0,
-            365
+            270
           ],
           "2/1": [
             0,
-            365
+            270
           ],
           "3/3": [
             0,
-            365
+            270
           ],
           "3/2": [
             0,
-            365
+            270
           ],
           "3/1": [
             0,
-            365
+            270
           ],
           "4/4": [
             0,
-            365
+            270
           ],
           "4/3": [
             0,
-            365
+            270
           ],
           "4/2": [
             0,
-            365
+            270
           ],
           "4/1": [
             0,
-            365
+            270
           ],
           "5/5": [
             0,
-            365
+            270
           ],
           "5/4": [
             0,
-            365
+            270
           ],
           "5/3": [
             0,
-            365
+            270
           ],
           "5/2": [
             0,
-            365
+            270
           ],
           "5/1": [
             0,
-            365
+            270
           ],
           "6/6": [
             0,
-            365
+            270
           ],
           "6/5": [
             0,
-            365
+            270
           ],
           "6/4": [
             0,
-            365
+            270
           ],
           "6/3": [
             0,
-            365
+            270
           ],
           "6/2": [
             0,
-            365
+            270
           ],
           "6/1": [
             0,
-            365
+            270
           ]
         }
       }

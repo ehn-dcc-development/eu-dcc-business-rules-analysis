@@ -3,7 +3,7 @@
     "Identifier": "VR-PL-0002",
     "Type": "Acceptance",
     "Country": "PL",
-    "Version": "1.0.0",
+    "Version": "1.1.1",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -22,13 +22,13 @@
         "desc": "Seit dem Abschluss der Grundimmunisierung müssen mindestens 14 Tage vergangen sein. Eine Auffrischungsimpfung ist sofort gültig, falls sie eindeutig als solche erkennbar ist."
       }
     ],
-    "ValidFrom": "2021-10-11T00:00:00Z",
+    "ValidFrom": "2022-02-03T00:00:00Z",
     "ValidTo": "2030-10-11T00:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dt",
       "v.0.dn",
-      "v.0.mp"
+      "v.0.sd"
     ],
     "Logic": {
       "if": [
@@ -86,9 +86,9 @@
                         {
                           "===": [
                             {
-                              "var": "payload.v.0.mp"
+                              "var": "payload.v.0.sd"
                             },
-                            "EU/1/20/1525"
+                            1
                           ]
                         }
                       ]
@@ -104,6 +104,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) then (true) else (if ((/payload.v.0.dn) > (2)) then (true) else (if (((/payload.v.0.dn) > (1)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (true) else (false)))) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) then (true) else (if ((/payload.v.0.dn) > (2)) then (true) else (if (((/payload.v.0.dn) > (1)) and ((/payload.v.0.sd) === (1))) then (true) else (false)))) else (true)"
   }
 ]

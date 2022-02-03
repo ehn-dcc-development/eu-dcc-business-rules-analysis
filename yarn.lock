@@ -37,9 +37,9 @@
     "function-bind" "^1.1.1"
     "get-intrinsic" "^1.0.2"
 
-"certlogic-js@^1.0.4", "certlogic-js@^1.1.0":
+"certlogic-js@^1.0.4", "certlogic-js@^1.1.1":
   "resolved" "file:../dgc-business-rules/certlogic/certlogic-js"
-  "version" "1.1.0"
+  "version" "1.1.1"
 
 "dcc-business-rules-utils@^0.2.0":
   "integrity" "sha512-pX4X3rLDO6xhD+ss4804VIPiwRiiE0hQ5vN3B52e6GX123CFYPHkEctApawDqn9QRKSo9K9D88a916kyCm0Lng=="

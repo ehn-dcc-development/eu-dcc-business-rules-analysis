@@ -32,13 +32,14 @@ for (const c in rulesPerCountry) {
 writeJson(
     "analysis/n-rules-per-country.json",
     Object.entries(rulesPerCountry)
-        .map(([ co, rules ]) =>
-            ({
+        .map(([ co, rules ]) => {
+            const ruleVersionsPerId = groupBy(rules, (rule) => rule.Identifier)
+            return ({
                 co,
-                n: rules.length,
-                nAcceptance: rules.filter((rule) => rule.Type === "Acceptance").length,
-                nInvalidation: rules.filter((rule) => rule.Type === "Invalidation").length
+                n: Object.entries(ruleVersionsPerId).length,
+                nAcceptance: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Acceptance").length,
+                nInvalidation: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Invalidation").length
             })
-        )
+        })
 )
 

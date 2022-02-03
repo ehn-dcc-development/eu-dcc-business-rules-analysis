@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@types/node": "^17.0.14",
-    "certlogic-js": "^1.1.0",
+    "certlogic-js": "^1.1.1",
     "dcc-business-rules-utils": "^0.2.0",
     "deep-equal": "^2.0.5",
     "prettier": "^2.5.1"
