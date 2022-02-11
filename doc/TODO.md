@@ -30,5 +30,9 @@
 * [&#10005;] [Issue #2](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/2): Remove reliance on `jq` --
     Not doing this entirely, but more intricate usages have been moved to JavaScript.
 
-* [ ] Update `README.md`.
+* [&#10003;] Update `README.md`.
+
+* [ ] Improve styling of header row: border should persist?
+
+* [ ] Make a GitHub Action that runs the main build script.
 

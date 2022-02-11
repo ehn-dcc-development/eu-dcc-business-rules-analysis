@@ -27,6 +27,7 @@ This produces several JSON files, and two standalone HTML files in the `analysis
 
 * [An inventory of what countries accept which vaccines, including waiting time and validity](./analysis/vaccine-inventory.html)
 * [A dashboard detailing which countries have uploaded how many business rules](./analysis/dashboard.html)
+* [An overview of which rule versions are <em>currently</em> available](./analysis/rules-version-meta-data.html), including their validity range
 
 These analysis files are persisted in this repository to be able to easily track changes to the business rules over time.
 That also makes it easy to look at the analysis without needing to clone this repository, and trigger the analysis.
@@ -34,6 +35,24 @@ You can do this from the command-line as follows:
 
     $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-inventory.html?TOKEN=..." > vaccine-inventory.html
     $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/dashboard.html?TOKEN=..." > dashboard.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-version-meta-data.html?TOKEN=..." > dashboard.html
+
+This requires access to this, currently private, repository, in combination with a GitHub token.
+
+
+### Organisation of this repository
+
+* [`analysis/`](./analysis): All generated analyses, in both JSON format (the source), and HTML files generated from that.
+* [`doc/`](./doc): Some documentation (in MarkDown format).
+* [`per-country/`](./per-country): For every country that uploaded business rules, a directory with all their rules retrieved from the EU DCC Gateway (or rather: one of the National Backends).
+  Each rule is stored in a separate file, which contains all the versions of that rule, in anti-chronological order.
+  Remarks:
+  * A rule JSON file has a name that consists of the rule's ID with the country code (and 1 hyphen) removed.
+  * Versions of a rule whose `ValidTo` date lies in the past is not in these files.
+    (That's a consequence of the implementation of the API of the EU DCC Gateway.)
+* [`src/`]: All source code for JavaScript/Node.js programs.
+* [`tmp/`]: A Git-ignored directory for storing temporary files, a.o. logs, without committing these.
+* [`build.sh/`]: The main build script that retrieves the latest-uploaded rules, value sets, and kicks off the analysis.
 
 
 ### Dependencies
