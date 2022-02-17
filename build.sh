@@ -2,7 +2,7 @@
 
 npm install
 
-source retrieve-sh.sh
+source retrieve.sh
 
 source analyse.sh
 
