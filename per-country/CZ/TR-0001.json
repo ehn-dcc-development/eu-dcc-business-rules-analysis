@@ -3,6 +3,77 @@
     "Identifier": "TR-CZ-0001",
     "Type": "Acceptance",
     "Country": "CZ",
+    "Version": "5.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The antigen test may not be older than 24 hours ago"
+      },
+      {
+        "lang": "cs",
+        "desc": "Antigenní test nesmí být starší více než 24 hodin"
+      }
+    ],
+    "ValidFrom": "2022-02-16T23:00:00Z",
+    "ValidTo": "2032-02-16T23:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.t.0.tt"
+                },
+                "LP217198-3"
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.t.0.sc"
+                    },
+                    24,
+                    "hour"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then (((/external.validationClock) +0 days) not-after ((/payload.t.0.sc) +24 hours)) else (true)) else (true)"
+  },
+  {
+    "Identifier": "TR-CZ-0001",
+    "Type": "Acceptance",
+    "Country": "CZ",
     "Version": "4.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",

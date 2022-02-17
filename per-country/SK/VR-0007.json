@@ -3,7 +3,7 @@
     "Identifier": "VR-SK-0007",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -11,20 +11,21 @@
     "Description": [
       {
         "lang": "en",
-        "desc": "Verification Datetime must be less than 365 days after vaccination date (and vaccination date not in the future)."
+        "desc": "Verification Datetime must be less than 270 days after vaccination date (and vaccination date not in the future)."
       },
       {
         "lang": "sk",
-        "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná po aplikácii druhej dávky očkovacej látky proti ochoreniu COVID-19 s dvojdávkovou schémou, avšak nie viac ako jeden rok po aplikácii poslednej dávky."
+        "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná proti ochoreniu COVID-19 po aplikácii prvej dávky s jednodávkovou schémou, alebo druhej dávky očkovacej látky s dvojdávkovou schémou, avšak nie viac ako 270 dní po aplikácii poslednej dávky."
       }
     ],
-    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidFrom": "2022-02-06T13:42:13Z",
     "ValidTo": "2030-07-26T00:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dn",
       "v.0.sd",
-      "v.0.dt"
+      "v.0.dt",
+      "v.0.mp"
     ],
     "Logic": {
       "if": [
@@ -34,23 +35,27 @@
         {
           "if": [
             {
-              "===": [
+              "in": [
                 {
-                  "var": "payload.v.0.sd"
+                  "var": "payload.v.0.mp"
                 },
-                2
+                [
+                  "EU/1/20/1528",
+                  "EU/1/20/1507",
+                  "EU/1/21/1529",
+                  "Sputnik-V",
+                  "EU/1/21/1618"
+                ]
               ]
             },
             {
               "if": [
                 {
-                  ">=": [
+                  "<=": [
                     {
                       "var": "payload.v.0.dn"
                     },
-                    {
-                      "var": "payload.v.0.sd"
-                    }
+                    2
                   ]
                 },
                 {
@@ -78,7 +83,7 @@
                         {
                           "var": "payload.v.0.dt"
                         },
-                        365,
+                        270,
                         "day"
                       ]
                     }
@@ -93,6 +98,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.sd) === (2)) then (if ((/payload.v.0.dn) >= (/payload.v.0.sd)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"Sputnik-V\", \"EU/1/21/1618\" ])) then (if ((/payload.v.0.dn) <= (2)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days)) else (true)) else (true)) else (true)"
   }
 ]

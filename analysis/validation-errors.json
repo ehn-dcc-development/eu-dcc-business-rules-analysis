@@ -3,6 +3,28 @@
     "ruleId": "VR-AL-0002",
     "hasErrors": true,
     "schemaValidationsErrors": [],
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dt",
+        "v.0.mp",
+        "v.0.dn"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp",
+        "v.0.sd"
+      ]
+    },
+    "metaDataErrors": []
+  },
+  {
+    "ruleId": "VR-AL-0002",
+    "hasErrors": true,
+    "schemaValidationsErrors": [],
     "logicValidationErrors": [
       {
         "expr": {
@@ -244,55 +266,27 @@
     "metaDataErrors": []
   },
   {
-    "ruleId": "VR-LT-0003",
+    "ruleId": "VR-LT-0005",
     "hasErrors": true,
     "schemaValidationsErrors": [],
-    "logicValidationErrors": [
-      {
-        "expr": {
-          "if": [
-            {
-              "and": [
-                {
-                  "===": [
-                    {
-                      "var": "payload.v.0.dn"
-                    },
-                    2
-                  ]
-                },
-                {
-                  "===": [
-                    {
-                      "var": "payload.v.0.sd"
-                    },
-                    1
-                  ]
-                }
-              ]
-            },
-            true,
-            {
-              "if": [
-                {
-                  ">": [
-                    {
-                      "var": "payload.v.0.dn"
-                    },
-                    2
-                  ]
-                },
-                true,
-                false
-              ]
-            },
-            false
-          ]
-        },
-        "message": "an \"if\"-operation must have exactly 3 values/operands, but it has 4"
-      }
-    ],
-    "affectedFields": null,
+    "logicValidationErrors": [],
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dt",
+        "v.0.mp",
+        "v.0.dn",
+        "v.0.sd"
+      ],
+      "computed": [
+        "dob",
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp",
+        "v.0.sd"
+      ]
+    },
     "metaDataErrors": []
   },
   {
@@ -450,7 +444,21 @@
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
-    "affectedFields": null,
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dn",
+        "v.0.sd",
+        "v.0.dt",
+        "v.0.mp"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp"
+      ]
+    },
     "metaDataErrors": [
       "EngineVersion 0.1.0 must be 0.7.5 or newer"
     ]
@@ -460,7 +468,21 @@
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
-    "affectedFields": null,
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dn",
+        "v.0.sd",
+        "v.0.dt",
+        "v.0.mp"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp"
+      ]
+    },
     "metaDataErrors": [
       "EngineVersion 0.1.0 must be 0.7.5 or newer"
     ]
@@ -470,7 +492,21 @@
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
-    "affectedFields": null,
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dn",
+        "v.0.sd",
+        "v.0.dt",
+        "v.0.mp"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.dt",
+        "v.0.mp"
+      ]
+    },
     "metaDataErrors": [
       "EngineVersion 0.1.0 must be 0.7.5 or newer"
     ]
@@ -480,7 +516,20 @@
     "hasErrors": true,
     "schemaValidationsErrors": [],
     "logicValidationErrors": [],
-    "affectedFields": null,
+    "affectedFields": {
+      "actual": [
+        "v.0",
+        "v.0.dn",
+        "v.0.sd",
+        "v.0.dt",
+        "v.0.mp"
+      ],
+      "computed": [
+        "v.0",
+        "v.0.dn",
+        "v.0.sd"
+      ]
+    },
     "metaDataErrors": [
       "EngineVersion 0.1.0 must be 0.7.5 or newer"
     ]

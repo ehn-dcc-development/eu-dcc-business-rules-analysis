@@ -3,7 +3,7 @@
     "Identifier": "VR-SK-0002",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -11,14 +11,14 @@
     "Description": [
       {
         "lang": "en",
-        "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days and not more than 365 days must have elapsed since the first dose of COVID-19 vaccine was administered."
+        "desc": "Does not meet full vaccination criteria. At the moment of check, at least 14 days must have elapsed since the first dose of COVID-19 vaccine was administered."
       },
       {
         "lang": "sk",
-        "desc": "Nevyhovuje podmienke plnej očkovanosti. V čase kontroly musí uplynúť najmenej 14 dní a nie viac ako jeden rok po aplikácii poslednej dávky."
+        "desc": "Nevyhovuje podmienke plnej očkovanosti. V čase kontroly musí uplynúť najmenej 14 dní od podania očkovacej látky."
       }
     ],
-    "ValidFrom": "2022-01-19T18:09:30Z",
+    "ValidFrom": "2022-02-06T13:42:13Z",
     "ValidTo": "2030-07-26T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -52,16 +52,7 @@
                   ]
                 },
                 {
-                  "not-after": [
-                    {
-                      "plusTime": [
-                        {
-                          "var": "payload.v.0.dt"
-                        },
-                        14,
-                        "day"
-                      ]
-                    },
+                  "not-before": [
                     {
                       "plusTime": [
                         {
@@ -76,7 +67,7 @@
                         {
                           "var": "payload.v.0.dt"
                         },
-                        365,
+                        14,
                         "day"
                       ]
                     }
@@ -91,6 +82,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.sd) >= (1)) then (if ((/payload.v.0.dn) === (1)) then (((/payload.v.0.dt) +14 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.sd) >= (1)) then (if ((/payload.v.0.dn) === (1)) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) else (true)) else (true)) else (true)"
   }
 ]

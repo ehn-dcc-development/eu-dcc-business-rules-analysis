@@ -3,7 +3,7 @@
     "Identifier": "TR-SK-0006",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -18,7 +18,7 @@
         "desc": "Od odberu vzorky pre test typu NAA (PCR test) ubehlo viac ako 72 hodín. Po uplynutí 72 hodín je test platný IBA PRE VSTUP zamestnanca na pracovisko, alebo pre pendlerov na základe osobitej evidencie."
       }
     ],
-    "ValidFrom": "2022-01-19T18:09:29Z",
+    "ValidFrom": "2022-02-06T13:42:13Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "t.0.sc",

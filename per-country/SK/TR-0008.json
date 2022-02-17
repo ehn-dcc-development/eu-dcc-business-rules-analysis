@@ -3,7 +3,7 @@
     "Identifier": "TR-SK-0008",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -18,7 +18,7 @@
         "desc": "Nepovolený výrobca testu."
       }
     ],
-    "ValidFrom": "2022-01-19T18:09:29Z",
+    "ValidFrom": "2022-02-06T13:42:13Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "t.0.ma",
@@ -40,13 +40,13 @@
               "var": "payload.t.0.ma"
             },
             {
-              "var": "valueSets.covid-19-lab-test-manufacturer-and-name"
+              "var": "external.valueSets.covid-19-lab-test-manufacturer-and-name"
             }
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) then ((/payload.t.0.ma) in (/valueSets.covid-19-lab-test-manufacturer-and-name)) else (true)"
+    "expr-as-text": "if ((/payload.t.0.tt) === (\"LP217198-3\")) then ((/payload.t.0.ma) in (/external.valueSets.covid-19-lab-test-manufacturer-and-name)) else (true)"
   }
 ]

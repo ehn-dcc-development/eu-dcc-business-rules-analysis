@@ -3,6 +3,198 @@
     "Identifier": "VR-AL-0002",
     "Type": "Acceptance",
     "Country": "AL",
+    "Version": "2.2.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "At least 14 days must have elapsed since completing the primary course of immunization. A booster shot is valid immediately as long as it is clearly identified as such."
+      },
+      {
+        "lang": "de",
+        "desc": "Seit dem Abschluss der Grundimmunisierung müssen mindestens 14 Tage vergangen sein. Eine Auffrischungsimpfung ist sofort gültig, falls sie eindeutig als solche erkennbar ist."
+      },
+      {
+        "lang": "fr",
+        "desc": "Une fois la primo-vaccination effectuée, il faut attendre au moins 14 jours. Une injection de rappel est valable immédiatement, si elle est clairement identifiable comme telle."
+      },
+      {
+        "lang": "es",
+        "desc": "Deben haber transcurrido al menos 14 días desde la finalización de la inmunización básica. Una vacuna de refuerzo será válida de forma inmediata si es claramente reconocible como tal."
+      },
+      {
+        "lang": "it",
+        "desc": "Devono essere passati minimo 14 giorni dalla vaccinazione finale necessaria per l'immunizzazione di base. Il richiamo del vaccino è valido da subito purché sia riconoscibile come tale in maniera univoca."
+      },
+      {
+        "lang": "sq",
+        "desc": "Duhet të kenë kaluar të paktën 14 ditë nga përfundimi i ciklit parësor të imunizimit. Një vaksinë përforcuese është e vlefshme menjëherë, për sa kohë që identifikohet qartë si e tillë."
+      }
+    ],
+    "ValidFrom": "2022-02-16T15:00:00Z",
+    "ValidTo": "2023-02-16T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dt",
+      "v.0.mp",
+      "v.0.dn"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "not-before": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        15,
+                        "day"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "<=": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        2
+                      ]
+                    },
+                    {
+                      "===": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        {
+                          "var": "payload.v.0.sd"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            true,
+            {
+              "if": [
+                {
+                  "and": [
+                    {
+                      ">=": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        3
+                      ]
+                    },
+                    {
+                      ">=": [
+                        {
+                          "var": "payload.v.0.dn"
+                        },
+                        {
+                          "var": "payload.v.0.sd"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                true,
+                {
+                  "if": [
+                    {
+                      "and": [
+                        {
+                          "and": [
+                            {
+                              ">=": [
+                                {
+                                  "var": "payload.v.0.dn"
+                                },
+                                2
+                              ]
+                            },
+                            {
+                              ">=": [
+                                {
+                                  "var": "payload.v.0.dn"
+                                },
+                                {
+                                  "var": "payload.v.0.sd"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.mp"
+                            },
+                            "EU/1/20/1525"
+                          ]
+                        }
+                      ]
+                    },
+                    true,
+                    {
+                      "and": [
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.sd"
+                            },
+                            1
+                          ]
+                        },
+                        {
+                          "===": [
+                            {
+                              "var": "payload.v.0.dn"
+                            },
+                            2
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if ((((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +15 days)) and (((/payload.v.0.dn) <= (2)) and ((/payload.v.0.dn) === (/payload.v.0.sd)))) then (true) else (if (((/payload.v.0.dn) >= (3)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) then (true) else (if ((((/payload.v.0.dn) >= (2)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (true) else (((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (2)))))) else (true)"
+  },
+  {
+    "Identifier": "VR-AL-0002",
+    "Type": "Acceptance",
+    "Country": "AL",
     "Version": "2.1.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
