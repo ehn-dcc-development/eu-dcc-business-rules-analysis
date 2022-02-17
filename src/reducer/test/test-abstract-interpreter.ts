@@ -1,8 +1,9 @@
-import {and_, if_, var_} from "certlogic-js/dist/factories"
+import {and_, if_, not_, var_} from "certlogic-js/dist/factories"
 
 const {equal, isTrue} = require("chai").assert
 
 import {
+    CLArray,
     CLDataAccess,
     CLExpr,
     CLJsonValue,
@@ -26,10 +27,18 @@ const isDataAccess = (expr: CLExpr, expectedPath: string) => {
 
 describe(`data access ("var")`, () => {
 
-    it(`reduces away data accesses`, () => {
+    it(`reduces to null on missing values`, () => {
         const clExpr = asCLValue(var_("x.0.z"))
         const reducedCLExpr = evaluateAbstractly(clExpr, {})
         isJsonValue(reducedCLExpr, null)
+    })
+
+    it(`wraps values properly`, () => {
+        const clExpr = asCLValue(var_("x"))
+        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": [1, 2] })
+        isTrue(reducedCLExpr instanceof CLArray)
+        isJsonValue((reducedCLExpr as CLArray).items[0], 1)
+        isJsonValue((reducedCLExpr as CLArray).items[1], 2)
     })
 
 })
@@ -85,6 +94,47 @@ describe(`"and" operation`, () => {
     })
 
     // TODO  more cases
+
+})
+
+
+describe(`"!" (not) operation`, () => {
+
+    it(`evaluates to true on a null value`, () => {
+        const clExpr = new CLOperation("!", [new CLJsonValue(null)])
+        const reducedCLExpr = evaluateAbstractly(clExpr, {})
+        isJsonValue(reducedCLExpr, true)
+    })
+
+})
+
+
+describe(`"reduce" operation`, () => {
+
+    it(`evaluates to a constant on constant input`, () => {
+        const clExpr = new CLOperation(
+            "reduce",
+            [
+                new CLDataAccess("nums"),
+                new CLOperation("+", [new CLDataAccess("accumulator"), new CLDataAccess("current")]),
+                new CLJsonValue(0)
+            ]
+        )
+        const reducedCLExpr = evaluateAbstractly(clExpr, { nums: [ 1, 2 ] })
+        console.dir(reducedCLExpr)
+        isJsonValue(reducedCLExpr, 3)
+    })
+
+})
+
+
+describe(`"+" operation`, () => {
+
+    it(`works`, () => {
+        const clExpr = new CLOperation("+", [new CLJsonValue(1), new CLJsonValue(2)])
+        const reducedCLExpr = evaluateAbstractly(clExpr, {})
+        isJsonValue(reducedCLExpr, 3)
+    })
 
 })
 

@@ -70,3 +70,17 @@ export class CLOperation implements CLExpr {
     }
 }
 
+
+/**
+ * Wraps the given JSON value as a {@link CLExpr}.
+ */
+export const asValue = (value: any): CLArray | CLJsonValue => {
+    if (value instanceof CLJsonValue) {
+        return value
+    }
+    if (Array.isArray(value)) {
+        return new CLArray((value as any[]).map(asValue))
+    }
+    return new CLJsonValue(value)
+}
+
