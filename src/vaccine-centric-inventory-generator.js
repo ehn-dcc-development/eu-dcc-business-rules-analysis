@@ -4,7 +4,7 @@ const { vaccineIds, vaccineIdToDisplayName } = require("./vaccine-data")
 const vaccineInfoAsHtml = (vaccineId, acceptingCountries, countries) =>
     `<tr>
     <td class="vaccine">${vaccineIdToDisplayName(vaccineId)}</td>
-${countries.map((country) => `<td class="${acceptingCountries.indexOf(country) > -1 ? "green" : "red"}"></td>`).join("\n")}
+${countries.map((country) => `<td class="${(acceptingCountries.indexOf(country) > -1 ? "" : "not-") + "accepted"}"></td>`).join("\n")}
 </tr>
 `
 
@@ -45,11 +45,11 @@ const infoAsHtml = (acceptingCountriesPerVaccine, countries) =>
         td.vaccine {
             text-align: right;
         }
-        td.green {
-            background-color: green;
+        .accepted {
+            background-color: #5be05b;
         }
-        td.red {
-            background-color: red;
+        .not-accepted {
+            background-color: #4994f5;
         }
     </style>
   </head>
@@ -80,9 +80,10 @@ ${theadContents(countries)}
     <p>
         Legend:
     </p>
-        The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.
-    <p>
-    </p>
+    <ul>
+        <li>The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.</li>
+        <li>Colours: <span class="accepted">green</span> means <em>accepted</em>, <span class="not-accepted">blue</span> means <em>not accepted</em>.</li>
+    </ul>
   </body>
 </html>
 `
