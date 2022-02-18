@@ -7,3 +7,6 @@ echo "Computed vaccine info."
 node src/generate-vaccine-inventory.js
 echo "Generated vaccine inventory."
 
+node src/generate-vaccine-centric-inventory.js
+echo "Generated vaccine-centric inventory."
+

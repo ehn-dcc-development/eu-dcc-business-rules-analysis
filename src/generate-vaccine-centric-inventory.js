@@ -1,7 +1,7 @@
 const { readJson, writeHtml, writeJson} = require("./file-utils")
 const { unique } = require("./func-utils")
 const { vaccineIds } = require("./vaccine-data")
-const { infoAsHtml } = require("./vaccine-based-inventory-generator")
+const { infoAsHtml } = require("./vaccine-centric-inventory-generator")
 
 
 const vaccineInfoPerCountry = readJson("analysis/vaccine-info.json")
