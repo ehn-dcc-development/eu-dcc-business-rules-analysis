@@ -1,0 +1,387 @@
+[
+  {
+    "vaccineId": "Abdala",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "BBIBP-CorV",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "EE",
+      "ES",
+      "IE",
+      "LV",
+      "ME",
+      "NL",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "CVnCoV",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "Convidecia",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "CoronaVac",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "EE",
+      "ES",
+      "IE",
+      "LV",
+      "ME",
+      "NL",
+      "RO",
+      "RS",
+      "SI",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "Covaxin",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "ES",
+      "IE",
+      "LV",
+      "NL",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "CoviVac",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Covid-19-recombinant",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "LU",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Covishield",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "ES",
+      "FR",
+      "IE",
+      "LU",
+      "LV",
+      "ME",
+      "NL",
+      "RO",
+      "RS",
+      "SI",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "Covovax",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "ES",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/20/1507",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "CZ",
+      "DE",
+      "EE",
+      "ES",
+      "FR",
+      "IE",
+      "LU",
+      "LV",
+      "ME",
+      "MT",
+      "NL",
+      "PL",
+      "RO",
+      "RS",
+      "SI",
+      "SK",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/20/1525",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "CZ",
+      "DE",
+      "EE",
+      "ES",
+      "FR",
+      "IE",
+      "LU",
+      "LV",
+      "ME",
+      "MT",
+      "NL",
+      "PL",
+      "RO",
+      "RS",
+      "SI",
+      "SK",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/20/1528",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "CZ",
+      "DE",
+      "EE",
+      "ES",
+      "FR",
+      "IE",
+      "LU",
+      "LV",
+      "ME",
+      "MT",
+      "NL",
+      "PL",
+      "RO",
+      "RS",
+      "SI",
+      "SK",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/21/1529",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "CZ",
+      "DE",
+      "EE",
+      "ES",
+      "FR",
+      "IE",
+      "LU",
+      "LV",
+      "ME",
+      "MT",
+      "NL",
+      "PL",
+      "RO",
+      "RS",
+      "SI",
+      "SK",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/21/1618",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "ES",
+      "IE",
+      "LU",
+      "NL",
+      "RO",
+      "SI",
+      "SK"
+    ]
+  },
+  {
+    "vaccineId": "EpiVacCorona",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "EpiVacCorona-N",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Hayat-Vax",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Inactivated-SARS-CoV-2-Vero-Cell",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "ES",
+      "ME",
+      "RO",
+      "RS",
+      "SI",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "MVC-COV1901",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "NVX-CoV2373",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "IE",
+      "LU",
+      "LV",
+      "NL",
+      "RO",
+      "SI",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "R-COVI",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "EE",
+      "FR",
+      "LU",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Sputnik-Light",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "RS",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Sputnik-M",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Sputnik-V",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "ME",
+      "RO",
+      "RS",
+      "SI",
+      "SK"
+    ]
+  },
+  {
+    "vaccineId": "VLA2001",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "Vidprevtyn",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "RO",
+      "SI"
+    ]
+  },
+  {
+    "vaccineId": "WIBP-CorV",
+    "acceptingCountries": [
+      "AL",
+      "EE",
+      "ES",
+      "ME",
+      "RO",
+      "SI"
+    ]
+  }
+]

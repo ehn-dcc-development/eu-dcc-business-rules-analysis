@@ -1,5 +1,6 @@
 const { countryCode2DisplayName, flagEmoji } = require("./country-utils")
 const { lowerTriangular} = require("./func-utils")
+const { vaccineIdToDisplayName } = require("./vaccine-data")
 
 
 const redCrossMark = "&#x274c;"
@@ -27,22 +28,10 @@ const comboAsHtml = (comboValue) =>
     `<td>${comboValueAsText(comboValue)}</td>`
 
 
-const vaccineId2PopularName = {
-    "EU/1/20/1528": "Comirnaty (Pfizer/BioNTech)",
-    "EU/1/20/1507": "Spikevax (Moderna)",
-    "EU/1/21/1529": "Vaxzevria (AstraZeneca)",
-    "EU/1/20/1525": "Janssen",
-    "EU/1/21/1618": "Nuvaxovid",
-    "NVX-CoV2373": "Nuvaxovid (deprecated encoding)"
-}
-
-const asDisplayName = (vaccineId) =>
-    vaccineId2PopularName[vaccineId] || vaccineId
-
 const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)
 const vaccineInfoAsHtml = (vaccineInfo) =>
     `<tr>
-    <td class="vaccines">${vaccineInfo.vaccineIds.map(asDisplayName).join(", ")}</td>
+    <td class="vaccines">${vaccineInfo.vaccineIds.map(vaccineIdToDisplayName).join(", ")}</td>
 ${combosShown.map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
 </tr>
 `

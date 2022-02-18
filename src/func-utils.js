@@ -64,3 +64,8 @@ const sortMapByKeys = (map) =>
     )
 module.exports.sortMapByKeys = sortMapByKeys
 
+
+const unique = (things) =>
+    [...new Set(things)]
+module.exports.unique = unique
+

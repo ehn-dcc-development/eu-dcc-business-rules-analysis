@@ -3,6 +3,7 @@ const deepEqual = require("deep-equal")
 
 const { rle } = require("./rle-util")
 const { lowerTriangular, range, groupBy } = require("./func-utils")
+const { vaccineIds } = require("./vaccine-data")
 
 const valueSets = require("./valueSets.json")
 
@@ -133,8 +134,6 @@ const dedupEqualSpecs = (countryInfo) => {
 const optimise = (countryInfo) =>
     dedupEqualSpecs(removeUnaccepted(countryInfo))
 
-
-const vaccineIds = valueSets["vaccines-covid-19-names"]
 
 const vaccineSpecsFromRules = (rules, co) =>
     optimise(
