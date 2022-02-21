@@ -2,8 +2,8 @@ import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
-import {evaluateAbstractly} from "./new-abstract-interpreter"
-import {Unknown} from "./new-abstract-types"
+import {evaluateAbstractly} from "./abstract-interpreter"
+import {Unknown} from "./abstract-types"
 import {extractRangeEnds, rangeEndsAsText} from "./analyser"
 
 const allRules = require("../../tmp/all-rules.json")

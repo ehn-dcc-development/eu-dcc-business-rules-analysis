@@ -1,44 +1,49 @@
+const {equal, isTrue, isFalse} = require("chai").assert
+
+import {isCertLogicOperation} from "certlogic-js"
 import {and_, if_, var_} from "certlogic-js/dist/factories"
 
-const {equal, isTrue} = require("chai").assert
-
 import {
-    CLArray,
-    CLDataAccess,
-    CLExpr,
-    CLJsonValue,
-    CLOperation,
+    CLExtExpr, CLObjectValue, ObjectType,
     Unknown
 } from "../abstract-types"
 import {evaluateAbstractly} from "../abstract-interpreter"
-import {asCLValue} from "../transformers"
+import {isCertLogicLiteral} from "../helpers"
 
 
-const isJsonValue = (expr: CLExpr, expectedValue: any) => {
-    isTrue(expr instanceof CLJsonValue)
-    equal((expr as CLJsonValue).value, expectedValue)
+const isJsonValue = (expr: CLExtExpr, expectedValue: any) => {
+    isTrue(isCertLogicLiteral(expr))
+    equal(expr, expectedValue)
 }
 
-const isDataAccess = (expr: CLExpr, expectedPath: string) => {
-    isTrue(expr instanceof CLDataAccess)
-    equal((expr as CLDataAccess).path, expectedPath)
+const isObjectValue = (expr: CLExtExpr, expectValue: ObjectType) => {
+    isTrue(expr instanceof CLObjectValue)
+    equal((expr as CLObjectValue).value, expectValue)
+}
+
+const isDataAccess = (expr: CLExtExpr, expectedPath: string) => {
+    isTrue(typeof expr === "object")
+    isFalse(Array.isArray(expr))
+    const [operator, operands] = Object.entries(expr)[0]
+    equal(operator, "var")
+    equal(operands, expectedPath)
 }
 
 
 describe(`data access ("var")`, () => {
 
     it(`reduces to null on missing values`, () => {
-        const clExpr = asCLValue(var_("x.0.z"))
-        const reducedCLExpr = evaluateAbstractly(clExpr, {})
-        isJsonValue(reducedCLExpr, null)
+        const expr = var_("x.0.z")
+        const reducedExpr = evaluateAbstractly(expr, {})
+        isObjectValue(reducedExpr, null)
     })
 
     it(`wraps values properly`, () => {
-        const clExpr = asCLValue(var_("x"))
-        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": [1, 2] })
-        isTrue(reducedCLExpr instanceof CLArray)
-        isJsonValue((reducedCLExpr as CLArray).items[0], 1)
-        isJsonValue((reducedCLExpr as CLArray).items[1], 2)
+        const expr = var_("x")
+        const reducedExpr = evaluateAbstractly(expr, { "x": [1, 2] })
+        isTrue(Array.isArray(reducedExpr))
+        equal((reducedExpr as any[])[0], 1)
+        equal((reducedExpr as any[])[1], 2)
     })
 
 })
@@ -47,24 +52,24 @@ describe(`data access ("var")`, () => {
 describe(`"if" operation`, () => {
 
     it(`evaluates to the "then" on a guard that evaluates to a truthy value`, () => {
-        const clExpr = asCLValue(if_(var_("x.0.z"), true, false))
-        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": [ { "z": ["foo"] }]  })
-        isJsonValue(reducedCLExpr, true)
+        const expr = if_(var_("x.0.z"), true, false)
+        const reducedExpr = evaluateAbstractly(expr, { "x": [ { "z": ["foo"] }]  })
+        isJsonValue(reducedExpr, true)
     })
 
     it(`evaluates to the "else" on a guard that evaluates to a falsy value`, () => {
-        const clExpr = asCLValue(if_(var_("x.0.z"), true, false))
-        const reducedCLExpr = evaluateAbstractly(clExpr, {})
-        isJsonValue(reducedCLExpr, false)
+        const expr = if_(var_("x.0.z"), true, false)
+        const reducedExpr = evaluateAbstractly(expr, {})
+        isJsonValue(reducedExpr, false)
     })
 
     it(`reduces only partially on a guard whose truthiness/falsiness can't be established`, () => {
-        const clExpr = asCLValue(if_(var_("x"), true, false))
-        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": Unknown })
-        isTrue(reducedCLExpr instanceof CLOperation)
-        const op = reducedCLExpr as CLOperation
-        equal(op.operator, "if")
-        const [ guard_, then_, else_ ] = op.operands
+        const expr = if_(var_("x"), true, false)
+        const reducedExpr = evaluateAbstractly(expr, { "x": Unknown })
+        isTrue(isCertLogicOperation(reducedExpr))
+        const [operator, operands] = Object.entries(reducedExpr)[0]
+        equal(operator, "if")
+        const [guard_, then_, else_] = operands
         isDataAccess(guard_, "x")
         isJsonValue(then_, true)
         isJsonValue(else_, false)
@@ -76,24 +81,24 @@ describe(`"if" operation`, () => {
 describe(`"and" operation`, () => {
 
     it(`evaluates to true when no operands are given`, () => {
-        const clExpr = asCLValue(and_())
-        const reducedCLExpr = evaluateAbstractly(clExpr, {})
-        isJsonValue(reducedCLExpr, true)
+        const expr = and_()
+        const reducedExpr = evaluateAbstractly(expr, {})
+        isJsonValue(reducedExpr, true)
     })
 
     it(`evaluates to the operand when only 1 operand is given`, () => {
-        const clExpr = asCLValue(and_(var_("x")))
-        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": Unknown })
-        isDataAccess(reducedCLExpr, "x")
+        const expr = and_(var_("x"))
+        const reducedExpr = evaluateAbstractly(expr, { "x": Unknown })
+        isDataAccess(reducedExpr, "x")
     })
 
     it(`evaluates to the 2nd operand when the 1st operand is truthy`, () => {
-        const clExpr = asCLValue(and_(true, var_("x")))
-        const reducedCLExpr = evaluateAbstractly(clExpr, { "x": Unknown })
-        isDataAccess(reducedCLExpr, "x")
+        const expr = and_(true, var_("x"))
+        const reducedExpr = evaluateAbstractly(expr, { "x": Unknown })
+        isDataAccess(reducedExpr, "x")
     })
 
-    // TODO  more cases
+    // TODO  add more cases
 
 })
 
@@ -101,9 +106,9 @@ describe(`"and" operation`, () => {
 describe(`"!" (not) operation`, () => {
 
     it(`evaluates to true on a null value`, () => {
-        const clExpr = new CLOperation("!", [new CLJsonValue(null)])
-        const reducedCLExpr = evaluateAbstractly(clExpr, {})
-        isJsonValue(reducedCLExpr, true)
+        const expr = { "!": [new CLObjectValue(null)] }
+        const reducedExpr = evaluateAbstractly(expr, {})
+        isJsonValue(reducedExpr, true)
     })
 
 })
@@ -112,16 +117,15 @@ describe(`"!" (not) operation`, () => {
 describe(`"reduce" operation`, () => {
 
     it(`evaluates to a constant on constant input`, () => {
-        const clExpr = new CLOperation(
-            "reduce",
-            [
-                new CLDataAccess("nums"),
-                new CLOperation("+", [new CLDataAccess("accumulator"), new CLDataAccess("current")]),
-                new CLJsonValue(0)
+        const expr = {
+            "reduce": [
+                var_("nums"),
+                { "+": [var_("accumulator"), var_("current")] },
+                0
             ]
-        )
-        const reducedCLExpr = evaluateAbstractly(clExpr, { nums: [ 1, 2 ] })
-        isJsonValue(reducedCLExpr, 3)
+        }
+        const reducedExpr = evaluateAbstractly(expr, { nums: [ 1, 2 ] })
+        isJsonValue(reducedExpr, 3)
     })
 
 })
@@ -130,9 +134,9 @@ describe(`"reduce" operation`, () => {
 describe(`"+" operation`, () => {
 
     it(`works`, () => {
-        const clExpr = new CLOperation("+", [new CLJsonValue(1), new CLJsonValue(2)])
-        const reducedCLExpr = evaluateAbstractly(clExpr, {})
-        isJsonValue(reducedCLExpr, 3)
+        const expr = { "+": [1, 2] }
+        const reducedExpr = evaluateAbstractly(expr, {})
+        isJsonValue(reducedExpr, 3)
     })
 
 })

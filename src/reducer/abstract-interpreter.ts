@@ -1,82 +1,64 @@
 import {access} from "certlogic-js/dist/internals"
 
 import {
-    asValue,
-    CLArray,
-    CLDataAccess,
-    CLExpr,
-    CLJsonValue,
-    CLOperation,
-    CLUnknown, False, True
-} from "./abstract-types"
-import {
     areEqual,
-    boolsiness,
     boolsyAsCLExpr,
-    compare,
+    compare, extBoolsiness, isCertLogicLiteral,
     isConstant
 } from "./helpers"
+import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
 
 
-const evaluateIf = (guard: CLExpr, then: CLExpr, else_: CLExpr, data: unknown): CLExpr => {
+const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: unknown): CLExtExpr => {
     const evalGuard = evaluate(guard, data)
     const evalThen = evaluate(then, data)
     const evalElse = evaluate(else_, data)
-    switch (boolsiness(evalGuard)) {
+    switch (extBoolsiness(evalGuard)) {
         case true: return evalThen
         case false: return evalElse
-        default: return new CLOperation("if", [evalGuard, evalThen, evalElse])
+        default: return { "if": [evalGuard, evalThen, evalElse] }
     }
 }
 
 
-const evaluateInfix = (operator: string, operands: CLExpr[], data: unknown): CLExpr => {
+const evaluateInfix = (operator: string, operands: CLExtExpr[], data: unknown): CLExtExpr => {
     const evalOperands = operands.map((arg) => evaluate(arg, data))
-    const reducedCLExpr = new CLOperation(operator, evalOperands)
+    const reducedCLExtExpr = { [operator]: evalOperands }
     // really use the operator to determine whether the evaluation can already be concluded, even if not all operands are constant or transformable back:
     switch (operator) {
         case "===":
         {
             const eq = areEqual(evalOperands[0], evalOperands[1])
             return eq === undefined
-                ? new CLOperation("===", [evalOperands[0], evalOperands[1]])
-                : new CLJsonValue(eq)
+                ? { "===": [evalOperands[0], evalOperands[1]] }
+                : eq
         }
         case "in":
         {
-            const [l, r] = evalOperands
-            const items = (() => {
-                if (r instanceof CLJsonValue) {
-                    return r.value
-                }
-                if (r instanceof CLArray) {
-                    return r.items
-                }
-                return undefined
-            })()
+            const [l, items] = evalOperands
             if (!Array.isArray(items)) {
                 throw new Error(`right-hand side of an "in" operation must be an array`)
             }
             const equalities = items.map((item) => areEqual(l, item))
             if (equalities.some((eq) => eq === true)) {
-                return True
+                return true
             }
             if (equalities.every((eq) => eq === false)) {
-                return False
+                return false
             }
-            return new CLOperation("in", [l, new CLArray(items.filter((_, index) => equalities[index] === undefined))])
+            return { "in": [l, items.filter((_, index) => equalities[index] === undefined)] }
         }
         case "and":
         {
-            const firstFalsy = evalOperands.find((operand) => boolsiness(operand) === false)
+            const firstFalsy = evalOperands.find((operand) => extBoolsiness(operand) === false)
             if (firstFalsy !== undefined) {
                 return firstFalsy
             }
-            const unknowns = evalOperands.filter((operand) => boolsiness(operand) === undefined)
+            const unknowns = evalOperands.filter((operand) => extBoolsiness(operand) === undefined)
             switch (unknowns.length) {
-                case 0: return True
+                case 0: return true
                 case 1: return unknowns[0]
-                default: return new CLOperation("and", unknowns)
+                default: return { "and": unknowns }
             }
         }
         case ">":
@@ -89,55 +71,56 @@ const evaluateInfix = (operator: string, operands: CLExpr[], data: unknown): CLE
         case "+":
         {
             const [l, r] = evalOperands
-            if (l instanceof CLJsonValue && r instanceof CLJsonValue) {
+            if (isCertLogicLiteral(l) && isCertLogicLiteral(r)) {
                 // TODO  more validation
-                return new CLJsonValue((l.value as number) + (r.value as number))
+                return (l as number) + (r as number)
             }
-            return reducedCLExpr
+            return reducedCLExtExpr
         }
         default:
         {
             // console.warn(`infix operator "${operator} not handled`)
-            return reducedCLExpr
+            return reducedCLExtExpr
         }
     }
 }
 
 
-const evaluateNot = (operandExpr: CLExpr, data: unknown): CLExpr => {
+const evaluateNot = (operandExpr: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operandExpr, data)
     if (isConstant(evalOperand)) {
-        const boolsiness_ = boolsiness(evalOperand)
-        switch (boolsiness_) {
-            case true: return False
-            case false: return True
+        const boolsiness = extBoolsiness(evalOperand)
+        switch (boolsiness) {
+            case true: return false
+            case false: return true
             case undefined: throw new Error(`operand of ! evaluates to something neither truthy, nor falsy: ${evalOperand}`)
         }
     }
-    return new CLOperation("!", [evalOperand])
+    return { "!": [evalOperand] }
 }
 
 
-const evaluatePlusTime = (dateOperand: CLExpr, amount: CLExpr, unit: CLExpr, data: unknown): CLExpr => {
+const evaluatePlusTime = (dateOperand: CLExtExpr, amount: CLExtExpr, unit: CLExtExpr, data: unknown): CLExtExpr => {
     const dateTimeStr = evaluate(dateOperand, data)
-    return new CLOperation("plusTime", [dateTimeStr, amount, unit])
+    return { "plusTime": [dateTimeStr, amount, unit] }
 }
 
 
-const evaluateReduce = (operand: CLExpr, lambda: CLExpr, initial: CLExpr, data: unknown): CLExpr => {
+const evaluateReduce = (operand: CLExtExpr, lambda: CLExtExpr, initial: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operand, data)
     const evalInitial = evaluate(initial, data)
-    if (!isConstant(evalOperand) && !isConstant(evalInitial)) {
-        return new CLOperation("reduce", [ evalOperand, lambda, evalInitial ])
-    }
-    if (evalOperand instanceof CLJsonValue && evalOperand.value === null) {
+    // console.dir(evalOperand)
+    // if (!isConstant(evalOperand) && !isConstant(evalInitial)) {
+    //     return { "reduce": [ evalOperand, lambda, evalInitial ] }
+    // }
+    if (evalOperand instanceof CLObjectValue && evalOperand.value === null) {
         return evalInitial
     }
-    if (!(evalOperand instanceof CLArray)) {
+    if (!(Array.isArray(evalOperand))) {
         throw new Error(`operand of reduce evaluated to a non-null non-array`)
     }
     // even if neither are constant, the evaluation result could be constant, so check afterwards:
-    const evaluation = evalOperand.items
+    const evaluation = evalOperand
         .reduce(
             (accumulator, current) =>
                 evaluate(lambda, { accumulator, current /* (patch:) , data */ }),
@@ -146,38 +129,40 @@ const evaluateReduce = (operand: CLExpr, lambda: CLExpr, initial: CLExpr, data: 
     if (isConstant(evaluation)) {
         return evaluation
     }
-    return new CLOperation("reduce", [ evalOperand, lambda, evalInitial ])
+    return { "reduce": [evalOperand, lambda, evalInitial] }
 }
 
 
-const evaluateExtractFromUVCI = (operand: CLExpr, index: CLExpr, data: unknown): CLExpr => {
+const evaluateExtractFromUVCI = (operand: CLExtExpr, index: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operand, data)
-    if (evalOperand instanceof CLJsonValue) {
-        if (!(evalOperand.value === null || typeof evalOperand.value === "string")) {
-            throw new Error(`"UVCI" argument (#1) of "extractFromUVCI" must be either a string or null`)
-        }
+    if (!(typeof evalOperand === "string" || (evalOperand instanceof CLObjectValue && evalOperand.value === null))) {
+        throw new Error(`"UVCI" argument (#1) of "extractFromUVCI" must be either a string or null`)
     }
-    return new CLOperation("extractFromUVCI", [evalOperand, index])
+    return { "extractFromUVCI": [evalOperand, index] }
 }
 
 
-const evaluate = (expr: CLExpr, data: unknown): CLExpr => {
-    if (expr instanceof CLJsonValue) {
+const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
+    if (isCertLogicLiteral(expr) || expr instanceof CLUnknown || expr instanceof CLObjectValue) {
         return expr
     }
-    if (expr instanceof CLArray) {
-        return new CLArray(expr.items.map((item) => evaluate(item, data)))
+    if (Array.isArray(expr)) {
+        return expr.map((item) => evaluate(item, data))
     }
-    if (expr instanceof CLDataAccess) {
-        const value = access(data, expr.path)
-        if (value instanceof CLUnknown) {
-            return expr  // return { "var": <path> }
+    if (typeof expr === "object") {
+        const [operator, operands] = Object.entries(expr)[0]
+        if (operator === "var") {
+            const value = access(data, operands as string)
+            if (value instanceof CLUnknown) {
+                return expr
+            }
+            if (typeof value === "object" && !Array.isArray(value)) {
+                return new CLObjectValue(value)
+            }
+            return value
         }
-        return asValue(value)
-    }
-    if (expr instanceof CLOperation) {
-        switch (expr.operator) {
-            case "if": return evaluateIf(expr.operands[0], expr.operands[1], expr.operands[2], data)
+        switch (operator) {
+            case "if": return evaluateIf(operands[0], operands[1], operands[2], data)
             case "===":
             case "and":
             case ">":
@@ -190,17 +175,14 @@ const evaluate = (expr: CLExpr, data: unknown): CLExpr => {
             case "before":
             case "not-after":
             case "not-before":
-                return evaluateInfix(expr.operator, expr.operands, data)
-            case "!": return evaluateNot(expr.operands[0], data)
-            case "plusTime": return evaluatePlusTime(expr.operands[0], expr.operands[1], expr.operands[2], data)
-            case "reduce": return evaluateReduce(expr.operands[0], expr.operands[1], expr.operands[2], data)
-            case "extractFromUVCI": return evaluateExtractFromUVCI(expr.operands[0], expr.operands[1], data)
+                return evaluateInfix(operator, operands, data)
+            case "!": return evaluateNot(operands[0], data)
+            case "plusTime": return evaluatePlusTime(operands[0], operands[1], operands[2], data)
+            case "reduce": return evaluateReduce(operands[0], operands[1], operands[2], data)
+            case "extractFromUVCI": return evaluateExtractFromUVCI(operands[0], operands[1], data)
         }
     }
-    if (expr instanceof CLUnknown) {
-        return expr
-    }
-    throw new Error(`can't handle this CLExpr: ${expr}`)
+    throw new Error(`can't handle this CLExtExpr: ${JSON.stringify(expr, null, 2)}`)
 }
 
 export const evaluateAbstractly = evaluate
