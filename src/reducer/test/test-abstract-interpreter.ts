@@ -1,4 +1,4 @@
-import {and_, if_, not_, var_} from "certlogic-js/dist/factories"
+import {and_, if_, var_} from "certlogic-js/dist/factories"
 
 const {equal, isTrue} = require("chai").assert
 
@@ -121,7 +121,6 @@ describe(`"reduce" operation`, () => {
             ]
         )
         const reducedCLExpr = evaluateAbstractly(clExpr, { nums: [ 1, 2 ] })
-        console.dir(reducedCLExpr)
         isJsonValue(reducedCLExpr, 3)
     })
 

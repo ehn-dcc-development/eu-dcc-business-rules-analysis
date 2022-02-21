@@ -1,13 +1,9 @@
+import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
-import {evaluateAbstractly} from "./abstract-interpreter"
-import {Unknown} from "./abstract-types"
-import {
-    asCertLogicExpression,
-    asCLValue,
-    isTransformableToCertLogicExpression
-} from "./transformers"
+import {evaluateAbstractly} from "./new-abstract-interpreter"
+import {Unknown} from "./new-abstract-types"
 import {extractRangeEnds, rangeEndsAsText} from "./analyser"
 
 const allRules = require("../../tmp/all-rules.json")
@@ -20,7 +16,7 @@ const co = "NL"
 const rules: Rule[] = (allRules as Rule[])
     .filter((rule) => {
         const { country } = parseRuleId(rule.Identifier)
-        return country === co && rule.Identifier === "GR-NL-0000"
+        return country === co// && rule.Identifier === "GR-NL-0000"
     })
     .sort((l, r) => l.Identifier < r.Identifier ? -1 : 1)   // === 0 isn't hit because they're IDs
 
@@ -47,21 +43,15 @@ const makeData = (dn: number, sd: number, mp: string): any =>
 
 
 const analyseRules = (dn: number, sd: number, mp: string): string => {
-    const reducedRule = evaluateAbstractly(
-        asCLValue(and_(...rules.map((rule) => rule.Logic))),
+    const reducedCertLogicExpr = evaluateAbstractly(
+        and_(...rules.map((rule) => rule.Logic)),
         makeData(dn, sd, mp)
     )
 
-    if (!isTransformableToCertLogicExpression(reducedRule)) {
-        console.dir(reducedRule)
-        throw new Error(`couldn't reduce and(..${co}-rules) to a CertLogic expression`)
-    }
-
-    const reducedCertLogicExpr = asCertLogicExpression(reducedRule)
     // console.log(`reduced rule:`)
     // console.log(JSON.stringify(reducedCertLogicExpr, null, 4))
 
-    const rangeEnds = extractRangeEnds(reducedCertLogicExpr)
+    const rangeEnds = extractRangeEnds(reducedCertLogicExpr as CertLogicExpression)
     // console.dir(rangeEnds)
     return rangeEndsAsText(rangeEnds!)
 }
@@ -75,16 +65,16 @@ writeJson(
     Object.fromEntries(
         rules.map((rule) => [
             rule.Identifier,
-            evaluateAbstractly(asCLValue(rule.Logic), makeData(dn, sd, vaccineId))
+            evaluateAbstractly(rule.Logic, makeData(dn, sd, vaccineId))
         ])
     )
 )
 
 // ;[vaccineId]
-// // ;vaccineIds
-//     .forEach((vaccineId: string) => {
-//         console.log(`${vaccineId} with ${dn}/${sd} => ${analyseRules(dn, sd, vaccineId)}`)
-//     })
+;vaccineIds
+    .forEach((vaccineId: string) => {
+        console.log(`${vaccineId} with ${dn}/${sd} => ${analyseRules(dn, sd, vaccineId)}`)
+    })
 
 
 
