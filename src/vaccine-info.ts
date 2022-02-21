@@ -1,14 +1,15 @@
-const { evaluate } = require("certlogic-js")
+import {CertLogicExpression, evaluate} from "certlogic-js"
+import {Rule} from "dcc-business-rules-utils"
 const deepEqual = require("deep-equal")
 
-const { rle } = require("./rle-util")
-const { lowerTriangular, range, groupBy } = require("./func-utils")
-const { vaccineIds } = require("./vaccine-data")
+import {rle} from "./rle-util"
+import {lowerTriangular, range, groupBy} from "./func-utils"
+import {vaccineIds} from "./vaccine-data"
 
 const valueSets = require("./valueSets.json")
 
 
-const inputDataFrom = (mp, dt, dn, sd, nowDate) =>
+const inputDataFrom = (mp: string, dt: string, dn: number, sd: number, nowDate: string): any =>
     ({
         payload: {
             v: [
@@ -27,10 +28,10 @@ const inputDataFrom = (mp, dt, dn, sd, nowDate) =>
     })
 
 
-const safeEvaluate = (expr, data) => {
+const safeEvaluate = (expr: CertLogicExpression, data: unknown): any => {
     try {
         return evaluate(expr, data)
-    } catch (e) {
+    } catch (e: any) {
         // to warn on the console:
         console.error(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
         // for logging:
@@ -40,7 +41,7 @@ const safeEvaluate = (expr, data) => {
     }
 }
 
-const acceptedByVaccineRules = (rules, mp, dt, dn, sd, nowDate) =>
+const acceptedByVaccineRules = (rules: Rule[], mp: string, dt: string, dn: number, sd: number, nowDate: string): boolean =>
     Object.values(
         groupBy(rules, (rule) => rule.Identifier)
     ).every((ruleVersions) => {
@@ -52,18 +53,24 @@ const acceptedByVaccineRules = (rules, mp, dt, dn, sd, nowDate) =>
             return true
         }
         const applicableRuleVersion = applicableRuleVersions.reduce((acc, cur) => acc.Version > cur.Version ? acc : cur)
-        return safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+        const result = safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+        if (typeof result !== "boolean") {
+            console.warn(`evaluation of rule's logic (on next line) yielded a non-boolean: ${result} - (returning false)`)
+            console.dir(applicableRuleVersion.Logic)
+            return false
+        }
+        return result
     })
 
 
-const dateWithOffset = (dateStr, nDays) => {
+const dateWithOffset = (dateStr: string, nDays: number): string => {
     const date = new Date(dateStr)
     date.setUTCDate(date.getUTCDate() + nDays)
     return date.toISOString().substring(0, "dd-mm-yyyy".length)
 }
 
 
-const infoForCombo = (rules, co, mp, dn, sd) => {
+const infoForCombo = (rules: Rule[], co: string, mp: string, dn: number, sd: number): ComboInfo => {
     const validFrom = "2022-03-01"
     const justOverTwoYears = range(2*366 + 1)
     const acceptance = justOverTwoYears.map((nDays) =>
@@ -81,7 +88,7 @@ const infoForCombo = (rules, co, mp, dn, sd) => {
         console.log(`[WARNING] business rules for country "${co}", vaccine "${mp}", and ${dn}/${sd} are not invariant under datetime translations!`)
     }
 
-    const wrapForInInvariance = (value) =>
+    const wrapForInInvariance = (value: SimpleComboInfo): ComboInfo =>
         translationInvariant
             ? value
             : ({
@@ -101,7 +108,7 @@ const infoForCombo = (rules, co, mp, dn, sd) => {
 }
 
 
-const infoForVaccine = (rules, co, mp) => ({
+const specForVaccine = (rules: Rule[], co: string, mp: string): VaccineSpec => ({
     vaccineIds: [mp],
     combos: Object.fromEntries(
         lowerTriangular(6).map(([ i, j ]) =>
@@ -111,33 +118,41 @@ const infoForVaccine = (rules, co, mp) => ({
 })
 
 
-const isNotAccepted = (vaccineInfo) =>
-    Object.values(vaccineInfo.combos).every((comboValue) => comboValue === null)
-const removeUnaccepted = (countryInfo) =>
-    countryInfo.filter((vaccineInfo) => !isNotAccepted(vaccineInfo))
+const isNotAccepted = (vaccineSpec: VaccineSpec): boolean =>
+    Object.values(vaccineSpec.combos).every((comboValue) => comboValue === null)
+const removeUnaccepted = (vaccineSpecs: VaccineSpec[]): VaccineSpec[] =>
+    vaccineSpecs.filter((vaccineSpec) => !isNotAccepted(vaccineSpec))
 
 
-const dedupEqualSpecs = (countryInfo) => {
-    const dedupped = []
-    for (const vaccineInfo of countryInfo) {
-        const dedupCandidate = dedupped.find((candidate) => deepEqual(candidate.combos, vaccineInfo.combos))
+const dedupEqualSpecs = (vaccineSpecs: VaccineSpec[]): VaccineSpec[] => {
+    const dedupped: VaccineSpec[] = []
+    for (const vaccineSpec of vaccineSpecs) {
+        const dedupCandidate = dedupped.find((candidate) => deepEqual(candidate.combos, vaccineSpec.combos))
         if (dedupCandidate) {
-            dedupCandidate.vaccineIds.push(...vaccineInfo.vaccineIds)
+            dedupCandidate.vaccineIds.push(...vaccineSpec.vaccineIds)
         } else {
-            dedupped.push(vaccineInfo)
+            dedupped.push(vaccineSpec)
         }
     }
     return dedupped
 }
 
 
-const optimise = (countryInfo) =>
-    dedupEqualSpecs(removeUnaccepted(countryInfo))
+const optimise = (vaccineSpecs: VaccineSpec[]): VaccineSpec[] =>
+    dedupEqualSpecs(removeUnaccepted(vaccineSpecs))
 
 
-const vaccineSpecsFromRules = (rules, co) =>
+export const vaccineSpecsFromRules = (rules: Rule[], co: string): VaccineSpec[] =>
     optimise(
-        vaccineIds.map((mp) => infoForVaccine(rules, co, mp))
+        vaccineIds.map((mp) => specForVaccine(rules, co, mp))
     )
-module.exports.vaccineSpecsFromRules = vaccineSpecsFromRules
+
+
+export type VaccineSpec = {
+    vaccineIds: string[],
+    combos: { [comboKey: string]: ComboInfo }
+}
+
+export type SimpleComboInfo = null | number | [number, number]
+export type ComboInfo = SimpleComboInfo | { $translationInvariant: false, value: SimpleComboInfo }
 

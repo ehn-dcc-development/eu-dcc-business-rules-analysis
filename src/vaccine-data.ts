@@ -1,10 +1,9 @@
 const valueSets = require("./valueSets.json")
 
-const vaccineIds = [...valueSets["vaccines-covid-19-names"]].sort()
-module.exports.vaccineIds = vaccineIds
+export const vaccineIds: string[] = [...valueSets["vaccines-covid-19-names"]].sort()
 
 
-const vaccineId2PopularName = {
+const vaccineId2PopularName: { [vaccineId: string]: string } = {
     "EU/1/20/1528": "Comirnaty (Pfizer/BioNTech)",
     "EU/1/20/1507": "Spikevax (Moderna)",
     "EU/1/21/1529": "Vaxzevria (AstraZeneca)",
@@ -13,14 +12,12 @@ const vaccineId2PopularName = {
     "NVX-CoV2373": "Nuvaxovid (deprecated encoding)"
 }
 
-const vaccineIdToDisplayName = (vaccineId) =>
+export const vaccineIdToDisplayName = (vaccineId: string): string =>
     vaccineId2PopularName[vaccineId] || vaccineId
-module.exports.vaccineIdToDisplayName = vaccineIdToDisplayName
 
-const vaccineIdToShortDisplayName = (vaccineId) => {
+export const vaccineIdToShortDisplayName = (vaccineId: string): string => {
     const displayName = vaccineIdToDisplayName(vaccineId)
     const idx = displayName.indexOf(" ")
     return idx < 1 ? displayName : displayName.substring(0, idx-1)
 }
-module.exports.vaccineIdToShortDisplayName = vaccineIdToShortDisplayName
 

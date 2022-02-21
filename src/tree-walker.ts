@@ -1,26 +1,22 @@
-const { isInt } = require("certlogic-js")
+import {CertLogicExpression, CertLogicOperation, isInt} from "certlogic-js"
 
 
-const operationDataFrom = (expr) => {
-    const keys = Object.keys(expr)
-    if (keys.length !== 1) {
-        throw new Error(`expression object must have exactly one key, but it has ${keys.length}`)
+export const operationDataFrom = (expr: CertLogicOperation): [operator: string, operands: string|any[]] => {
+    const entries = Object.entries(expr)
+    if (entries.length !== 1) {
+        throw new Error(`expression object must have exactly one key, but it has ${entries.length}`)
     }
-    const operator = keys[0]
-    const values = expr[operator]
-    return { operator, values }
+    return entries[0]
 }
-module.exports.operationDataFrom = operationDataFrom
 
 
-const couldBeOperation = (expr) =>
+export const couldBeOperation = (expr: CertLogicExpression): boolean =>
     typeof expr === "object" && !Array.isArray(expr) && Object.keys(expr).length === 1
-module.exports.couldBeOperation = couldBeOperation
 
 
-const treeFlatMap = (root, mapper) => {
-    const map_ = (expr, ancestors) => {
-        const map__ = (subExpr) => map_(subExpr, [ expr, ...ancestors ])
+export const treeFlatMap = <T>(root: CertLogicExpression, mapper: (expr: CertLogicExpression, ancestors: CertLogicExpression[]) => T[]): T[] => {
+    const map_ = (expr: CertLogicExpression, ancestors: CertLogicExpression[]): T[] => {
+        const map__ = (subExpr: CertLogicExpression) => map_(subExpr, [ expr, ...ancestors ])
         if (typeof expr === "string" || isInt(expr) || typeof expr === "boolean") {
             return mapper(expr, ancestors)
         }
@@ -31,7 +27,7 @@ const treeFlatMap = (root, mapper) => {
             return expr.flatMap(map__)
         }
         if (typeof expr === "object") { // That includes Date objects, but those have no keys, so are returned as-is.
-            const { operator, values } = operationDataFrom(expr)
+            const [operator, values] = operationDataFrom(expr)
             if (operator === "var") {
                 return mapper(expr, ancestors)
             }
@@ -56,7 +52,6 @@ const treeFlatMap = (root, mapper) => {
     }
     return map_(root, [])
 }
-module.exports.treeFlatMap = treeFlatMap
 
 
 // TODO  remove this once this has landed in certlogic-js

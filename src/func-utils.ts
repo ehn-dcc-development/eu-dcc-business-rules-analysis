@@ -3,9 +3,8 @@
  * @param n - the length of the integer range
  * @returns {number[]}
  */
-const range = (n) =>
+export const range = (n: number): number[] =>
     [...Array(n).keys()]
-module.exports.range = range
 
 
 /**
@@ -22,17 +21,18 @@ module.exports.range = range
  *
  * Note that the 2nd/j index is in decreasing order.
  */
-const lowerTriangular = (n) =>
+export const lowerTriangular = (n: number): number[][] =>
     range(n).flatMap((i) =>
         range(i+1).reverse().map((j) =>
             [ i, j ]
         )
     )
-module.exports.lowerTriangular = lowerTriangular
 
 
-const groupBy = (array, keyFunc) =>
-    array.reduce((acc, value) => {
+export type Map<V> = { [key: string]: V }
+
+export const groupBy = <T>(array: T[], keyFunc: (t: T) => string): Map<T[]> =>
+    array.reduce((acc: Map<T[]>, value) => {
         const key = keyFunc(value)
         if (acc[key] === undefined) {
             acc[key] = []
@@ -40,32 +40,27 @@ const groupBy = (array, keyFunc) =>
         acc[key].push(value)
         return acc
     }, {})
-module.exports.groupBy = groupBy
 
 
-const mapValues = (map, valueFunc) =>
+export const mapValues = <V, W>(map: Map<V>, valueFunc: (v: V) => W): Map<W> =>
     Object.fromEntries(
         Object.entries(map)
             .map(([ key, value ]) => [ key, valueFunc(value) ])
     )
-module.exports.mapValues = mapValues
 
 
-const sortArrayBy = (array, keyFunc) =>
+export const sortArrayBy = <T>(array: T[], keyFunc: (t: T) => number) =>
     [ ...array ].sort((l, r) => keyFunc(l) - keyFunc(r))
-module.exports.sortArrayBy = sortArrayBy
 
 
-const sortMapByKeys = (map) =>
+export const sortMapByKeys = <V>(map: Map<V>): Map<V> =>
     Object.fromEntries(
         [ ...Object.keys(map) ]
             .sort()
             .map((key) => [ key, map[key] ])
     )
-module.exports.sortMapByKeys = sortMapByKeys
 
 
-const unique = (things) =>
+export const unique = <T>(things: T[]): T[] =>
     [...new Set(things)]
-module.exports.unique = unique
 

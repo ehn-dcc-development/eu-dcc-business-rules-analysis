@@ -1,38 +1,35 @@
-const {range} = require("./func-utils")
+import {range} from "./func-utils"
 
 
-const charCodes = (str) =>
+const charCodes = (str: string) =>
     range(str.length).map((idx) => str.charCodeAt(idx))
 
-const flagEmoji = (country) =>
+export const flagEmoji = (country: string) =>
     String.fromCodePoint(...(
         charCodes(country).map((charCode) => 127397 + charCode)
     ))
-module.exports.flagEmoji = flagEmoji
 
 
-const countryCode2DisplayName = require("./country-code-to-display-name.json")
-module.exports.countryCode2DisplayName = countryCode2DisplayName
+export const countryCode2DisplayName = require("./country-code-to-display-name.json")
 
 
 const euMemberStates = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HU", "HR", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK" ]
 const euCandidateMemberStates = [ "AL", "ME", "MK", "RS", "TR" ]
 const eeaPlusCountries = [ "IS", "LI", "NO" ]
 
-const memberAnnotation = (co) => {
-    if (euMemberStates.indexOf(co) > -1) {
+export const memberAnnotation = (country: string) => {
+    if (euMemberStates.indexOf(country) > -1) {
         return "EU MS"
     }
-    if (euCandidateMemberStates.indexOf(co) > -1) {
+    if (euCandidateMemberStates.indexOf(country) > -1) {
         return "EU candidate-MS"
     }
-    if (eeaPlusCountries.indexOf(co) > -1) {
+    if (eeaPlusCountries.indexOf(country) > -1) {
         return "E{E|F}A MS"
     }
-    if (co === "CH") {
+    if (country === "CH") {
         return "EFTA MS"
     }
     return "3rd country"
 }
-module.exports.memberAnnotation = memberAnnotation
 

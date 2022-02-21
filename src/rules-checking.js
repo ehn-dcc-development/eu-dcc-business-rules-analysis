@@ -4,7 +4,7 @@ const { couldBeOperation, operationDataFrom, treeFlatMap } = require("./tree-wal
 
 const isVaccineIdDataAccess = (expr) => {
     if (couldBeOperation(expr)) {
-        const { operator, values } = operationDataFrom(expr)
+        const [operator, values] = operationDataFrom(expr)
         if (operator === "var" && values === "payload.v.0.mp") {
             return true
         }
@@ -15,7 +15,7 @@ const isVaccineIdDataAccess = (expr) => {
 const vaccineIds = require("./valueSets.json")["vaccines-covid-19-names"]
 
 const invalidVaccineIdsInComparison = (expr) => {
-    const { operator, values } = operationDataFrom(expr)
+    const [operator, values] = operationDataFrom(expr)
     switch (operator) {
         case "in": return Array.isArray(values[1]) ? values[1].filter((vaccineId) => vaccineIds.indexOf(vaccineId) === -1) : []
         case "===": return values.slice(0, 2).filter((operand) => typeof operand === "string" && vaccineIds.indexOf(operand) === -1)
@@ -26,7 +26,7 @@ const validateRuleIncludingWarnings = (rule) => {
     const emptyArray = []
     treeFlatMap(rule.Logic, (node, ancestors) => {
         if (couldBeOperation(node)) {
-            const { operator, values } = operationDataFrom(node)
+            const [operator, values] = operationDataFrom(node)
 
             if (operator === "plusTime" && typeof values[0] === "string") {
                 console.log(`[WARNING] rule with id="${rule.Identifier}" has logic with a "plusTime"-operator with an operand that's a static string ==> might not be invariant under date shifts`)

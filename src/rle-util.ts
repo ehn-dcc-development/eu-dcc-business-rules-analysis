@@ -5,7 +5,7 @@
  *
  * l_n is always the boolArray's length
  */
-const rle  = (boolArray) => {
+export const rle  = (boolArray: boolean[]) => {
     const rleArray = []
     let currentValue = false
     for (let i = 0; i < boolArray.length; i++) {
@@ -17,7 +17,6 @@ const rle  = (boolArray) => {
     rleArray.push(boolArray.length)
     return rleArray
 }
-module.exports.rle = rle
 
 
 /*
@@ -30,6 +29,5 @@ console.dir(rle([true, true]))      // -> [0,2]
 console.dir(rle([false, false, false, false, false, false, false, false, false])) // -> [9] ~ never valid/not accepted
 console.dir(rle([false, false, false, true, true, true, true, true, true])) // -> [3, 9] ~ valid from 3rd day, for forever
 console.dir(rle([false, false, false, true, true, true, true, false, false])) // -> [3, 7, 9] ~ valid from 3rd day, valid until 7th day
-
  */
 
