@@ -74,6 +74,9 @@ export const areEqual = (left: CLExtExpr, right: CLExtExpr): Boolsy => {
     if (left instanceof CLObjectValue) {
         return left.value === (right instanceof CLObjectValue ? right.value : right)
     }
+    if (typeof left === "boolean") {
+        return typeof right === "boolean" && left === right
+    }
     if (isComparable(left)) {
         return isComparable(right) && left === right
     }
@@ -82,7 +85,7 @@ export const areEqual = (left: CLExtExpr, right: CLExtExpr): Boolsy => {
             && left.length === right.length
             && left.every((item, index) => areEqual(item, right[index]))
     }
-    throw new Error(`areEqual can't handle this left CLExpr: ${JSON.stringify(left)}`)
+    throw new Error(`areEqual can't handle this left CLExtExpr: ${JSON.stringify(left)}`)
 }
 
 

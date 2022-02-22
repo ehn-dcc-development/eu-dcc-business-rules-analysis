@@ -18,6 +18,7 @@ const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: u
         case false: return evalElse
         default: return { "if": [evalGuard, evalThen, evalElse] }
     }
+    // TODO  many more cases are reducible!
 }
 
 
@@ -109,10 +110,6 @@ const evaluatePlusTime = (dateOperand: CLExtExpr, amount: CLExtExpr, unit: CLExt
 const evaluateReduce = (operand: CLExtExpr, lambda: CLExtExpr, initial: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operand, data)
     const evalInitial = evaluate(initial, data)
-    // console.dir(evalOperand)
-    // if (!isConstant(evalOperand) && !isConstant(evalInitial)) {
-    //     return { "reduce": [ evalOperand, lambda, evalInitial ] }
-    // }
     if (evalOperand instanceof CLObjectValue && evalOperand.value === null) {
         return evalInitial
     }

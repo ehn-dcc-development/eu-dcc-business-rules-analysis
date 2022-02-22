@@ -6,9 +6,9 @@ import {and_, if_, var_} from "certlogic-js/dist/factories"
 import {
     CLExtExpr, CLObjectValue, ObjectType,
     Unknown
-} from "../abstract-types"
-import {evaluateAbstractly} from "../abstract-interpreter"
-import {isCertLogicLiteral} from "../helpers"
+} from "../reducer/abstract-types"
+import {evaluateAbstractly} from "../reducer/abstract-interpreter"
+import {isCertLogicLiteral} from "../reducer/helpers"
 
 
 const isJsonValue = (expr: CLExtExpr, expectedValue: any) => {

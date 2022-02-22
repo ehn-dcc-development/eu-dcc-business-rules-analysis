@@ -3,10 +3,11 @@ import { format as prettify } from "prettier"
 
 
 export const readString = (path: PathLike) => readFileSync(path, "utf8")
-export const readJson = (path: PathLike) => JSON.parse(readString(path))
-
 export const writeString = (path: PathLike, data: any) => writeFileSync(path, data, "utf8")
-export const writeJson = (path: PathLike, data: any) => writeString(path, JSON.stringify(data, null, 2))
+
+export const readJson = (path: PathLike) => JSON.parse(readString(path))
+export const pretty = (data: any): string => JSON.stringify(data, null, 2)
+export const writeJson = (path: PathLike, data: any) => writeString(path, pretty(data))
 
 export const writeHtml = (path: PathLike, html: string) => {
     writeFileSync(

@@ -11,7 +11,7 @@ import {
     extractPlusTimeWithVar,
     extractRangeEnd,
     extractRangeEnds, rangeEndsAsText, unique
-} from "../analyser"
+} from "../analyser/analyser"
 
 
 const nowExpr = plusTime_(var_("external.validationClock"), 0, "day")
