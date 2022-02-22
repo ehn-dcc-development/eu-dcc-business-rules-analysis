@@ -1,8 +1,6 @@
-import {readJson, writeHtml} from "./file-utils"
-import {
-    RulesVersionMetaDataPerCountry, Versioning
-} from "./serialise-version-meta-data"
-import {Map} from "./func-utils"
+import {readJson, writeHtml} from "./utils/file-utils"
+import {Map} from "./utils/func-utils"
+import {RulesVersionMetaDataPerCountry, Versioning} from "./serialise-version-meta-data"
 
 
 const rulesVersionMetaData: RulesVersionMetaDataPerCountry = readJson("analysis/rules-version-meta-data.json")

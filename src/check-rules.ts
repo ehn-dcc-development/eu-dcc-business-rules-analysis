@@ -1,8 +1,8 @@
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
-const {validateRulesOfCountry} = require("./rules-checking")
-import {writeJson} from "./file-utils"
-import {groupBy} from "./func-utils"
+import {validateRulesOfCountry} from "./rules-checking"
+import {writeJson} from "./utils/file-utils"
+import {groupBy} from "./utils/func-utils"
 
 
 const allRules: Rule[] = require("../tmp/all-rules.json")

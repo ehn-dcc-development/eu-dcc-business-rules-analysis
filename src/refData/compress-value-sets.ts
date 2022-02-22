@@ -1,4 +1,4 @@
-import {readJson, writeJson} from "./file-utils"
+import {readJson, writeJson} from "../utils/file-utils"
 
 const uncompressedValueSets = readJson("tmp/valueSets-uncompressed.json")
 const compressedValueSets = Object.fromEntries(
@@ -16,5 +16,5 @@ const compressedValueSets = Object.fromEntries(
             [ valueSetId, Object.keys(uncompressedValueSets[valueSetId]).sort() ]
     )
 )
-writeJson("src/valueSets.json", compressedValueSets)
+writeJson("src/refData/valueSets.json", compressedValueSets)
 

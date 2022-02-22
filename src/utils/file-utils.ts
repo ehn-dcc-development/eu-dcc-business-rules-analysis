@@ -1,5 +1,5 @@
 import {existsSync, mkdirSync, PathLike, readFileSync, writeFileSync} from "fs"
-import { format as prettify } from "prettier"
+import {format as prettify} from "prettier"
 
 
 export const readString = (path: PathLike) => readFileSync(path, "utf8")

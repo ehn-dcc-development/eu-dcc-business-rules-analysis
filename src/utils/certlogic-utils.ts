@@ -1,4 +1,9 @@
-import {CertLogicExpression, CertLogicOperation, isInt} from "certlogic-js"
+import {
+    CertLogicExpression,
+    CertLogicOperation,
+    isCertLogicOperation,
+    isInt
+} from "certlogic-js"
 
 
 export const operationDataFrom = (expr: CertLogicOperation): [operator: string, operands: string|any[]] => {
@@ -8,6 +13,11 @@ export const operationDataFrom = (expr: CertLogicOperation): [operator: string, 
     }
     return entries[0]
 }
+
+
+export const isOperation = (expr: CertLogicExpression, operator: string | string[]): boolean =>
+    isCertLogicOperation(expr)
+    &&  (typeof operator === "string" ? Object.keys(expr)[0] === operator : operator.indexOf(Object.keys(expr)[0]) > -1)
 
 
 export const couldBeOperation = (expr: CertLogicExpression): expr is CertLogicOperation =>

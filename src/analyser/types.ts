@@ -1,4 +1,4 @@
-import {pretty} from "../file-utils"
+import {pretty} from "../utils/file-utils"
 
 
 export type Unanalysable = {

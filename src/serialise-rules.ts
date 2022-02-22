@@ -2,8 +2,8 @@ import {renderAsCompactText} from "certlogic-js/dist/misc"
 import {normalCopyOf, parseRuleId, Rule} from "dcc-business-rules-utils"
 import {join} from "path"
 
-import {mkDir, writeJson} from "./file-utils"
-import {groupBy, sortArrayBy} from "./func-utils"
+import {mkDir, writeJson} from "./utils/file-utils"
+import {groupBy, sortArrayBy} from "./utils/func-utils"
 
 
 const allRules: Rule[] = require("../tmp/all-rules.json")

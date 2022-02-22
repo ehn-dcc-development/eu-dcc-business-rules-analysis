@@ -6,9 +6,9 @@ import {
     unanalysable,
     Validity
 } from "./types"
-import {operationDataFrom} from "../tree-walker"
-import {pretty} from "../file-utils"
-import {isOperation, unique} from "./helpers"
+import {isOperation, operationDataFrom} from "../utils/certlogic-utils"
+import {pretty} from "../utils/file-utils"
+import {unique} from "./helpers"
 
 
 const analyseAnd = (analysedOperands: Validity[]): Validity => {

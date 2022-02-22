@@ -1,6 +1,6 @@
-import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "./country-utils"
-import {readJson, writeHtml} from "./file-utils"
-import {groupBy} from "./func-utils"
+import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "./refData/country-utils"
+import {readJson, writeHtml} from "./utils/file-utils"
+import {groupBy} from "./utils/func-utils"
 import {NumberOfRulesPerCountry} from "./serialise-rules"
 
 

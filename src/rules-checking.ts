@@ -6,7 +6,7 @@ import {
     Rule
 } from "dcc-business-rules-utils"
 
-import {couldBeOperation, operationDataFrom, treeFlatMap} from "./tree-walker"
+import {couldBeOperation, operationDataFrom, treeFlatMap} from "./utils/certlogic-utils"
 
 
 const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
@@ -20,7 +20,7 @@ const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
 }
 
 
-const vaccineIds: string[] = require("../src/valueSets.json")["vaccines-covid-19-names"]
+const vaccineIds: string[] = require("../src/refData/valueSets.json")["vaccines-covid-19-names"]
 
 
 const invalidVaccineIdsInComparison = (expr: CertLogicOperation): string[] => {

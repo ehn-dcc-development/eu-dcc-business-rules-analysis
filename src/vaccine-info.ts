@@ -2,11 +2,11 @@ import {CertLogicExpression, evaluate} from "certlogic-js"
 import {Rule} from "dcc-business-rules-utils"
 const deepEqual = require("deep-equal")
 
-import {rle} from "./rle-util"
-import {lowerTriangular, range, groupBy} from "./func-utils"
-import {vaccineIds} from "./vaccine-data"
+import {rle} from "./utils/rle-util"
+import {lowerTriangular, range, groupBy} from "./utils/func-utils"
+import {vaccineIds} from "./refData/vaccine-data"
 
-const valueSets = require("./valueSets.json")
+const valueSets = require("../src/refData/valueSets.json")
 
 
 const inputDataFrom = (mp: string, dt: string, dn: number, sd: number, nowDate: string): any =>

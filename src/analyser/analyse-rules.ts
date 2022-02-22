@@ -3,15 +3,15 @@ import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
 import {evaluateAbstractly} from "../reducer/abstract-interpreter"
 import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
-import {groupBy, mapValues} from "../func-utils"
-import {vaccineIds} from "../vaccine-data"
-import {pretty} from "../file-utils"
+import {pretty} from "../utils/file-utils"
+import {groupBy, mapValues} from "../utils/func-utils"
+import {vaccineIds} from "../refData/vaccine-data"
 import {analyse} from "./analyser"
 import {validityAsText} from "./types"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
-const valueSets = require("../../src/valueSets.json")
+const valueSets = require("../../src/refData/valueSets.json")
 
 const co = "NL"
 

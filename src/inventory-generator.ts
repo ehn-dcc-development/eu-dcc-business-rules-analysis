@@ -1,6 +1,6 @@
-import {countryCode2DisplayName, flagEmoji} from "./country-utils"
-import {lowerTriangular} from "./func-utils"
-import {vaccineIdToDisplayName} from "./vaccine-data"
+import {lowerTriangular} from "./utils/func-utils"
+import {countryCode2DisplayName, flagEmoji} from "./refData/country-utils"
+import {vaccineIdToDisplayName} from "./refData/vaccine-data"
 import {
     ComboInfo,
     isSimpleComboInfo,

@@ -1,6 +1,6 @@
-import {readJson, writeHtml, writeJson} from "./file-utils"
-import {unique} from "./func-utils"
-import {vaccineIds} from "./vaccine-data"
+import {readJson, writeHtml, writeJson} from "./utils/file-utils"
+import {unique} from "./utils/func-utils"
+import {vaccineIds} from "./refData/vaccine-data"
 import {infoAsHtml} from "./vaccine-centric-inventory-generator"
 import {VaccineSpecs} from "./compute-vaccine-info"
 

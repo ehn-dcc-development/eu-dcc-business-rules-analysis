@@ -1,7 +1,7 @@
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
-import {writeJson} from "./file-utils"
-import {groupBy} from "./func-utils"
+import {writeJson} from "./utils/file-utils"
+import {groupBy} from "./utils/func-utils"
 import {VaccineSpec, vaccineSpecsFromRules} from "./vaccine-info"
 
 

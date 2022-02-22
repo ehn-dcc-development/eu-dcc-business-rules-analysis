@@ -1,4 +1,4 @@
-import {readJson, writeHtml} from "./file-utils"
+import {readJson, writeHtml} from "./utils/file-utils"
 
 import {VaccineSpecs} from "./compute-vaccine-info"
 import {infoAsHtml} from "./inventory-generator"

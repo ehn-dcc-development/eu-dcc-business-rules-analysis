@@ -1,4 +1,4 @@
-import {vaccineIds, vaccineIdToDisplayName} from "./vaccine-data"
+import {vaccineIds, vaccineIdToDisplayName} from "./refData/vaccine-data"
 import {VaccineAcceptance} from "./generate-vaccine-centric-inventory"
 
 
