@@ -1,70 +1,42 @@
-import {CertLogicExpression, TimeUnit} from "certlogic-js"
+import {CertLogicExpression, isInt} from "certlogic-js"
 
-import {SimpleComboInfo} from "../vaccine-info"
+import {
+    interval, intervalSide,
+    isIntervalSide, isKnownPlusTime, knownPlusTime, swapSide,
+    unanalysable,
+    Validity
+} from "./types"
+import {operationDataFrom} from "../tree-walker"
+import {pretty} from "../file-utils"
 import {isOperation, unique} from "./helpers"
 
 
-export type RangeEnd = {
-    days: number
-    including: boolean
-    side: "left" | "right"
-}
-
-const invert = ({ days, including, side }: RangeEnd): RangeEnd =>
-    ({
-        days,
-        including: !including,
-        side: side === "left" ? "right" : "left"
-    })
-
-
-export type KnownPlusTime = {
-    varPath: string
-    amount: number
-    unit: TimeUnit
-}
-
-export const extractPlusTimeWithVar = (expr: CertLogicExpression): KnownPlusTime | undefined => {
-    if (!isOperation(expr, "plusTime")) {
-        return undefined
-    }
-    const operands = Object.values(expr)[0]
-    if (!isOperation(operands[0], "var")) {
-        return undefined
-    }
-    return {
-        varPath: Object.values(operands[0])[0] as string,
-        amount: operands[1],
-        unit: operands[2]
-    }
-}
-
-
-export const extractRangeEnd = (expr: CertLogicExpression): RangeEnd[] | undefined => {
-    const [operator, operands] = Object.entries(expr)[0]
-    if (operator === "if") {
-        const guard_ = operands[0]
-        if (operands[1] === true && operands[2] === false) {
-            if (isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
-                return extractRangeEnd(guard_)
-            }
+const analyseAnd = (analysedOperands: Validity[]): Validity => {
+    if (analysedOperands.every(isIntervalSide)) {
+        const intervalSides = unique(analysedOperands)
+            .filter((operand) => operand.days > 0)  // (try to) filter out sides that don't add information
+        switch (intervalSides.length) {
+            case 0: return false
+            case 1: return intervalSides[0]
+            case 2: return interval(intervalSides)  // TODO  check whether both sides are present (in factory method?)
         }
-        return undefined
     }
-    if (!(operator.endsWith("after") || operator.endsWith("before"))) {
-        return undefined
+    return unanalysable({ "and": analysedOperands })
+}
+
+
+const analyseComparison = (operator: string, analysedOperands: Validity[]): Validity => {
+    const unanalysedExpr = unanalysable({ [operator]: analysedOperands })
+    if (!analysedOperands.every(isKnownPlusTime)) {
+        return unanalysedExpr
     }
-    const extractedOperands = (operands as CertLogicExpression[]).map(extractPlusTimeWithVar)
-    if (!extractedOperands.every((extractedOperand) => extractedOperand !== undefined)) {
-        return undefined
-    }
-    if (extractedOperands.length === 2) {
-        const nowIndex = extractedOperands.findIndex((knownPlusTime) => knownPlusTime!.varPath === "external.validationClock")
-        const dtIndex = extractedOperands.findIndex((knownPlusTime) => knownPlusTime!.varPath === "payload.v.0.dt")
+    if (analysedOperands.length === 2) {
+        const nowIndex = analysedOperands.findIndex((knownPlusTime) => knownPlusTime.field === "now")
+        const dtIndex = analysedOperands.findIndex((knownPlusTime) => knownPlusTime.field === "dt")
         if (nowIndex === -1 || dtIndex === -1) {
-            return undefined
+            return unanalysedExpr
         }
-        const days = extractedOperands[dtIndex]!.amount
+        const days = analysedOperands[dtIndex].days
         const including = operator.startsWith("not-")
         let isRight = nowIndex === 0
         if (operator.endsWith("after")) {
@@ -73,113 +45,95 @@ export const extractRangeEnd = (expr: CertLogicExpression): RangeEnd[] | undefin
         if (including) {
             isRight = !isRight
         }
-        return [
-            {
-                days,
-                including,
-                side: isRight ? "right" : "left"
-            }
-        ]
+        return intervalSide(days, including, isRight ? "right" : "left")
     }
-    if (extractedOperands.length === 3 && extractedOperands[1]?.varPath === "external.validationClock" && operator === "not-after") {
-        return [
-            {
-                days: extractedOperands[0]?.amount!,
-                including: true,
-                side: "left"
-            },
-            {
-                days: extractedOperands[2]?.amount!,
-                including: true,
-                side: "right"
-            }
-        ]
+    if (analysedOperands.length === 3) {
+        const splits = [ analyseComparison(operator, analysedOperands.slice(0, 2)), analyseComparison(operator, analysedOperands.slice(1, 3)) ]
+        if (splits.every(isIntervalSide)) {
+            return analyseAnd(splits)
+        }
     }
-    return undefined
+    return unanalysedExpr
 }
 
 
-export const extractRangeEnds = (expr: CertLogicExpression): RangeEnd[] | undefined => {
-    if (expr === true) {
-        return []
+const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else_: CertLogicExpression): Validity => {
+    const unanalysedExpr = unanalysable({ "if": [guard_, then_, else_] })
+    if (then_ === true && else_ === true) {
+        return true
     }
-    if (Array.isArray(expr) || typeof expr !== "object") {
-        return undefined
+    if (then_ === true && else_ === false && isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
+        return analyse(guard_)
     }
-    const [operator, operands] = Object.entries(expr)[0]
-    switch (operator) {
-        case "after":
-        case "before":
-        case "not-after":
-        case "not-before":
-        {
-            const rangeEnd = extractRangeEnd(expr)
-            return rangeEnd === undefined ? undefined : rangeEnd
-        }
-
-        case "and":
-        {
-            return unique(
-                (operands as CertLogicExpression[])
-                    .flatMap(extractRangeEnd)
-                    .filter((rangeEndOrUndef) => rangeEndOrUndef !== undefined)
-                    .map((rangeEnd) => rangeEnd as RangeEnd)
-            )
-            // TODO  sort left to right?
-        }
-
-        case "if":
-        {
-            const guard_ = operands[0]
-            const [innerOperator, _] = Object.entries(guard_)[0]
-            if (operands[1] === false && operands[2] === true) {
-                if (innerOperator === "after") {
-                    const rangeEnd = extractRangeEnd(guard_)
-                    return rangeEnd === undefined ? undefined : rangeEnd.map(invert)
-                }
-            }
-            if (innerOperator === "and" && operands[1] === true && operands[2] === false) {
-                return extractRangeEnds(guard_)
-            }
-            if (operands[1] === true && operands[2] === true) {
-                return []
-            }
-            console.warn(`giving up:`)
-            console.dir(expr)
-            return undefined
-        }
-
-        default:
-        {
-            return undefined
-        }
+    if (then_ === false && else_ === true && isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
+        const analysedGuard = analyse(guard_)
+        return isIntervalSide(analysedGuard) ? swapSide(analysedGuard) : unanalysable({ "!": [analysedGuard] })
     }
+    return unanalysedExpr
 }
 
 
-export const rangeEndsAsText = (rangeEnds: RangeEnd[] | undefined): string => {
-    if (rangeEnds === undefined) {
-        return "x"
+const analysePlusTime = (dateTimeStrExpr: CertLogicExpression, amount: CertLogicExpression, unit: CertLogicExpression): Validity => {
+    if (isOperation(dateTimeStrExpr, "var") && unit === "day") {
+        const varPath = Object.values(dateTimeStrExpr)[0] as string
+        if (varPath === "external.validationClock" && amount === 0) {
+            return knownPlusTime("now", 0)
+        }
+        if (varPath === "payload.v.0.dt") {
+            return knownPlusTime("dt", amount as number)
+        }
     }
-    switch (rangeEnds.length) {
-        case 0: return "0-"
-        case 1: return rangeEnds[0].side === "right" ? `0-${rangeEnds[0].days}` : `${rangeEnds[0].days}-`
-        case 2: return rangeEnds[0].side === "right" ? `${rangeEnds[1].days}-${rangeEnds[0].days}` : `${rangeEnds[0].days}-${rangeEnds[1].days}`
-        default:
-            throw new Error(`unhandled`)
-    }
+    return unanalysable({"plusTime": [dateTimeStrExpr, amount, unit]})
 }
 
-export const rangeEndsAsSimpleComboInfo = (rangeEnds: RangeEnd[] | undefined): SimpleComboInfo => {
-    if (rangeEnds === undefined) {
-        return null
+
+export const analyse = (expr: CertLogicExpression): Validity => {
+
+    if (typeof expr === "boolean") {
+        return expr
     }
-    switch (rangeEnds.length) {
-        case 0: return 0
-        case 1: return rangeEnds[0].side === "right" ? [0, rangeEnds[0].days] : rangeEnds[0].days
-        case 2: return rangeEnds[0].side === "right" ? [rangeEnds[1].days, rangeEnds[0].days] : [rangeEnds[0].days, rangeEnds[1].days]
-        default:
-            throw new Error(`unhandled`)
+
+    if (isInt(expr) || typeof expr === "string" || Array.isArray(expr)) {
+        return unanalysable(expr)
     }
+
+    if (typeof expr === "object") {
+        const [operator, operands] = operationDataFrom(expr)
+        const analysedOperands = () => (operands as CertLogicExpression[]).map(analyse)
+        switch (operator) {
+
+            case "and":
+            {
+                return analyseAnd(analysedOperands())
+            }
+
+            case "after":
+            case "before":
+            case "not-after":
+            case "not-before":
+            {
+                return analyseComparison(operator, analysedOperands())
+            }
+
+            case "if":
+            {
+                return analyseIf(operands[0], operands[1], operands[2])
+            }
+
+            case "plusTime":
+            {
+                return analysePlusTime(operands[0], operands[1], operands[2])
+            }
+
+
+            default:
+            {
+                return unanalysable(expr)
+            }
+
+        }
+    }
+
+    throw new Error(`can't analyse: ${pretty(expr)}`)
 }
 

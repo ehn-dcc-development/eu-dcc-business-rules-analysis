@@ -1,23 +1,19 @@
-import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
 import {evaluateAbstractly} from "../reducer/abstract-interpreter"
-import {Unknown} from "../reducer/abstract-types"
-import {extractRangeEnds, rangeEndsAsText} from "./analyser"
+import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
 import {groupBy, mapValues} from "../func-utils"
 import {vaccineIds} from "../vaccine-data"
 import {pretty} from "../file-utils"
+import {analyse} from "./analyser"
+import {validityAsText} from "./types"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
 const valueSets = require("../../src/valueSets.json")
 
-const co = "FR"
-/*
- * weird:
- *  FR  - incorrect range end derivation
- */
+const co = "NL"
 
 const now = new Date()
 
@@ -69,10 +65,13 @@ const analyseRules = (dn: number, sd: number, mp: string): string => {
         and_(...rules.map((rule) => rule.Logic)),
         makeData(dn, sd, mp)
     )
+    if (!isCertLogicExpression(reducedCertLogicExpr)) {
+        console.warn(`not reducible: ${pretty(reducedCertLogicExpr)}`)
+        return validityAsText(false)
+    }
     // console.log(pretty(reducedCertLogicExpr))
-    const rangeEnds = extractRangeEnds(reducedCertLogicExpr as CertLogicExpression)
-    // console.dir(rangeEnds)
-    return rangeEndsAsText(rangeEnds)
+    const validity = analyse(reducedCertLogicExpr)
+    return validityAsText(validity)
 }
 
 
@@ -82,7 +81,7 @@ console.log(`dn/sd = ${dn}/${sd}`)
 console.dir(
     mapValues(
         groupBy(
-            // [vaccineIds[0]]
+            // [vaccineIds[12]] // (Pfizer)
             vaccineIds
                 .map((vaccineId) => [ vaccineId, analyseRules(dn, sd, vaccineId) ]),
                 // .filter(([ vaccineId, info ]) => info !== "x"),
@@ -91,4 +90,6 @@ console.dir(
         (vs) => vs.map(([ vaccineId, _]) => vaccineId)
     )
 )
+
+// TODO  group by reduced CertLogic expression (over vaccines, then over combos)
 
