@@ -1,4 +1,4 @@
-const {readJson, writeJson} = require("./file-utils")
+import {readJson, writeJson} from "./file-utils"
 
 const uncompressedValueSets = readJson("tmp/valueSets-uncompressed.json")
 const compressedValueSets = Object.fromEntries(

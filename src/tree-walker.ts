@@ -10,7 +10,7 @@ export const operationDataFrom = (expr: CertLogicOperation): [operator: string, 
 }
 
 
-export const couldBeOperation = (expr: CertLogicExpression): boolean =>
+export const couldBeOperation = (expr: CertLogicExpression): expr is CertLogicOperation =>
     typeof expr === "object" && !Array.isArray(expr) && Object.keys(expr).length === 1
 
 

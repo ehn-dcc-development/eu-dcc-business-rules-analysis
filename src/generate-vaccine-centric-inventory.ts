@@ -1,12 +1,18 @@
-const { readJson, writeHtml, writeJson} = require("./file-utils")
-const { unique } = require("./func-utils")
-const { vaccineIds } = require("./vaccine-data")
-const { infoAsHtml } = require("./vaccine-centric-inventory-generator")
+import {readJson, writeHtml, writeJson} from "./file-utils"
+import {unique} from "./func-utils"
+import {vaccineIds} from "./vaccine-data"
+import {infoAsHtml} from "./vaccine-centric-inventory-generator"
+import {VaccineSpecs} from "./compute-vaccine-info"
 
 
-const vaccineInfoPerCountry = readJson("analysis/vaccine-info.json")
+const vaccineInfoPerCountry: VaccineSpecs = readJson("analysis/vaccine-info.json")
 
-const acceptingCountriesPerVaccine = vaccineIds.map((vaccineId) =>
+export type VaccineAcceptance = {
+    vaccineId: string
+    acceptingCountries: string[]
+}
+
+const acceptingCountriesPerVaccine: VaccineAcceptance[] = vaccineIds.map((vaccineId) =>
     ({
         vaccineId,
         acceptingCountries: vaccineInfoPerCountry.filter(({ vaccineSpecs }) =>

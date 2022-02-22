@@ -10,7 +10,7 @@ export const flagEmoji = (country: string) =>
     ))
 
 
-export const countryCode2DisplayName = require("./country-code-to-display-name.json")
+export const countryCode2DisplayName = require("../src/country-code-to-display-name.json")
 
 
 const euMemberStates = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HU", "HR", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK" ]

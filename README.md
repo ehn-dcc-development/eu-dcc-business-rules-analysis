@@ -52,7 +52,7 @@ This requires access to this, currently private, repository, in combination with
     (That's a consequence of the implementation of the API of the EU DCC Gateway.)
 * [`src/`]: All source code for JavaScript/Node.js programs.
 * [`tmp/`]: A Git-ignored directory for storing temporary files, a.o. logs, without committing these.
-* [`build.sh/`]: The main build script that retrieves the latest-uploaded rules, value sets, and kicks off the analysis.
+* [`build.sh`]: The main build script that retrieves the latest-uploaded rules, value sets, and kicks off the analysis.
 
 
 ### Dependencies

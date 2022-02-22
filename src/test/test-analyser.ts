@@ -20,9 +20,8 @@ const dtExpr = (days: number) => plusTime_(var_("payload.v.0.dt"), days, "day")
 describe(`extractPlusTimeWithVar`, () => {
 
     it(`recognises "now"`, () => {
-        const expr = nowExpr
         deepEqual(
-            extractPlusTimeWithVar(expr),
+            extractPlusTimeWithVar(nowExpr),
             {
                 varPath: "external.validationClock",
                 amount: 0,

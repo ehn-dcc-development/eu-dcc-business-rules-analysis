@@ -1,11 +1,12 @@
-const { countryCode2DisplayName, flagEmoji, memberAnnotation } = require("./country-utils")
-const { readJson, writeHtml } = require("./file-utils")
-const { groupBy } = require("./func-utils")
+import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "./country-utils"
+import {readJson, writeHtml} from "./file-utils"
+import {groupBy} from "./func-utils"
+import {NumberOfRulesPerCountry} from "./serialise-rules"
 
 
-const rulesInfoPerCountry = readJson("analysis/n-rules-per-country.json")
+const rulesInfoPerCountry: NumberOfRulesPerCountry[] = readJson("analysis/n-rules-per-country.json")
 
-const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }) =>
+const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }: NumberOfRulesPerCountry) =>
     `<tr>
   <td>${co}</td>
   <td>${flagEmoji(co)}</td>
@@ -17,7 +18,7 @@ const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }) =>
 </tr>
 `
 
-const statusCounts = (info) =>
+const statusCounts = (info: NumberOfRulesPerCountry[]) =>
     Object.entries(
         groupBy(info, ({ co }) => memberAnnotation(co))
     ).map(([ anno, cos ]) =>

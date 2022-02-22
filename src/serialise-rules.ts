@@ -1,18 +1,18 @@
-const { renderAsCompactText } = require("certlogic-js/dist/misc")
-const { normalCopyOf, parseRuleId } = require("dcc-business-rules-utils")
-const { join } = require("path")
+import {renderAsCompactText} from "certlogic-js/dist/misc"
+import {normalCopyOf, parseRuleId, Rule} from "dcc-business-rules-utils"
+import {join} from "path"
 
-const { mkDir, writeJson } = require("./file-utils")
-const { groupBy, sortArrayBy } = require("./func-utils")
+import {mkDir, writeJson} from "./file-utils"
+import {groupBy, sortArrayBy} from "./func-utils"
 
 
-const allRules = require("../tmp/all-rules.json")
+const allRules: Rule[] = require("../tmp/all-rules.json")
 
 
 const rulesPerCountry = groupBy(allRules, (rule) => parseRuleId(rule.Identifier).country)
 
-const normalised = (rule) => {
-    const copy = normalCopyOf(rule)
+const normalised = (rule: Rule): Rule & { "expr-as-text": string } => {
+    const copy: Rule & { "expr-as-text": string } = normalCopyOf(rule) as any
     copy["expr-as-text"] = renderAsCompactText(rule.Logic)
     return copy
 }
@@ -29,6 +29,13 @@ for (const c in rulesPerCountry) {
     })
 }
 
+export type NumberOfRulesPerCountry = {
+    co: string
+    n: number
+    nAcceptance: number
+    nInvalidation: number
+}
+
 writeJson(
     "analysis/n-rules-per-country.json",
     Object.entries(rulesPerCountry)
@@ -40,6 +47,6 @@ writeJson(
                 nAcceptance: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Acceptance").length,
                 nInvalidation: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Invalidation").length
             })
-        })
+        }) as NumberOfRulesPerCountry[]
 )
 

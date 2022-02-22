@@ -1,8 +1,15 @@
-const { normalCopyOf, hasRulesForAllEventTypes, validateRule } = require("dcc-business-rules-utils")
-const { couldBeOperation, operationDataFrom, treeFlatMap } = require("./tree-walker")
+import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
+import {
+    normalCopyOf,
+    hasRulesForAllEventTypes,
+    validateRule,
+    Rule
+} from "dcc-business-rules-utils"
+
+import {couldBeOperation, operationDataFrom, treeFlatMap} from "./tree-walker"
 
 
-const isVaccineIdDataAccess = (expr) => {
+const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
     if (couldBeOperation(expr)) {
         const [operator, values] = operationDataFrom(expr)
         if (operator === "var" && values === "payload.v.0.mp") {
@@ -12,18 +19,30 @@ const isVaccineIdDataAccess = (expr) => {
     return false
 }
 
-const vaccineIds = require("./valueSets.json")["vaccines-covid-19-names"]
 
-const invalidVaccineIdsInComparison = (expr) => {
+const vaccineIds: string[] = require("../src/valueSets.json")["vaccines-covid-19-names"]
+
+
+const invalidVaccineIdsInComparison = (expr: CertLogicOperation): string[] => {
     const [operator, values] = operationDataFrom(expr)
     switch (operator) {
-        case "in": return Array.isArray(values[1]) ? values[1].filter((vaccineId) => vaccineIds.indexOf(vaccineId) === -1) : []
-        case "===": return values.slice(0, 2).filter((operand) => typeof operand === "string" && vaccineIds.indexOf(operand) === -1)
+        case "in": return Array.isArray(values[1])
+            ? values[1].filter((vaccineId) => vaccineIds.indexOf(vaccineId) === -1)
+            : []
+        case "===": return (values as CertLogicExpression[])
+            .slice(0, 2)
+            .filter((operand) =>
+                typeof operand === "string" && vaccineIds.indexOf(operand) === -1
+            )
+            .map((operand) => operand as string)
+        default: {
+            return []
+        }
     }
 }
 
-const validateRuleIncludingWarnings = (rule) => {
-    const emptyArray = []
+const validateRuleIncludingWarnings = (rule: Rule) => {
+    const emptyArray: never[] = []
     treeFlatMap(rule.Logic, (node, ancestors) => {
         if (couldBeOperation(node)) {
             const [operator, values] = operationDataFrom(node)
@@ -48,14 +67,15 @@ const validateRuleIncludingWarnings = (rule) => {
 }
 
 
-const validateRulesOfCountry = (rules, co) => {
+export const validateRulesOfCountry = (rules: Rule[], co: string) => {
     rules.forEach(validateRuleIncludingWarnings)    // --> log
-    const validationErrorsPerInvalidRule = rules.map((rule) => validateRule(normalCopyOf(rule))).filter((result) => result.hasErrors)
+    const validationErrorsPerInvalidRule = rules.map(
+        (rule) => validateRule(normalCopyOf(rule))).filter((result) => result.hasErrors
+    )
     console.log(`#invalids(${co})=${(validationErrorsPerInvalidRule.length)}`)    // --> log
     if (!hasRulesForAllEventTypes(rules)) {
         console.log(`[WARNING] rules of country "${co}" don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`) // --> log
     }
     return validationErrorsPerInvalidRule
 }
-module.exports.validateRulesOfCountry = validateRulesOfCountry
 

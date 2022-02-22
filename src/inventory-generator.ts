@@ -1,12 +1,19 @@
-const { countryCode2DisplayName, flagEmoji } = require("./country-utils")
-const { lowerTriangular} = require("./func-utils")
-const { vaccineIdToDisplayName } = require("./vaccine-data")
+import {countryCode2DisplayName, flagEmoji} from "./country-utils"
+import {lowerTriangular} from "./func-utils"
+import {vaccineIdToDisplayName} from "./vaccine-data"
+import {
+    ComboInfo,
+    isSimpleComboInfo,
+    SimpleComboInfo,
+    VaccineSpec
+} from "./vaccine-info"
+import {VaccineSpecs, VaccineSpecsForCountry} from "./compute-vaccine-info"
 
 
 const redCrossMark = "&#x274c;"
 const redExclamationMark = "&#x2757;"
 
-const comboValueAsUnannotatedText = (comboValue) => {
+const comboValueAsUnannotatedText = (comboValue: SimpleComboInfo) => {
     if (comboValue === null) {
         return redCrossMark
     }
@@ -16,32 +23,31 @@ const comboValueAsUnannotatedText = (comboValue) => {
     return `${comboValue[0]}-${comboValue[1]}`
 }
 
-const comboValueAsText = (comboValue) => {
-    const notTranslationInvariant = comboValue !== null && typeof comboValue === "object" && !Array.isArray(comboValue) && comboValue.$translationInvariant === false
-    const value = notTranslationInvariant
-        ? comboValue.value
-        : comboValue
+const comboValueAsText = (comboValue: ComboInfo) => {
+    const notTranslationInvariant = !isSimpleComboInfo(comboValue) && comboValue.$translationInvariant === false
+    const value: SimpleComboInfo = isSimpleComboInfo(comboValue) ? comboValue : comboValue.value
     return comboValueAsUnannotatedText(value) + (notTranslationInvariant ? redExclamationMark : "")
 }
 
-const comboAsHtml = (comboValue) =>
+const comboAsHtml = (comboValue: ComboInfo) =>
     `<td>${comboValueAsText(comboValue)}</td>`
 
 
 const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)
-const vaccineInfoAsHtml = (vaccineInfo, country) =>
+const vaccineInfoAsHtml = (vaccineSpec: VaccineSpec, country: string) =>
     `<tr><!-- country: ${country} -->
-    <td class="vaccines">${vaccineInfo.vaccineIds.map(vaccineIdToDisplayName).join(", ")}</td>
-${combosShown.map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
+    <td class="vaccines">${vaccineSpec.vaccineIds.map(vaccineIdToDisplayName).join(", ")}</td>
+${combosShown.map((combo) => comboAsHtml(vaccineSpec.combos[combo])).join("\n")}
 </tr>
 `
 
-const countryInfoAsHtml = ({ country, vaccineSpecs }) =>
+const countryInfoAsHtml = ({ country, vaccineSpecs }: VaccineSpecsForCountry) =>
     `<tr>
     <td colspan="${1 + combosShown.length}" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>
 </tr>
 ${vaccineSpecs.map((vaccineSpec) => vaccineInfoAsHtml(vaccineSpec, country)).join("\n")}
 `
+
 
 const theadContents = () =>
     `<tr>
@@ -49,7 +55,8 @@ const theadContents = () =>
 ${combosShown.map((combo) => `  <th>${combo}</th>`).join("\n")}
 </tr>`
 
-const infoAsHtml = (infoPerCountry) =>
+
+export const infoAsHtml = (infoPerCountry: VaccineSpecs) =>
     `<html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -128,5 +135,4 @@ ${theadContents()}
   </body>
 </html>
 `
-module.exports.infoAsHtml = infoAsHtml
 

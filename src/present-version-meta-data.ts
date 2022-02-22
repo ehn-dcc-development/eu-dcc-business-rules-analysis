@@ -1,15 +1,19 @@
-const { readJson, writeHtml } = require("./file-utils")
+import {readJson, writeHtml} from "./file-utils"
+import {
+    RulesVersionMetaDataPerCountry, Versioning
+} from "./serialise-version-meta-data"
+import {Map} from "./func-utils"
 
 
-const rulesVersionMetaData = readJson("analysis/rules-version-meta-data.json")
+const rulesVersionMetaData: RulesVersionMetaDataPerCountry = readJson("analysis/rules-version-meta-data.json")
 
 
-const formatDateTime = (datetime) => {
+const formatDateTime = (datetime: string) => {
     const parts = datetime.split("T")
     return `<span>${parts[0]}</span> <span class="obscure">${parts[1]}</span>`
 }
 
-const tableRow = (ruleId, ruleVersionsMetaData) =>
+const tableRow = (ruleId: string, ruleVersionsMetaData: Versioning) =>
     `<tr>
     <td class="tt">${ruleId}</td>
     <td>${ruleVersionsMetaData.version}</td>
@@ -17,7 +21,7 @@ const tableRow = (ruleId, ruleVersionsMetaData) =>
     <td>${formatDateTime(ruleVersionsMetaData.validTo)}</td>
 </tr>`
 
-const tableSectionFor = (country, rules) =>
+const tableSectionFor = (country: string, rules: Map<Versioning[]>) =>
     `<tr>
     <td colspan="4" class="country">${country}</td>
 </tr>

@@ -1,20 +1,21 @@
-const { vaccineIds, vaccineIdToDisplayName } = require("./vaccine-data")
+import {vaccineIds, vaccineIdToDisplayName} from "./vaccine-data"
+import {VaccineAcceptance} from "./generate-vaccine-centric-inventory"
 
 
-const vaccineInfoAsHtml = (vaccineId, acceptingCountries, countries) =>
+const vaccineInfoAsHtml = (vaccineId: string, acceptingCountries: string[], countries: string[]) =>
     `<tr>
     <td class="vaccine">${vaccineIdToDisplayName(vaccineId)}</td>
 ${countries.map((country) => `<td class="${(acceptingCountries.indexOf(country) > -1 ? "" : "not-") + "accepted"}"></td>`).join("\n")}
 </tr>
 `
 
-const theadContents = (countries) =>
+const theadContents = (countries: string[]) =>
     `<tr>
     <th class="vaccine">Vaccine</th>
 ${countries.map((country) => `  <th class="country">${country}</th>`).join("\n")}
 </tr>`
 
-const infoAsHtml = (acceptingCountriesPerVaccine, countries) =>
+export const infoAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], countries: string[]) =>
     `<html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -70,7 +71,7 @@ ${theadContents(countries)}
         </thead>
         <tbody>
             ${vaccineIds.map((vaccineId) =>
-                vaccineInfoAsHtml(vaccineId, acceptingCountriesPerVaccine.find((info) => info.vaccineId === vaccineId).acceptingCountries, countries)
+                vaccineInfoAsHtml(vaccineId, acceptingCountriesPerVaccine.find((info) => info.vaccineId === vaccineId)!.acceptingCountries, countries)
             ).join("\n")}
         </tbody>
         <tfoot>
@@ -87,5 +88,4 @@ ${theadContents(countries)}
   </body>
 </html>
 `
-module.exports.infoAsHtml = infoAsHtml
 

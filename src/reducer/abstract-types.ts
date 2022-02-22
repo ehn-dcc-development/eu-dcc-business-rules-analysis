@@ -18,7 +18,7 @@ export type CLExtExpr =
 /**
  * Represents an “unknown” value, meaning that it remains undefined during evaluation.
  * This value (instance of this class) can be used in the data
- * to express that e.g. a {@link CLDataAccess} will produce some non-`null`,
+ * to express that e.g. a data access will produce some non-`null`,
  * but otherwise unknown value.
  *
  * (This allows for the addition of e.g. *predicated* unknowns, expressing
