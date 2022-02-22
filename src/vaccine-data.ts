@@ -1,4 +1,4 @@
-const valueSets = require("./valueSets.json")
+const valueSets = require("../src/valueSets.json")
 
 export const vaccineIds: string[] = [...valueSets["vaccines-covid-19-names"]].sort()
 

@@ -10,8 +10,8 @@ import {vaccineIds} from "../vaccine-data"
 import {pretty} from "../file-utils"
 
 
-const allRules = require("../../tmp/all-rules.json")
-const valueSets = require("../valueSets.json")
+const allRules: Rule[] = require("../../tmp/all-rules.json")
+const valueSets = require("../../src/valueSets.json")
 
 const co = "FR"
 /*

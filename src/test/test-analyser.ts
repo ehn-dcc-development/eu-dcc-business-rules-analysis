@@ -10,7 +10,7 @@ import {
 import {
     extractPlusTimeWithVar,
     extractRangeEnd,
-    extractRangeEnds, rangeEndsAsText, unique
+    extractRangeEnds, rangeEndsAsText
 } from "../analyser/analyser"
 
 
@@ -44,13 +44,6 @@ describe(`extractPlusTimeWithVar`, () => {
 
 })
 
-describe(`unique`, () => {
-
-    it(`works`, () => {
-        deepEqual(unique([ 1, 2, 3, 2, 2, 1 ]), [ 1, 2, 3 ])
-    })
-})
-
 
 describe(`extractRangeEnd`, () => {
 
@@ -58,11 +51,13 @@ describe(`extractRangeEnd`, () => {
         const expr = comparison_("not-after", nowExpr, dtExpr(270))
         deepEqual(
             extractRangeEnd(expr),
-            {
-                days: 270,
-                including: true,
-                side: "right"
-            }
+            [
+                {
+                    days: 270,
+                    including: true,
+                    side: "right"
+                }
+            ]
         )
     })
 
@@ -70,11 +65,13 @@ describe(`extractRangeEnd`, () => {
         const expr = comparison_("not-before", nowExpr, dtExpr(7))
         deepEqual(
             extractRangeEnd(expr),
-            {
-                days: 7,
-                including: true,
-                side: "left"
-            }
+            [
+                {
+                    days: 7,
+                    including: true,
+                    side: "left"
+                }
+            ]
         )
     })
 

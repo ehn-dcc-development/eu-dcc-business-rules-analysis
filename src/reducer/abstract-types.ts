@@ -1,5 +1,7 @@
 import {CertLogicExpression} from "certlogic-js"
 
+import {isCertLogicLiteral} from "./helpers"
+
 
 /**
  * The common super type of a type hierarchy that extends CertLogicExpression
@@ -34,5 +36,23 @@ export class CLObjectValue {
     constructor(value: ObjectType) {
         this.value = value
     }
+}
+
+
+export const isCertLogicExpression = (expr: CLExtExpr): expr is CertLogicExpression => {
+    if (expr instanceof CLUnknown || expr instanceof CLObjectValue) {
+        return false
+    }
+    if (isCertLogicLiteral(expr)) {
+        return true
+    }
+    if (Array.isArray(expr)) {
+        return expr.every(isCertLogicExpression)
+    }
+    if (typeof expr === "object") {
+        const operands = Object.values(expr)[0]
+        return typeof operands === "string" || (operands as CLExtExpr[]).every(isCertLogicExpression)
+    }
+    throw new Error(`isCertLogicExpression can't handle CLExtExpr: ${expr}`)
 }
 

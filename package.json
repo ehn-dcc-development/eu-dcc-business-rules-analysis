@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "build": "tsc",
+    "watch-build": "tsc --watch",
+    "unit-test": "mocha --recursive dist/test",
+    "watch-unit-test": "mocha --watch --recursive dist/test"
+  },
   "dependencies": {
     "@types/deep-equal": "^1.0.1",
     "certlogic-js": "^1.1.2",

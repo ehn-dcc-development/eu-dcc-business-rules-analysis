@@ -1,11 +1,7 @@
-import {
-    CertLogicExpression,
-    isCertLogicOperation,
-    TimeUnit
-} from "certlogic-js"
-import deepEqual from "deep-equal"
+import {CertLogicExpression, TimeUnit} from "certlogic-js"
 
 import {SimpleComboInfo} from "../vaccine-info"
+import {isOperation, unique} from "./helpers"
 
 
 export type RangeEnd = {
@@ -20,11 +16,6 @@ const invert = ({ days, including, side }: RangeEnd): RangeEnd =>
         including: !including,
         side: side === "left" ? "right" : "left"
     })
-
-
-export const isOperation = (expr: CertLogicExpression, operator: string | string[]): boolean =>
-        isCertLogicOperation(expr)
-    &&  (typeof operator === "string" ? Object.keys(expr)[0] === operator : operator.indexOf(Object.keys(expr)[0]) > -1)
 
 
 export type KnownPlusTime = {
@@ -106,12 +97,6 @@ export const extractRangeEnd = (expr: CertLogicExpression): RangeEnd[] | undefin
     }
     return undefined
 }
-
-
-export const unique = <T>(things: T[]): T[] =>
-    things.filter((thing, index) =>
-        !things.slice(0, index).some((earlierThing) => deepEqual(thing, earlierThing))
-    )
 
 
 export const extractRangeEnds = (expr: CertLogicExpression): RangeEnd[] | undefined => {
