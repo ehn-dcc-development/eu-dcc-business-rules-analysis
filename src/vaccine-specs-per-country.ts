@@ -18,9 +18,10 @@ const inputDataFrom = (mp: string, dt: string, dn: number, sd: number, nowDate: 
                     mp, dt, dn, sd,
                     tg: valueSets["disease-agent-targeted"][0],
                     ma: valueSets["vaccines-covid-19-auth-holders"][0],
-                    vp: valueSets["sct-vaccines-covid-19"][0]
+                    vp: valueSets["sct-vaccines-covid-19"][0],
                 }
-            ]
+            ],
+            dob: "2000-01-01"   // for LT
         },
         external: {
             valueSets,
@@ -39,6 +40,7 @@ const safeEvaluate = (expr: CertLogicExpression, data: unknown): any => {
         console.log(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
         console.dir(expr)
         console.dir(data)
+        throw new Error(`stop`)
     }
 }
 
@@ -54,13 +56,18 @@ const acceptedByVaccineRules = (rules: Rule[], mp: string, dt: string, dn: numbe
             return true
         }
         const applicableRuleVersion = applicableRuleVersions.reduce((acc, cur) => acc.Version > cur.Version ? acc : cur)
-        const result = safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
-        if (typeof result !== "boolean") {
-            console.warn(`evaluation of rule's logic (on next line) yielded a non-boolean: ${result} - (returning false)`)
-            console.dir(applicableRuleVersion.Logic)
-            return false
+        try {
+            const result = safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+            if (typeof result !== "boolean") {
+                console.warn(`evaluation of rule's logic (on next line) yielded a non-boolean: ${result} - (returning false)`)
+                console.dir(applicableRuleVersion.Logic)
+                return false
+            }
+            return result
+        } catch (e) {
+            console.log(`occurred during evaluation of rule with ID "${applicableRuleVersion.Identifier}" and version ${applicableRuleVersion.Version}`)
+            throw new Error(`stop`)
         }
-        return result
     })
 
 

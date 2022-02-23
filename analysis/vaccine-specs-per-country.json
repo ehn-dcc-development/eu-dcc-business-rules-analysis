@@ -1020,7 +1020,258 @@
   },
   {
     "country": "LT",
-    "vaccineSpecs": []
+    "vaccineSpecs": [
+      {
+        "vaccineIds": [
+          "Abdala",
+          "BBIBP-CorV",
+          "CVnCoV",
+          "Convidecia",
+          "CoronaVac",
+          "Covaxin",
+          "CoviVac",
+          "Covid-19-recombinant",
+          "Covovax",
+          "EU/1/21/1618",
+          "EpiVacCorona",
+          "EpiVacCorona-N",
+          "Hayat-Vax",
+          "Inactivated-SARS-CoV-2-Vero-Cell",
+          "MVC-COV1901",
+          "NVX-CoV2373",
+          "R-COVI",
+          "Sputnik-Light",
+          "Sputnik-M",
+          "Sputnik-V",
+          "VLA2001",
+          "Vidprevtyn",
+          "WIBP-CorV"
+        ],
+        "combos": {
+          "1/1": null,
+          "2/2": null,
+          "2/1": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "3/3": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "3/2": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "3/1": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "4/4": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "4/3": null,
+          "4/2": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "4/1": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "5/5": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "5/4": null,
+          "5/3": null,
+          "5/2": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "5/1": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "6/6": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "6/5": null,
+          "6/4": null,
+          "6/3": null,
+          "6/2": {
+            "$translationInvariant": false,
+            "value": 713
+          },
+          "6/1": {
+            "$translationInvariant": false,
+            "value": 713
+          }
+        }
+      },
+      {
+        "vaccineIds": [
+          "Covishield",
+          "EU/1/20/1507",
+          "EU/1/20/1528"
+        ],
+        "combos": {
+          "1/1": [
+            14,
+            270
+          ],
+          "2/2": [
+            14,
+            270
+          ],
+          "2/1": 0,
+          "3/3": 0,
+          "3/2": 0,
+          "3/1": 0,
+          "4/4": 0,
+          "4/3": [
+            0,
+            270
+          ],
+          "4/2": 0,
+          "4/1": 0,
+          "5/5": 0,
+          "5/4": [
+            0,
+            270
+          ],
+          "5/3": [
+            0,
+            270
+          ],
+          "5/2": 0,
+          "5/1": 0,
+          "6/6": 0,
+          "6/5": [
+            0,
+            270
+          ],
+          "6/4": [
+            0,
+            270
+          ],
+          "6/3": [
+            0,
+            270
+          ],
+          "6/2": 0,
+          "6/1": 0
+        }
+      },
+      {
+        "vaccineIds": [
+          "EU/1/20/1525"
+        ],
+        "combos": {
+          "1/1": [
+            14,
+            270
+          ],
+          "2/2": 0,
+          "2/1": 0,
+          "3/3": [
+            0,
+            270
+          ],
+          "3/2": [
+            0,
+            270
+          ],
+          "3/1": 0,
+          "4/4": [
+            0,
+            270
+          ],
+          "4/3": [
+            0,
+            270
+          ],
+          "4/2": [
+            0,
+            270
+          ],
+          "4/1": 0,
+          "5/5": [
+            0,
+            270
+          ],
+          "5/4": [
+            0,
+            270
+          ],
+          "5/3": [
+            0,
+            270
+          ],
+          "5/2": [
+            0,
+            270
+          ],
+          "5/1": 0,
+          "6/6": [
+            0,
+            270
+          ],
+          "6/5": [
+            0,
+            270
+          ],
+          "6/4": [
+            0,
+            270
+          ],
+          "6/3": [
+            0,
+            270
+          ],
+          "6/2": [
+            0,
+            270
+          ],
+          "6/1": 0
+        }
+      },
+      {
+        "vaccineIds": [
+          "EU/1/21/1529"
+        ],
+        "combos": {
+          "1/1": [
+            14,
+            270
+          ],
+          "2/2": [
+            14,
+            270
+          ],
+          "2/1": 0,
+          "3/3": null,
+          "3/2": null,
+          "3/1": null,
+          "4/4": null,
+          "4/3": null,
+          "4/2": null,
+          "4/1": null,
+          "5/5": null,
+          "5/4": null,
+          "5/3": null,
+          "5/2": null,
+          "5/1": null,
+          "6/6": null,
+          "6/5": null,
+          "6/4": null,
+          "6/3": null,
+          "6/2": null,
+          "6/1": null
+        }
+      }
+    ]
   },
   {
     "country": "LU",
@@ -1293,9 +1544,15 @@
         ],
         "combos": {
           "1/1": 0,
-          "2/2": 0,
+          "2/2": [
+            0,
+            90
+          ],
           "2/1": null,
-          "3/3": 0,
+          "3/3": [
+            0,
+            270
+          ],
           "3/2": null,
           "3/1": null,
           "4/4": 0,
