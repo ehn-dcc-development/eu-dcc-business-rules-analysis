@@ -1,4 +1,3 @@
-import {CertLogicExpression, isCertLogicOperation} from "certlogic-js"
 import deepEqual from "deep-equal"
 
 

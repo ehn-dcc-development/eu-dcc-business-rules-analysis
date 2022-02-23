@@ -1,5 +1,5 @@
-import {vaccineIds, vaccineIdToDisplayName} from "./refData/vaccine-data"
-import {VaccineAcceptance} from "./generate-vaccine-centric-inventory"
+import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"
+import {VaccineAcceptance} from "../json-files"
 
 
 const vaccineInfoAsHtml = (vaccineId: string, acceptingCountries: string[], countries: string[]) =>
@@ -9,17 +9,19 @@ ${countries.map((country) => `<td class="${(acceptingCountries.indexOf(country) 
 </tr>
 `
 
+
 const theadContents = (countries: string[]) =>
     `<tr>
     <th class="vaccine">Vaccine</th>
 ${countries.map((country) => `  <th class="country">${country}</th>`).join("\n")}
 </tr>`
 
-export const infoAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], countries: string[]) =>
+
+export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], countries: string[]) =>
     `<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Vaccination inventory</title>
+    <title>Vaccine-country matrix</title>
     <style>
         body {
             font-family: sans-serif, "Helvetica Neue";
@@ -55,7 +57,7 @@ export const infoAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], co
     </style>
   </head>
   <body>
-    <h1>Vaccine-centric inventory</h1>
+    <h1>Dashboard: Vaccine-country matrix</h1>
     <p>
         Below is a table that details which vaccines are accepted by which country.
         Acceptance might be conditional on waiting periods and maximum validity, but that level of detail is not present here.
@@ -63,7 +65,7 @@ export const infoAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], co
         This algorithm makes a couple of assumptions: when these are violated, the analysis is inaccurate.
     </p>
     <p>
-        Date of generation: <em>${new Date().toISOString()}</em>
+        Date of generation: <em>${new Date().toLocaleDateString()}</em>
     </p>
     <table>
         <thead>
@@ -71,7 +73,13 @@ ${theadContents(countries)}
         </thead>
         <tbody>
             ${vaccineIds.map((vaccineId) =>
-                vaccineInfoAsHtml(vaccineId, acceptingCountriesPerVaccine.find((info) => info.vaccineId === vaccineId)!.acceptingCountries, countries)
+                vaccineInfoAsHtml(
+                    vaccineId,
+                    acceptingCountriesPerVaccine.find((info) =>
+                            info.vaccineId === vaccineId
+                        )!.acceptingCountries,
+                    countries
+                )
             ).join("\n")}
         </tbody>
         <tfoot>

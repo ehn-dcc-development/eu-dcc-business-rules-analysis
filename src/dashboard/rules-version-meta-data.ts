@@ -1,9 +1,6 @@
-import {readJson, writeHtml} from "./utils/file-utils"
-import {Map} from "./utils/func-utils"
-import {RulesVersionMetaDataPerCountry, Versioning} from "./serialise-version-meta-data"
-
-
-const rulesVersionMetaData: RulesVersionMetaDataPerCountry = readJson("analysis/rules-version-meta-data.json")
+import {writeHtml} from "../utils/file-utils"
+import {Map} from "../utils/func-utils"
+import {rulesVersionMetaDataFile, Versioning} from "../json-files"
 
 
 const formatDateTime = (datetime: string) => {
@@ -66,9 +63,12 @@ const html = `<html lang="en">
     </style>
   </head>
   <body>
-    <h1>Rules' version meta data</h1>
+    <h1>Dashboard: rules' version meta data</h1>
     <p>
-      Date of generation: <em>${new Date().toISOString()}</em>
+        The table below lists all rules (of all countries, per country), with per rule <em>ID</em> the (still-relevant) versions, together with their version number and validity range.
+    </p>
+    <p>
+      Date of generation: <em>${new Date().toLocaleDateString()}</em>
     </p>
     <table>
       <thead>
@@ -80,7 +80,7 @@ const html = `<html lang="en">
         </tr>
       </thead>
       <tbody>
-${Object.entries(rulesVersionMetaData)
+${Object.entries(rulesVersionMetaDataFile.contents)
     .map(([ country, rules ]) =>
         tableSectionFor(country, rules)
     ).join("\n")}

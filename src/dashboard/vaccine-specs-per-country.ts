@@ -1,13 +1,13 @@
-import {lowerTriangular} from "./utils/func-utils"
-import {countryCode2DisplayName, flagEmoji} from "./refData/country-utils"
-import {vaccineIdToDisplayName} from "./refData/vaccine-data"
+import {writeHtml} from "../utils/file-utils"
+import {lowerTriangular} from "../utils/func-utils"
+import {countryCode2DisplayName, flagEmoji} from "../refData/country-utils"
+import {vaccineIdToDisplayName} from "../refData/vaccine-data"
 import {
-    ComboInfo,
-    isSimpleComboInfo,
-    SimpleComboInfo,
-    VaccineSpec
-} from "./vaccine-info"
-import {VaccineSpecs, VaccineSpecsForCountry} from "./compute-vaccine-info"
+    ComboInfo, isSimpleComboInfo,
+    SimpleComboInfo, VaccineSpec,
+    VaccineSpecsForCountry,
+    vaccineSpecsPerCountryFile
+} from "../json-files"
 
 
 const redCrossMark = "&#x274c;"
@@ -41,7 +41,7 @@ ${combosShown.map((combo) => comboAsHtml(vaccineSpec.combos[combo])).join("\n")}
 </tr>
 `
 
-const countryInfoAsHtml = ({ country, vaccineSpecs }: VaccineSpecsForCountry) =>
+const vaccineSpecsForCountryAsHtml = ({ country, vaccineSpecs }: VaccineSpecsForCountry) =>
     `<tr>
     <td colspan="${1 + combosShown.length}" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>
 </tr>
@@ -56,11 +56,11 @@ ${combosShown.map((combo) => `  <th>${combo}</th>`).join("\n")}
 </tr>`
 
 
-export const infoAsHtml = (infoPerCountry: VaccineSpecs) =>
+const vaccineSpecsPerCountryAsHtml = (vaccineSpecsPerCountry: VaccineSpecsForCountry[]) =>
     `<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Vaccination inventory</title>
+    <title>Vaccine specs per country</title>
     <style>
         body {
             font-family: sans-serif, "Helvetica Neue";
@@ -95,7 +95,7 @@ export const infoAsHtml = (infoPerCountry: VaccineSpecs) =>
     </style>
   </head>
   <body>
-    <h1>Vaccine inventory</h1>
+    <h1>Dashboard page: vaccine specs per country</h1>
     <p>
         Below is a table that details which country accepts which vaccines, and with what validity period.
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
@@ -104,14 +104,14 @@ export const infoAsHtml = (infoPerCountry: VaccineSpecs) =>
         Where a violation of that assumption is suspected, the corresponding entry is marked with a “${redExclamationMark}”.
     </p>
     <p>
-        Date of generation: <em>${new Date().toISOString()}</em>
+        Date of generation: <em>${new Date().toLocaleDateString()}</em>
     </p>
     <table>
         <thead>
 ${theadContents()}
         </thead>
         <tbody>
-            ${infoPerCountry.map(countryInfoAsHtml).join("\n")}
+            ${vaccineSpecsPerCountry.map(vaccineSpecsForCountryAsHtml).join("\n")}
         </tbody>
         <tfoot>
 ${theadContents()}
@@ -135,4 +135,7 @@ ${theadContents()}
   </body>
 </html>
 `
+
+
+writeHtml("analysis/vaccine-specs-per-country.html", vaccineSpecsPerCountryAsHtml(vaccineSpecsPerCountryFile.contents))
 

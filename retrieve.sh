@@ -12,11 +12,11 @@ curl -X GET --header "Accept: application/json" https://verifier-api.coronacheck
 echo "Downloaded rules."
 
 rm -rf per-country/*
-node dist/serialise-rules.js
+node dist/split-rules-per-country.js
 echo "Split rules up per country."
 
-node dist/generate-dashboard.js
-echo "Generated dashboard."
+node dist/dashboard/rules-statistics.js
+echo "Generated dashboard page: business rules statistics."
 
 rm tmp/*.log
 
@@ -24,6 +24,7 @@ node dist/check-rules.js > tmp/check-rules.log
 echo "Checked (validated) all rules."
 
 node dist/serialise-version-meta-data.js
-node dist/present-version-meta-data.js
-echo "Extracted and presented rules' versions' meta data."
+echo "Serialised rules' versions' meta data."
+node dist/dashboard/rules-version-meta-data.js
+echo "Generated dashboard page: rules' version meta data."
 

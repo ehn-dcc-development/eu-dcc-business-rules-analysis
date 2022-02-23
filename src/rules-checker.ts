@@ -1,13 +1,12 @@
 import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
 import {
-    normalCopyOf,
     hasRulesForAllEventTypes,
     validateRule,
     Rule
 } from "dcc-business-rules-utils"
 
 import {couldBeOperation, operationDataFrom, treeFlatMap} from "./utils/certlogic-utils"
-
+import {vaccineIds} from "./refData/vaccine-data"
 
 const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
     if (couldBeOperation(expr)) {
@@ -18,9 +17,6 @@ const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
     }
     return false
 }
-
-
-const vaccineIds: string[] = require("../src/refData/valueSets.json")["vaccines-covid-19-names"]
 
 
 const invalidVaccineIdsInComparison = (expr: CertLogicOperation): string[] => {
@@ -70,7 +66,7 @@ const validateRuleIncludingWarnings = (rule: Rule) => {
 export const validateRulesOfCountry = (rules: Rule[], co: string) => {
     rules.forEach(validateRuleIncludingWarnings)    // --> log
     const validationErrorsPerInvalidRule = rules.map(
-        (rule) => validateRule(normalCopyOf(rule))).filter((result) => result.hasErrors
+        (rule) => validateRule(rule)).filter((result) => result.hasErrors
     )
     console.log(`#invalids(${co})=${(validationErrorsPerInvalidRule.length)}`)    // --> log
     if (!hasRulesForAllEventTypes(rules)) {

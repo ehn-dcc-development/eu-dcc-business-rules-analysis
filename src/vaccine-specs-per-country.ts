@@ -5,6 +5,7 @@ const deepEqual = require("deep-equal")
 import {rle} from "./utils/rle-util"
 import {lowerTriangular, range, groupBy} from "./utils/func-utils"
 import {vaccineIds} from "./refData/vaccine-data"
+import {ComboInfo, SimpleComboInfo, VaccineSpec} from "./json-files"
 
 const valueSets = require("../src/refData/valueSets.json")
 
@@ -146,16 +147,4 @@ export const vaccineSpecsFromRules = (rules: Rule[], co: string): VaccineSpec[] 
     optimise(
         vaccineIds.map((mp) => specForVaccine(rules, co, mp))
     )
-
-
-export type VaccineSpec = {
-    vaccineIds: string[],
-    combos: { [comboKey: string]: ComboInfo }
-}
-
-export type SimpleComboInfo = null | number | [number, number]
-export const isSimpleComboInfo = (comboInfo: ComboInfo): comboInfo is SimpleComboInfo =>
-    comboInfo === null || typeof comboInfo === "number" || (Array.isArray(comboInfo) && comboInfo.length === 2)
-
-export type ComboInfo = SimpleComboInfo | { $translationInvariant: false, value: SimpleComboInfo }
 

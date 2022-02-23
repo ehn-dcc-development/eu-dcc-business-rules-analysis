@@ -1,17 +1,9 @@
 import {parseRuleId, Rule} from "dcc-business-rules-utils"
 
 import {writeJson} from "./utils/file-utils"
-import {groupBy, Map, mapValues, sortArrayBy, sortMapByKeys} from "./utils/func-utils"
+import {groupBy, mapValues, sortArrayBy, sortMapByKeys} from "./utils/func-utils"
+import {allRulesFile, rulesVersionMetaDataFile, Versioning} from "./json-files"
 
-
-const allRules: Rule[] = require("../tmp/all-rules.json")
-
-
-export type Versioning = {
-    version: string
-    validFrom: string
-    validTo: string
-}
 
 export type RuleMetaData = {
     id: string
@@ -30,14 +22,13 @@ const sortVersions = (rulesMD: RuleMetaData[]) =>
         new Date(ruleMD.validFrom).getTime()
     ).reverse()
 
-const removeId = ({ version, validFrom, validTo }: RuleMetaData): Versioning =>
+const versioningFromMetaData = ({ version, validFrom, validTo }: RuleMetaData): Versioning =>
     ({ version, validFrom, validTo })
 
 
-export type RulesVersionMetaDataPerCountry = Map<Map<Versioning[]>>
 const rulesVersionMetaData = sortMapByKeys(
     mapValues(
-        groupBy(allRules, (rule) => parseRuleId(rule.Identifier).country),  // group rules per country
+        groupBy(allRulesFile.contents, (rule) => parseRuleId(rule.Identifier).country),  // group rules per country
         (rules) => mapValues(
             sortMapByKeys(
                 groupBy(
@@ -45,10 +36,10 @@ const rulesVersionMetaData = sortMapByKeys(
                     (ruleMD) => ruleMD.id
                 )
             ),
-            (ruleVersions) => sortVersions(ruleVersions).map(removeId)
+            (ruleVersions) => sortVersions(ruleVersions).map(versioningFromMetaData)
         )
     )
 )
 
-writeJson("analysis/rules-version-meta-data.json", rulesVersionMetaData)
+writeJson(rulesVersionMetaDataFile.path, rulesVersionMetaData)
 

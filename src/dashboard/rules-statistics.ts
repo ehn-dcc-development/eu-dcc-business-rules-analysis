@@ -1,12 +1,12 @@
-import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "./refData/country-utils"
-import {readJson, writeHtml} from "./utils/file-utils"
-import {groupBy} from "./utils/func-utils"
-import {NumberOfRulesPerCountry} from "./serialise-rules"
+import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "../refData/country-utils"
+import {writeHtml} from "../utils/file-utils"
+import {groupBy} from "../utils/func-utils"
+import {rulesStatisticsFile, RulesStatistics} from "../json-files"
 
 
-const rulesInfoPerCountry: NumberOfRulesPerCountry[] = readJson("analysis/n-rules-per-country.json")
+const rulesStatistics = rulesStatisticsFile.contents
 
-const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }: NumberOfRulesPerCountry) =>
+const perCountryStatisticsAsHtml = ({ co, n, nAcceptance, nInvalidation }: RulesStatistics) =>
     `<tr>
   <td>${co}</td>
   <td>${flagEmoji(co)}</td>
@@ -18,7 +18,7 @@ const countryInfoAsHtml = ({ co, n, nAcceptance, nInvalidation }: NumberOfRulesP
 </tr>
 `
 
-const statusCounts = (info: NumberOfRulesPerCountry[]) =>
+const statusCounts = (info: RulesStatistics[]) =>
     Object.entries(
         groupBy(info, ({ co }) => memberAnnotation(co))
     ).map(([ anno, cos ]) =>
@@ -28,7 +28,7 @@ const statusCounts = (info: NumberOfRulesPerCountry[]) =>
 const html = `<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Dashboard Business Rules</title>
+    <title>Business rules statistics</title>
     <style>
         body {
             font-family: sans-serif, "Helvetica Neue";
@@ -47,13 +47,13 @@ const html = `<html lang="en">
     </style>
   </head>
   <body>
-    <h1>Dashboard Business Rules</h1>
+    <h1>Dashboard: business rules statistics</h1>
     <p>
       Below is a table that details which countries have uploaded business rules to the EU DCC Gateway,
       and how many.
     </p>
     <p>
-      Date of generation: <em>${new Date().toISOString()}</em>
+      Date of generation: <em>${new Date().toLocaleDateString()}</em>
     </p>
     <table>
       <thead>
@@ -68,7 +68,7 @@ const html = `<html lang="en">
         </tr>
       </thead>
       <tbody>
-${rulesInfoPerCountry.map(countryInfoAsHtml).join("\n")}
+${rulesStatistics.map(perCountryStatisticsAsHtml).join("\n")}
       </tbody>
     </table>
     <p>
@@ -82,7 +82,7 @@ ${rulesInfoPerCountry.map(countryInfoAsHtml).join("\n")}
         </tr>
       </thead>
       <tbody>
-${statusCounts(rulesInfoPerCountry).map(({ anno, n }) => `<tr>
+${statusCounts(rulesStatistics).map(({ anno, n }) => `<tr>
   <td>${anno}</td>
   <td class="number">${n}</td>
 </tr>`).join("\n")}
@@ -92,5 +92,5 @@ ${statusCounts(rulesInfoPerCountry).map(({ anno, n }) => `<tr>
 </html>
 `
 
-writeHtml("analysis/dashboard.html", html)
+writeHtml("analysis/rules-statistics.html", html)
 
