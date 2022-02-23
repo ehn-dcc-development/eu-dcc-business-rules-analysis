@@ -1,4 +1,4 @@
-import {CertLogicExpression, evaluate} from "certlogic-js"
+import {evaluate} from "certlogic-js"
 import {Rule} from "dcc-business-rules-utils"
 const deepEqual = require("deep-equal")
 
@@ -22,7 +22,7 @@ const inputDataFrom = (mp: string, dt: string, dn: number, sd: number, nowDate: 
                     vp: valueSets["sct-vaccines-covid-19"][0],
                 }
             ],
-            dob: "2000-01-01"   // for LT
+            dob: "2000-01-01"   // assumption: at least 18 years since now
         },
         external: {
             valueSets,
@@ -30,20 +30,6 @@ const inputDataFrom = (mp: string, dt: string, dn: number, sd: number, nowDate: 
         }
     })
 
-
-const safeEvaluate = (expr: CertLogicExpression, data: unknown): any => {
-    try {
-        return evaluate(expr, data)
-    } catch (e: any) {
-        // to warn on the console:
-        console.error(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
-        // for logging:
-        console.log(`exception thrown during evaluation of CertLogic expression: ${e.message}`)
-        console.dir(expr)
-        console.dir(data)
-        throw new Error(`stop`)
-    }
-}
 
 const acceptedByVaccineRules = (rules: Rule[], mp: string, dt: string, dn: number, sd: number, nowDate: string): boolean =>
     Object.values(
@@ -58,16 +44,17 @@ const acceptedByVaccineRules = (rules: Rule[], mp: string, dt: string, dn: numbe
         }
         const applicableRuleVersion = applicableRuleVersions.reduce((acc, cur) => acc.Version > cur.Version ? acc : cur)
         try {
-            const result = safeEvaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
+            const result = evaluate(applicableRuleVersion.Logic, inputDataFrom(mp, dt, dn, sd, nowDate))
             if (typeof result !== "boolean") {
                 console.warn(`evaluation of rule's logic (on next line) yielded a non-boolean: ${result} - (returning false)`)
                 console.dir(applicableRuleVersion.Logic)
                 return false
             }
             return result
-        } catch (e) {
-            console.log(`occurred during evaluation of rule with ID "${applicableRuleVersion.Identifier}" and version ${applicableRuleVersion.Version}`)
-            throw new Error(`stop`)
+        } catch (e: any) {
+            console.error(`An exception was thrown during evaluation of the rule with ID="${applicableRuleVersion.Identifier}", version=${applicableRuleVersion.Version}.`)
+            console.error(`The data was: mp="${mp}", dt="${dt}", dn/sd=${dn}/${sd}, now=${nowDate}.`)
+            throw e
         }
     })
 
