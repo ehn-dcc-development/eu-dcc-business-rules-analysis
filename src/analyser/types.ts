@@ -1,6 +1,3 @@
-import {pretty} from "../utils/file-utils"
-
-
 export type Unanalysable = {
     $type: "Unanalysable"
     expr: any
@@ -10,6 +7,8 @@ export const unanalysable = (expr: any): Unanalysable =>
         $type: "Unanalysable",
         expr
     })
+export const isUnanalysable = (validity: Validity): validity is Unanalysable =>
+    typeof validity === "object" && validity.$type === "Unanalysable"
 
 
 export type Side = "left" | "right"
@@ -75,9 +74,9 @@ export const validityAsText = (validity: Validity): string => {
     }
     switch (validity.$type) {
         case "Interval": return `${validity.left.days}-${validity.right.days}`
-        case "IntervalSide": return validity.side === "left" ? `${validity.days}-` : `-${validity.days}`
+        case "IntervalSide": return validity.side === "left" ? `${validity.days}-` : `0-${validity.days}`
         case "KnownPlusTime": return `[${validity.field} + ${validity.days} days]`
-        case "Unanalysable": return `unanalysable: ${pretty(validity)}`
+        case "Unanalysable": return `[...unanalysable...]`
     }
 }
 

@@ -15,7 +15,7 @@ export const operationDataFrom = (expr: CertLogicOperation): [operator: string, 
 }
 
 
-export const isOperation = (expr: CertLogicExpression, operator: string | string[]): boolean =>
+export const isOperation = (expr: CertLogicExpression, operator: string | string[]): expr is CertLogicOperation =>
     isCertLogicOperation(expr)
     &&  (typeof operator === "string" ? Object.keys(expr)[0] === operator : operator.indexOf(Object.keys(expr)[0]) > -1)
 

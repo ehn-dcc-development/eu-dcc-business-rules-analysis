@@ -12,13 +12,16 @@ import {unique} from "./helpers"
 
 
 const analyseAnd = (analysedOperands: Validity[]): Validity => {
-    if (analysedOperands.every(isIntervalSide)) {
-        const intervalSides = unique(analysedOperands)
+    const notTrues = analysedOperands.filter((operand) => operand !== true) // skip true values
+    if (notTrues.every(isIntervalSide)) {
+        const intervalSides = unique(notTrues)
             .filter((operand) => operand.days > 0)  // (try to) filter out sides that don't add information
         switch (intervalSides.length) {
             case 0: return false
             case 1: return intervalSides[0]
-            case 2: return interval(intervalSides)  // TODO  check whether both sides are present (in factory method?)
+            case 2: return interval(intervalSides)
+                // TODO  check whether both sides are present (in factory method?)
+                // TODO  consider using a monoidal approach for building the eventual Interval instance
         }
     }
     return unanalysable({ "and": analysedOperands })
@@ -62,7 +65,7 @@ const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else
     if (then_ === true && else_ === true) {
         return true
     }
-    if (then_ === true && else_ === false && isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
+    if (then_ === true && else_ === false && isOperation(guard_, ["after", "before", "not-after", "not-before", "and"])) {  // boolean-valued operations
         return analyse(guard_)
     }
     if (then_ === false && else_ === true && isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
@@ -70,6 +73,21 @@ const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else
         return isIntervalSide(analysedGuard) ? swapSide(analysedGuard) : unanalysable({ "!": [analysedGuard] })
     }
     return unanalysedExpr
+}
+
+
+const analyseNot = (operand: CertLogicExpression): Validity => {
+    if (isOperation(operand, "!")) {
+        const [_, innerOperands] = operationDataFrom(operand)
+        if (isOperation(innerOperands[0], "var")) {
+            const [_, varPath] = operationDataFrom(innerOperands[0])
+            if (varPath === "payload.v.0.dt") {
+                // TODO  this is a bit too specific - can we use Unknown knowledge here, e.g. by already reducing this in the abstract interpreter (knowing that Unknown is !== undefined)?
+                return true
+            }
+        }
+    }
+    return unanalysable({ "!": [operand] })
 }
 
 
@@ -83,7 +101,7 @@ const analysePlusTime = (dateTimeStrExpr: CertLogicExpression, amount: CertLogic
             return knownPlusTime("dt", amount as number)
         }
     }
-    return unanalysable({"plusTime": [dateTimeStrExpr, amount, unit]})
+    return unanalysable({ "plusTime": [dateTimeStrExpr, amount, unit] })
 }
 
 
@@ -118,6 +136,11 @@ export const analyse = (expr: CertLogicExpression): Validity => {
             case "if":
             {
                 return analyseIf(operands[0], operands[1], operands[2])
+            }
+
+            case "!":
+            {
+                return analyseNot(operands[0])
             }
 
             case "plusTime":
