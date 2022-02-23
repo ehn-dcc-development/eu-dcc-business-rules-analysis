@@ -1,4 +1,5 @@
 import {countryCode2DisplayName, flagEmoji, memberAnnotation} from "../refData/country-utils"
+import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {groupBy} from "../utils/func-utils"
 import {rulesStatisticsFile, RulesStatistics} from "../json-files"
@@ -53,7 +54,7 @@ const html = `<html lang="en">
       and how many.
     </p>
     <p>
-      Date of generation: <em>${new Date().toLocaleDateString()}</em>
+      Date of generation: <em>${asISODate(new Date())}</em>
     </p>
     <table>
       <thead>

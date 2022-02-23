@@ -2,8 +2,9 @@ import {CertLogicExpression, evaluate} from "certlogic-js"
 import {Rule} from "dcc-business-rules-utils"
 const deepEqual = require("deep-equal")
 
-import {rle} from "./utils/rle-util"
+import {dateWithOffset} from "./utils/date-utils"
 import {lowerTriangular, range, groupBy} from "./utils/func-utils"
+import {rle} from "./utils/rle-util"
 import {vaccineIds} from "./refData/vaccine-data"
 import {ComboInfo, SimpleComboInfo, VaccineSpec} from "./json-files"
 
@@ -69,13 +70,6 @@ const acceptedByVaccineRules = (rules: Rule[], mp: string, dt: string, dn: numbe
             throw new Error(`stop`)
         }
     })
-
-
-const dateWithOffset = (dateStr: string, nDays: number): string => {
-    const date = new Date(dateStr)
-    date.setUTCDate(date.getUTCDate() + nDays)
-    return date.toISOString().substring(0, "dd-mm-yyyy".length)
-}
 
 
 const infoForCombo = (rules: Rule[], co: string, mp: string, dn: number, sd: number): ComboInfo => {

@@ -1,3 +1,4 @@
+import {asISODate} from "../utils/date-utils"
 import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"
 import {VaccineAcceptance} from "../json-files"
 
@@ -65,7 +66,7 @@ export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine:
         This algorithm makes a couple of assumptions: when these are violated, the analysis is inaccurate.
     </p>
     <p>
-        Date of generation: <em>${new Date().toLocaleDateString()}</em>
+        Date of generation: <em>${asISODate(new Date())}</em>
     </p>
     <table>
         <thead>

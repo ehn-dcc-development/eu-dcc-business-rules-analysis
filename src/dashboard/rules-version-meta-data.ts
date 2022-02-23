@@ -1,3 +1,4 @@
+import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {Map} from "../utils/func-utils"
 import {rulesVersionMetaDataFile, Versioning} from "../json-files"
@@ -68,7 +69,7 @@ const html = `<html lang="en">
         The table below lists all rules (of all countries, per country), with per rule <em>ID</em> the (still-relevant) versions, together with their version number and validity range.
     </p>
     <p>
-      Date of generation: <em>${new Date().toLocaleDateString()}</em>
+      Date of generation: <em>${asISODate(new Date())}</em>
     </p>
     <table>
       <thead>
