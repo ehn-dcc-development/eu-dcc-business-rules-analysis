@@ -78,10 +78,10 @@ export const areEqual = (left: CLExtExpr, right: CLExtExpr): Boolsy => {
         return left.value === (right instanceof CLObjectValue ? right.value : right)
     }
     if (typeof left === "boolean") {
-        return typeof right === "boolean" && left === right
+        return typeof right === "boolean" ? left === right : undefined
     }
     if (isComparable(left)) {
-        return isComparable(right) && left === right
+        return isComparable(right) ? left === right : undefined
     }
     if (Array.isArray(left)) {
         return Array.isArray(right)
@@ -112,8 +112,4 @@ export const compare = (operator: ">" | "<" | ">=" | "<=", left: CLExtExpr, righ
     (isComparable(left) && isComparable(right))
         ? compareFn(operator, left, right)
         : undefined
-
-
-export const boolsyAsCLExpr = (boolsy: Boolsy): CLExtExpr =>
-    boolsy === undefined ? Unknown : boolsy
 

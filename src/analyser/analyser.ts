@@ -122,6 +122,16 @@ export const analyse = (expr: CertLogicExpression): Validity => {
                 return analyseComparison(operator, analysedOperands())
             }
 
+            case "in":
+            {
+                const [l, r] = operands
+                // { "in": [ true, [ <expr> ] ] } -> <expr> if <expr> is boolean-valued
+                if (l === true && Array.isArray(r) && r.length === 1 && isOperation(r[0], ["after", "before", "not-after", "not-before", "and"])) {
+                    return analyse(r[0])
+                }   // TODO  move this reduction to the reducer
+                return unanalysable(expr)
+            }
+
             case "if":
             {
                 return analyseIf(operands[0], operands[1], operands[2])

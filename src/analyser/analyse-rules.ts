@@ -1,80 +1,21 @@
-import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
+import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
-import deepEqual from "deep-equal"
 
 import {evaluateAbstractly} from "../reducer/abstract-interpreter"
-import {
-    CLUnknown,
-    isCertLogicExpression,
-    Unknown
-} from "../reducer/abstract-types"
-import {isCertLogicLiteral} from "../reducer/helpers"
-import {operationDataFrom} from "../utils/certlogic-utils"
+import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
 import {pretty, readJson} from "../utils/file-utils"
 import {groupBy, mapValues, unique} from "../utils/func-utils"
 import {vaccineIds} from "../refData/vaccine-data"
 import {analyse} from "./analyser"
 import {isUnanalysable, validityAsText} from "./types"
+import {makeData, Replacement, replaceSubExpression} from "./helpers"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
-const valueSets = require("../../src/refData/valueSets.json")
-
-
-const makeData = (dn: number, sd: number, mp: string | CLUnknown): any =>
-    ({
-        payload: {
-            v: [
-                {
-                    dn,
-                    sd,
-                    mp,
-                    dt: Unknown,
-                    tg: valueSets["disease-agent-targeted"][0],
-                    ma: valueSets["vaccines-covid-19-auth-holders"][0],
-                    vp: valueSets["sct-vaccines-covid-19"][0]
-                }
-            ],
-            dob: "2000-01-01"   // assumption: at least 18 years since now
-            // TODO  replace with an Unknown with a suitable predicate
-        },
-        external: {
-            validationClock: Unknown,
-            valueSets
-        }
-    })
-
-
-type Replacement = {
-    subExpr: CertLogicExpression
-    replacementExpr: CertLogicExpression
-}
-
-const replaceSubExpression = (rootExpr: CertLogicExpression, replacements: Replacement[]): CertLogicExpression => {
-    const replace = (expr: CertLogicExpression): CertLogicExpression => {
-        const replaceIndex = replacements.findIndex((replacement) => deepEqual(replacement.subExpr, expr))
-        if (replaceIndex !== -1) {
-            return replacements[replaceIndex].replacementExpr
-        }
-        if (isCertLogicLiteral(expr)) {
-            return expr
-        }
-        if (Array.isArray(expr)) {
-            return expr.map(replace)
-        }
-        const [operator, operands] = operationDataFrom(expr)
-        return operator === "var"
-            ? expr
-            : {
-                [operator]: (operands as CertLogicExpression[]).map(replace)
-            } as CertLogicOperation
-    }
-    return replace(rootExpr)
-}
-
 
 const replacementsPerCountry: { [country: string]: Replacement[] } = readJson("src/analyser/replacements.json")
+
 
 // TODO  1st reduce and(...all applicable versions of Acceptance rules...) with only replacements (from file) done
 //  Problem: the result of that is currently not a CertLogic expression, due to some data accesses not reducing to CertLogic expressions.

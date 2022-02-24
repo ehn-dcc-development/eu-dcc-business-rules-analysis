@@ -2,7 +2,6 @@ import {access} from "certlogic-js/dist/internals"
 
 import {
     areEqual,
-    boolsyAsCLExpr,
     compare, extBoolsiness, isCertLogicLiteral,
     isConstant
 } from "./helpers"
@@ -11,12 +10,12 @@ import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
 
 const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: unknown): CLExtExpr => {
     const evalGuard = evaluate(guard, data)
-    const evalThen = evaluate(then, data)
-    const evalElse = evaluate(else_, data)
+    const evalThen = () => evaluate(then, data)
+    const evalElse = () => evaluate(else_, data)
     switch (extBoolsiness(evalGuard)) {
-        case true: return evalThen
-        case false: return evalElse
-        default: return { "if": [evalGuard, evalThen, evalElse] }
+        case true: return evalThen()
+        case false: return evalElse()
+        default: return { "if": [evalGuard, evalThen(), evalElse()] }
     }
     // TODO  many more cases are reducible!
 }
@@ -67,7 +66,8 @@ const evaluateInfix = (operator: string, operands: CLExtExpr[], data: unknown): 
         case ">=":
         case "<=":
         {
-            return boolsyAsCLExpr(compare(operator, evalOperands[0], evalOperands[1]))
+            const result = compare(operator, evalOperands[0], evalOperands[1])
+            return result === undefined ? { [operator]: evalOperands } : result
         }
         case "+":
         {
