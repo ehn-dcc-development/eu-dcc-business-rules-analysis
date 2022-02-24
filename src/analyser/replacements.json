@@ -1,0 +1,124 @@
+{
+  "CH": [
+    {
+      "subExpr": {
+        "!": [
+          {
+            "!": [
+              {
+                "var": "payload.v.0.dt"
+              }
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true
+    }
+  ],
+  "LT": [
+    {
+      "subExpr": {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              18,
+              "year"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true
+    }
+  ],
+  "MT": [
+    {
+      "subExpr": {
+        "after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              6570,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true
+    },
+    {
+      "subExpr": {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              5844,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false
+    }
+  ],
+  "SI": [
+    {
+      "subExpr": {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              18,
+              "year"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false
+    }
+  ]
+}

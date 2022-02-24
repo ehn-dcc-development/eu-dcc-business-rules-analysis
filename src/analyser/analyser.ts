@@ -1,27 +1,30 @@
 import {CertLogicExpression, isInt} from "certlogic-js"
 
 import {
-    interval, intervalSide,
-    isIntervalSide, isKnownPlusTime, knownPlusTime, swapSide,
+    interval,
+    intervalSide,
+    isIntervalSide,
+    isKnownPlusTime,
+    knownPlusTime,
+    swapSide,
     unanalysable,
     Validity
 } from "./types"
 import {isOperation, operationDataFrom} from "../utils/certlogic-utils"
 import {pretty} from "../utils/file-utils"
-import {unique} from "./helpers"
+import {dedup} from "./helpers"
 
 
 const analyseAnd = (analysedOperands: Validity[]): Validity => {
     const notTrues = analysedOperands.filter((operand) => operand !== true) // skip true values
     if (notTrues.every(isIntervalSide)) {
-        const intervalSides = unique(notTrues)
+        const intervalSides = dedup(notTrues)
             .filter((operand) => operand.days > 0)  // (try to) filter out sides that don't add information
         switch (intervalSides.length) {
             case 0: return false
             case 1: return intervalSides[0]
             case 2: return interval(intervalSides)
-                // TODO  check whether both sides are present (in factory method?)
-                // TODO  consider using a monoidal approach for building the eventual Interval instance
+                // TODO  use a monoidal approach for building the eventual Interval instance
         }
     }
     return unanalysable({ "and": analysedOperands })
@@ -76,23 +79,8 @@ const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else
 }
 
 
-const analyseNot = (operand: CertLogicExpression): Validity => {
-    if (isOperation(operand, "!")) {
-        const [_, innerOperands] = operationDataFrom(operand)
-        if (isOperation(innerOperands[0], "var")) {
-            const [_, varPath] = operationDataFrom(innerOperands[0])
-            if (varPath === "payload.v.0.dt") {
-                // TODO  this is a bit too specific - can we use Unknown knowledge here, e.g. by already reducing this in the abstract interpreter (knowing that Unknown is !== undefined)?
-                return true
-            }
-        }
-    }
-    return unanalysable({ "!": [operand] })
-}
-
-
 const analysePlusTime = (dateTimeStrExpr: CertLogicExpression, amount: CertLogicExpression, unit: CertLogicExpression): Validity => {
-    if (isOperation(dateTimeStrExpr, "var") && unit === "day") {
+    if (unit === "day" && isOperation(dateTimeStrExpr, "var")) {
         const varPath = Object.values(dateTimeStrExpr)[0] as string
         if (varPath === "external.validationClock" && amount === 0) {
             return knownPlusTime("now", 0)
@@ -138,16 +126,10 @@ export const analyse = (expr: CertLogicExpression): Validity => {
                 return analyseIf(operands[0], operands[1], operands[2])
             }
 
-            case "!":
-            {
-                return analyseNot(operands[0])
-            }
-
             case "plusTime":
             {
                 return analysePlusTime(operands[0], operands[1], operands[2])
             }
-
 
             default:
             {
