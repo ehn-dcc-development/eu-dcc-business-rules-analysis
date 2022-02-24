@@ -1,6 +1,6 @@
 import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
-import {parseRuleId, Rule} from "dcc-business-rules-utils"
+import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
 import deepEqual from "deep-equal"
 
 import {evaluateAbstractly} from "../reducer/abstract-interpreter"
@@ -134,33 +134,17 @@ const now = new Date()  // use current time to select rule versions
 
 const analyseRules = (co: string, dn: number, sd: number, showDebug: boolean) => {
 
-    const validRuleVersions: Rule[] = (allRules as Rule[])
-        .filter((rule) => {
-            const {country} = parseRuleId(rule.Identifier)
-            return  country === co
-                &&  new Date(rule.ValidFrom) <= now && now < new Date(rule.ValidTo)
-        })
-
-    const applicableRuleVersions: Rule[] =
-        Object.values(
-            mapValues(
-                groupBy(validRuleVersions, (rule) => rule.Identifier),
-                (ruleVersions) => ruleVersions.reduce((acc, cur) => acc.Version > cur.Version ? acc : cur)
-            )
-        )
-            .sort((l, r) => l.Identifier < r.Identifier ? -1 : 1)   // === 0 isn't hit because they're IDs
-
-    // TODO  use selection functionality from dcc-business-rules-utils, once that's properly extracted
+    const applicableRuleVersions_ = applicableRuleVersions(allRules, co, "Acceptance", now)
 
     if (co in replacementsPerCountry) {
         const nReplacements = replacementsPerCountry[co].length
         console.log(`\t! ${nReplacements} replacement${nReplacements === 1 ? "" : "s"} present for co=${co}`)
     }
 
-    console.log(`applicable rule versions: ${applicableRuleVersions.map((rule) => `${rule.Identifier}@${rule.Version}`).join(", ")}`)
+    console.log(`applicable rule versions: ${applicableRuleVersions_.map((rule) => `${rule.Identifier}@${rule.Version}`).join(", ")}`)
 
     console.log(`dn/sd = ${dn}/${sd}`)
-    const preparedCertLogicExpr = applicableRuleVersionsAsExpressionForCombo(applicableRuleVersions, co, dn, sd)
+    const preparedCertLogicExpr = applicableRuleVersionsAsExpressionForCombo(applicableRuleVersions_, co, dn, sd)
     if (showDebug) {
         console.log(pretty(preparedCertLogicExpr))
     }

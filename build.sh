@@ -2,6 +2,9 @@
 
 npm install
 
+rm yarn.lock
+yarn
+
 tsc
 
 source retrieve.sh
