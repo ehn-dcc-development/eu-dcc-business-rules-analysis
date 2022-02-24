@@ -61,7 +61,7 @@ export const extBoolsiness = (expr: CLExtExpr): Boolsy => {
         return boolsiness(expr)
     }
     if (typeof expr === "object") {
-        const [operator, _] = Object.entries(expr)[0]
+        const operator = Object.keys(expr)[0]
         return operator in ["plusTime"] || undefined
     }
 }

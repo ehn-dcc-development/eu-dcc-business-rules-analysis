@@ -15,9 +15,3 @@ const vaccineId2PopularName: { [vaccineId: string]: string } = {
 export const vaccineIdToDisplayName = (vaccineId: string): string =>
     vaccineId2PopularName[vaccineId] || vaccineId
 
-export const vaccineIdToShortDisplayName = (vaccineId: string): string => {
-    const displayName = vaccineIdToDisplayName(vaccineId)
-    const idx = displayName.indexOf(" ")
-    return idx < 1 ? displayName : displayName.substring(0, idx-1)
-}
-

@@ -61,7 +61,7 @@ const vaccineSpecsPerCountryAsHtml = (vaccineSpecsPerCountry: VaccineSpecsForCou
     `<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Vaccine specs per country</title>
+    <title>Vaccine acceptance per country</title>
     <style>
         body {
             font-family: sans-serif, "Helvetica Neue";
@@ -96,7 +96,7 @@ const vaccineSpecsPerCountryAsHtml = (vaccineSpecsPerCountry: VaccineSpecsForCou
     </style>
   </head>
   <body>
-    <h1>Dashboard page: vaccine specs per country</h1>
+    <h1>Dashboard page: vaccine acceptance per country</h1>
     <p>
         Below is a table that details which country accepts which vaccines, and with what validity period.
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
