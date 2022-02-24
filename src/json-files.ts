@@ -49,7 +49,10 @@ export const isSimpleComboInfo = (comboInfo: ComboInfo): comboInfo is SimpleComb
 
 export type ComboInfo = SimpleComboInfo | { $translationInvariant: false, value: SimpleComboInfo }
 
-export type VaccineSpecsForCountry = { country: string; vaccineSpecs: VaccineSpec[] }
+export type VaccineSpecsForCountry = {
+    country: string
+    vaccineSpecs: VaccineSpec[]
+}
 
 export const vaccineSpecsPerCountryFile = new JsonFile<VaccineSpecsForCountry[]>("analysis/vaccine-specs-per-country.json")
 

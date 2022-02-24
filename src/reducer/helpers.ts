@@ -1,5 +1,8 @@
 import {isFalsy, isInt, isTruthy} from "certlogic-js/dist/internals"
+import deepEqual from "deep-equal"
+
 import {CLExtExpr, CLObjectValue, CLUnknown, Unknown} from "./abstract-types"
+import {couldBeOperation} from "../utils/certlogic-utils"
 
 
 /**
@@ -85,7 +88,10 @@ export const areEqual = (left: CLExtExpr, right: CLExtExpr): Boolsy => {
             && left.length === right.length
             && left.every((item, index) => areEqual(item, right[index]))
     }
-    throw new Error(`areEqual can't handle this left CLExtExpr: ${JSON.stringify(left)}`)
+    if (couldBeOperation(left)) {
+        return deepEqual(left, right) || undefined
+    }
+    throw new Error(`areEqual can't handle ${JSON.stringify(left)} === ${JSON.stringify(right)}`)
 }
 
 

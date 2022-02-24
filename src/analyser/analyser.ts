@@ -1,8 +1,8 @@
 import {CertLogicExpression, isInt} from "certlogic-js"
 
 import {
-    interval,
-    intervalSide,
+    combineIntervalWith, from0Interval, Interval,
+    intervalSide, isIntervallistic,
     isIntervalSide,
     isKnownPlusTime,
     knownPlusTime,
@@ -17,14 +17,15 @@ import {dedup} from "./helpers"
 
 const analyseAnd = (analysedOperands: Validity[]): Validity => {
     const notTrues = analysedOperands.filter((operand) => operand !== true) // skip true values
-    if (notTrues.every(isIntervalSide)) {
-        const intervalSides = dedup(notTrues)
-            .filter((operand) => operand.days > 0)  // (try to) filter out sides that don't add information
-        switch (intervalSides.length) {
+    if (notTrues.every(isIntervallistic)) {
+        const intervallistics = dedup(notTrues)
+        switch (intervallistics.length) {
             case 0: return false
-            case 1: return intervalSides[0]
-            case 2: return interval(intervalSides)
-                // TODO  use a monoidal approach for building the eventual Interval instance
+            case 1: return intervallistics[0]
+            case 2: return intervallistics.reduce<Interval>((interval, intervallistic) =>
+                combineIntervalWith(interval, intervallistic),
+                from0Interval
+            )
         }
     }
     return unanalysable({ "and": analysedOperands })
@@ -55,7 +56,7 @@ const analyseComparison = (operator: string, analysedOperands: Validity[]): Vali
     }
     if (analysedOperands.length === 3) {
         const splits = [ analyseComparison(operator, analysedOperands.slice(0, 2)), analyseComparison(operator, analysedOperands.slice(1, 3)) ]
-        if (splits.every(isIntervalSide)) {
+        if (splits.every(isIntervallistic)) {
             return analyseAnd(splits)
         }
     }

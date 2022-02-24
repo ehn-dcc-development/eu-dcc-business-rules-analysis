@@ -33,15 +33,44 @@ export const swapSide = ({ days, including, side }: IntervalSide): IntervalSide 
 
 export type Interval = {
     $type: "Interval"
-    left: IntervalSide
-    right: IntervalSide
+    left?: IntervalSide
+    right?: IntervalSide
 }
-export const interval = (sides: IntervalSide[]): Interval =>
+export const isInterval = (validity: Validity): validity is Interval =>
+    typeof validity === "object" && validity.$type === "Interval"
+export const interval_ = (left?: IntervalSide, right?: IntervalSide): Interval =>
     ({
         $type: "Interval",
-        left: sides[0].side === "left" ? sides[0] : sides[1],
-        right: sides[1].side === "right" ? sides[1] : sides[0]
+        left,
+        right
     })
+export const from0Interval = interval_(intervalSide(0, true, "left"))
+
+
+export type Intervallistic = IntervalSide | Interval
+export const isIntervallistic = (validity: Validity): validity is Intervallistic =>
+    isIntervalSide(validity) || isInterval(validity)
+export const combineIntervalWith = (interval: Interval, intervallistic: Intervallistic): Interval => {
+    if (isIntervalSide(intervallistic)) {
+        switch (intervallistic.side) {
+            case "left":
+                return interval.left === undefined || interval.left.days < intervallistic.days || (interval.left.days === intervallistic.days && interval.left.including)
+                    ? interval_(intervallistic, interval.right)
+                    : interval
+            case "right":
+                return interval.right === undefined || interval.right.days > intervallistic.days || (interval.right.days === intervallistic.days && interval.right.including)
+                    ? interval_(interval.left, intervallistic)
+                    : interval
+        }
+    }
+    if (isInterval(intervallistic)) {
+        const sides = [intervallistic.left, intervallistic.right]
+            .filter((side) => side !== undefined)
+            .map((side) => side as IntervalSide)
+        return sides.reduce(combineIntervalWith, interval)
+    }
+    throw new Error(`unhandled intervallistic value: ${intervallistic}`)
+}
 
 
 export type DateTimeField = "now" | "dt"
@@ -73,7 +102,7 @@ export const validityAsText = (validity: Validity): string => {
         return validity ? "0-" : "x"
     }
     switch (validity.$type) {
-        case "Interval": return `${validity.left.days}-${validity.right.days}`
+        case "Interval": return `${validity.left?.days}-${validity.right === undefined ? "" : validity.right.days}`  // TODO  check: ?. works OK?
         case "IntervalSide": return validity.side === "left" ? `${validity.days}-` : `0-${validity.days}`
         case "KnownPlusTime": return `[${validity.field} + ${validity.days} days]`
         case "Unanalysable": return `[...unanalysable...]`

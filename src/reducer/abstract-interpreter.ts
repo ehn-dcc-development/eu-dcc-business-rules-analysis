@@ -154,6 +154,7 @@ const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
                 return expr
             }
             if (typeof value === "object" && !Array.isArray(value)) {
+                // TODO  recurse into array
                 return new CLObjectValue(value)
             }
             return value
