@@ -8,7 +8,7 @@ import {
     var_
 } from "certlogic-js/dist/factories"
 
-import {analyse} from "../analyser/analyser"
+import {analyse} from "../../analyser/analyser"
 
 
 const nowExpr = plusTime_(var_("external.validationClock"), 0, "day")

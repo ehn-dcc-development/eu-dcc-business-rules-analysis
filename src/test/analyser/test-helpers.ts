@@ -1,6 +1,6 @@
 const {deepEqual} = require("chai").assert
 
-import {dedup} from "../analyser/helpers"
+import {dedup} from "../../analyser/helpers"
 
 
 describe(`unique`, () => {
