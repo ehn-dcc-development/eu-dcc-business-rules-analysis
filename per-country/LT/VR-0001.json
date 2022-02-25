@@ -3,7 +3,7 @@
     "Identifier": "VR-LT-0001",
     "Type": "Acceptance",
     "Country": "LT",
-    "Version": "1.1.0",
+    "Version": "1.2.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "1.0.0",
@@ -18,8 +18,8 @@
         "desc": "Only vaccines in the allowed valueset that have been approved by the EMA are allowed."
       }
     ],
-    "ValidFrom": "2022-02-12T12:00:00Z",
-    "ValidTo": "2024-02-12T00:00:00Z",
+    "ValidFrom": "2022-02-23T12:00:00Z",
+    "ValidTo": "2023-07-04T00:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.mp"
@@ -39,13 +39,14 @@
               "EU/1/20/1507",
               "EU/1/21/1529",
               "EU/1/20/1525",
-              "Covishield"
+              "Covishield",
+              "EU/1/21/1618"
             ]
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\" ])) else (true)"
+    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"EU/1/21/1618\" ])) else (true)"
   }
 ]

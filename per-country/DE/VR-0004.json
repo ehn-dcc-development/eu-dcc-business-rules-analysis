@@ -3,7 +3,7 @@
     "Identifier": "VR-DE-0004",
     "Type": "Acceptance",
     "Country": "DE",
-    "Version": "1.0.0",
+    "Version": "1.0.3",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -11,30 +11,32 @@
     "Description": [
       {
         "lang": "en",
-        "desc": "The vaccine must have been administered no longer than one year ago."
+        "desc": "The primary vaccination may have been completed 270 days ago at most. Booster vaccinations are valid for an unlimited period."
       },
       {
         "lang": "de",
-        "desc": "Seit der Impfung darf maximal ein Jahr vergangen sein."
+        "desc": "Seit dem Abschluss der Grundimmunisierung dürfen maximal 270 Tage vergangen sein. Eine Auffrischimpfung ist unbegrenzt gültig."
       },
       {
         "lang": "fr",
-        "desc": "La vaccination ne doit pas dater de plus d’un an."
+        "desc": "Un maximum de 270 jours doit s'être écoulé depuis l'achèvement du schéma de primovaccination. La durée de validité d'une vaccination de rappel est illimitée."
       },
       {
         "lang": "es",
-        "desc": "Debe haber transcurrido como máximo un año desde la vacuna."
+        "desc": "Puede transcurrir un máximo de 270 días una vez finalizada la inmunización de base. La vacuna de refuerzo tiene una validez indefinida."
       },
       {
         "lang": "it",
-        "desc": "La vaccinazione non può risalire a più di 365 giorni fa."
+        "desc": "Dalla conclusione del ciclo vaccinale primario può essere trascorso un massimo di 270 giorni. La dose di richiamo ha validità illimitata."
       }
     ],
-    "ValidFrom": "2021-07-03T00:00:00Z",
+    "ValidFrom": "2022-02-24T17:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
-      "v.0.dt"
+      "v.0.dt",
+      "v.0.sd",
+      "v.0.dn"
     ],
     "Logic": {
       "if": [
@@ -42,23 +44,51 @@
           "var": "payload.v.0"
         },
         {
-          "not-after": [
+          "if": [
             {
-              "plusTime": [
+              "not-after": [
                 {
-                  "var": "external.validationClock"
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
                 },
-                0,
-                "day"
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    270,
+                    "day"
+                  ]
+                }
               ]
             },
+            true,
             {
-              "plusTime": [
+              "if": [
                 {
-                  "var": "payload.v.0.dt"
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
                 },
-                365,
-                "day"
+                true,
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                }
               ]
             }
           ]
@@ -66,6 +96,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days)) then (true) else (if ((/payload.v.0.dn) > (2)) then (true) else ((/payload.v.0.dn) > (/payload.v.0.sd)))) else (true)"
   }
 ]

@@ -55,8 +55,8 @@
   },
   {
     "co": "LT",
-    "n": 16,
-    "nAcceptance": 16,
+    "n": 15,
+    "nAcceptance": 15,
     "nInvalidation": 0
   },
   {
@@ -79,8 +79,8 @@
   },
   {
     "co": "MT",
-    "n": 9,
-    "nAcceptance": 9,
+    "n": 10,
+    "nAcceptance": 10,
     "nInvalidation": 0
   },
   {
