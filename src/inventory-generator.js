@@ -29,8 +29,8 @@ const comboAsHtml = (comboValue) =>
 
 
 const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)
-const vaccineInfoAsHtml = (vaccineInfo) =>
-    `<tr>
+const vaccineInfoAsHtml = (vaccineInfo, country) =>
+    `<tr><!-- country: ${country} -->
     <td class="vaccines">${vaccineInfo.vaccineIds.map(vaccineIdToDisplayName).join(", ")}</td>
 ${combosShown.map((combo) => comboAsHtml(vaccineInfo.combos[combo])).join("\n")}
 </tr>
@@ -40,7 +40,7 @@ const countryInfoAsHtml = ({ country, vaccineSpecs }) =>
     `<tr>
     <td colspan="${1 + combosShown.length}" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>
 </tr>
-${vaccineSpecs.map(vaccineInfoAsHtml).join("\n")}
+${vaccineSpecs.map((vaccineSpec) => vaccineInfoAsHtml(vaccineSpec, country)).join("\n")}
 `
 
 const theadContents = () =>
