@@ -4,8 +4,8 @@ import {lowerTriangular} from "../utils/func-utils"
 import {countryCode2DisplayName, flagEmoji} from "../refData/country-utils"
 import {vaccineIdToDisplayName} from "../refData/vaccine-data"
 import {
-    ComboInfo, isSimpleComboInfo,
-    SimpleComboInfo, VaccineSpec,
+    ComboInfo,
+    VaccineSpec,
     VaccineSpecsForCountry,
     vaccineSpecsPerCountryFile
 } from "../json-files"
@@ -14,7 +14,7 @@ import {
 const redCrossMark = "&#x274c;"
 const redExclamationMark = "&#x2757;"
 
-const comboValueAsUnannotatedText = (comboValue: SimpleComboInfo) => {
+const comboValueAsUnannotatedText = (comboValue: ComboInfo) => {
     if (comboValue === null) {
         return redCrossMark
     }
@@ -24,14 +24,8 @@ const comboValueAsUnannotatedText = (comboValue: SimpleComboInfo) => {
     return `${comboValue[0]}-${comboValue[1]}`
 }
 
-const comboValueAsText = (comboValue: ComboInfo) => {
-    const notTranslationInvariant = !isSimpleComboInfo(comboValue) && comboValue.$translationInvariant === false
-    const value: SimpleComboInfo = isSimpleComboInfo(comboValue) ? comboValue : comboValue.value
-    return comboValueAsUnannotatedText(value) + (notTranslationInvariant ? redExclamationMark : "")
-}
-
 const comboAsHtml = (comboValue: ComboInfo) =>
-    `<td>${comboValueAsText(comboValue)}</td>`
+    `<td>${(comboValueAsUnannotatedText(comboValue))}</td>`
 
 
 const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)

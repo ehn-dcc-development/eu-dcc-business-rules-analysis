@@ -1,29 +1,24 @@
-import {parseRuleId} from "dcc-business-rules-utils"
-
 import {writeJson} from "./utils/file-utils"
-import {groupBy} from "./utils/func-utils"
-import {vaccineSpecsFromRules} from "./vaccine-specs-per-country"
+import {unique} from "./utils/func-utils"
 import {allRulesFile, VaccineSpecsForCountry, vaccineSpecsPerCountryFile} from "./json-files"
+import {vaccineSpecsFromRules} from "./vaccine-specs-per-country"
 
-
-const vaccineRulesPerCountry =
-    groupBy(
-        allRulesFile.contents
-            .filter((rule) => parseRuleId(rule.Identifier).type === "VR"),
-                // TODO  don't select on type (as it can be inaccurate) when using partial evaluation
-                //          (since true non-V-rules should evaluate rather trivially to true)
-        (rule) => parseRuleId(rule.Identifier).country
-    )
 
 const nowInMs = () => new Date().getTime()
 const startTime = nowInMs()
 
+
+const allRules = allRulesFile.contents
+
+const countries = unique(allRules.map((rule) => rule.Country))
+
 const vaccineSpecsPerCountry: VaccineSpecsForCountry[] =
-    Object.entries(vaccineRulesPerCountry)
-        .map(([ country, rules ]) => ({
+    countries.map((country) =>
+        ({
             country,
-            vaccineSpecs: vaccineSpecsFromRules(rules, country)
+            vaccineSpecs: vaccineSpecsFromRules(allRulesFile.contents, country)
         }))
+
 
 const elapsedInMs = nowInMs() - startTime
 console.log(`Computing vaccine info took ${Math.floor(elapsedInMs/1000)}s.${elapsedInMs%1000}ms.`)

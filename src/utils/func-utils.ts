@@ -64,9 +64,3 @@ export const sortMapByKeys = <V>(map: Map<V>): Map<V> =>
 export const unique = <T>(things: T[]): T[] =>
     [...new Set(things)]
 
-
-export const tapLog = <T>(t: T) => {
-    console.log(JSON.stringify(t, null, 2))
-    return t
-}
-

@@ -1,7 +1,7 @@
 import {isFalsy, isInt, isTruthy} from "certlogic-js/dist/internals"
 import deepEqual from "deep-equal"
 
-import {CLExtExpr, CLObjectValue, CLUnknown, Unknown} from "./abstract-types"
+import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
 import {couldBeOperation} from "../utils/certlogic-utils"
 
 

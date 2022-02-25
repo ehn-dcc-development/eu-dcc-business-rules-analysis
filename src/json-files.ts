@@ -43,11 +43,7 @@ export type VaccineSpec = {
     combos: { [comboKey: string]: ComboInfo }
 }
 
-export type SimpleComboInfo = null | number | [number, number]
-export const isSimpleComboInfo = (comboInfo: ComboInfo): comboInfo is SimpleComboInfo =>
-    comboInfo === null || typeof comboInfo === "number" || (Array.isArray(comboInfo) && comboInfo.length === 2)
-
-export type ComboInfo = SimpleComboInfo | { $translationInvariant: false, value: SimpleComboInfo }
+export type ComboInfo = null | number | [number, number]
 
 export type VaccineSpecsForCountry = {
     country: string

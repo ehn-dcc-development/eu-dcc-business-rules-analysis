@@ -4,9 +4,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -18,13 +18,13 @@
       "EE",
       "ES",
       "IE",
-      "LT",
       "LV",
       "ME",
       "NL",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -32,10 +32,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
       "SI",
+      "TG",
       "UA"
     ]
   },
@@ -44,10 +44,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -59,13 +59,13 @@
       "EE",
       "ES",
       "IE",
-      "LT",
       "LV",
       "ME",
       "NL",
       "RO",
       "RS",
       "SI",
+      "TG",
       "UA"
     ]
   },
@@ -77,12 +77,12 @@
       "EE",
       "ES",
       "IE",
-      "LT",
       "LV",
       "NL",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -90,10 +90,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -102,11 +102,11 @@
       "AL",
       "CH",
       "EE",
-      "LT",
       "LU",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -126,6 +126,7 @@
       "RO",
       "RS",
       "SI",
+      "TG",
       "UA"
     ]
   },
@@ -135,9 +136,9 @@
       "AL",
       "EE",
       "ES",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -163,6 +164,7 @@
       "RS",
       "SI",
       "SK",
+      "TG",
       "UA"
     ]
   },
@@ -189,6 +191,7 @@
       "RS",
       "SI",
       "SK",
+      "TG",
       "UA"
     ]
   },
@@ -215,6 +218,7 @@
       "RS",
       "SI",
       "SK",
+      "TG",
       "UA"
     ]
   },
@@ -241,6 +245,7 @@
       "RS",
       "SI",
       "SK",
+      "TG",
       "UA"
     ]
   },
@@ -249,6 +254,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "DE",
       "EE",
       "ES",
       "IE",
@@ -257,7 +263,8 @@
       "NL",
       "RO",
       "SI",
-      "SK"
+      "SK",
+      "TG"
     ]
   },
   {
@@ -265,10 +272,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -276,9 +283,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -286,10 +293,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -298,11 +305,11 @@
       "AL",
       "EE",
       "ES",
-      "LT",
       "ME",
       "RO",
       "RS",
       "SI",
+      "TG",
       "UA"
     ]
   },
@@ -311,9 +318,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -323,12 +330,12 @@
       "CH",
       "EE",
       "IE",
-      "LT",
       "LU",
       "LV",
       "NL",
       "RO",
       "SI",
+      "TG",
       "UA"
     ]
   },
@@ -339,11 +346,11 @@
       "CH",
       "EE",
       "FR",
-      "LT",
       "LU",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -351,10 +358,10 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
       "RS",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -362,9 +369,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -372,12 +379,12 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "ME",
       "RO",
       "RS",
       "SI",
-      "SK"
+      "SK",
+      "TG"
     ]
   },
   {
@@ -385,9 +392,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -395,9 +402,9 @@
     "acceptingCountries": [
       "AL",
       "EE",
-      "LT",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   },
   {
@@ -406,10 +413,10 @@
       "AL",
       "EE",
       "ES",
-      "LT",
       "ME",
       "RO",
-      "SI"
+      "SI",
+      "TG"
     ]
   }
 ]
