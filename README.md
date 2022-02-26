@@ -27,15 +27,16 @@ This produces several JSON files, and two standalone HTML files in the `analysis
 
 * [An inventory of what countries accept which vaccines, including waiting time and validity](./analysis/vaccine-inventory.html)
 * [A dashboard detailing which countries have uploaded how many business rules](./analysis/dashboard.html)
-* [An overview of which rule versions are <em>currently</em> available](./analysis/rules-version-meta-data.html), including their validity range
+* [An overview of which rule versions are <em>currently</em> available](./analysis/rules-version-metadata.html), including their validity range
 
 These analysis files are persisted in this repository to be able to easily track changes to the business rules over time.
 That also makes it easy to look at the analysis without needing to clone this repository, and trigger the analysis.
 You can do this from the command-line as follows:
 
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-inventory.html?TOKEN=..." > vaccine-inventory.html
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/dashboard.html?TOKEN=..." > dashboard.html
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-version-meta-data.html?TOKEN=..." > dashboard.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-statistics.html?TOKEN=..." > rules-statistics.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-version-metadata.html?TOKEN=..." > dashboard.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-country-matrix.html?TOKEN=..." > vaccine-country-matrix.html
+    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-specs-per-country.html?TOKEN=..." > vaccine-specs-per-country.html
 
 This requires access to this, currently private, repository, in combination with a GitHub token.
 

@@ -1,8 +1,14 @@
+import {gt} from "semver"
+
 import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {Map} from "../utils/func-utils"
 import {rulesVersionMetaDataFile, Versioning} from "../json-files"
 
+
+const referenceTimestamp = new Date()
+const inFutureClassName = (dateStr: string): string =>
+    new Date(dateStr) > referenceTimestamp ? `class="in-future"` : ""
 
 const formatDateTime = (datetime: string) => {
     const parts = datetime.split("T")
@@ -13,21 +19,40 @@ const tableRow = (ruleId: string, ruleVersionsMetaData: Versioning) =>
     `<tr>
     <td class="tt">${ruleId}</td>
     <td>${ruleVersionsMetaData.version}</td>
-    <td>${formatDateTime(ruleVersionsMetaData.validFrom)}</td>
+    <td ${inFutureClassName(ruleVersionsMetaData.validFrom)}>${formatDateTime(ruleVersionsMetaData.validFrom)}</td>
     <td>${formatDateTime(ruleVersionsMetaData.validTo)}</td>
 </tr>`
 
-const tableSectionFor = (country: string, rules: Map<Versioning[]>) =>
-    `<tr>
+
+const latestVersionOf = (versions: Versioning[]): Versioning =>
+    versions.reduce((acc, curr) => gt(acc.version, curr.version) ? acc : curr)
+
+const latest = (dates: string[]): string =>
+    dates.reduce((l, r) => new Date(l) > new Date(r) ? l : r, "1970-01-01")
+
+const earliest = (dates: string[]): string =>
+    dates.reduce((l, r) => new Date(l) < new Date(r) ? l : r, "2040-01-01")
+
+
+const tableSectionFor = (country: string, versionsPerRule: Map<Versioning[]>) => {
+    const latestValidFrom = latest(Object.values(versionsPerRule).map(latestVersionOf).map((versioning) => versioning.validFrom))
+    const earliestValidTo = earliest(Object.values(versionsPerRule).map(latestVersionOf).map((versioning) => versioning.validTo))
+    return `<tr>
     <td colspan="4" class="country">${country}</td>
 </tr>
-${Object.entries(rules)
-        .flatMap(([ ruleId, ruleVersions ]) =>
+<tr>
+    <td colspan="2"></td>
+    <td ${inFutureClassName(latestValidFrom)}>${formatDateTime(latestValidFrom)}</td>
+    <td>${formatDateTime(earliestValidTo)}</td>
+</tr>
+${Object.entries(versionsPerRule)
+        .flatMap(([ruleId, ruleVersions]) =>
             ruleVersions.map((ruleVersion, index) =>
                 tableRow(index === 0 ? ruleId : "", ruleVersion)
             )
         ).join("\n")}
 `
+}
 
 const html = `<html lang="en">
   <head>
@@ -61,6 +86,9 @@ const html = `<html lang="en">
             font-size: 8pt;
             color: lightgrey;
         }
+        td.in-future {
+            background-color: rgb(245, 110, 110);
+        }
     </style>
   </head>
   <body>
@@ -92,5 +120,5 @@ ${Object.entries(rulesVersionMetaDataFile.contents)
 `
 
 
-writeHtml("analysis/rules-version-meta-data.html", html)
+writeHtml("analysis/rules-version-metadata.html", html)
 

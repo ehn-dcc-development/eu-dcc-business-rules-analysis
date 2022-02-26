@@ -35,7 +35,7 @@ export type Versioning = {
     validTo: string
 }
 
-export const rulesVersionMetaDataFile = new JsonFile<Map<Map<Versioning[]>>>("analysis/rules-version-meta-data.json")
+export const rulesVersionMetaDataFile = new JsonFile<Map<Map<Versioning[]>>>("analysis/rules-version-metadata.json")
 
 
 export type VaccineSpec = {

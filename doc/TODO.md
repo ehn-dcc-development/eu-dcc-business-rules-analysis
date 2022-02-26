@@ -38,3 +38,6 @@
 
 * [&#10003;] Show some totals in rules' statistics.
 
+* [&#10003;] Show latest `ValidFrom` in rules' version metadata.
+  * [&#10003;] Rename to “metadata” rather than “meta data”.
+

@@ -23,8 +23,8 @@ rm tmp/*.log
 node dist/check-rules.js > tmp/check-rules.log
 echo "Checked (validated) all rules."
 
-node dist/serialise-version-meta-data.js
-echo "Serialised rules' versions' meta data."
-node dist/dashboard/rules-version-meta-data.js
-echo "Generated dashboard page: rules' version meta data."
+node dist/serialise-version-metadata.js
+echo "Serialised rules' versions' metadata."
+node dist/dashboard/rules-version-metadata.js
+echo "Generated dashboard page: rules' version metadata."
 
