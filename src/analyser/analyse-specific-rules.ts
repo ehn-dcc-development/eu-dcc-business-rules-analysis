@@ -3,10 +3,10 @@ import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
 
 import {evaluateAbstractly} from "../reducer/abstract-interpreter"
 import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
-import {makeData, Replacement, replaceSubExpression} from "./helpers"
+import {inputDataFor, Replacement, replaceSubExpression} from "./helpers"
 import {pretty, readJson} from "../utils/file-utils"
 import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"
-import {analyse} from "./analyser";
+import {analyse} from "./analyser"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
@@ -24,7 +24,7 @@ const analyseRule = (rule: Rule): void => {
     const afterReplacements = co in replacementsPerCountry
         ? replaceSubExpression(rule.Logic, replacementsPerCountry[co])
         : rule.Logic
-    const reducedCertLogicExpr = evaluateAbstractly(afterReplacements, makeData(Unknown, Unknown, vaccineId))
+    const reducedCertLogicExpr = evaluateAbstractly(afterReplacements, inputDataFor(Unknown, Unknown, vaccineId))
     if (reducedCertLogicExpr !== true) {
         console.log(`rule ID=${rule.Identifier}`)
         console.log(`reduced CertLogic expression:`)

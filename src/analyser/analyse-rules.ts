@@ -9,7 +9,7 @@ import {groupBy, mapValues, unique} from "../utils/func-utils"
 import {vaccineIds} from "../refData/vaccine-data"
 import {analyse} from "./analyser"
 import {isUnanalysable, validityAsText} from "./types"
-import {makeData, Replacement, replaceSubExpression} from "./helpers"
+import {inputDataFor, Replacement, replaceSubExpression} from "./helpers"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
@@ -27,7 +27,7 @@ const applicableRuleVersionsAsExpressionForCombo = (applicableRuleVersions: Rule
         co in replacementsPerCountry
             ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
             : andCertLogicExpr,
-        makeData(dn, sd, Unknown)
+        inputDataFor(dn, sd, Unknown)
     )
     if (!isCertLogicExpression(reducedCertLogicExpr)) {
         console.error(`not reducible: ${pretty(reducedCertLogicExpr)}`)
@@ -38,7 +38,7 @@ const applicableRuleVersionsAsExpressionForCombo = (applicableRuleVersions: Rule
 
 
 const validityFor = (co: string, dn: number, sd: number, mp: string, preparedCertLogicExpr: CertLogicExpression, showDebug: boolean): string => {
-    const reducedCertLogicExpr = evaluateAbstractly(preparedCertLogicExpr, makeData(dn, sd, mp))
+    const reducedCertLogicExpr = evaluateAbstractly(preparedCertLogicExpr, inputDataFor(dn, sd, mp))
     if (!isCertLogicExpression(reducedCertLogicExpr)) {
         console.error(`not reducible: ${pretty(reducedCertLogicExpr)}`)
         throw new Error(`Acceptance rules didn't reduce to a CertLogic expression with dn/sd=${dn}/${sd} and mp="${mp}"`)
@@ -51,7 +51,9 @@ const validityFor = (co: string, dn: number, sd: number, mp: string, preparedCer
     }
     if (showDebug) {
         console.log(`co="${co}", mp="${mp}", dn/sd=${dn}/${sd}:`)
+        console.log(`reduced CertLogic expression:`)
         console.log(pretty(reducedCertLogicExpr))
+        console.log(`analysed validity:`)
         console.log(pretty(validity))
     }
     return validityAsText(validity)
@@ -87,6 +89,7 @@ const analyseRules = (co: string, dn: number, sd: number, showDebug: boolean) =>
     console.log(`dn/sd = ${dn}/${sd}`)
     const preparedCertLogicExpr = applicableRuleVersionsAsExpressionForCombo(applicableRuleVersions_, co, dn, sd)
     if (showDebug) {
+        console.log(`prepared CertLogic expression for co=${co}, and dn/sd=${dn}/${sd}:`)
         console.log(pretty(preparedCertLogicExpr))
     }
     console.dir(analyseRulesOverVaccines(co, dn, sd, preparedCertLogicExpr, showDebug))

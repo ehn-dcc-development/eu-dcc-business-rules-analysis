@@ -14,7 +14,7 @@ export const dedup = <T>(things: T[]): T[] =>
 
 const valueSets = require("../../src/refData/valueSets.json")
 
-export const makeData = (dn: number | CLUnknown, sd: number | CLUnknown, mp: string | CLUnknown): any =>
+export const inputDataFor = (dn: number | CLUnknown, sd: number | CLUnknown, mp: string | CLUnknown): any =>
     ({
         payload: {
             v: [

@@ -5,7 +5,7 @@ import {lowerTriangular} from "./utils/func-utils"
 import {vaccineIds} from "./refData/vaccine-data"
 import {ComboInfo, VaccineSpec} from "./json-files"
 import {
-    makeData,
+    inputDataFor,
     Replacement,
     replaceSubExpression
 } from "./analyser/helpers"
@@ -17,16 +17,22 @@ import {analyse} from "./analyser/analyser"
 import {isUnanalysable, validityAsCombo} from "./analyser/types"
 
 
+
+const validationClock = new Date("2022-03-01T13:37:00Z")
+
+
 const replacementsPerCountry: { [country: string]: Replacement[] } = readJson("src/analyser/replacements.json")
 
 const infoForCombo = (rules: Rule[], co: string, mp: string, dn: number, sd: number): ComboInfo => {
-    const now = new Date()
-    const andCertLogicExpr = and_(...applicableRuleVersions(rules, co, "Acceptance", now).map((rule) => rule.Logic))  // and(...all applicable versions of Acceptance rules...)
+    const andCertLogicExpr = and_(
+        ...applicableRuleVersions(rules, co, "Acceptance", validationClock)
+            .map((rule) => rule.Logic)
+    )  // and(...all applicable versions of Acceptance rules...)
     const reducedCertLogicExpr = evaluateAbstractly(
         co in replacementsPerCountry
             ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
             : andCertLogicExpr,
-        makeData(dn, sd, mp)
+        inputDataFor(dn, sd, mp)
     )
     if (!isCertLogicExpression(reducedCertLogicExpr)) {
         console.error(`not reducible: ${pretty(reducedCertLogicExpr)}`)
