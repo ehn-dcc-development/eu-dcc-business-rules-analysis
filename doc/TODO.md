@@ -36,3 +36,5 @@
 
 * [ ] Make a GitHub Action that runs the main build script.
 
+* [&#10003;] Show some totals in rules' statistics.
+

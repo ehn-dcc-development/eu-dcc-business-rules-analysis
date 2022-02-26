@@ -26,6 +26,9 @@ const statusCounts = (info: RulesStatistics[]) =>
         ({ anno, n: cos.length })
     )
 
+const sum = (nums: number[]): number =>
+    nums.reduce((acc, curr) => acc + curr, 0)
+
 const html = `<html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -44,6 +47,13 @@ const html = `<html lang="en">
         }
         td.number {
             text-align: right;
+        }
+        th, tr.totals {
+            background-color: lightgray;
+        }
+        tr.totals > td:nth-child(1) {
+            font-style: italic;
+            text-align: center;
         }
     </style>
   </head>
@@ -70,6 +80,12 @@ const html = `<html lang="en">
       </thead>
       <tbody>
 ${rulesStatistics.map(perCountryStatisticsAsHtml).join("\n")}
+      <tr class="totals">
+        <td colspan="4">totals</td>
+        <td class="number">${sum(rulesStatistics.map(({ n }) => n))}</td>
+        <td class="number">${sum(rulesStatistics.map(({ nAcceptance }) => nAcceptance))}</td>
+        <td class="number">${sum(rulesStatistics.map(({ nInvalidation }) => nInvalidation))}</td>
+      </tr>
       </tbody>
     </table>
     <p>
@@ -87,6 +103,10 @@ ${statusCounts(rulesStatistics).map(({ anno, n }) => `<tr>
   <td>${anno}</td>
   <td class="number">${n}</td>
 </tr>`).join("\n")}
+        <tr class="totals">
+            <td>totals</td>
+            <td>${rulesStatistics.length}</td>
+        </tr>
       </tbody>
     </table>
   </body>
