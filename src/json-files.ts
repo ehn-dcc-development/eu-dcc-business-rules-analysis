@@ -29,13 +29,23 @@ export type RulesStatistics = {
 export const rulesStatisticsFile = new JsonFile<RulesStatistics[]>("analysis/rules-statistics.json")
 
 
+export type RulesVersionsMetadataPerCountry = {
+    country: string
+    rulesVersionsMetadataPerRule: RuleWithVersions[]
+}
+
+export type RuleWithVersions = {
+    ruleId: string
+    versions: Versioning[]
+}
+
 export type Versioning = {
     version: string
     validFrom: string
     validTo: string
 }
 
-export const rulesVersionMetaDataFile = new JsonFile<Map<Map<Versioning[]>>>("analysis/rules-version-metadata.json")
+export const rulesVersionMetadataFile = new JsonFile<RulesVersionsMetadataPerCountry[]>("analysis/rules-version-metadata.json")
 
 
 export type VaccineSpec = {

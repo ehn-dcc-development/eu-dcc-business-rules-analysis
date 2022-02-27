@@ -2,8 +2,11 @@ import {gt} from "semver"
 
 import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
-import {Map} from "../utils/func-utils"
-import {rulesVersionMetaDataFile, Versioning} from "../json-files"
+import {
+    rulesVersionMetadataFile,
+    RulesVersionsMetadataPerCountry, RuleWithVersions,
+    Versioning
+} from "../json-files"
 
 
 const referenceTimestamp = new Date()
@@ -24,7 +27,7 @@ const tableRow = (ruleId: string, ruleVersionsMetaData: Versioning) =>
 </tr>`
 
 
-const latestVersionOf = (versions: Versioning[]): Versioning =>
+const latestVersionOf = ({ versions }: RuleWithVersions): Versioning =>
     versions.reduce((acc, curr) => gt(acc.version, curr.version) ? acc : curr)
 
 const latest = (dates: string[]): string =>
@@ -34,9 +37,9 @@ const earliest = (dates: string[]): string =>
     dates.reduce((l, r) => new Date(l) < new Date(r) ? l : r, "2040-01-01")
 
 
-const tableSectionFor = (country: string, versionsPerRule: Map<Versioning[]>) => {
-    const latestValidFrom = latest(Object.values(versionsPerRule).map(latestVersionOf).map((versioning) => versioning.validFrom))
-    const earliestValidTo = earliest(Object.values(versionsPerRule).map(latestVersionOf).map((versioning) => versioning.validTo))
+const tableSectionFor = ({ country, rulesVersionsMetadataPerRule }: RulesVersionsMetadataPerCountry) => {
+    const latestValidFrom = latest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validFrom))
+    const earliestValidTo = earliest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validTo))
     return `<tr>
     <td colspan="4" class="country">${country}</td>
 </tr>
@@ -45,12 +48,11 @@ const tableSectionFor = (country: string, versionsPerRule: Map<Versioning[]>) =>
     <td ${inFutureClassName(latestValidFrom)}>${formatDateTime(latestValidFrom)}</td>
     <td>${formatDateTime(earliestValidTo)}</td>
 </tr>
-${Object.entries(versionsPerRule)
-        .flatMap(([ruleId, ruleVersions]) =>
-            ruleVersions.map((ruleVersion, index) =>
-                tableRow(index === 0 ? ruleId : "", ruleVersion)
-            )
-        ).join("\n")}
+${rulesVersionsMetadataPerRule.flatMap(({ ruleId, versions }) =>
+        versions.map((version, index) =>
+            tableRow(index === 0 ? ruleId : "", version)
+        )
+    ).join("\n")}
 `
 }
 
@@ -109,10 +111,7 @@ const html = `<html lang="en">
         </tr>
       </thead>
       <tbody>
-${Object.entries(rulesVersionMetaDataFile.contents)
-    .map(([ country, rules ]) =>
-        tableSectionFor(country, rules)
-    ).join("\n")}
+${rulesVersionMetadataFile.contents.map(tableSectionFor).join("\n")}
       </tbody>
     </table>
   </body>
