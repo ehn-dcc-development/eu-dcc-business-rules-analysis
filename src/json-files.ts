@@ -2,7 +2,6 @@ import {Rule} from "dcc-business-rules-utils"
 import {PathLike} from "fs"
 
 import {readJson} from "./utils/file-utils"
-import {Map} from "./utils/func-utils"
 
 
 export class JsonFile<T> {
@@ -31,6 +30,8 @@ export const rulesStatisticsFile = new JsonFile<RulesStatistics[]>("analysis/rul
 
 export type RulesVersionsMetadataPerCountry = {
     country: string
+    latestValidFrom: string
+    earliestValidTo: string
     rulesVersionsMetadataPerRule: RuleWithVersions[]
 }
 

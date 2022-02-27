@@ -53,14 +53,6 @@ export const sortArrayBy = <T>(array: T[], keyFunc: (t: T) => number) =>
     [ ...array ].sort((l, r) => keyFunc(l) - keyFunc(r))
 
 
-export const sortMapByKeys = <V>(map: Map<V>): Map<V> =>
-    Object.fromEntries(
-        [ ...Object.keys(map) ]
-            .sort()
-            .map((key) => [ key, map[key] ])
-    )
-
-
 export const unique = <T>(things: T[]): T[] =>
     [...new Set(things)]
 

@@ -1,10 +1,11 @@
 import {Rule} from "dcc-business-rules-utils"
+import {lt} from "semver"
 
 import {writeJson} from "./utils/file-utils"
-import {groupBy, sortArrayBy} from "./utils/func-utils"
+import {groupBy} from "./utils/func-utils"
 import {
     allRulesFile, rulesVersionMetadataFile,
-    RulesVersionsMetadataPerCountry, RuleWithVersions,
+    RulesVersionsMetadataPerCountry, RuleWithVersions, Versioning,
 } from "./json-files"
 
 
@@ -18,29 +19,38 @@ const sortByStringKey = <T>(ts: T[], keyFunc: (t: T) => string) =>
 const ruleWithVersions = (rules: Rule[]): RuleWithVersions =>
     ({
         ruleId: rules[0].Identifier,
-        versions: sortArrayBy(
-            rules.map((rule) =>
-                ({
-                    version: rule.Version,
-                    validFrom: rule.ValidFrom,
-                    validTo: rule.ValidTo
-                })
-            ),
-            (versioning) => new Date(versioning.validFrom).getTime()
-        ).reverse()
+        versions: rules.map((rule) =>
+            ({
+                version: rule.Version,
+                validFrom: rule.ValidFrom,
+                validTo: rule.ValidTo
+            })
+        ).sort((l, r) => lt(l.version, r.version) ? 1 : -1)
     })
 
-const rulesVersionsMetadataForCountry = (rules: Rule[]): RulesVersionsMetadataPerCountry =>
-    ({
+const latestVersionOf = ({ versions }: RuleWithVersions): Versioning =>
+    versions[0]
+
+const latest = (dates: string[]): string =>
+    dates.reduce((l, r) => new Date(l) > new Date(r) ? l : r, "1970-01-01")
+
+const earliest = (dates: string[]): string =>
+    dates.reduce((l, r) => new Date(l) < new Date(r) ? l : r, "2040-01-01")
+
+const rulesVersionsMetadataForCountry = (rules: Rule[]): RulesVersionsMetadataPerCountry => {
+    const rulesVersionsMetadataPerRule = sortByStringKey(
+        Object.values(
+            groupBy(rules, (rule) => rule.Identifier)
+        ).map(ruleWithVersions),
+        (ruleMetadata) => ruleMetadata.ruleId
+    )
+    return {
         country: rules[0].Country,
-        rulesVersionsMetadataPerRule:
-            sortByStringKey(
-                Object.values(
-                    groupBy(rules, (rule) => rule.Identifier)
-                ).map(ruleWithVersions),
-                (ruleMetadata) => ruleMetadata.ruleId
-            )
-    })
+        latestValidFrom: latest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validFrom)),
+        earliestValidTo: earliest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validTo)),
+        rulesVersionsMetadataPerRule
+    }
+}
 
 
 const rulesVersionMetaData = sortByStringKey(

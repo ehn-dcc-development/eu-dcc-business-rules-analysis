@@ -1,10 +1,8 @@
-import {gt} from "semver"
-
 import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {
     rulesVersionMetadataFile,
-    RulesVersionsMetadataPerCountry, RuleWithVersions,
+    RulesVersionsMetadataPerCountry,
     Versioning
 } from "../json-files"
 
@@ -18,6 +16,7 @@ const formatDateTime = (datetime: string) => {
     return `<span>${parts[0]}</span> <span class="obscure">${parts[1]}</span>`
 }
 
+
 const tableRow = (ruleId: string, ruleVersionsMetaData: Versioning) =>
     `<tr>
     <td class="tt">${ruleId}</td>
@@ -27,19 +26,7 @@ const tableRow = (ruleId: string, ruleVersionsMetaData: Versioning) =>
 </tr>`
 
 
-const latestVersionOf = ({ versions }: RuleWithVersions): Versioning =>
-    versions.reduce((acc, curr) => gt(acc.version, curr.version) ? acc : curr)
-
-const latest = (dates: string[]): string =>
-    dates.reduce((l, r) => new Date(l) > new Date(r) ? l : r, "1970-01-01")
-
-const earliest = (dates: string[]): string =>
-    dates.reduce((l, r) => new Date(l) < new Date(r) ? l : r, "2040-01-01")
-
-
-const tableSectionFor = ({ country, rulesVersionsMetadataPerRule }: RulesVersionsMetadataPerCountry) => {
-    const latestValidFrom = latest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validFrom))
-    const earliestValidTo = earliest(rulesVersionsMetadataPerRule.map(latestVersionOf).map((versioning) => versioning.validTo))
+const tableSectionFor = ({ country, latestValidFrom, earliestValidTo, rulesVersionsMetadataPerRule }: RulesVersionsMetadataPerCountry) => {
     return `<tr>
     <td colspan="4" class="country">${country}</td>
 </tr>

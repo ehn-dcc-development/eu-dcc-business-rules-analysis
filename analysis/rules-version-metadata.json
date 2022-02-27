@@ -1,6 +1,8 @@
 [
   {
     "country": "AL",
+    "latestValidFrom": "2022-02-16T15:00:00Z",
+    "earliestValidTo": "2022-09-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-AL-0001",
@@ -96,6 +98,8 @@
   },
   {
     "country": "AT",
+    "latestValidFrom": "2021-12-09T00:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-AT-0000",
@@ -241,6 +245,8 @@
   },
   {
     "country": "CH",
+    "latestValidFrom": "2022-01-31T00:00:00Z",
+    "earliestValidTo": "2031-01-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-CH-0001",
@@ -506,6 +512,8 @@
   },
   {
     "country": "CZ",
+    "latestValidFrom": "2022-02-16T23:00:00Z",
+    "earliestValidTo": "2032-02-16T23:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-CZ-0001",
@@ -791,6 +799,8 @@
   },
   {
     "country": "DE",
+    "latestValidFrom": "2022-02-24T17:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-DE-0001",
@@ -906,6 +916,8 @@
   },
   {
     "country": "EE",
+    "latestValidFrom": "2022-02-20T00:00:00Z",
+    "earliestValidTo": "2022-09-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-EE-0005",
@@ -1041,6 +1053,8 @@
   },
   {
     "country": "ES",
+    "latestValidFrom": "2022-02-18T13:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-ES-0001",
@@ -1166,6 +1180,8 @@
   },
   {
     "country": "FR",
+    "latestValidFrom": "2021-12-19T13:00:00Z",
+    "earliestValidTo": "2021-12-14T12:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-FR-0000",
@@ -1371,6 +1387,8 @@
   },
   {
     "country": "IE",
+    "latestValidFrom": "2022-02-04T00:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-IE-0000",
@@ -1536,6 +1554,8 @@
   },
   {
     "country": "LT",
+    "latestValidFrom": "2022-02-23T12:00:00Z",
+    "earliestValidTo": "2022-07-09T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-LT-0001",
@@ -1691,6 +1711,8 @@
   },
   {
     "country": "LU",
+    "latestValidFrom": "2022-02-02T15:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-LU-0001",
@@ -1806,6 +1828,8 @@
   },
   {
     "country": "LV",
+    "latestValidFrom": "2022-02-01T00:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-LV-0001",
@@ -1931,6 +1955,8 @@
   },
   {
     "country": "ME",
+    "latestValidFrom": "2022-01-15T12:00:00Z",
+    "earliestValidTo": "2030-01-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-ME-0002",
@@ -2046,6 +2072,8 @@
   },
   {
     "country": "MT",
+    "latestValidFrom": "2022-02-26T00:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-MT-0000",
@@ -2151,6 +2179,8 @@
   },
   {
     "country": "NL",
+    "latestValidFrom": "2022-02-01T00:00:00+01:00",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-NL-0000",
@@ -2326,6 +2356,8 @@
   },
   {
     "country": "PL",
+    "latestValidFrom": "2022-02-26T00:00:00Z",
+    "earliestValidTo": "2030-10-11T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-PL-0000",
@@ -2421,12 +2453,12 @@
         "ruleId": "VR-PL-0000",
         "versions": [
           {
-            "version": "1.1.0",
+            "version": "1.1.1",
             "validFrom": "2022-02-26T00:00:00Z",
             "validTo": "2030-10-11T00:00:00Z"
           },
           {
-            "version": "1.1.1",
+            "version": "1.1.0",
             "validFrom": "2022-02-26T00:00:00Z",
             "validTo": "2030-10-11T00:00:00Z"
           },
@@ -2471,6 +2503,8 @@
   },
   {
     "country": "RO",
+    "latestValidFrom": "2022-02-09T10:00:00Z",
+    "earliestValidTo": "2031-01-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-RO-0001",
@@ -2546,6 +2580,8 @@
   },
   {
     "country": "RS",
+    "latestValidFrom": "2021-12-04T01:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-RS-0001",
@@ -2651,6 +2687,8 @@
   },
   {
     "country": "SI",
+    "latestValidFrom": "2022-02-19T00:00:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-SI-0000",
@@ -2806,6 +2844,8 @@
   },
   {
     "country": "SK",
+    "latestValidFrom": "2022-02-06T13:42:13Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-SK-0000",
@@ -2971,6 +3011,8 @@
   },
   {
     "country": "TG",
+    "latestValidFrom": "2021-11-27T22:20:15Z",
+    "earliestValidTo": "2025-11-26T22:20:15Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-TG-0001",
@@ -2986,6 +3028,8 @@
   },
   {
     "country": "UA",
+    "latestValidFrom": "2022-01-13T11:02:00Z",
+    "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-UA-0000",
