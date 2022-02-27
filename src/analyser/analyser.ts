@@ -66,10 +66,11 @@ const analyseComparison = (operator: string, analysedOperands: Validity[]): Vali
 
 const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else_: CertLogicExpression): Validity => {
     const unanalysedExpr = unanalysable({ "if": [guard_, then_, else_] })
-    if (then_ === true && else_ === true) {
+    if (then_ === true && else_ === true) { // should usually already have been handled by reduction
         return true
     }
-    if (then_ === true && else_ === false && isOperation(guard_, ["after", "before", "not-after", "not-before", "and"])) {  // boolean-valued operations
+    if (then_ === true && else_ === false && isOperation(guard_, ["after", "before", "not-after", "not-before", "and"])) {
+        // Note: "and" is NOT boolean-valued per sé, but might effectively be if its operands are.
         return analyse(guard_)
     }
     if (then_ === false && else_ === true && isOperation(guard_, ["after", "before", "not-after", "not-before"])) {
@@ -127,6 +128,7 @@ export const analyse = (expr: CertLogicExpression): Validity => {
                 const [l, r] = operands
                 // { "in": [ true, [ <expr> ] ] } -> <expr> if <expr> is boolean-valued
                 if (l === true && Array.isArray(r) && r.length === 1 && isOperation(r[0], ["after", "before", "not-after", "not-before", "and"])) {
+                    // Note: "and" is NOT boolean-valued per sé, but might effectively be if its operands are.
                     return analyse(r[0])
                 }   // TODO  move this reduction to the reducer
                 return unanalysable(expr)

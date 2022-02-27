@@ -4,7 +4,7 @@ import {isCertLogicOperation} from "certlogic-js"
 import {and_, if_, var_} from "certlogic-js/dist/factories"
 
 import {
-    CLExtExpr, CLObjectValue, ObjectType,
+    CLExtExpr, CLObjectValue, isCertLogicExpression, ObjectType,
     Unknown
 } from "../../reducer/abstract-types"
 import {evaluateAbstractly} from "../../reducer/abstract-interpreter"
@@ -73,6 +73,13 @@ describe(`"if" operation`, () => {
         isDataAccess(guard_, "x")
         isJsonValue(then_, true)
         isJsonValue(else_, false)
+    })
+
+    it(`reduces trivially with else's and then's that evaluate to true`, () => {
+        const expr = if_(var_("x"), true, true)
+        const reducedExpr = evaluateAbstractly(expr, { "x": Unknown })
+        isTrue(isCertLogicExpression(reducedExpr))
+        equal(reducedExpr, true)
     })
 
 })

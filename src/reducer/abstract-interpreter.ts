@@ -10,12 +10,14 @@ import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
 
 const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: unknown): CLExtExpr => {
     const evalGuard = evaluate(guard, data)
-    const evalThen = () => evaluate(then, data)
-    const evalElse = () => evaluate(else_, data)
+    const evalThen = evaluate(then, data)
+    const evalElse = evaluate(else_, data)
     switch (extBoolsiness(evalGuard)) {
-        case true: return evalThen()
-        case false: return evalElse()
-        default: return { "if": [evalGuard, evalThen(), evalElse()] }
+        case true: return evalThen
+        case false: return evalElse
+        case undefined: return evalThen === true && evalElse === true
+            ? true
+            : { "if": [evalGuard, evalThen, evalElse] }
     }
     // TODO  many more cases are reducible!
 }
