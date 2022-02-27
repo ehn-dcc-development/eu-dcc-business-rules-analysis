@@ -20,7 +20,7 @@ const analyseAnd = (analysedOperands: Validity[]): Validity => {
     if (notTrues.every(isIntervallistic)) {
         const intervallistics = dedup(notTrues)
         switch (intervallistics.length) {
-            case 0: return false
+            case 0: return true
             case 1: return intervallistics[0]
             case 2: return intervallistics.reduce<Interval>((interval, intervallistic) =>
                 combineIntervalWith(interval, intervallistic),
