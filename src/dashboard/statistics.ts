@@ -5,7 +5,7 @@ import {groupBy} from "../utils/func-utils"
 import {rulesStatisticsFile, RulesStatistics} from "../json-files"
 
 
-const rulesStatistics = rulesStatisticsFile.contents
+const statistics = rulesStatisticsFile.contents
 
 const perCountryStatisticsAsHtml = ({ co, n, nAcceptance, nInvalidation }: RulesStatistics) =>
     `<tr>
@@ -79,12 +79,12 @@ const html = `<html lang="en">
         </tr>
       </thead>
       <tbody>
-${rulesStatistics.map(perCountryStatisticsAsHtml).join("\n")}
+${statistics.map(perCountryStatisticsAsHtml).join("\n")}
       <tr class="totals">
         <td colspan="4">totals</td>
-        <td class="number">${sum(rulesStatistics.map(({ n }) => n))}</td>
-        <td class="number">${sum(rulesStatistics.map(({ nAcceptance }) => nAcceptance))}</td>
-        <td class="number">${sum(rulesStatistics.map(({ nInvalidation }) => nInvalidation))}</td>
+        <td class="number">${sum(statistics.map(({ n }) => n))}</td>
+        <td class="number">${sum(statistics.map(({ nAcceptance }) => nAcceptance))}</td>
+        <td class="number">${sum(statistics.map(({ nInvalidation }) => nInvalidation))}</td>
       </tr>
       </tbody>
     </table>
@@ -99,13 +99,13 @@ ${rulesStatistics.map(perCountryStatisticsAsHtml).join("\n")}
         </tr>
       </thead>
       <tbody>
-${statusCounts(rulesStatistics).map(({ anno, n }) => `<tr>
+${statusCounts(statistics).map(({ anno, n }) => `<tr>
   <td>${anno}</td>
   <td class="number">${n}</td>
 </tr>`).join("\n")}
         <tr class="totals">
             <td>totals</td>
-            <td>${rulesStatistics.length}</td>
+            <td>${statistics.length}</td>
         </tr>
       </tbody>
     </table>
@@ -113,5 +113,5 @@ ${statusCounts(rulesStatistics).map(({ anno, n }) => `<tr>
 </html>
 `
 
-writeHtml("analysis/rules-statistics.html", html)
+writeHtml("analysis/statistics.html", html)
 

@@ -106,5 +106,5 @@ ${rulesVersionMetadataFile.contents.map(tableSectionFor).join("\n")}
 `
 
 
-writeHtml("analysis/rules-version-metadata.html", html)
+writeHtml("analysis/version-metadata.html", html)
 

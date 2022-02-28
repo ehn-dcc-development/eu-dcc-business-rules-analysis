@@ -25,7 +25,7 @@ export type RulesStatistics = {
     nInvalidation: number
 }
 
-export const rulesStatisticsFile = new JsonFile<RulesStatistics[]>("analysis/rules-statistics.json")
+export const rulesStatisticsFile = new JsonFile<RulesStatistics[]>("analysis/statistics.json")
 
 
 export type RulesVersionsMetadataPerCountry = {
@@ -46,7 +46,7 @@ export type Versioning = {
     validTo: string
 }
 
-export const rulesVersionMetadataFile = new JsonFile<RulesVersionsMetadataPerCountry[]>("analysis/rules-version-metadata.json")
+export const rulesVersionMetadataFile = new JsonFile<RulesVersionsMetadataPerCountry[]>("analysis/version-metadata.json")
 
 
 export type VaccineSpec = {
@@ -82,5 +82,5 @@ export type ValidationResultForCountry = {
     ruleSetProblems: string[]
 }
 
-export const validationErrorsFile = new JsonFile<ValidationResultForCountry>("analysis/rules-validation-results.json")
+export const validationErrorsFile = new JsonFile<ValidationResultForCountry>("analysis/validation-results.json")
 

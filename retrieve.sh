@@ -15,7 +15,7 @@ rm -rf per-country/*
 node dist/split-rules-per-country.js
 echo "Split rules up per country."
 
-node dist/dashboard/rules-statistics.js
+node dist/dashboard/statistics.js
 echo "Generated dashboard page: business rules statistics."
 
 node dist/check-rules.js
@@ -23,6 +23,6 @@ echo "Checked (validated) all rules."
 
 node dist/serialise-version-metadata.js
 echo "Serialised rules' versions' metadata."
-node dist/dashboard/rules-version-metadata.js
+node dist/dashboard/version-metadata.js
 echo "Generated dashboard page: rules' version metadata."
 
