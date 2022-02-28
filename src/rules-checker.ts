@@ -2,7 +2,7 @@ import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
 import {
     hasRulesForAllEventTypes,
     validateRule,
-    Rule, RuleValidationResult
+    Rule,
 } from "dcc-business-rules-utils"
 
 import {couldBeOperation, operationDataFrom, treeFlatMap} from "./utils/certlogic-utils"
@@ -71,7 +71,8 @@ const validateRuleExt = (rule: Rule): ExtRuleValidationResult => {
     const ruleValidationResult = validateRule(rule)
     return {
         ...ruleValidationResult,
-        logicWarnings: logicWarningsFor(rule)
+        logicWarnings: logicWarningsFor(rule),
+        version: rule.Version
     }
 }
 
@@ -81,7 +82,7 @@ export const validateRulesOfCountry = (rules: Rule[], co: string): ValidationRes
     )
     const ruleSetProblems = []
     if (!hasRulesForAllEventTypes(rules)) {
-        ruleSetProblems.push(`[WARNING] country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`)
+        ruleSetProblems.push(`country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`)
     }
     return {
         country: co,

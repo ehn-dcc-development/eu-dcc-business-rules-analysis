@@ -74,6 +74,7 @@ export const vaccineCountryMatrixFile = new JsonFile<VaccineAcceptance[]>("analy
 
 export type ExtRuleValidationResult = RuleValidationResult & {
     logicWarnings: string[]
+    version: string
 }
 
 export type ValidationResultForCountry = {
@@ -82,5 +83,5 @@ export type ValidationResultForCountry = {
     ruleSetProblems: string[]
 }
 
-export const validationErrorsFile = new JsonFile<ValidationResultForCountry>("analysis/validation-results.json")
+export const validationResultsFile = new JsonFile<ValidationResultForCountry[]>("analysis/validation-results.json")
 

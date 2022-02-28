@@ -23,7 +23,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "2.2.0"
       }
     ],
     "ruleSetProblems": []
@@ -50,7 +51,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.12"
       }
     ],
     "ruleSetProblems": []
@@ -67,7 +69,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"r.0\", \"t.0\", \"v.1\", \"v.0\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.8"
       },
       {
         "ruleId": "TR-CH-0000",
@@ -78,7 +81,8 @@
         "metaDataErrors": [
           "CertificateType Test doesn't match with its AffectedFields [ \"r.0\", \"t.1\", \"t.0\", \"v.0\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.8"
       },
       {
         "ruleId": "RR-CH-0000",
@@ -89,7 +93,8 @@
         "metaDataErrors": [
           "CertificateType Recovery doesn't match with its AffectedFields [ \"r.1\", \"r.0\", \"t.0\", \"v.0\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.8"
       }
     ],
     "ruleSetProblems": []
@@ -116,7 +121,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.4"
       }
     ],
     "ruleSetProblems": []
@@ -133,7 +139,8 @@
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.3"
       },
       {
         "ruleId": "VR-FR-0007",
@@ -144,7 +151,8 @@
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.3"
       },
       {
         "ruleId": "VR-FR-0005",
@@ -155,7 +163,8 @@
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.3"
       },
       {
         "ruleId": "RR-FR-0000",
@@ -166,7 +175,8 @@
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.3"
       },
       {
         "ruleId": "RR-FR-0001",
@@ -177,7 +187,8 @@
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.3"
       }
     ],
     "ruleSetProblems": []
@@ -202,7 +213,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.4"
       },
       {
         "ruleId": "VR-IE-0011",
@@ -223,7 +235,8 @@
         "metaDataErrors": [],
         "logicWarnings": [
           "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
-        ]
+        ],
+        "version": "1.0.1"
       },
       {
         "ruleId": "VR-IE-0012",
@@ -243,7 +256,8 @@
         "metaDataErrors": [],
         "logicWarnings": [
           "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
-        ]
+        ],
+        "version": "1.0.1"
       },
       {
         "ruleId": "VR-IE-0006",
@@ -262,7 +276,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.5"
       },
       {
         "ruleId": "RR-IE-0002",
@@ -279,7 +294,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       }
     ],
     "ruleSetProblems": []
@@ -310,7 +326,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.1.0"
       }
     ],
     "ruleSetProblems": []
@@ -337,7 +354,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.5.1"
       }
     ],
     "ruleSetProblems": []
@@ -354,7 +372,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.0"
       },
       {
         "ruleId": "VR-MT-0008",
@@ -365,7 +384,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.0"
       },
       {
         "ruleId": "VR-MT-0009",
@@ -376,7 +396,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.dn\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.0"
       }
     ],
     "ruleSetProblems": []
@@ -393,7 +414,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.1.0"
       },
       {
         "ruleId": "VR-SI-0004",
@@ -404,7 +426,8 @@
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.1.0"
       }
     ],
     "ruleSetProblems": []
@@ -421,7 +444,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "GR-SK-0000",
@@ -432,7 +456,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "TR-SK-0008",
@@ -443,7 +468,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "GR-SK-0001",
@@ -454,7 +480,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "TR-SK-0006",
@@ -465,7 +492,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "TR-SK-0000",
@@ -476,7 +504,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "TR-SK-0001",
@@ -487,7 +516,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "RR-SK-0002",
@@ -498,7 +528,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0005",
@@ -523,7 +554,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0004",
@@ -548,7 +580,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0007",
@@ -573,7 +606,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0006",
@@ -597,7 +631,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0001",
@@ -608,7 +643,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0000",
@@ -619,7 +655,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       },
       {
         "ruleId": "VR-SK-0002",
@@ -630,7 +667,8 @@
         "metaDataErrors": [
           "EngineVersion 0.1.0 must be 0.7.5 or newer"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.2"
       }
     ],
     "ruleSetProblems": []
@@ -647,11 +685,12 @@
         "metaDataErrors": [
           "EngineVersion 2.0.1 is newer than the currently supported version 1.2.4"
         ],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.0"
       }
     ],
     "ruleSetProblems": [
-      "[WARNING] country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
+      "country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
     ]
   },
   {
@@ -676,7 +715,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "2.0.0"
       },
       {
         "ruleId": "VR-UA-0003",
@@ -697,7 +737,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.3.0"
       },
       {
         "ruleId": "VR-UA-0030",
@@ -717,7 +758,8 @@
           ]
         },
         "metaDataErrors": [],
-        "logicWarnings": []
+        "logicWarnings": [],
+        "version": "1.0.0"
       }
     ],
     "ruleSetProblems": []

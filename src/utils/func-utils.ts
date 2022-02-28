@@ -56,3 +56,10 @@ export const sortArrayBy = <T>(array: T[], keyFunc: (t: T) => number) =>
 export const unique = <T>(things: T[]): T[] =>
     [...new Set(things)]
 
+
+const stringCompare = (l: string, r: string): number =>
+    l === r ? 0 : (l > r ? 1 : -1)
+
+export const sortByStringKey = <T>(ts: T[], keyFunc: (t: T) => string) =>
+    [...ts].sort((l, r) => stringCompare(keyFunc(l), keyFunc(r)))
+

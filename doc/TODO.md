@@ -43,5 +43,5 @@
   * [&#10003;] Rename to “metadata” rather than “meta data”.
 
 * [&#10003;] Persist all validation issues.
-  * [ ] Generate a dashboard page for these issues.
+  * [&#10003;] Generate a dashboard page for these issues.
 

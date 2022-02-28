@@ -2,7 +2,7 @@ import {parseRuleId} from "dcc-business-rules-utils"
 
 import {writeJson} from "./utils/file-utils"
 import {groupBy} from "./utils/func-utils"
-import {allRulesFile, validationErrorsFile} from "./json-files"
+import {allRulesFile, validationResultsFile} from "./json-files"
 import {validateRulesOfCountry} from "./rules-checker"
 
 
@@ -12,7 +12,7 @@ const rulesPerCountry = groupBy(
 )
 
 writeJson(
-    validationErrorsFile.path,
+    validationResultsFile.path,
     Object.entries(rulesPerCountry)
         .map(([ co, rules ]) =>
             validateRulesOfCountry(rules, co)

@@ -2,18 +2,11 @@ import {Rule} from "dcc-business-rules-utils"
 import {lt} from "semver"
 
 import {writeJson} from "./utils/file-utils"
-import {groupBy} from "./utils/func-utils"
+import {groupBy, sortByStringKey} from "./utils/func-utils"
 import {
     allRulesFile, rulesVersionMetadataFile,
     RulesVersionsMetadataPerCountry, RuleWithVersions, Versioning,
 } from "./json-files"
-
-
-const stringCompare = (l: string, r: string): number =>
-    l === r ? 0 : (l > r ? 1 : -1)
-
-const sortByStringKey = <T>(ts: T[], keyFunc: (t: T) => string) =>
-    [...ts].sort((l, r) => stringCompare(keyFunc(l), keyFunc(r)))
 
 
 const ruleWithVersions = (rules: Rule[]): RuleWithVersions =>
