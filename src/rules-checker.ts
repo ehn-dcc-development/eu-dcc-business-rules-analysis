@@ -2,13 +2,18 @@ import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
 import {
     hasRulesForAllEventTypes,
     validateRule,
-    Rule
+    Rule, RuleValidationResult
 } from "dcc-business-rules-utils"
 
 import {couldBeOperation, operationDataFrom, treeFlatMap} from "./utils/certlogic-utils"
 import {vaccineIds} from "./refData/vaccine-data"
+import {
+    ExtRuleValidationResult,
+    ValidationResultForCountry
+} from "./json-files";
 
-const isVaccineIdDataAccess = (expr: CertLogicExpression) => {
+
+const isVaccineIdDataAccess = (expr: CertLogicExpression): boolean => {
     if (couldBeOperation(expr)) {
         const [operator, values] = operationDataFrom(expr)
         if (operator === "var" && values === "payload.v.0.mp") {
@@ -37,14 +42,15 @@ const invalidVaccineIdsInComparison = (expr: CertLogicOperation): string[] => {
     }
 }
 
-const validateRuleIncludingWarnings = (rule: Rule) => {
-    const emptyArray: never[] = []
+
+const logicWarningsFor = (rule: Rule): string[] =>
     treeFlatMap(rule.Logic, (node, ancestors) => {
+        const warnings = []
         if (couldBeOperation(node)) {
             const [operator, values] = operationDataFrom(node)
 
             if (operator === "plusTime" && typeof values[0] === "string") {
-                console.log(`[WARNING] rule with id="${rule.Identifier}" has logic with a "plusTime"-operator with an operand that's a static string ==> might not be invariant under date shifts`)
+                warnings.push(`rule's logic contains a "plusTime"-operation with an operand that's a static string ==> might not be invariant under date shifts`)
             }
 
             if (isVaccineIdDataAccess(node)) {
@@ -52,26 +58,35 @@ const validateRuleIncludingWarnings = (rule: Rule) => {
                 if (couldBeOperation(parent)) {
                     const invalidIds = invalidVaccineIdsInComparison(parent)
                     if (invalidIds.length > 0) {
-                        console.log(`[WARNING] rule with id="${rule.Identifier}" has logic that compares the vaccine ID in the DCC against an invalid vaccine ID${invalidIds.length > 1 ? "s" : ""}: ${invalidIds.map((id) => `"${id}"`).join(", ")}`)
+                        warnings.push(`rule's logic compares the vaccine ID in the DCC against an invalid vaccine ID${invalidIds.length > 1 ? "s" : ""}: ${invalidIds.map((id) => `"${id}"`).join(", ")}`)
                     }
                 }
             }
-
         }
-        return emptyArray   // return a singleton [] to satisfy treeFlatMap type-wise
+        return warnings
     })
+
+
+const validateRuleExt = (rule: Rule): ExtRuleValidationResult => {
+    const ruleValidationResult = validateRule(rule)
+    return {
+        ...ruleValidationResult,
+        logicWarnings: logicWarningsFor(rule)
+    }
 }
 
-
-export const validateRulesOfCountry = (rules: Rule[], co: string) => {
-    rules.forEach(validateRuleIncludingWarnings)    // --> log
-    const validationErrorsPerInvalidRule = rules.map(
-        (rule) => validateRule(rule)).filter((result) => result.hasErrors
+export const validateRulesOfCountry = (rules: Rule[], co: string): ValidationResultForCountry => {
+    const rulesWithValidationProblems = rules.map(
+        (rule) => validateRuleExt(rule)).filter((result) => result.hasErrors
     )
-    console.log(`#invalids(${co})=${(validationErrorsPerInvalidRule.length)}`)    // --> log
+    const ruleSetProblems = []
     if (!hasRulesForAllEventTypes(rules)) {
-        console.log(`[WARNING] rules of country "${co}" don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`) // --> log
+        ruleSetProblems.push(`[WARNING] country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)`)
     }
-    return validationErrorsPerInvalidRule
+    return {
+        country: co,
+        rulesWithValidationProblems,
+        ruleSetProblems
+    }
 }
 

@@ -18,9 +18,7 @@ echo "Split rules up per country."
 node dist/dashboard/rules-statistics.js
 echo "Generated dashboard page: business rules statistics."
 
-rm tmp/*.log
-
-node dist/check-rules.js > tmp/check-rules.log
+node dist/check-rules.js
 echo "Checked (validated) all rules."
 
 node dist/serialise-version-metadata.js

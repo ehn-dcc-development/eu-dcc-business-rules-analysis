@@ -1,4 +1,4 @@
-import {Rule} from "dcc-business-rules-utils"
+import {Rule, RuleValidationResult} from "dcc-business-rules-utils"
 import {PathLike} from "fs"
 
 import {readJson} from "./utils/file-utils"
@@ -70,4 +70,17 @@ export type VaccineAcceptance = {
 }
 
 export const vaccineCountryMatrixFile = new JsonFile<VaccineAcceptance[]>("analysis/vaccine-country-matrix.json")
+
+
+export type ExtRuleValidationResult = RuleValidationResult & {
+    logicWarnings: string[]
+}
+
+export type ValidationResultForCountry = {
+    country: string
+    rulesWithValidationProblems: ExtRuleValidationResult[]
+    ruleSetProblems: string[]
+}
+
+export const validationErrorsFile = new JsonFile<ValidationResultForCountry>("analysis/rules-validation-results.json")
 

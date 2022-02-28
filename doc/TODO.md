@@ -32,7 +32,8 @@
 
 * [&#10003;] Update `README.md`.
 
-* [ ] Improve styling of header row: border should persist?
+* [&#10005;] Improve styling of header row: border should persist?
+  &larr; not worth the effort right now...
 
 * [ ] Make a GitHub Action that runs the main build script.
 
@@ -40,4 +41,7 @@
 
 * [&#10003;] Show latest `ValidFrom` in rules' version metadata.
   * [&#10003;] Rename to “metadata” rather than “meta data”.
+
+* [&#10003;] Persist all validation issues.
+  * [ ] Generate a dashboard page for these issues.
 

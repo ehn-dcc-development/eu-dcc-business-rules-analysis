@@ -16,6 +16,7 @@
 
 # To improve
 
+* [ ] Documentation (and unit tests) of abstract/partial evaluator
 * [ ] Validation errors
   * [ ] Group validation errors by country
   * [ ] Also persist country-wide constraint violations

@@ -1,0 +1,725 @@
+[
+  {
+    "country": "AL",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-AL-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.mp",
+            "v.0.dn"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "AT",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-AT-0007",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd",
+            "v.0.dt"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "CH",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-CH-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"r.0\", \"t.0\", \"v.1\", \"v.0\" ]"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "TR-CH-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Test doesn't match with its AffectedFields [ \"r.0\", \"t.1\", \"t.0\", \"v.0\" ]"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "RR-CH-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Recovery doesn't match with its AffectedFields [ \"r.1\", \"r.0\", \"t.0\", \"v.0\" ]"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "EE",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-EE-0007",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.sd",
+            "v.0.dn"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "FR",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-FR-0006",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-FR-0007",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-FR-0005",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "RR-FR-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "RR-FR-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "IE",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-IE-0003",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-IE-0011",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [
+          "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
+        ]
+      },
+      {
+        "ruleId": "VR-IE-0012",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [
+          "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
+        ]
+      },
+      {
+        "ruleId": "VR-IE-0006",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "RR-IE-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "r.0"
+          ],
+          "computed": [
+            "r.0",
+            "r.0.fr"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "LT",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-LT-0005",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.mp",
+            "v.0.dn",
+            "v.0.sd"
+          ],
+          "computed": [
+            "dob",
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "LU",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-LU-0004",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "MT",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-MT-0010",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-MT-0008",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-MT-0009",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.dn\" ]"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "SI",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "VR-SI-0003",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SI-0004",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "SK",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "TR-SK-0005",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "GR-SK-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "TR-SK-0008",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "GR-SK-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "TR-SK-0006",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "TR-SK-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "TR-SK-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "RR-SK-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0005",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd",
+            "v.0.dt",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0004",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd",
+            "v.0.dt",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0007",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd",
+            "v.0.dt",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0006",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd",
+            "v.0.dt",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0",
+            "v.0.dn",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-SK-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 0.1.0 must be 0.7.5 or newer"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  },
+  {
+    "country": "TG",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "GR-TG-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "EngineVersion 2.0.1 is newer than the currently supported version 1.2.4"
+        ],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": [
+      "[WARNING] country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
+    ]
+  },
+  {
+    "country": "UA",
+    "rulesWithValidationProblems": [
+      {
+        "ruleId": "RR-UA-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "r.0",
+            "r.0.df",
+            "r.0.du",
+            "r.0.fr"
+          ],
+          "computed": [
+            "r.0",
+            "r.0.du",
+            "r.0.fr"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-UA-0003",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.dn",
+            "v.0.sd"
+          ],
+          "computed": [
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      },
+      {
+        "ruleId": "VR-UA-0030",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.co"
+          ],
+          "computed": [
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": []
+      }
+    ],
+    "ruleSetProblems": []
+  }
+]
