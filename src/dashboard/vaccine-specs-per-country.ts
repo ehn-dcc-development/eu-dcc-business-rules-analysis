@@ -1,7 +1,12 @@
 import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {lowerTriangular} from "../utils/func-utils"
-import {countryCode2DisplayName, flagEmoji} from "../refData/country-utils"
+import {externalAnchor} from "../utils/html-utils"
+import {
+    country2CodeTo3Code,
+    countryCode2DisplayName,
+    flagEmoji
+} from "../refData/country-utils"
 import {vaccineIdToDisplayName} from "../refData/vaccine-data"
 import {
     ComboInfo,
@@ -37,7 +42,14 @@ ${combosShown.map((combo) => comboAsHtml(vaccineSpec.combos[combo])).join("\n")}
 
 const vaccineSpecsForCountryAsHtml = ({ country, vaccineSpecs }: VaccineSpecsForCountry) =>
     `<tr>
-    <td colspan="${1 + combosShown.length}" class="country">${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})</td>
+    <td class="country">
+        ${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})
+    </td>
+    <td colspan="${1 + combosShown.length}" class="links">
+        ${externalAnchor(`https://reopen.europa.eu/en/map/${country2CodeTo3Code(country)}/7010`, "regs. on Re-open EU", false)}
+        &nbsp;
+        (${externalAnchor(`https://reopen.europa.eu/en/map/${country2CodeTo3Code(country)}/7001`, "regs. on Re-open EU for from EU MS or Schengen", false)})
+    </td>
 </tr>
 ${vaccineSpecs.map((vaccineSpec) => vaccineInfoAsHtml(vaccineSpec, country)).join("\n")}
 `
@@ -86,12 +98,16 @@ const vaccineSpecsPerCountryAsHtml = (vaccineSpecsPerCountry: VaccineSpecsForCou
         span.tt {
             font-family: monospace;
         }
+        td.links {
+            text-align: left;
+        }
     </style>
   </head>
   <body>
     <h1>Dashboard page: vaccine acceptance per country</h1>
     <p>
         Below is a table that details which country accepts which vaccines, and with what validity period.
+        For every country, links to the relevant page on the Re-open EU site are provided as well - (not all of these links work).
     </p>
     <p>
         <b>Disclaimer</b>

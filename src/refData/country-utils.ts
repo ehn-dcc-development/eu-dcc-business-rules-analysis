@@ -33,3 +33,13 @@ export const memberAnnotation = (country: string) => {
     return "3rd country"
 }
 
+
+const country2CodeTo3Code_ = require("../../src/refData/country-2-code-to-3-code.json")
+
+export const country2CodeTo3Code = (_2code: string): string => {
+    if (_2code in country2CodeTo3Code_) {
+        return country2CodeTo3Code_[_2code]
+    }
+    throw new Error(`3-code not input yet for country with 2-code "${_2code}"`)
+}
+

@@ -1,4 +1,5 @@
 import {asISODate} from "../utils/date-utils"
+import {externalAnchor} from "../utils/html-utils"
 import {
     isEMAAuthorised,
     vaccineIds,
@@ -20,10 +21,6 @@ const theadContents = (countries: string[]) =>
     <th class="vaccine">Vaccine</th>
 ${countries.map((country) => `  <th class="country">${country}</th>`).join("\n")}
 </tr>`
-
-
-const externalAnchor = (url: string, linkText: string) =>
-    `<a href="${url}" target="blank">${linkText}</a> <small>(opens in a new window/tab)</small>`
 
 
 export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], countries: string[]) =>
