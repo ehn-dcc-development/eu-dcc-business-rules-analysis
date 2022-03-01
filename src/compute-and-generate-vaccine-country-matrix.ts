@@ -9,12 +9,12 @@ import {
 } from "./json-files"
 
 
-
 const acceptingCountriesPerVaccine: VaccineAcceptance[] = vaccineIds.map((vaccineId) =>
     ({
         vaccineId,
         acceptingCountries: vaccineSpecsPerCountryFile.contents.filter(({ vaccineSpecs }) =>
             vaccineSpecs.some((vaccineSpec) => vaccineSpec.vaccineIds.indexOf(vaccineId) > -1)
+                // Note: `vaccineSpecs` for which all combo values are null have already been filtered out before.
         ).map(({ country }) => country)
     })
 )

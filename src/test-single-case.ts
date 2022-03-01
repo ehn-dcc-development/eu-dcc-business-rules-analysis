@@ -42,7 +42,7 @@ if (process.argv.length < 6 + 2) {
 }
 
 const asPositiveInteger = (str: string, name: string): number => {
-    const num = parseInt(str, 10)
+    const num = Number(str)
     if (isNaN(num)) {
         console.error(`"${str}" (=value of ${name}) is not an integer`)
         process.exit(1)

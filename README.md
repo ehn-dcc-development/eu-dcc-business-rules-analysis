@@ -13,32 +13,34 @@
 
 ## About
 
-The [Digital COVID Certificate (DCC)](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) allows to determine whether a person is deemed fit-for-travel into a country-of-arrival (CoA) based on their vaccination, test, and recovery status.
+The [Digital COVID Certificate (DCC)](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) allows determining whether a person is deemed fit-for-travel into a country-of-arrival (CoA) based on their vaccination, test, and recovery status.
 To make such determinations, [business (or validation, or verification) rules](https://github.com/ehn-dcc-development/dgc-business-rules) can be implemented in verifier apps.
 
-This repository contains a rolling analysis of the business rules that have been uploaded to the EU DCC Gateway.
-The analysis revolves mostly around rules pertaining to DCCs with the _vaccination_ event/certificate type.
+This repository contains an analysis of the business rules that have been uploaded to the EU DCC Gateway.
+The analysis focuses almost entirely on rules pertaining to vaccination DCCs.
+The analysis takes the shape of a number of JSON files which aggregate findings on the uploaded business rules, typically organised per country that has uploaded business rules.
+These JSON files are also presented in the form of an equal number of static, standalone HTML files: the <em>“dashboard pages”</em>.
 
-Triggering the analysis is done by running the [build script](./build.sh) from the command-line:
+These pages are:
 
-    $ ./build.sh
-
-This produces several JSON files, and two standalone HTML files in the `analysis/` directory:
-
-* [An inventory of what countries accept which vaccines, including waiting time and validity](./analysis/vaccine-inventory.html)
-* [A dashboard detailing which countries have uploaded how many business rules](./analysis/dashboard.html)
-* [An overview of which rule versions are <em>currently</em> available](./analysis/rules-version-metadata.html), including their validity range
+* [An inventory of what countries accept which vaccines, including waiting time and validity](./analysis/vaccine-specs-per-country.html)
+* [A matrix detailing which vaccines are accepted by which countries](./analysis/vaccine-country-matrix.html)
+* [A dashboard detailing which countries have uploaded how many business rules](./analysis/statistics.html)
+* [The result of validating all business rules](./analysis/validation-results.html)
+* [An overview of which rule (versions) are _currently_ available](./analysis/version-metadata.html), including their validity range - this is mainly per development purposes
 
 These analysis files are persisted in this repository to be able to easily track changes to the business rules over time.
-That also makes it easy to look at the analysis without needing to clone this repository, and trigger the analysis.
-You can do this from the command-line as follows:
 
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-statistics.html?TOKEN=..." > rules-statistics.html
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/rules-version-metadata.html?TOKEN=..." > dashboard.html
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-country-matrix.html?TOKEN=..." > vaccine-country-matrix.html
-    $ curl "https://raw.githubusercontent.com/ehn-dcc-development/dcc-business-rules-analysis/main/analysis/vaccine-specs-per-country.html?TOKEN=..." > vaccine-specs-per-country.html
 
-This requires access to this, currently private, repository, in combination with a GitHub token.
+### Disclaimer
+
+The analysis of the business rules is performed <em>automatically</em> (using an algorithm that's based on [_partial evaluation_](./src/reducer/README.md)).
+This algorithm makes a number of assumptions.
+If these are violated then usually the analysis aborts before the end.
+In case of a bug, the algorithm might actually finish, in which case the produced analysis is inaccurate.
+
+The algorithm also replaces some sub expressions in the CertLogic part of business rules with equivalent (or at least: sufficiently similar) ones to circumvent limitations that the partial evaluator currently has.
+These replacements can be found in [the `replacements.json` file](./src/analyser/replacements.json), and are organised per country.
 
 
 ### Organisation of this repository
@@ -46,14 +48,27 @@ This requires access to this, currently private, repository, in combination with
 * [`analysis/`](./analysis): All generated analyses, in both JSON format (the source), and HTML files generated from that.
 * [`doc/`](./doc): Some documentation (in MarkDown format).
 * [`per-country/`](./per-country): For every country that uploaded business rules, a directory with all their rules retrieved from the EU DCC Gateway (or rather: one of the National Backends).
-  Each rule is stored in a separate file, which contains all the versions of that rule, in anti-chronological order.
+  All rules with the same rule identifier (ID, e.g. `VR-NL-0007`) are stored in one separate file, as <em>rule versions</em> (in anti-chronological order) under that rule ID.
   Remarks:
   * A rule JSON file has a name that consists of the rule's ID with the country code (and 1 hyphen) removed.
+    E.g., all rule versions 
   * Versions of a rule whose `ValidTo` date lies in the past is not in these files.
     (That's a consequence of the implementation of the API of the EU DCC Gateway.)
 * [`src/`]: All source code for JavaScript/Node.js programs.
-* [`tmp/`]: A Git-ignored directory for storing temporary files, a.o. logs, without committing these.
-* [`build.sh`]: The main build script that retrieves the latest-uploaded rules, value sets, and kicks off the analysis.
+* [`tmp/`]: A Git-ignored directory for storing temporary files, without committing these.
+
+Beyond that, the repository contains some shell scripts, and the usual license, and JavaScript- and TypeScript-related config files.
+
+
+## Running the analysis
+
+Triggering the analysis is done by running the [main build script](./build.sh) from the command-line:
+
+    $ ./build.sh
+
+This downloads and installs JavaScript dependencies, retrieves the uploaded business rules from a National Backend, analyses those, and generates the analysis artefacts in the `analysis/` directory.
+The analysis that determines which countries accept which vaccines with which validity ranges is somewhat time-consuming: roughly a couple of minutes.
+Because of that, the build script is broken up into two phases: [1. retrieval](./retrieve.sh) of value sets, business rules, and generation of non-vaccination-related analysis artefacts, and [2. running the vaccine-centric analyses](./analyse.sh).
 
 
 ### Dependencies
@@ -61,7 +76,7 @@ This requires access to this, currently private, repository, in combination with
 The analysis has the following dependencies:
 
 * UNIX/zsh-like shell for running the [build script](./build.sh)
-* [Node.js, NPM](https://nodejs.org/en/)
+* [Node.js, NPM](https://nodejs.org/en/) - alternative for NPM: [Yarn](https://yarnpkg.com/)
 * [`jq`](https://stedolan.github.io/jq/) (&larr; =link)
 
 

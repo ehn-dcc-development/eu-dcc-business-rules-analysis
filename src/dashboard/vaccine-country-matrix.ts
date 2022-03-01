@@ -1,11 +1,15 @@
 import {asISODate} from "../utils/date-utils"
-import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"
+import {
+    isEMAAuthorised,
+    vaccineIds,
+    vaccineIdToDisplayName
+} from "../refData/vaccine-data"
 import {VaccineAcceptance} from "../json-files"
 
 
 const vaccineInfoAsHtml = (vaccineId: string, acceptingCountries: string[], countries: string[]) =>
     `<tr>
-    <td class="vaccine">${vaccineIdToDisplayName(vaccineId)}</td>
+    <td class="vaccine${isEMAAuthorised(vaccineId) ? " authorised" : ""}">${vaccineIdToDisplayName(vaccineId)}</td>
 ${countries.map((country) => `<td class="${(acceptingCountries.indexOf(country) > -1 ? "" : "not-") + "accepted"}"></td>`).join("\n")}
 </tr>
 `
@@ -16,6 +20,10 @@ const theadContents = (countries: string[]) =>
     <th class="vaccine">Vaccine</th>
 ${countries.map((country) => `  <th class="country">${country}</th>`).join("\n")}
 </tr>`
+
+
+const externalAnchor = (url: string, linkText: string) =>
+    `<a href="${url}" target="blank">${linkText}</a> <small>(opens in a new window/tab)</small>`
 
 
 export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine: VaccineAcceptance[], countries: string[]) =>
@@ -41,7 +49,7 @@ export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine:
           background: lightyellow;
         }
         th.vaccine {
-            font-style: italics;
+            font-style: italic;
         }
         th.country {
             width: 1em;
@@ -55,6 +63,13 @@ export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine:
         .not-accepted {
             background-color: #4994f5;
         }
+        .authorised {
+            background-color: #ac145a;
+            opacity: 80%
+        }
+        span.tt {
+            font-family: monospace;
+        }
     </style>
   </head>
   <body>
@@ -62,8 +77,13 @@ export const acceptingCountriesPerVaccineAsHtml = (acceptingCountriesPerVaccine:
     <p>
         Below is a table that details which vaccines are accepted by which country.
         Acceptance might be conditional on waiting periods and maximum validity, but that level of detail is not present here.
+    </p>
+    <p>
+        <b>Disclaimer</b>
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
-        This algorithm makes a couple of assumptions: when these are violated, the analysis is inaccurate.
+        The algorithm used makes a couple of assumptions: when these are violated, the algorithm typically aborts its running.
+        In rare cases, the algorithm finishes but produces an inaccurate analysis result.
+        In any case: <em>no rights whatsoever can be derived from the information presented here.</em>
     </p>
     <p>
         Date of generation: <em>${asISODate(new Date())}</em>
@@ -88,11 +108,26 @@ ${theadContents(countries)}
         </tfoot>
     </table>
     <p>
-        Legend:
+        Legend/explanation:
     </p>
     <ul>
-        <li>The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.</li>
-        <li>Colours: <span class="accepted">green</span> means <em>accepted</em>, <span class="not-accepted">blue</span> means <em>not accepted</em>.</li>
+        <li>
+            Background colours of cells have the following meaning:
+            <dl>
+                <dt><span class="accepted">green</span></dt> <dd>means that the vaccine corresponding to the row is <em>accepted</em> by the country corresponding to the column, while</dd>
+                <dt><span class="not-accepted">blue</span></dt> <dd>means <em>not accepted</em>.</dd>
+                <dt><span class="authorised">purple</span></dt> <dd>means that the corresponding vaccine is authorised by the EMA.</dd>
+            </dl>
+        </li>
+        <li>
+            “Acceptance” could mean that the vaccine has a waiting/delay time or a maximum validity, depending on the values of the <span class="tt">dn/sd</span> fields.
+        </li>
+        <li>
+            The vaccines are the ones <em>recognised</em> by the EMA, and included in the ${externalAnchor("https://github.com/ehn-dcc-development/ehn-dcc-valuesets/blob/main/vaccine-medicinal-product.json", "corresponding eHN value set")}.
+        </li>
+        <li>
+            Not every vaccine is <em>authorised</em> by the EMA: see ${externalAnchor("https://www.ema.europa.eu/en/human-regulatory/overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/vaccines-covid-19/covid-19-vaccines-authorised#authorised-covid-19-vaccines-section", "this table")}.
+        </li>
     </ul>
   </body>
 </html>

@@ -12,7 +12,6 @@ import {
 
 
 const redCrossMark = "&#x274c;"
-const redExclamationMark = "&#x2757;"
 
 const comboValueAsUnannotatedText = (comboValue: ComboInfo) => {
     if (comboValue === null) {
@@ -93,10 +92,13 @@ const vaccineSpecsPerCountryAsHtml = (vaccineSpecsPerCountry: VaccineSpecsForCou
     <h1>Dashboard page: vaccine acceptance per country</h1>
     <p>
         Below is a table that details which country accepts which vaccines, and with what validity period.
+    </p>
+    <p>
+        <b>Disclaimer</b>
         This information is derived <em>algorithmically</em> from the business rules uploaded to the EU DCC Gateway.
-        This algorithm makes a couple of assumptions.
-        The most important one of those is that the logic of the vaccination-related business rules only depends the difference between the verification time and the date value of the <span class="tt">dt</span> field.
-        Where a violation of that assumption is suspected, the corresponding entry is marked with a “${redExclamationMark}”.
+        The algorithm used makes a couple of assumptions: when these are violated, the algorithm typically aborts its running.
+        In rare cases, the algorithm finishes but produces an inaccurate analysis result.
+        In any case: <em>no rights whatsoever can be derived from the information presented here.</em>
     </p>
     <p>
         Date of generation: <em>${asISODate(new Date())}</em>
@@ -116,14 +118,22 @@ ${theadContents()}
         Legend:
     </p>
     <ul>
-        <li>The vaccines are the ones <em>recognised</em> (but not necessarily ubiquitously accepted) by the EMA.</li>
-        <li>Validity periods are dependent on the values of the <span class="tt">dn/sd</span> fields: <b>1/1, 2/2, 2/1, 3/3, 3/2, etc.</b>
+        <li>
+        The vaccines are the ones <em>recognised</em> by the EMA.
+        </li>
+        <li>
+            Validity periods are dependent on the values of the <span class="tt">dn/sd</span> fields: <b>1/1, 2/2, 2/1, 3/3, 3/2, etc.</b>
             Note that values like 3/2, 5/3, etc. are not allowed anymore according to the EU Regulations, but it's not unlikely DCCs have been issued like that.
         </li>
-        <li>A validity period is expressed in the format "<em>from</em>-<em>until</em>" which means:
+        <li>
+            A validity period is expressed in the format "<em>from</em>-<em>until</em>" which means:
             "the vaccine is accepted (with the indicated values for the <span class="tt">dn/sd</span> fields) from the <em>from</em>-th day after the vaccination date (the value of the <span class="tt">dt</span> field), until the <em>until</em>-th day.”</li>
-        <li>If the <em>until</em>-part is empty, the vaccine is accepted “forever”.</li>
-        <li>A red cross mark (${redCrossMark}) means that the vaccine is not accepted at all for those values of <span class="tt">dn/sd</span>.</li>
+        <li>
+            If the <em>until</em>-part is empty, the vaccine is accepted “forever”/indefinitely.
+        </li>
+        <li>
+            A red cross mark (${redCrossMark}) means that the vaccine is not accepted at all for those values of <span class="tt">dn/sd</span>.
+        </li>
     </ul>
     <p>
     </p>

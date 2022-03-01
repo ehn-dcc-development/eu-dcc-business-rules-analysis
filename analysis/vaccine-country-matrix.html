@@ -22,7 +22,7 @@
         background: lightyellow;
       }
       th.vaccine {
-        font-style: italics;
+        font-style: italic;
       }
       th.country {
         width: 1em;
@@ -36,6 +36,13 @@
       .not-accepted {
         background-color: #4994f5;
       }
+      .authorised {
+        background-color: #ac145a;
+        opacity: 80%;
+      }
+      span.tt {
+        font-family: monospace;
+      }
     </style>
   </head>
   <body>
@@ -43,12 +50,21 @@
     <p>
       Below is a table that details which vaccines are accepted by which
       country. Acceptance might be conditional on waiting periods and maximum
-      validity, but that level of detail is not present here. This information
-      is derived <em>algorithmically</em> from the business rules uploaded to
-      the EU DCC Gateway. This algorithm makes a couple of assumptions: when
-      these are violated, the analysis is inaccurate.
+      validity, but that level of detail is not present here.
     </p>
-    <p>Date of generation: <em>2022-02-26</em></p>
+    <p>
+      <b>Disclaimer</b>
+      This information is derived <em>algorithmically</em> from the business
+      rules uploaded to the EU DCC Gateway. The algorithm used makes a couple of
+      assumptions: when these are violated, the algorithm typically aborts its
+      running. In rare cases, the algorithm finishes but produces an inaccurate
+      analysis result. In any case:
+      <em
+        >no rights whatsoever can be derived from the information presented
+        here.</em
+      >
+    </p>
+    <p>Date of generation: <em>2022-03-01</em></p>
     <table>
       <thead>
         <tr>
@@ -339,7 +355,7 @@
         </tr>
 
         <tr>
-          <td class="vaccine">Spikevax (Moderna)</td>
+          <td class="vaccine authorised">Spikevax (Moderna)</td>
           <td class="accepted"></td>
           <td class="accepted"></td>
           <td class="accepted"></td>
@@ -365,7 +381,7 @@
         </tr>
 
         <tr>
-          <td class="vaccine">Janssen</td>
+          <td class="vaccine authorised">Janssen</td>
           <td class="accepted"></td>
           <td class="accepted"></td>
           <td class="accepted"></td>
@@ -391,7 +407,7 @@
         </tr>
 
         <tr>
-          <td class="vaccine">Comirnaty (Pfizer/BioNTech)</td>
+          <td class="vaccine authorised">Comirnaty (Pfizer/BioNTech)</td>
           <td class="accepted"></td>
           <td class="accepted"></td>
           <td class="accepted"></td>
@@ -417,7 +433,7 @@
         </tr>
 
         <tr>
-          <td class="vaccine">Vaxzevria (AstraZeneca)</td>
+          <td class="vaccine authorised">Vaxzevria (AstraZeneca)</td>
           <td class="accepted"></td>
           <td class="accepted"></td>
           <td class="accepted"></td>
@@ -443,7 +459,7 @@
         </tr>
 
         <tr>
-          <td class="vaccine">Nuvaxovid</td>
+          <td class="vaccine authorised">Nuvaxovid</td>
           <td class="accepted"></td>
           <td class="not-accepted"></td>
           <td class="accepted"></td>
@@ -834,15 +850,47 @@
         </tr>
       </tfoot>
     </table>
-    <p>Legend:</p>
+    <p>Legend/explanation:</p>
     <ul>
       <li>
-        The vaccines are the ones <em>recognised</em> (but not necessarily
-        ubiquitously accepted) by the EMA.
+        Background colours of cells have the following meaning:
+        <dl>
+          <dt><span class="accepted">green</span></dt>
+          <dd>
+            means that the vaccine corresponding to the row is
+            <em>accepted</em> by the country corresponding to the column, while
+          </dd>
+          <dt><span class="not-accepted">blue</span></dt>
+          <dd>means <em>not accepted</em>.</dd>
+          <dt><span class="authorised">purple</span></dt>
+          <dd>
+            means that the corresponding vaccine is authorised by the EMA.
+          </dd>
+        </dl>
       </li>
       <li>
-        Colours: <span class="accepted">green</span> means <em>accepted</em>,
-        <span class="not-accepted">blue</span> means <em>not accepted</em>.
+        “Acceptance” could mean that the vaccine has a waiting/delay time or a
+        maximum validity, depending on the values of the
+        <span class="tt">dn/sd</span> fields.
+      </li>
+      <li>
+        The vaccines are the ones <em>recognised</em> by the EMA, and included
+        in the
+        <a
+          href="https://github.com/ehn-dcc-development/ehn-dcc-valuesets/blob/main/vaccine-medicinal-product.json"
+          target="blank"
+          >corresponding eHN value set</a
+        >
+        <small>(opens in a new window/tab)</small>.
+      </li>
+      <li>
+        Not every vaccine is <em>authorised</em> by the EMA: see
+        <a
+          href="https://www.ema.europa.eu/en/human-regulatory/overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/vaccines-covid-19/covid-19-vaccines-authorised#authorised-covid-19-vaccines-section"
+          target="blank"
+          >this table</a
+        >
+        <small>(opens in a new window/tab)</small>.
       </li>
     </ul>
   </body>

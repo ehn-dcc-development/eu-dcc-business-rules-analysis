@@ -15,3 +15,6 @@ const vaccineId2PopularName: { [vaccineId: string]: string } = {
 export const vaccineIdToDisplayName = (vaccineId: string): string =>
     vaccineId2PopularName[vaccineId] || vaccineId
 
+export const isEMAAuthorised = (vaccineId: string): boolean =>
+    [ "EU/1/20/1528", "EU/1/20/1507", "EU/1/21/1529", "EU/1/20/1525", "EU/1/21/1618" ].indexOf(vaccineId) !== -1
+

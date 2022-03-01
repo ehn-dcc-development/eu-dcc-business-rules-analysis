@@ -100,7 +100,7 @@ const analyseRules = (co: string, dn: number, sd: number, showDebug: boolean) =>
 const debugCliParam = "--show-debug"
 
 if (process.argv.length >= 4) {
-    const [dn, sd] = process.argv.slice(2, 4).map((n) => parseInt(n, 10))
+    const [dn, sd] = process.argv.slice(2, 4).map((n) => Number(n))
     if (process.argv.length >= 5) {
         const co = process.argv[4]
         const showDebug = process.argv.length >= 6 && process.argv.indexOf(debugCliParam) !== -1

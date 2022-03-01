@@ -85,7 +85,7 @@ const validationResultsAsHtml = (validationResults: ValidationResultForCountry[]
     <h1>Dashboard page: validation results</h1>
     <p>
         Below is a table with the validation results per country.
-        Both validation problems for specific rules, as problems for the rulesof a country as a set, are mentioned.
+        Both validation problems for specific rules, as problems for the rules of a country as a set, are mentioned.
     </p>
     <p>
         Date of generation: <em>${asISODate(new Date())}</em>

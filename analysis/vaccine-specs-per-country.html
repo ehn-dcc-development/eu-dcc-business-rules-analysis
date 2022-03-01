@@ -41,16 +41,21 @@
     <h1>Dashboard page: vaccine acceptance per country</h1>
     <p>
       Below is a table that details which country accepts which vaccines, and
-      with what validity period. This information is derived
-      <em>algorithmically</em> from the business rules uploaded to the EU DCC
-      Gateway. This algorithm makes a couple of assumptions. The most important
-      one of those is that the logic of the vaccination-related business rules
-      only depends the difference between the verification time and the date
-      value of the <span class="tt">dt</span> field. Where a violation of that
-      assumption is suspected, the corresponding entry is marked with a
-      “&#x2757;”.
+      with what validity period.
     </p>
-    <p>Date of generation: <em>2022-02-27</em></p>
+    <p>
+      <b>Disclaimer</b>
+      This information is derived <em>algorithmically</em> from the business
+      rules uploaded to the EU DCC Gateway. The algorithm used makes a couple of
+      assumptions: when these are violated, the algorithm typically aborts its
+      running. In rare cases, the algorithm finishes but produces an inaccurate
+      analysis result. In any case:
+      <em
+        >no rights whatsoever can be derived from the information presented
+        here.</em
+      >
+    </p>
+    <p>Date of generation: <em>2022-03-01</em></p>
     <table>
       <thead>
         <tr>
@@ -1186,10 +1191,7 @@
     </table>
     <p>Legend:</p>
     <ul>
-      <li>
-        The vaccines are the ones <em>recognised</em> (but not necessarily
-        ubiquitously accepted) by the EMA.
-      </li>
+      <li>The vaccines are the ones <em>recognised</em> by the EMA.</li>
       <li>
         Validity periods are dependent on the values of the
         <span class="tt">dn/sd</span> fields:
@@ -1206,7 +1208,8 @@
         the <span class="tt">dt</span> field), until the <em>until</em>-th day.”
       </li>
       <li>
-        If the <em>until</em>-part is empty, the vaccine is accepted “forever”.
+        If the <em>until</em>-part is empty, the vaccine is accepted
+        “forever”/indefinitely.
       </li>
       <li>
         A red cross mark (&#x274c;) means that the vaccine is not accepted at
