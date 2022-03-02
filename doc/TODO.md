@@ -45,3 +45,5 @@
 * [&#10003;] Persist all validation issues.
   * [&#10003;] Generate a dashboard page for these issues.
 
+* [ ] `vaccine-specs-*` &rarr; `vaccine-acceptance-*` ?
+

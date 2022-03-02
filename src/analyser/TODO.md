@@ -16,12 +16,11 @@
 
 # To improve
 
-* [ ] Documentation (and unit tests) of abstract/partial evaluator
-* [ ] Validation errors
-  * [ ] Group validation errors by country
-  * [ ] Also persist country-wide constraint violations
-  * [ ] Make a dashboard page
-* [ ] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
+* [&hellip;] Documentation (and unit tests) of abstract/partial evaluator
+* [&#10003;] Validation errors
+  * [&#10003;] Group validation errors by country
+  * [&#10003;] Also persist country-wide constraint violations
+  * [&#10003;] Make a dashboard page
 * [&#10003;] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
 * [ ] Furbish CLUnknown with an optional predicate, to do away with the need for replacements
     (The predicate could also be a sufficiently representative value.)
