@@ -5,7 +5,7 @@ import {
     compare, extBoolsiness, isCertLogicLiteral,
     isConstant
 } from "./helpers"
-import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
+import {CLExtExpr, CLWrapped, CLUnknown, wrapData} from "./abstract-types"
 
 
 const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: unknown): CLExtExpr => {
@@ -112,7 +112,7 @@ const evaluatePlusTime = (dateOperand: CLExtExpr, amount: CLExtExpr, unit: CLExt
 const evaluateReduce = (operand: CLExtExpr, lambda: CLExtExpr, initial: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operand, data)
     const evalInitial = evaluate(initial, data)
-    if (evalOperand instanceof CLObjectValue && evalOperand.value === null) {
+    if (evalOperand instanceof CLWrapped && evalOperand.value === null) {
         return evalInitial
     }
     if (!(Array.isArray(evalOperand))) {
@@ -134,7 +134,7 @@ const evaluateReduce = (operand: CLExtExpr, lambda: CLExtExpr, initial: CLExtExp
 
 const evaluateExtractFromUVCI = (operand: CLExtExpr, index: CLExtExpr, data: unknown): CLExtExpr => {
     const evalOperand = evaluate(operand, data)
-    if (!(typeof evalOperand === "string" || (evalOperand instanceof CLObjectValue && evalOperand.value === null))) {
+    if (!(typeof evalOperand === "string" || (evalOperand instanceof CLWrapped && evalOperand.value === null))) {
         throw new Error(`"UVCI" argument (#1) of "extractFromUVCI" must be either a string or null`)
     }
     return { "extractFromUVCI": [evalOperand, index] }
@@ -142,7 +142,7 @@ const evaluateExtractFromUVCI = (operand: CLExtExpr, index: CLExtExpr, data: unk
 
 
 const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
-    if (isCertLogicLiteral(expr) || expr instanceof CLUnknown || expr instanceof CLObjectValue) {
+    if (isCertLogicLiteral(expr) || expr instanceof CLUnknown || expr instanceof CLWrapped) {
         return expr
     }
     if (Array.isArray(expr)) {
@@ -155,11 +155,7 @@ const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
             if (value instanceof CLUnknown) {
                 return expr
             }
-            if (typeof value === "object" && !Array.isArray(value)) {
-                // TODO  recurse into array
-                return new CLObjectValue(value)
-            }
-            return value
+            return wrapData(value)
         }
         switch (operator) {
             case "if": return evaluateIf(operands[0], operands[1], operands[2], data)

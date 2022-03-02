@@ -1,7 +1,7 @@
 import {isFalsy, isInt, isTruthy} from "certlogic-js/dist/internals"
 import deepEqual from "deep-equal"
 
-import {CLExtExpr, CLObjectValue, CLUnknown} from "./abstract-types"
+import {CLExtExpr, CLWrapped, CLUnknown} from "./abstract-types"
 import {couldBeOperation} from "../utils/certlogic-utils"
 
 
@@ -36,7 +36,7 @@ export const isConstant = (expr: CLExtExpr): boolean => {
     if (expr instanceof CLUnknown) {
         return false
     }
-    if (expr instanceof CLObjectValue) {
+    if (expr instanceof CLWrapped) {
         return true     // might be a CLUnknown instance in there, but doesn't matter for being constant (TODO  ?)
     }
     if (isCertLogicLiteral(expr)) {
@@ -57,7 +57,7 @@ export const extBoolsiness = (expr: CLExtExpr): Boolsy => {
     if (expr instanceof CLUnknown) {
         return undefined
     }
-    if (expr instanceof CLObjectValue) {
+    if (expr instanceof CLWrapped) {
         return boolsiness(expr.value)
     }
     if (isCertLogicLiteral(expr)) {
@@ -74,8 +74,8 @@ export const areEqual = (left: CLExtExpr, right: CLExtExpr): Boolsy => {
     if (left instanceof CLUnknown) {
         return undefined
     }
-    if (left instanceof CLObjectValue) {
-        return left.value === (right instanceof CLObjectValue ? right.value : right)
+    if (left instanceof CLWrapped) {
+        return left.value === (right instanceof CLWrapped ? right.value : right)
     }
     if (typeof left === "boolean") {
         return typeof right === "boolean" ? left === right : undefined

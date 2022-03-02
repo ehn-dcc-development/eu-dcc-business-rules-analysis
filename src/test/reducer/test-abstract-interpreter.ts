@@ -4,8 +4,8 @@ import {isCertLogicOperation} from "certlogic-js"
 import {and_, if_, var_} from "certlogic-js/dist/factories"
 
 import {
-    CLExtExpr, CLObjectValue, isCertLogicExpression, ObjectType,
-    Unknown
+    CLExtExpr, CLWrapped, isCertLogicExpression, NeedWrapping,
+    Unknown, wrapData
 } from "../../reducer/abstract-types"
 import {evaluateAbstractly} from "../../reducer/abstract-interpreter"
 import {isCertLogicLiteral} from "../../reducer/helpers"
@@ -16,9 +16,9 @@ const isJsonValue = (expr: CLExtExpr, expectedValue: any) => {
     equal(expr, expectedValue)
 }
 
-const isObjectValue = (expr: CLExtExpr, expectValue: ObjectType) => {
-    isTrue(expr instanceof CLObjectValue)
-    equal((expr as CLObjectValue).value, expectValue)
+const isObjectValue = (expr: CLExtExpr, expectValue: NeedWrapping) => {
+    isTrue(expr instanceof CLWrapped)
+    equal((expr as CLWrapped).value, expectValue)
 }
 
 const isDataAccess = (expr: CLExtExpr, expectedPath: string) => {
@@ -113,7 +113,7 @@ describe(`"and" operation`, () => {
 describe(`"!" (not) operation`, () => {
 
     it(`evaluates to true on a null value`, () => {
-        const expr = { "!": [new CLObjectValue(null)] }
+        const expr = { "!": [wrapData(null)] }
         const reducedExpr = evaluateAbstractly(expr, {})
         isJsonValue(reducedExpr, true)
     })
