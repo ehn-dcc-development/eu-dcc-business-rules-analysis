@@ -49,3 +49,12 @@ export const country2CodeTo3Code = (_2code: string): string => {
     throw new Error(`3-code not input yet for country with 2-code "${_2code}"`)
 }
 
+export const country3CodeTo2Code = (target3code: string): string => {
+    const candidatePair = Object.entries(country2CodeTo3Code_)
+        .find(([ _2code, _3code ]) => _3code === target3code)
+    if (candidatePair === undefined) {
+        throw new Error(`can't map 3-code "${target3code}" to 2-code`)
+    }
+    return candidatePair[0]
+}
+

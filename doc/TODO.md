@@ -51,3 +51,5 @@
 
 * [ ] `vaccine-specs-*` &rarr; `vaccine-acceptance-*` ?
 
+* [ ] Check response from Re-open EU API to check whether it makes sense to render the links to Re-open EU.
+
