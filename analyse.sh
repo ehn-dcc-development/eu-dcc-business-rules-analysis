@@ -3,7 +3,7 @@
 rm tmp/*.log
 
 echo "Computing vaccine info per country, per vaccine, per combo..."
-node dist/compute-vaccine-specs-per-country.js > tmp/vaccine-info.log
+node dist/compute-vaccine-specs-per-country.js
 echo "Computed vaccine specs per country."
 
 node dist/dashboard/vaccine-specs-per-country.js

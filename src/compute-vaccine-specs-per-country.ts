@@ -16,7 +16,7 @@ const vaccineSpecsPerCountry: VaccineSpecsForCountry[] =
     countries.map((country) =>
         ({
             country,
-            vaccineSpecs: vaccineSpecsFromRules(allRulesFile.contents, country)
+            vaccineSpecs: vaccineSpecsFromRules(allRules, country)
         }))
 
 

@@ -22,6 +22,7 @@
   * [ ] Also persist country-wide constraint violations
   * [ ] Make a dashboard page
 * [ ] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
+* [&#10003;] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
 * [ ] Furbish CLUnknown with an optional predicate, to do away with the need for replacements
     (The predicate could also be a sufficiently representative value.)
 
