@@ -3,7 +3,7 @@
     "Identifier": "TR-CZ-0001",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "5.0.0",
+    "Version": "6.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Antigenní test nesmí být starší více než 24 hodin"
       }
     ],
-    "ValidFrom": "2022-02-16T23:00:00Z",
-    "ValidTo": "2032-02-16T23:00:00Z",
+    "ValidFrom": "2022-02-27T23:00:00Z",
+    "ValidTo": "2032-02-27T23:00:00Z",
     "AffectedFields": [
       "t.0",
       "t.0.sc",

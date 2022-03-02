@@ -3,7 +3,7 @@
     "Identifier": "VR-LV-0010",
     "Type": "Acceptance",
     "Country": "LV",
-    "Version": "1.1.0",
+    "Version": "1.1.1",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,7 +18,7 @@
         "desc": "At least 14 days must have elapsed since completing the primary course of immunization but not more than 270. A booster shot or vaccination of someone who recovered from COVID-19 is valid immediately as long as it is clearly identified as such."
       }
     ],
-    "ValidFrom": "2022-02-01T00:00:00Z",
+    "ValidFrom": "2022-02-28T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -203,7 +203,8 @@
                               "BBIBP-CorV",
                               "CoronaVac",
                               "Covaxin",
-                              "NVX-CoV2373"
+                              "NVX-CoV2373",
+                              "EU/1/21/1618"
                             ]
                           ]
                         }
@@ -218,6 +219,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +15 days)) and (((/external.validationClock) +0 days) before ((/payload.v.0.dt) +270 days)) and (((/payload.v.0.dn) <= (2)) and ((/payload.v.0.dn) === (/payload.v.0.sd)))) then (true) else (if (((/payload.v.0.dn) >= (3)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) then (true) else (if ((((/payload.v.0.dn) >= (2)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (true) else ((((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (2))) and ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"BBIBP-CorV\", \"CoronaVac\", \"Covaxin\", \"NVX-CoV2373\" ])))))) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +15 days)) and (((/external.validationClock) +0 days) before ((/payload.v.0.dt) +270 days)) and (((/payload.v.0.dn) <= (2)) and ((/payload.v.0.dn) === (/payload.v.0.sd)))) then (true) else (if (((/payload.v.0.dn) >= (3)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) then (true) else (if ((((/payload.v.0.dn) >= (2)) and ((/payload.v.0.dn) >= (/payload.v.0.sd))) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (true) else ((((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (2))) and ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"BBIBP-CorV\", \"CoronaVac\", \"Covaxin\", \"NVX-CoV2373\", \"EU/1/21/1618\" ])))))) else (true)"
   }
 ]

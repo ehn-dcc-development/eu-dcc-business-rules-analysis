@@ -3,7 +3,7 @@
     "Identifier": "VR-LV-0004",
     "Type": "Acceptance",
     "Country": "LV",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,7 +18,7 @@
         "desc": "Vaccine medicinal product is approved in Latvia or by WHO."
       }
     ],
-    "ValidFrom": "2022-01-10T00:00:00Z",
+    "ValidFrom": "2022-02-28T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -43,13 +43,14 @@
               "BBIBP-CorV",
               "CoronaVac",
               "Covaxin",
-              "NVX-CoV2373"
+              "NVX-CoV2373",
+              "EU/1/21/1618"
             ]
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/21/1529\", \"EU/1/20/1507\", \"EU/1/20/1525\", \"Covishield\", \"BBIBP-CorV\", \"CoronaVac\", \"Covaxin\", \"NVX-CoV2373\" ])) else (true)"
+    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/21/1529\", \"EU/1/20/1507\", \"EU/1/20/1525\", \"Covishield\", \"BBIBP-CorV\", \"CoronaVac\", \"Covaxin\", \"NVX-CoV2373\", \"EU/1/21/1618\" ])) else (true)"
   }
 ]
