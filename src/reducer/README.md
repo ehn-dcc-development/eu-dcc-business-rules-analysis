@@ -117,8 +117,9 @@ export type CertLogicExpression =
     | string
 ```
 
-If we disregard the possibility of an exception being thrown, what can we say about the type of the result of the evaluation?
+What can we say about the type of the result of the evaluation?
 To answer that question, we have to look a bit closer at the various types of CertLogic expressions - and especially the operations.
+In answering this question we assume that the evaluation doesn't throw any exception, meaning that the given expression is valid and type-safe over its entire range of input data.
 
 Let's start with the literals: a CertLogic expression that's a boolean, an integer, or a string evaluates to itself.
 An expression that's an array of items evaluates to the array of evaluations of those items.
@@ -134,7 +135,24 @@ There are two problems with that:
 
 We'll solve this problem by suitably _wrapping_ the result of a `var` operation, if it happens to be an object, or another value that is not a valid CertLogic expression.
 Effectively, we extend the notion of a CertLogic expression a little bit.
-With this extension, we can “lift” the CertLogic `evaluate` function to one that's [endomorphic](https://en.wikipedia.org/wiki/Endomorphism).
+With this extension, we can “lift” the CertLogic `evaluate` function to one that's an [endomorphism](https://en.wikipedia.org/wiki/Endomorphism).
+(We also say that the lifted evaluation function is “endomorphic”.)
+
+Let's call this new type `CLExtExpr` where the prefix “CL” is shorthand for “CertLogic”.
+
+The tricky bit is that the `CertLogicExpression` type is _recursive_: nested parts of that type's definition reference the type itself.
+We can already see that from the first line in the type definition above: `CertLogicExpression[]`.
+(Such a type definition defines a _sum type_: any instance of any of its _summands_ is an instance of the sum type.)
+We also see that in the definition of e.g. the `reduce` operation:
+
+```typescript
+export type CertLogicOperation =
+    // ...
+    | { "reduce": [ CertLogicExpression, CertLogicExpression, CertLogicExpression ] }
+    // ...
+```
+
+The lifted `reduce` operation in `CLExtExpr` should have operands of type `CLExtExpr` as well.
 
 **TODO**  continue, and finish
 

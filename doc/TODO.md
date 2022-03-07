@@ -5,17 +5,19 @@
 * [&#10003;] Forcefully normalise the order of fields so comparison can be done stably.
 * [&#10003;] Make a separate repo for analysis?
 
-* [ ] Make a list of all business rules developers.
+* [&hellip;] Make a list of all business rules developers.
   * [&#10003;] Slack
-  * [ ] list obtained by Marion (not found so far...)
-* [ ] Make point about quality.
+  * [&#10003;] List obtained by Marion (not found so far...)
+        Got a new one from Herbert Meschede, but that has the project leads only.
+* [&hellip;] Make point about quality.
 * [&hellip;] Model a configuration that fits all countries (possibly with some tweaking).
 * [&#10005;] Use `degit` instead of `git clone` &larr; not necessary anymore, due to relying on retrieving from Gateway (via proxy).
-* [&hellip;] Separate knowledge of rules from CI tooling (to re-use in analysis).
+* [&#10003;] Separate knowledge of rules from CI tooling (to re-use in analysis).
 
 * [&#10003;] Show EU status (EU MS, EEA member, candidate-EU MS, other) next to country code and flag. -- done in dashboard
 * [ ] Also derive RAT, NAAT, and recovery validities.
-* [ ] Use compiler and/or Cluster (https://nodejs.org/api/cluster.html) to speed up computation?
+* [&#10005;] Use compiler and/or Cluster (https://nodejs.org/api/cluster.html) to speed up computation?
+    Not necessary anymore: partial evaluation has already reduced analyses times to < 2s.
 * [&#10003;] Re-organise generated/derived file, e.g.:
   * [&#10003;] `analysis/` for `vaccine-inventory.html`
   * [&#10003;] persist `valueSets.json`
@@ -36,6 +38,8 @@
   &larr; not worth the effort right now...
 
 * [ ] Make a GitHub Action that runs the main build script.
+
+* [ ] Make a GitHub Action that publishes a dashboard.
 
 * [&#10003;] Show some totals in rules' statistics.
 

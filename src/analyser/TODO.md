@@ -24,4 +24,11 @@
 * [&#10003;] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
 * [ ] Furbish CLUnknown with an optional predicate, to do away with the need for replacements
     (The predicate could also be a sufficiently representative value.)
+    Goals:
+    1. [ ] Be able to express `dn > sd` or `dn > 2` (possibly in combination), so we can summarise a large part of the “lower triangle” appropriately.
+    2. [ ] Reduce the need for “manual” replacements.
+    Could also use additional, other metadata, such as the boolsiness of a value.
+    That would already help with e.g. being able to properly reduce `!!value` to `true` for a truthy `value`.
+* [ ] Maybe come up with a general analysis framework to transform CertLogic expressions to other types, based on the “shape” of the expression?
+* [ ] Use object algebras in CertLogic itself to provide sufficient extensibility, and to make it easier to write mappers and such?
 
