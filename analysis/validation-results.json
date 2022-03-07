@@ -59,45 +59,10 @@
   },
   {
     "country": "CH",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-CH-0000",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"r.0\", \"t.0\", \"v.1\", \"v.0\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.8"
-      },
-      {
-        "ruleId": "TR-CH-0000",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"r.0\", \"t.1\", \"t.0\", \"v.0\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.8"
-      },
-      {
-        "ruleId": "RR-CH-0000",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Recovery doesn't match with its AffectedFields [ \"r.1\", \"r.0\", \"t.0\", \"v.0\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.8"
-      }
-    ],
-    "ruleSetProblems": []
+    "rulesWithValidationProblems": [],
+    "ruleSetProblems": [
+      "country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
+    ]
   },
   {
     "country": "EE",

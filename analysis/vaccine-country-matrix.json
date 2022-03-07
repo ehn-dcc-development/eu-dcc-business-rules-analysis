@@ -3,6 +3,7 @@
     "vaccineId": "Abdala",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -31,6 +32,7 @@
     "vaccineId": "CVnCoV",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -43,6 +45,7 @@
     "vaccineId": "Convidecia",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -89,6 +92,7 @@
     "vaccineId": "CoviVac",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -134,6 +138,7 @@
     "vaccineId": "Covovax",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "ES",
       "RO",
@@ -258,6 +263,7 @@
       "DE",
       "EE",
       "ES",
+      "FR",
       "IE",
       "LT",
       "LU",
@@ -274,6 +280,7 @@
     "vaccineId": "EpiVacCorona",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -285,6 +292,7 @@
     "vaccineId": "EpiVacCorona-N",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -295,6 +303,7 @@
     "vaccineId": "Hayat-Vax",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -306,6 +315,7 @@
     "vaccineId": "Inactivated-SARS-CoV-2-Vero-Cell",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "ES",
       "ME",
@@ -320,6 +330,7 @@
     "vaccineId": "MVC-COV1901",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -360,6 +371,7 @@
     "vaccineId": "Sputnik-Light",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "RS",
@@ -371,6 +383,7 @@
     "vaccineId": "Sputnik-M",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -381,6 +394,7 @@
     "vaccineId": "Sputnik-V",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "ME",
       "RO",
@@ -394,6 +408,7 @@
     "vaccineId": "VLA2001",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -404,6 +419,7 @@
     "vaccineId": "Vidprevtyn",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "RO",
       "SI",
@@ -414,6 +430,7 @@
     "vaccineId": "WIBP-CorV",
     "acceptingCountries": [
       "AL",
+      "CH",
       "EE",
       "ES",
       "ME",
