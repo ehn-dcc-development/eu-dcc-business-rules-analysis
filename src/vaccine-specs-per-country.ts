@@ -22,7 +22,9 @@ import {isUnanalysable, validityAsCombo} from "./analyser/types"
 
 
 
-const validationClock = new Date("2022-03-01T13:37:00Z")    // TODO  --> now/new Date()
+const validationClock = new Date()
+validationClock.setMonth(validationClock.getMonth() + 1)
+console.log(`verification timestamp ('validationClock'): ${validationClock.toISOString()}`)
 
 
 const replacementsPerCountry: { [country: string]: Replacement[] } = readJson("src/analyser/replacements.json")

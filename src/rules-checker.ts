@@ -10,7 +10,7 @@ import {vaccineIds} from "./refData/vaccine-data"
 import {
     ExtRuleValidationResult,
     ValidationResultForCountry
-} from "./json-files";
+} from "./json-files"
 
 
 const isVaccineIdDataAccess = (expr: CertLogicExpression): boolean => {
