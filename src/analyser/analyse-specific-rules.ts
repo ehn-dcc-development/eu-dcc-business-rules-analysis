@@ -1,8 +1,8 @@
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
 // import {and_} from "certlogic-js/dist/factories"
 
-import {evaluateAbstractly} from "../reducer/abstract-interpreter"
-import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
+import {isCertLogicExpression, Unknown} from "../reducer/extended-types"
+import {evaluatePartially} from "../reducer/partial-evaluator"
 import {inputDataFor, Replacement, replaceSubExpression} from "./helpers"
 import {pretty, readJson} from "../utils/file-utils"
 import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"
@@ -24,7 +24,7 @@ const analyseRule = (rule: Rule): void => {
     const afterReplacements = co in replacementsPerCountry
         ? replaceSubExpression(rule.Logic, replacementsPerCountry[co])
         : rule.Logic
-    const reducedCertLogicExpr = evaluateAbstractly(afterReplacements, inputDataFor(Unknown, Unknown, vaccineId))
+    const reducedCertLogicExpr = evaluatePartially(afterReplacements, inputDataFor(Unknown, Unknown, vaccineId))
     if (reducedCertLogicExpr !== true) {
         console.log(`rule ID=${rule.Identifier}`)
         console.log(`reduced CertLogic expression:`)

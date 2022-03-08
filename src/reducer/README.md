@@ -22,6 +22,7 @@ I can think of two use cases where that could happen:
     By being able to evaluate the logic parts of the business rules involved with this validity, we could reduce that logic to a CertLogic expression that's relatively simple to recognise as a condition for a validity range.
 
 This documentation develops the idea of _partial evaluation_: evaluating a CertLogic expression against data which may be partial.
+(This is sometimes also referred to as _abstract interpretation_.)
 Take the following example expression:
 
 ```json

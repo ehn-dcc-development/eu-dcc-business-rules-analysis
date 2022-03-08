@@ -5,7 +5,7 @@ import {
     compare, extBoolsiness, isCertLogicLiteral,
     isConstant
 } from "./helpers"
-import {CLExtExpr, CLWrapped, CLUnknown, wrapData} from "./abstract-types"
+import {CLExtExpr, CLWrapped, CLUnknown, wrapData} from "./extended-types"
 
 
 const evaluateIf = (guard: CLExtExpr, then: CLExtExpr, else_: CLExtExpr, data: unknown): CLExtExpr => {
@@ -181,5 +181,5 @@ const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
     throw new Error(`can't handle this CLExtExpr: ${JSON.stringify(expr, null, 2)}`)
 }
 
-export const evaluateAbstractly = evaluate
+export const evaluatePartially = evaluate
 

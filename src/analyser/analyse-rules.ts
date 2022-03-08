@@ -2,8 +2,8 @@ import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
 
-import {evaluateAbstractly} from "../reducer/abstract-interpreter"
-import {isCertLogicExpression, Unknown} from "../reducer/abstract-types"
+import {isCertLogicExpression, Unknown} from "../reducer/extended-types"
+import {evaluatePartially} from "../reducer/partial-evaluator"
 import {pretty, readJson} from "../utils/file-utils"
 import {groupBy, mapValues, unique} from "../utils/func-utils"
 import {vaccineIds} from "../refData/vaccine-data"
@@ -23,7 +23,7 @@ const replacementsPerCountry: { [country: string]: Replacement[] } = readJson("s
 
 const applicableRuleVersionsAsExpressionForCombo = (applicableRuleVersions: Rule[], co: string, dn: number, sd: number): CertLogicExpression => {
     const andCertLogicExpr = and_(...applicableRuleVersions.map((rule) => rule.Logic))  // and(...all applicable versions of Acceptance rules...)
-    const reducedCertLogicExpr = evaluateAbstractly(
+    const reducedCertLogicExpr = evaluatePartially(
         co in replacementsPerCountry
             ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
             : andCertLogicExpr,
@@ -38,7 +38,7 @@ const applicableRuleVersionsAsExpressionForCombo = (applicableRuleVersions: Rule
 
 
 const validityFor = (co: string, dn: number, sd: number, mp: string, preparedCertLogicExpr: CertLogicExpression, showDebug: boolean): string => {
-    const reducedCertLogicExpr = evaluateAbstractly(preparedCertLogicExpr, inputDataFor(dn, sd, mp))
+    const reducedCertLogicExpr = evaluatePartially(preparedCertLogicExpr, inputDataFor(dn, sd, mp))
     if (!isCertLogicExpression(reducedCertLogicExpr)) {
         console.error(`not reducible: ${pretty(reducedCertLogicExpr)}`)
         throw new Error(`Acceptance rules didn't reduce to a CertLogic expression with dn/sd=${dn}/${sd} and mp="${mp}"`)

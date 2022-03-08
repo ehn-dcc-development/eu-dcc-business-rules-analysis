@@ -21,7 +21,7 @@ The analysis focuses almost entirely on rules pertaining to vaccination DCCs.
 The analysis takes the shape of a number of JSON files which aggregate findings on the uploaded business rules, typically organised per country that has uploaded business rules.
 These JSON files are also presented in the form of an equal number of static, standalone HTML files: the <em>“dashboard pages”</em>.
 
-These pages are:
+These **dashboard pages** are:
 
 * [An inventory of what countries accept which vaccines, including waiting time and validity](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-specs-per-country.html)
 * [A matrix detailing which vaccines are accepted by which countries](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-country-matrix.html)

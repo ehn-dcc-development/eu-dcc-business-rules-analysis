@@ -1,7 +1,7 @@
 import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
 import deepEqual from "deep-equal"
 
-import {CLUnknown, Unknown} from "../reducer/abstract-types"
+import {CLUnknown, Unknown} from "../reducer/extended-types"
 import {isCertLogicLiteral} from "../reducer/helpers"
 import {operationDataFrom} from "../utils/certlogic-utils"
 

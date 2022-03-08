@@ -1,7 +1,7 @@
 import {isFalsy, isInt, isTruthy} from "certlogic-js/dist/internals"
 import deepEqual from "deep-equal"
 
-import {CLExtExpr, CLWrapped, CLUnknown} from "./abstract-types"
+import {CLExtExpr, CLWrapped, CLUnknown} from "./extended-types"
 import {couldBeOperation} from "../utils/certlogic-utils"
 
 
@@ -30,7 +30,7 @@ export const boolsiness = (value: unknown): Boolsy => {
 
 /**
  * Check whether the given `expr` is of constant value.
- * This assumes that the given `expr` is already evaluated abstractly against data.
+ * This assumes that the given `expr` is already partially evaluated against data.
  */
 export const isConstant = (expr: CLExtExpr): boolean => {
     if (expr instanceof CLUnknown) {

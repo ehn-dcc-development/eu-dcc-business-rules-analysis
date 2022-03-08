@@ -16,7 +16,7 @@
 
 # To improve
 
-* [&hellip;] Documentation (and unit tests) of abstract/partial evaluator
+* [&hellip;] Documentation (and unit tests) of abstract interpreter/partial evaluator
 * [&#10003;] Validation errors
   * [&#10003;] Group validation errors by country
   * [&#10003;] Also persist country-wide constraint violations

@@ -11,12 +11,12 @@ import {
 } from "./analyser/helpers"
 import {pretty, readJson} from "./utils/file-utils"
 import {and_} from "certlogic-js/dist/factories"
-import {evaluateAbstractly} from "./reducer/abstract-interpreter"
 import {
     CLExtExpr,
     isCertLogicExpression,
     Unknown
-} from "./reducer/abstract-types"
+} from "./reducer/extended-types"
+import {evaluatePartially} from "./reducer/partial-evaluator"
 import {analyse} from "./analyser/analyser"
 import {isUnanalysable, validityAsCombo} from "./analyser/types"
 
@@ -30,7 +30,7 @@ console.log(`verification timestamp ('validationClock'): ${validationClock.toISO
 const replacementsPerCountry: { [country: string]: Replacement[] } = readJson("src/analyser/replacements.json")
 
 const infoForCombo = (exprForVaccine: CLExtExpr, mp: string, dn: number, sd: number): ComboInfo => {
-    const reducedExpr = evaluateAbstractly(exprForVaccine, inputDataFor(dn, sd, mp))
+    const reducedExpr = evaluatePartially(exprForVaccine, inputDataFor(dn, sd, mp))
     if (!isCertLogicExpression(reducedExpr)) {
         console.error(`not reducible: ${pretty(reducedExpr)}`)
         throw new Error(`Acceptance rules didn't reduce to a CertLogic expression with dn/sd=${dn}/${sd} and mp="${mp}"`)
@@ -46,7 +46,7 @@ const infoForCombo = (exprForVaccine: CLExtExpr, mp: string, dn: number, sd: num
 
 
 const specForVaccine = (combinedLogicForCountry: CLExtExpr, mp: string): VaccineSpec => {
-    const exprForVaccine = evaluateAbstractly(combinedLogicForCountry, inputDataFor(Unknown, Unknown, mp))
+    const exprForVaccine = evaluatePartially(combinedLogicForCountry, inputDataFor(Unknown, Unknown, mp))
     return {
         vaccineIds: [mp],
         combos: Object.fromEntries(
@@ -88,7 +88,7 @@ export const vaccineSpecsFromRules = (rules: Rule[], co: string): VaccineSpec[] 
         ...applicableRuleVersions(rules, co, "Acceptance", validationClock)
             .map((rule) => rule.Logic)
     )  // and(...all applicable versions of Acceptance rules...)
-    const combinedLogicForCountry = evaluateAbstractly(
+    const combinedLogicForCountry = evaluatePartially(
         co in replacementsPerCountry
             ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
             : andCertLogicExpr,
