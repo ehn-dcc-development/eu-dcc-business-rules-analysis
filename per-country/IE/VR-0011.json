@@ -3,7 +3,7 @@
     "Identifier": "VR-IE-0011",
     "Type": "Acceptance",
     "Country": "IE",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -14,10 +14,13 @@
         "desc": "Effective dates on vaccine certificate not valid for entry at this time."
       }
     ],
-    "ValidFrom": "2022-02-04T00:00:00Z",
+    "ValidFrom": "2022-03-10T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
-      "v.0"
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.dt"
     ],
     "Logic": {
       "if": [
@@ -55,13 +58,6 @@
                     0,
                     "day"
                   ]
-                },
-                {
-                  "plusTime": [
-                    "2030-06-30T23:59:59-00:00",
-                    0,
-                    "day"
-                  ]
                 }
               ]
             },
@@ -71,6 +67,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) > (/payload.v.0.sd)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days) not-after ((\"2030-06-30T23:59:59-00:00\") +0 days)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) > (/payload.v.0.sd)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days)) else (true)) else (true)"
   }
 ]

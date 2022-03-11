@@ -806,11 +806,6 @@
             "version": "1.0.5",
             "validFrom": "2022-03-07T00:00:00Z",
             "validTo": "2023-03-07T00:00:00Z"
-          },
-          {
-            "version": "1.0.4",
-            "validFrom": "2022-02-01T00:00:00Z",
-            "validTo": "2023-02-01T00:00:00Z"
           }
         ]
       },
@@ -821,11 +816,6 @@
             "version": "1.0.5",
             "validFrom": "2022-03-07T00:00:00Z",
             "validTo": "2023-03-07T00:00:00Z"
-          },
-          {
-            "version": "1.0.4",
-            "validFrom": "2022-02-01T00:00:00Z",
-            "validTo": "2023-02-01T00:00:00Z"
           }
         ]
       },
@@ -1090,11 +1080,6 @@
             "version": "1.0.5",
             "validFrom": "2022-03-07T13:00:00Z",
             "validTo": "2032-03-07T13:00:00Z"
-          },
-          {
-            "version": "1.0.4",
-            "validFrom": "2021-12-17T18:00:00Z",
-            "validTo": "2031-12-17T18:00:00Z"
           }
         ]
       },
@@ -1192,7 +1177,7 @@
   },
   {
     "country": "IE",
-    "latestValidFrom": "2022-02-04T00:00:00Z",
+    "latestValidFrom": "2022-03-10T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -1231,16 +1216,6 @@
           {
             "version": "1.0.1",
             "validFrom": "2021-07-12T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-IE-0002",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-08-13T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1319,18 +1294,8 @@
         "ruleId": "VR-IE-0003",
         "versions": [
           {
-            "version": "1.0.4",
-            "validFrom": "2022-02-04T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-IE-0006",
-        "versions": [
-          {
             "version": "1.0.5",
-            "validFrom": "2022-02-04T00:00:00Z",
+            "validFrom": "2022-03-10T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1339,8 +1304,8 @@
         "ruleId": "VR-IE-0011",
         "versions": [
           {
-            "version": "1.0.1",
-            "validFrom": "2022-02-04T00:00:00Z",
+            "version": "1.0.2",
+            "validFrom": "2022-03-10T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1349,8 +1314,8 @@
         "ruleId": "VR-IE-0012",
         "versions": [
           {
-            "version": "1.0.1",
-            "validFrom": "2022-02-04T00:00:00Z",
+            "version": "1.0.2",
+            "validFrom": "2022-03-10T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -2823,7 +2788,7 @@
   },
   {
     "country": "UA",
-    "latestValidFrom": "2022-01-13T11:02:00Z",
+    "latestValidFrom": "2022-03-12T14:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -2949,6 +2914,11 @@
       {
         "ruleId": "VR-UA-0001",
         "versions": [
+          {
+            "version": "1.2.1",
+            "validFrom": "2022-03-12T14:00:00Z",
+            "validTo": "2030-06-01T00:00:00Z"
+          },
           {
             "version": "1.2.0",
             "validFrom": "2022-01-13T11:00:00Z",

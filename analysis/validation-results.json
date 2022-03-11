@@ -159,113 +159,6 @@
     "ruleSetProblems": []
   },
   {
-    "country": "IE",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-IE-0003",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "v.0"
-          ],
-          "computed": [
-            "v.0",
-            "v.0.dn",
-            "v.0.dt",
-            "v.0.mp"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.4"
-      },
-      {
-        "ruleId": "VR-IE-0011",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "v.0"
-          ],
-          "computed": [
-            "v.0",
-            "v.0.dn",
-            "v.0.dt",
-            "v.0.sd"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [
-          "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
-        ],
-        "version": "1.0.1"
-      },
-      {
-        "ruleId": "VR-IE-0012",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "v.0"
-          ],
-          "computed": [
-            "v.0",
-            "v.0.dn",
-            "v.0.dt"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [
-          "rule's logic contains a \"plusTime\"-operation with an operand that's a static string ==> might not be invariant under date shifts"
-        ],
-        "version": "1.0.1"
-      },
-      {
-        "ruleId": "VR-IE-0006",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "v.0"
-          ],
-          "computed": [
-            "v.0",
-            "v.0.dn",
-            "v.0.dt",
-            "v.0.mp"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.5"
-      },
-      {
-        "ruleId": "RR-IE-0002",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "r.0"
-          ],
-          "computed": [
-            "r.0",
-            "r.0.fr"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.2"
-      }
-    ],
-    "ruleSetProblems": []
-  },
-  {
     "country": "LT",
     "rulesWithValidationProblems": [
       {
@@ -682,6 +575,24 @@
         "metaDataErrors": [],
         "logicWarnings": [],
         "version": "2.0.0"
+      },
+      {
+        "ruleId": "VR-UA-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.mp"
+          ],
+          "computed": [
+            "v.0.mp"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.2.1"
       },
       {
         "ruleId": "VR-UA-0003",
