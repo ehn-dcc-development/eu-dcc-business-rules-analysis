@@ -41,7 +41,7 @@ ${combosShown.map((combo) => comboAsHtml(vaccineSpec.combos[combo])).join("\n")}
 `
 
 const vaccineSpecsForCountryAsHtml = ({ country, vaccineSpecs }: VaccineSpecsForCountry) =>
-    `<tr>
+    `<tr id="${country}">
     <td class="country">
         ${countryCode2DisplayName[country]} (${country} - ${flagEmoji(country)})
     </td>
