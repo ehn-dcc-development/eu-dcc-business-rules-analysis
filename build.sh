@@ -14,5 +14,5 @@ echo "Compiled TypeScript sources."
 
 source retrieve.sh
 
-source analyse.sh
+source generate-dashboard.sh
 
