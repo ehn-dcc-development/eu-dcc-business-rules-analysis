@@ -17,7 +17,13 @@ const euMemberStates = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "
 const euCandidateMemberStates = [ "AL", "ME", "MK", "RS", "TR" ]
 const eeaPlusCountries = [ "IS", "LI", "NO" ]
 
-export const memberAnnotation = (country: string) => {
+export type MemberAnnotation =
+    | "EU MS"
+    | "EU candidate-MS"
+    | "E{E|F}A MS"
+    | "EFTA MS"
+    | "3rd country"
+export const memberAnnotation = (country: string): MemberAnnotation => {
     if (euMemberStates.indexOf(country) > -1) {
         return "EU MS"
     }

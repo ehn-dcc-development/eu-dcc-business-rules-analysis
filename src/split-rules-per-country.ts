@@ -4,7 +4,11 @@ import {join} from "path"
 
 import {mkDir, writeJson} from "./utils/file-utils"
 import {groupBy, sortArrayBy} from "./utils/func-utils"
-import {allRulesFile, rulesStatisticsFile} from "./json-files"
+import {
+    allRulesFile,
+    RulesStatistics,
+    rulesStatisticsFile, uploadingCountriesFile
+} from "./json-files"
 
 
 type RuleWithLogicAsText = Rule & { "expr-as-text": string }
@@ -33,17 +37,20 @@ Object.entries(rulesPerCountry)
     })
 
 
-writeJson(
-    rulesStatisticsFile.path,
-    Object.entries(rulesPerCountry)
-        .map(([ co, rules ]) => {
-            const ruleVersionsPerId = groupBy(rules, (rule) => rule.Identifier)
-            return ({
-                co,
-                n: Object.entries(ruleVersionsPerId).length,
-                nAcceptance: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Acceptance").length,
-                nInvalidation: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Invalidation").length
-            })
+const statistics: RulesStatistics[] = Object.entries(rulesPerCountry)
+    .map(([ co, rules ]) => {
+        const ruleVersionsPerId = groupBy(rules, (rule) => rule.Identifier)
+        return ({
+            co,
+            n: Object.entries(ruleVersionsPerId).length,
+            nAcceptance: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Acceptance").length,
+            nInvalidation: Object.entries(ruleVersionsPerId).filter(([ _, ruleVersions ]) => ruleVersions[0].Type === "Invalidation").length
         })
-)
+    })
+
+
+rulesStatisticsFile.contents = statistics
+
+
+uploadingCountriesFile.contents = statistics.map(({ co }) => co)
 

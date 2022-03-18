@@ -1,4 +1,4 @@
-import {writeHtml, writeJson} from "./utils/file-utils"
+import {writeHtml} from "./utils/file-utils"
 import {unique} from "./utils/func-utils"
 import {vaccineIds} from "./refData/vaccine-data"
 import {acceptingCountriesPerVaccineAsHtml} from "./dashboard/vaccine-country-matrix"
@@ -19,7 +19,7 @@ const acceptingCountriesPerVaccine: VaccineAcceptance[] = vaccineIds.map((vaccin
     })
 )
 
-writeJson(vaccineCountryMatrixFile.path, acceptingCountriesPerVaccine)
+vaccineCountryMatrixFile.contents = acceptingCountriesPerVaccine
 
 
 const countries = unique(acceptingCountriesPerVaccine.flatMap(({ acceptingCountries }) => acceptingCountries)).sort()

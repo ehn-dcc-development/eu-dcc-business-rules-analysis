@@ -1,7 +1,7 @@
 import {Rule, RuleValidationResult} from "dcc-business-rules-utils"
 import {PathLike} from "fs"
 
-import {readJson} from "./utils/file-utils"
+import {readJson, writeJson} from "./utils/file-utils"
 
 
 export class JsonFile<T> {
@@ -11,6 +11,9 @@ export class JsonFile<T> {
     }
     get contents(): T {
         return readJson(this.path)
+    }
+    set contents(newContents: T) {
+        writeJson(this.path, newContents)
     }
 }
 
@@ -26,6 +29,9 @@ export type RulesStatistics = {
 }
 
 export const rulesStatisticsFile = new JsonFile<RulesStatistics[]>("analysis/statistics.json")
+
+
+export const uploadingCountriesFile = new JsonFile<string[]>("analysis/countries.json")
 
 
 export type RulesVersionsMetadataPerCountry = {

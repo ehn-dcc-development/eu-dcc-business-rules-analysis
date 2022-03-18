@@ -1,4 +1,3 @@
-import {writeJson} from "./utils/file-utils"
 import {unique} from "./utils/func-utils"
 import {allRulesFile, VaccineSpecsForCountry, vaccineSpecsPerCountryFile} from "./json-files"
 import {vaccineSpecsFromRules} from "./vaccine-specs-per-country"
@@ -23,5 +22,5 @@ const vaccineSpecsPerCountry: VaccineSpecsForCountry[] =
 const elapsedInMs = nowInMs() - startTime
 console.log(`Computing vaccine info took ${Math.floor(elapsedInMs/1000)}s.${elapsedInMs%1000}ms.`)
 
-writeJson(vaccineSpecsPerCountryFile.path, vaccineSpecsPerCountry)
+vaccineSpecsPerCountryFile.contents = vaccineSpecsPerCountry
 

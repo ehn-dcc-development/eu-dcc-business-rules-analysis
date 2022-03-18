@@ -1,7 +1,6 @@
 import {Rule} from "dcc-business-rules-utils"
 import {lt} from "semver"
 
-import {writeJson} from "./utils/file-utils"
 import {groupBy, sortByStringKey} from "./utils/func-utils"
 import {
     allRulesFile, rulesVersionMetadataFile,
@@ -53,5 +52,5 @@ const rulesVersionMetaData = sortByStringKey(
     (countryMetadata) => countryMetadata.country
 )
 
-writeJson(rulesVersionMetadataFile.path, rulesVersionMetaData)
+rulesVersionMetadataFile.contents = rulesVersionMetaData
 
