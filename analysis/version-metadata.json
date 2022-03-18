@@ -589,7 +589,7 @@
   },
   {
     "country": "DE",
-    "latestValidFrom": "2022-02-24T17:00:00Z",
+    "latestValidFrom": "2022-03-18T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -665,6 +665,11 @@
       {
         "ruleId": "VR-DE-0001",
         "versions": [
+          {
+            "version": "1.0.2",
+            "validFrom": "2022-03-18T00:00:00Z",
+            "validTo": "2030-06-01T00:00:00Z"
+          },
           {
             "version": "1.0.0",
             "validFrom": "2021-07-03T00:00:00Z",
@@ -2917,11 +2922,6 @@
           {
             "version": "1.2.1",
             "validFrom": "2022-03-12T14:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          },
-          {
-            "version": "1.2.0",
-            "validFrom": "2022-01-13T11:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
