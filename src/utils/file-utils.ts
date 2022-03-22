@@ -18,3 +18,22 @@ export const writeHtml = (path: PathLike, html: string) => {
 
 export const mkDir = (path: PathLike) => existsSync(path) || mkdirSync(path)
 
+
+/**
+ * Class to represent a JSON file “on disk”.
+ * The `contents` getter reads the file from disk, and parses it.
+ * The setter writes the given JSON to disk.
+ */
+export class JsonFile<T> {
+    readonly path: PathLike
+    constructor(path: PathLike) {
+        this.path = path
+    }
+    get contents(): T {
+        return readJson(this.path)
+    }
+    set contents(newContents: T) {
+        writeJson(this.path, newContents)
+    }
+}
+

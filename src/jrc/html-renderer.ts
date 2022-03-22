@@ -1,6 +1,8 @@
-import {writeFileSync} from "fs"
+/*
+ * HTML-rendering of filtered country info.
+ */
 
-import {readJson} from "../utils/file-utils"
+
 import {FilteredCountryInfo, IndicatorExtract} from "./types"
 import {uploadingCountriesFile} from "../json-files"
 import {
@@ -9,7 +11,7 @@ import {
 } from "../refData/country-utils"
 
 
-const indicatorExtractAsHtml = ({ metadata, contents }: IndicatorExtract) =>
+const indicatorExtractAsHtml = ({ contents }: IndicatorExtract) =>
     `<tr>
     <td>${contents}</td>
 </tr>
@@ -81,8 +83,4 @@ ${theadContents()}
   </body>
 </html>
 `
-
-
-const filteredCountryInfos: FilteredCountryInfo[] = readJson("tmp/jrc-filtered.json")
-writeFileSync("tmp/jrc-filtered.html", filteredCountryInfosAsHtml(filteredCountryInfos))
 

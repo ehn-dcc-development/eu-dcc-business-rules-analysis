@@ -88,6 +88,18 @@ The analysis has the following dependencies:
 - Current status: Work-In-Progress.
 
 
+## Re-open Europe API
+
+[Re-open Europe](https://reopen.europa.eu/en) is a website/app made by the EU [Joint Research Center (JRC)](https://ec.europa.eu/info/departments/joint-research-centre_en) to provide information on travel and health measures during the COVID-19 pandemic.
+An API for that information is available, and is [documented here](https://data.jrc.ec.europa.eu/dataset/2d9e1e99-b177-4c53-a8a7-4eea96f89273).
+This code base contains some code to try and “harvest” that API, in the directory [`src/jrc/`](./src/jrc).
+You can run that code from the command-line as follows (from the repository's root):
+
+  $ source src/jrc/retrieve.sh
+
+This produces various files in the directory `tmp/jrc`.
+
+
 ## Licensing
 
 Copyright (c) 2021- Dutch Ministry of Health, Science, and Sports, and all other contributors

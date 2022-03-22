@@ -1,21 +1,6 @@
 import {Rule, RuleValidationResult} from "dcc-business-rules-utils"
-import {PathLike} from "fs"
 
-import {readJson, writeJson} from "./utils/file-utils"
-
-
-export class JsonFile<T> {
-    readonly path: PathLike
-    constructor(path: PathLike) {
-        this.path = path
-    }
-    get contents(): T {
-        return readJson(this.path)
-    }
-    set contents(newContents: T) {
-        writeJson(this.path, newContents)
-    }
-}
+import {JsonFile} from "./utils/file-utils"
 
 
 export const allRulesFile = new JsonFile<Rule[]>("tmp/all-rules.json")
