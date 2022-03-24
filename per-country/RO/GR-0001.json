@@ -1,0 +1,49 @@
+[
+  {
+    "Identifier": "GR-RO-0001",
+    "Type": "Acceptance",
+    "Country": "RO",
+    "Version": "1.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "General",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Entry to the country is currently possible without pandemic-related measures."
+      },
+      {
+        "lang": "de",
+        "desc": "Die Einreise in das Land ist derzeit ohne pandemiebedingte Maßnahmen möglich."
+      },
+      {
+        "lang": "fr",
+        "desc": "L'entrée dans le pays est actuellement possible sans mesures liées à la pandémie."
+      },
+      {
+        "lang": "es",
+        "desc": "Actualmente es posible ingresar al país sin medidas relacionadas con la pandemia."
+      },
+      {
+        "lang": "it",
+        "desc": "L'ingresso nel Paese è attualmente possibile senza misure legate alla pandemia."
+      }
+    ],
+    "ValidFrom": "2022-03-19T12:00:00Z",
+    "ValidTo": "2031-01-01T00:00:00Z",
+    "AffectedFields": [
+      "v"
+    ],
+    "Logic": {
+      "if": [
+        true,
+        true,
+        {
+          "var": "payload.v"
+        }
+      ]
+    },
+    "expr-as-text": "if (true) then (true) else (/payload.v)"
+  }
+]

@@ -669,11 +669,6 @@
             "version": "1.0.2",
             "validFrom": "2022-03-18T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
-          },
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
           }
         ]
       },
@@ -2268,75 +2263,15 @@
   },
   {
     "country": "RO",
-    "latestValidFrom": "2022-02-09T10:00:00Z",
+    "latestValidFrom": "2022-03-19T12:00:00Z",
     "earliestValidTo": "2031-01-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
-        "ruleId": "RR-RO-0001",
+        "ruleId": "GR-RO-0001",
         "versions": [
           {
             "version": "1.0.0",
-            "validFrom": "2021-08-13T00:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-RO-0002",
-        "versions": [
-          {
-            "version": "1.0.1",
-            "validFrom": "2022-01-14T14:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-RO-0001",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-08-13T00:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-RO-0002",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-08-13T00:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-RO-0002",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-08-13T00:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-RO-0003",
-        "versions": [
-          {
-            "version": "1.0.3",
-            "validFrom": "2021-11-10T09:00:00Z",
-            "validTo": "2031-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-RO-0004",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2022-02-09T10:00:00Z",
+            "validFrom": "2022-03-19T12:00:00Z",
             "validTo": "2031-01-01T00:00:00Z"
           }
         ]
