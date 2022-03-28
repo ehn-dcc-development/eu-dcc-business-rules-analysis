@@ -41,6 +41,7 @@ export const inputDataFor = (dn: number | CLUnknown, sd: number | CLUnknown, mp:
 export type Replacement = {
     subExpr: CertLogicExpression
     replacementExpr: CertLogicExpression
+    comment?: string
 }
 
 

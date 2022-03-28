@@ -12,49 +12,8 @@
           }
         ]
       },
-      "replacementExpr": true
-    }
-  ],
-  "CZ": [
-    {
-      "subExpr": {
-        "plusTime": [
-          {
-            "var": "payload.v.0.dt"
-          },
-          9,
-          "month"
-        ]
-      },
-      "replacementExpr": {
-        "plusTime": [
-          {
-            "var": "payload.v.0.dt"
-          },
-          270,
-          "day"
-        ]
-      }
-    },
-    {
-      "subExpr": {
-        "plusTime": [
-          {
-            "var": "payload.v.0.dt"
-          },
-          48,
-          "month"
-        ]
-      },
-      "replacementExpr": {
-        "plusTime": [
-          {
-            "var": "payload.v.0.dt"
-          },
-          1440,
-          "day"
-        ]
-      }
+      "replacementExpr": true,
+      "comment": "!!x === x"
     }
   ],
   "FR": [
@@ -81,7 +40,8 @@
           }
         ]
       },
-      "replacementExpr": true
+      "replacementExpr": true,
+      "comment": "assume >= 18 years old"
     }
   ],
   "LT": [
@@ -108,7 +68,8 @@
           }
         ]
       },
-      "replacementExpr": true
+      "replacementExpr": true,
+      "comment": "assume > 18 years old (post-birthday)"
     }
   ],
   "MT": [
@@ -135,7 +96,8 @@
           }
         ]
       },
-      "replacementExpr": true
+      "replacementExpr": true,
+      "comment": "assume > 18 years old (post-birthday); 6570/365 = 18 (exactly)"
     },
     {
       "subExpr": {
@@ -160,7 +122,8 @@
           }
         ]
       },
-      "replacementExpr": false
+      "replacementExpr": false,
+      "comment": "assume >= 16 years + 4 days old, which is 16 years with a normal number of leap days"
     }
   ],
   "SI": [
@@ -187,7 +150,8 @@
           }
         ]
       },
-      "replacementExpr": false
+      "replacementExpr": false,
+      "comment": "assume > 18 years old (post-birthday)"
     }
   ]
 }
