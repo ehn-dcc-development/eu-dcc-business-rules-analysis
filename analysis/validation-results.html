@@ -40,7 +40,7 @@
       problems for specific rules, as problems for the rules of a country as a
       set, are mentioned.
     </p>
-    <p>Date of generation: <em>2022-03-24</em></p>
+    <p>Date of generation: <em>2022-03-28</em></p>
     <table>
       <thead>
         <tr>
@@ -128,6 +128,26 @@
         </tr>
 
         <tr>
+          <td>TR-FR-0002</td>
+          <td>1.0.4</td>
+          <td>metadata</td>
+          <td class="warning">
+            affected fields declared were t.0,t.0.sc,t.0.tt but were computed as
+            t.0, t.0.sc, t.0.tr, t.0.tt
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-FR-0003</td>
+          <td>1.0.3</td>
+          <td>metadata</td>
+          <td class="warning">
+            affected fields declared were t.0,t.0.tr but were computed as t.0,
+            t.0.sc, t.0.tr, t.0.tt
+          </td>
+        </tr>
+
+        <tr>
           <td>VR-FR-0005</td>
           <td>1.0.3</td>
           <td>metadata</td>
@@ -158,11 +178,21 @@
         </tr>
 
         <tr>
+          <td>VR-FR-0011</td>
+          <td>1.0.3</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "v.0.dn", "v.0.dt", "dob" ]
+          </td>
+        </tr>
+
+        <tr>
           <td colspan="4" class="country">Lithuania (LT - 🇱🇹)</td>
         </tr>
         <tr>
           <td>VR-LT-0005</td>
-          <td>1.1.0</td>
+          <td>1.2.0</td>
           <td>metadata</td>
           <td class="warning">
             affected fields declared were v.0,v.0.dt,v.0.mp,v.0.dn,v.0.sd but

@@ -3,7 +3,7 @@
     "Identifier": "VR-LT-0005",
     "Type": "Acceptance",
     "Country": "LT",
-    "Version": "1.1.0",
+    "Version": "1.2.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "1.0.0",
@@ -18,7 +18,7 @@
         "desc": "DCC is valid 270 days after full vacination"
       }
     ],
-    "ValidFrom": "2022-02-07T06:00:00Z",
+    "ValidFrom": "2022-03-26T06:00:00Z",
     "ValidTo": "2024-11-29T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -118,7 +118,7 @@
                             {
                               "and": [
                                 {
-                                  "===": [
+                                  ">=": [
                                     {
                                       "var": "payload.v.0.dn"
                                     },
@@ -126,7 +126,7 @@
                                   ]
                                 },
                                 {
-                                  "===": [
+                                  ">=": [
                                     {
                                       "var": "payload.v.0.sd"
                                     },
@@ -205,6 +205,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if (((/payload.dob) +18 years) before ((/external.validationClock) +0 days)) then (if (((/external.validationClock) +0 days) after ((/payload.v.0.dt) +270 days)) then (if (((/payload.v.0.dn) >= (2)) and ((/payload.v.0.sd) === (1))) then (true) else (if ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then (if (((/payload.v.0.dn) === (2)) and ((/payload.v.0.sd) === (2))) then (true) else (false)) else (if (((/payload.v.0.dn) >= (3)) and ((/payload.v.0.sd) === (2))) then (true) else (if (((/payload.v.0.sd) > (2)) and ((/payload.v.0.sd) === (/payload.v.0.dn))) then (true) else (false))))) else (true)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.dob) +18 years) before ((/external.validationClock) +0 days)) then (if (((/external.validationClock) +0 days) after ((/payload.v.0.dt) +270 days)) then (if (((/payload.v.0.dn) >= (2)) and ((/payload.v.0.sd) === (1))) then (true) else (if ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then (if (((/payload.v.0.dn) >= (2)) and ((/payload.v.0.sd) >= (2))) then (true) else (false)) else (if (((/payload.v.0.dn) >= (3)) and ((/payload.v.0.sd) === (2))) then (true) else (if (((/payload.v.0.sd) > (2)) and ((/payload.v.0.sd) === (/payload.v.0.dn))) then (true) else (false))))) else (true)) else (true)) else (true)"
   }
 ]

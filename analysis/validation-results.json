@@ -154,6 +154,61 @@
         ],
         "logicWarnings": [],
         "version": "1.0.3"
+      },
+      {
+        "ruleId": "VR-FR-0011",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [
+          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"v.0.dn\", \"v.0.dt\", \"dob\" ]"
+        ],
+        "logicWarnings": [],
+        "version": "1.0.3"
+      },
+      {
+        "ruleId": "TR-FR-0003",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "t.0",
+            "t.0.tr"
+          ],
+          "computed": [
+            "t.0",
+            "t.0.sc",
+            "t.0.tr",
+            "t.0.tt"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.3"
+      },
+      {
+        "ruleId": "TR-FR-0002",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "t.0",
+            "t.0.sc",
+            "t.0.tt"
+          ],
+          "computed": [
+            "t.0",
+            "t.0.sc",
+            "t.0.tr",
+            "t.0.tt"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.4"
       }
     ],
     "ruleSetProblems": []
@@ -185,7 +240,7 @@
         },
         "metaDataErrors": [],
         "logicWarnings": [],
-        "version": "1.1.0"
+        "version": "1.2.0"
       }
     ],
     "ruleSetProblems": []

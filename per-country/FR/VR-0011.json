@@ -1,0 +1,101 @@
+[
+  {
+    "Identifier": "VR-FR-0011",
+    "Type": "Acceptance",
+    "Country": "FR",
+    "Version": "1.0.3",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "There must not be a delay of more than 9 months for first and second vaccination dose between the date of the last vaccination and the control date"
+      },
+      {
+        "lang": "fr",
+        "desc": "Il ne doit pas y avoir un délais de plus de 9 mois pour la dose 1 et 2 entre la date de dernière vaccination et la date de controle"
+      }
+    ],
+    "ValidFrom": "2022-03-28T08:00:00Z",
+    "ValidTo": "2032-01-28T08:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.dt",
+      "dob"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "<=": [
+                    1,
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                },
+                {
+                  "not-after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.dob"
+                        },
+                        18,
+                        "year"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "year"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "not-after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "month"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    9,
+                    "month"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if (((1) <= (/payload.v.0.dn) <= (2)) and (((/payload.dob) +18 years) not-after ((/external.validationClock) +0 years))) then (((/external.validationClock) +0 months) not-after ((/payload.v.0.dt) +9 months)) else (true)) else (true)"
+  }
+]

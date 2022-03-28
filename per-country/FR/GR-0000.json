@@ -3,6 +3,71 @@
     "Identifier": "GR-FR-0000",
     "Type": "Acceptance",
     "Country": "FR",
+    "Version": "1.0.6",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "General",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Only a vaccine, a test or recovery is allowed, and in a EU standard format."
+      },
+      {
+        "lang": "fr",
+        "desc": "Seul un vaccin, un test ou une recouvrance sont autorisé, et dans un format au standard UE."
+      }
+    ],
+    "ValidFrom": "2022-03-28T08:00:00Z",
+    "ValidTo": "2032-01-28T08:00:00Z",
+    "AffectedFields": [
+      "v",
+      "t",
+      "r"
+    ],
+    "Logic": {
+      "===": [
+        {
+          "reduce": [
+            [
+              {
+                "var": "payload.v"
+              },
+              {
+                "var": "payload.t"
+              },
+              {
+                "var": "payload.r"
+              }
+            ],
+            {
+              "+": [
+                {
+                  "var": "accumulator"
+                },
+                {
+                  "if": [
+                    {
+                      "var": "current.0"
+                    },
+                    1,
+                    0
+                  ]
+                }
+              ]
+            },
+            0
+          ]
+        },
+        1
+      ]
+    },
+    "expr-as-text": "(([ /payload.v, /payload.t, /payload.r ]).reduce((current, accumulator) → (/accumulator) + (if (/current.0) then (1) else (0)), 0)) === (1)"
+  },
+  {
+    "Identifier": "GR-FR-0000",
+    "Type": "Acceptance",
+    "Country": "FR",
     "Version": "1.0.5",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",

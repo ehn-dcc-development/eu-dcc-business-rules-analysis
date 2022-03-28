@@ -19,14 +19,11 @@ const analyseAnd = (analysedOperands: Validity[]): Validity => {
     const notTrues = analysedOperands.filter((operand) => operand !== true) // skip true values
     if (notTrues.every(isIntervallistic)) {
         const intervallistics = dedup(notTrues)
-        switch (intervallistics.length) {
-            case 0: return true
-            case 1: return intervallistics[0]
-            case 2: return intervallistics.reduce<Interval>((interval, intervallistic) =>
-                combineIntervalWith(interval, intervallistic),
-                from0Interval
-            )
-        }
+        return intervallistics.length === 0
+            || intervallistics.reduce<Interval>((interval, intervallistic) =>
+                    combineIntervalWith(interval, intervallistic),
+                    from0Interval
+                )
     }
     return unanalysable({ "and": analysedOperands })
 }
@@ -82,16 +79,23 @@ const analyseIf = (guard_: CertLogicExpression, then_: CertLogicExpression, else
 
 
 const analysePlusTime = (dateTimeStrExpr: CertLogicExpression, amount: CertLogicExpression, unit: CertLogicExpression): Validity => {
-    if (unit === "day" && isOperation(dateTimeStrExpr, "var")) {
+    const unanalysed = () => unanalysable({ "plusTime": [dateTimeStrExpr, amount, unit] })
+    if (isOperation(dateTimeStrExpr, "var")) {
         const varPath = Object.values(dateTimeStrExpr)[0] as string
         if (varPath === "external.validationClock" && amount === 0) {
             return knownPlusTime("now", 0)
         }
         if (varPath === "payload.v.0.dt") {
-            return knownPlusTime("dt", amount as number)
+            const amountNr = amount as number
+            switch (unit) {
+                case "day": return knownPlusTime("dt", amountNr)
+                case "month": return knownPlusTime("dt", amountNr*30)
+                case "year": return knownPlusTime("dt", amountNr*365)
+                default: unanalysed()
+            }
         }
     }
-    return unanalysable({ "plusTime": [dateTimeStrExpr, amount, unit] })
+    return unanalysed()
 }
 
 

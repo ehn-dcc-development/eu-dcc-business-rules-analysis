@@ -3,6 +3,160 @@
     "Identifier": "TR-FR-0002",
     "Type": "Acceptance",
     "Country": "FR",
+    "Version": "1.0.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 72 hours before the Verification Datetime for Nucleic acid amplification with probe detection and must be negative."
+      },
+      {
+        "lang": "fr",
+        "desc": "La date du prélèvement de l'échantillon doit avoir été réalisée moins de 72 heures avant la date de vérification et doit-être négatif"
+      }
+    ],
+    "ValidFrom": "2022-03-28T08:00:00Z",
+    "ValidTo": "2032-01-28T08:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.t.0.tt"
+                    },
+                    "LP6464-4"
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "payload.t.0.tr"
+                    },
+                    "260415000"
+                  ]
+                }
+              ]
+            },
+            {
+              "before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.t.0.sc"
+                    },
+                    72,
+                    "hour"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0) then (if (((/payload.t.0.tt) === (\"LP6464-4\")) and ((/payload.t.0.tr) === (\"260415000\"))) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +72 hours)) else (true)) else (true)"
+  },
+  {
+    "Identifier": "TR-FR-0002",
+    "Type": "Acceptance",
+    "Country": "FR",
+    "Version": "1.0.5",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "DateTime of Sample Collection must be less than 48 hours before the Verification Datetime for Rapid immunoassay."
+      },
+      {
+        "lang": "fr",
+        "desc": "La date du prélèvement de l'échantillon doit avoir été réalisée moins de 48 heures avant la date de vérification pour un test antigénique."
+      }
+    ],
+    "ValidFrom": "2022-03-28T08:00:00Z",
+    "ValidTo": "2032-01-28T08:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.t.0.tt"
+                },
+                "LP217198-3"
+              ]
+            },
+            {
+              "before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.t.0.sc"
+                    },
+                    48,
+                    "hour"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +48 hours)) else (true)) else (true)"
+  },
+  {
+    "Identifier": "TR-FR-0002",
+    "Type": "Acceptance",
+    "Country": "FR",
     "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",

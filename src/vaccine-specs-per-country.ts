@@ -88,6 +88,16 @@ export const vaccineSpecsFromRules = (rules: Rule[], co: string): VaccineSpec[] 
         ...applicableRuleVersions(rules, co, "Acceptance", validationClock)
             .map((rule) => rule.Logic)
     )  // and(...all applicable versions of Acceptance rules...)
+    /*
+     * [DEBUG]
+    if (co in replacementsPerCountry) {
+        const replacedExpr = replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
+        if (!deepEqual(andCertLogicExpr, replacedExpr)) {
+            console.log(`${co} has replacements; replaced expression:`)
+            console.log(pretty(replacedExpr))
+        }
+    }
+     */
     const combinedLogicForCountry = evaluatePartially(
         co in replacementsPerCountry
             ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])

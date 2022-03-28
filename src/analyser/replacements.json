@@ -57,6 +57,33 @@
       }
     }
   ],
+  "FR": [
+    {
+      "subExpr": {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              18,
+              "year"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "year"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true
+    }
+  ],
   "LT": [
     {
       "subExpr": {
