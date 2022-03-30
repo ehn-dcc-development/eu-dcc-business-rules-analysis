@@ -144,18 +144,6 @@
         "version": "1.0.3"
       },
       {
-        "ruleId": "RR-FR-0001",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.3"
-      },
-      {
         "ruleId": "VR-FR-0011",
         "hasErrors": true,
         "schemaValidationsErrors": [],
@@ -187,28 +175,6 @@
         "metaDataErrors": [],
         "logicWarnings": [],
         "version": "1.0.3"
-      },
-      {
-        "ruleId": "TR-FR-0002",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "t.0",
-            "t.0.sc",
-            "t.0.tt"
-          ],
-          "computed": [
-            "t.0",
-            "t.0.sc",
-            "t.0.tr",
-            "t.0.tt"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.4"
       }
     ],
     "ruleSetProblems": []

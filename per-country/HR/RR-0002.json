@@ -1,25 +1,25 @@
 [
   {
-    "Identifier": "RR-FR-0001",
+    "Identifier": "RR-HR-0002",
     "Type": "Acceptance",
-    "Country": "FR",
-    "Version": "1.0.4",
+    "Country": "HR",
+    "Version": "1.1.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
     "CertificateType": "Recovery",
     "Description": [
       {
-        "lang": "en",
-        "desc": "The Verification Datetime must be between +11 days and +183 days after the test date."
+        "lang": "hr",
+        "desc": "Pozitivni rezultat testa ne smije biti stariji od 180 dana."
       },
       {
-        "lang": "fr",
-        "desc": "La date de verification doit etre comprise entre +11 jours et +183 jours après la date de test."
+        "lang": "en",
+        "desc": "The positive test result must be no older than 180 days."
       }
     ],
-    "ValidFrom": "2022-03-28T08:00:00Z",
-    "ValidTo": "2032-01-28T08:00:00Z",
+    "ValidFrom": "2022-04-01T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "r.0",
       "r.0.fr"
@@ -34,15 +34,6 @@
             {
               "plusTime": [
                 {
-                  "var": "payload.r.0.fr"
-                },
-                11,
-                "day"
-              ]
-            },
-            {
-              "plusTime": [
-                {
                   "var": "external.validationClock"
                 },
                 0,
@@ -54,7 +45,7 @@
                 {
                   "var": "payload.r.0.fr"
                 },
-                183,
+                180,
                 "day"
               ]
             }
@@ -63,6 +54,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.r.0) then (((/payload.r.0.fr) +11 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.r.0.fr) +183 days)) else (true)"
+    "expr-as-text": "if (/payload.r.0) then (((/external.validationClock) +0 days) not-after ((/payload.r.0.fr) +180 days)) else (true)"
   }
 ]
