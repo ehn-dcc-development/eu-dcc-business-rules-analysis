@@ -103,6 +103,7 @@ const evaluateNot = (operandExpr: CLExtExpr, data: unknown): CLExtExpr => {
 }
 
 
+// TODO  wrap a Date specifically, including its source
 const evaluatePlusTime = (dateOperand: CLExtExpr, amount: CLExtExpr, unit: CLExtExpr, data: unknown): CLExtExpr => {
     const dateTimeStr = evaluate(dateOperand, data)
     return { "plusTime": [dateTimeStr, amount, unit] }
@@ -141,6 +142,16 @@ const evaluateExtractFromUVCI = (operand: CLExtExpr, index: CLExtExpr, data: unk
 }
 
 
+// TODO  wrap a Date specifically, including its source
+const evaluateDccDateOfBirth = (operand: CLExtExpr, data: any): CLExtExpr => {
+    const evalOperand = evaluate(operand, data)
+    if (!(typeof evalOperand === "string")) {
+        throw new Error(`operand of "dccDateOfBirth" must be a string`)
+    }
+    return { "dccDateOfBirth": [operand] }
+}
+
+
 const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
     if (isCertLogicLiteral(expr) || expr instanceof CLUnknown || expr instanceof CLWrapped) {
         return expr
@@ -176,6 +187,7 @@ const evaluate = (expr: CLExtExpr, data: unknown): CLExtExpr => {
             case "plusTime": return evaluatePlusTime(operands[0], operands[1], operands[2], data)
             case "reduce": return evaluateReduce(operands[0], operands[1], operands[2], data)
             case "extractFromUVCI": return evaluateExtractFromUVCI(operands[0], operands[1], data)
+            case "dccDateOfBirth": return evaluateDccDateOfBirth(operands[0], data)
         }
     }
     throw new Error(`can't handle this CLExtExpr: ${JSON.stringify(expr, null, 2)}`)
