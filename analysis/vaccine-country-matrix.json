@@ -1,9 +1,23 @@
 [
   {
+    "vaccineId": "AZD2816",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "Abdala",
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -17,6 +31,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "EE",
       "ES",
       "HR",
@@ -36,6 +51,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -49,6 +65,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -63,6 +80,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "EE",
       "ES",
       "HR",
@@ -82,6 +100,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "ES",
       "HR",
@@ -100,6 +119,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -108,10 +128,24 @@
     ]
   },
   {
+    "vaccineId": "Covid-19-adsorvida-inativada",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "Covid-19-recombinant",
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "LU",
       "RO",
@@ -122,10 +156,24 @@
     ]
   },
   {
+    "vaccineId": "Covifenz",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "Covishield",
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "ES",
       "FR",
@@ -148,6 +196,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "ES",
       "RO",
@@ -162,6 +211,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "CZ",
       "DE",
       "EE",
@@ -190,6 +240,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "CZ",
       "DE",
       "EE",
@@ -218,6 +269,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "CZ",
       "DE",
       "EE",
@@ -246,6 +298,7 @@
       "AL",
       "AT",
       "CH",
+      "CY",
       "CZ",
       "DE",
       "EE",
@@ -273,6 +326,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "CZ",
       "DE",
       "EE",
@@ -297,6 +351,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -309,6 +364,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -320,6 +376,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -333,6 +390,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "ES",
       "ME",
@@ -348,6 +406,20 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "NVSI-06-08",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -360,6 +432,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "DE",
       "EE",
       "IE",
@@ -377,6 +450,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "FR",
       "LU",
@@ -387,10 +461,24 @@
     ]
   },
   {
+    "vaccineId": "SCTV01C",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "Sputnik-Light",
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "RS",
@@ -403,6 +491,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -414,6 +503,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "HR",
       "ME",
@@ -429,6 +519,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -441,6 +532,7 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "RO",
       "SI",
@@ -453,9 +545,23 @@
     "acceptingCountries": [
       "AL",
       "CH",
+      "CY",
       "EE",
       "ES",
       "ME",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "YS-SC2-010",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "CY",
+      "EE",
       "RO",
       "SI",
       "TG",

@@ -4,6 +4,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -11,7 +12,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -23,14 +26,17 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": [
@@ -318,6 +324,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -325,7 +332,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -338,14 +347,83 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
+        ],
+        "combos": {
+          "1/1": 0,
+          "2/2": 0,
+          "2/1": 0,
+          "3/3": 0,
+          "3/2": 0,
+          "3/1": 0,
+          "4/4": 0,
+          "4/3": 0,
+          "4/2": 0,
+          "4/1": 0,
+          "5/5": 0,
+          "5/4": 0,
+          "5/3": 0,
+          "5/2": 0,
+          "5/1": 0,
+          "6/6": 0,
+          "6/5": 0,
+          "6/4": 0,
+          "6/3": 0,
+          "6/2": 0,
+          "6/1": 0
+        }
+      }
+    ]
+  },
+  {
+    "country": "CY",
+    "vaccineSpecs": [
+      {
+        "vaccineIds": [
+          "AZD2816",
+          "Abdala",
+          "BBIBP-CorV",
+          "CVnCoV",
+          "Convidecia",
+          "CoronaVac",
+          "Covaxin",
+          "CoviVac",
+          "Covid-19-adsorvida-inativada",
+          "Covid-19-recombinant",
+          "Covifenz",
+          "Covishield",
+          "Covovax",
+          "EU/1/20/1507",
+          "EU/1/20/1525",
+          "EU/1/20/1528",
+          "EU/1/21/1529",
+          "EU/1/21/1618",
+          "EpiVacCorona",
+          "EpiVacCorona-N",
+          "Hayat-Vax",
+          "Inactivated-SARS-CoV-2-Vero-Cell",
+          "MVC-COV1901",
+          "NVSI-06-08",
+          "NVX-CoV2373",
+          "R-COVI",
+          "SCTV01C",
+          "Sputnik-Light",
+          "Sputnik-M",
+          "Sputnik-V",
+          "VLA2001",
+          "Vidprevtyn",
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": 0,
@@ -585,6 +663,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -592,7 +671,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -603,14 +684,17 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": [
@@ -909,6 +993,7 @@
           "EU/1/20/1507",
           "EU/1/20/1528",
           "EU/1/21/1529",
+          "EU/1/21/1618",
           "R-COVI"
         ],
         "combos": {
@@ -1085,97 +1170,6 @@
           ],
           "6/1": [
             28,
-            270
-          ]
-        }
-      },
-      {
-        "vaccineIds": [
-          "EU/1/21/1618"
-        ],
-        "combos": {
-          "1/1": [
-            0,
-            270
-          ],
-          "2/2": [
-            0,
-            270
-          ],
-          "2/1": [
-            0,
-            270
-          ],
-          "3/3": [
-            0,
-            270
-          ],
-          "3/2": [
-            0,
-            270
-          ],
-          "3/1": [
-            0,
-            270
-          ],
-          "4/4": [
-            0,
-            270
-          ],
-          "4/3": [
-            0,
-            270
-          ],
-          "4/2": [
-            0,
-            270
-          ],
-          "4/1": [
-            0,
-            270
-          ],
-          "5/5": [
-            0,
-            270
-          ],
-          "5/4": [
-            0,
-            270
-          ],
-          "5/3": [
-            0,
-            270
-          ],
-          "5/2": [
-            0,
-            270
-          ],
-          "5/1": [
-            0,
-            270
-          ],
-          "6/6": [
-            0,
-            270
-          ],
-          "6/5": [
-            0,
-            270
-          ],
-          "6/4": [
-            0,
-            270
-          ],
-          "6/3": [
-            0,
-            270
-          ],
-          "6/2": [
-            0,
-            270
-          ],
-          "6/1": [
-            0,
             270
           ]
         }
@@ -1870,6 +1864,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -1877,7 +1872,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -1890,14 +1887,17 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": 0,
@@ -2043,6 +2043,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -2050,7 +2051,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -2063,14 +2066,17 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": [
@@ -2186,6 +2192,7 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
@@ -2193,7 +2200,9 @@
           "CoronaVac",
           "Covaxin",
           "CoviVac",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -2206,14 +2215,17 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
           "R-COVI",
+          "SCTV01C",
           "Sputnik-Light",
           "Sputnik-M",
           "Sputnik-V",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": 0,
@@ -2246,13 +2258,16 @@
     "vaccineSpecs": [
       {
         "vaccineIds": [
+          "AZD2816",
           "Abdala",
           "BBIBP-CorV",
           "CVnCoV",
           "Convidecia",
           "CoronaVac",
           "Covaxin",
+          "Covid-19-adsorvida-inativada",
           "Covid-19-recombinant",
+          "Covifenz",
           "Covishield",
           "Covovax",
           "EU/1/20/1507",
@@ -2262,10 +2277,13 @@
           "Hayat-Vax",
           "Inactivated-SARS-CoV-2-Vero-Cell",
           "MVC-COV1901",
+          "NVSI-06-08",
           "NVX-CoV2373",
+          "SCTV01C",
           "VLA2001",
           "Vidprevtyn",
-          "WIBP-CorV"
+          "WIBP-CorV",
+          "YS-SC2-010"
         ],
         "combos": {
           "1/1": [
