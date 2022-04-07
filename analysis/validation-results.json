@@ -788,7 +788,7 @@
         "logicValidationErrors": [],
         "affectedFields": null,
         "metaDataErrors": [
-          "EngineVersion 2.0.1 is newer than the currently supported version 1.2.4"
+          "EngineVersion 2.0.1 is newer than the currently supported version 1.3.1"
         ],
         "logicWarnings": [],
         "version": "1.0.0"
