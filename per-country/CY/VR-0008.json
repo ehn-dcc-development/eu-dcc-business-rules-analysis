@@ -1,0 +1,98 @@
+[
+  {
+    "Identifier": "VR-CY-0008",
+    "Type": "Acceptance",
+    "Country": "CY",
+    "Version": "2.1.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "365 days for booster shot for 2/1 3/1 etc"
+      }
+    ],
+    "ValidFrom": "2022-04-07T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.dt",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "and": [
+            {
+              "var": "payload.v.0"
+            },
+            {
+              "var": "payload.v.0.dn"
+            },
+            {
+              "var": "payload.v.0.sd"
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  ">": [
+                    1,
+                    {
+                      "var": "payload.v.0.dn"
+                    }
+                  ]
+                },
+                {
+                  "===": [
+                    1,
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  "before": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        365,
+                        "day"
+                      ]
+                    }
+                  ]
+                },
+                true,
+                false
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if ((/payload.v.0) and (/payload.v.0.dn) and (/payload.v.0.sd)) then (if (((1) > (/payload.v.0.dn)) and ((1) === (/payload.v.0.sd))) then (if (((/external.validationClock) +0 days) before ((/payload.v.0.dt) +365 days)) then (true) else (false)) else (true)) else (true)"
+  }
+]

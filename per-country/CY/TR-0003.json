@@ -1,0 +1,114 @@
+[
+  {
+    "Identifier": "TR-CY-0003",
+    "Type": "Acceptance",
+    "Country": "CY",
+    "Version": "2.1.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "PCR Test DateTime of Sample Collection must be less than 72 hours before the Verification Datetime if Age < 18 and age >= 13"
+      }
+    ],
+    "ValidFrom": "2022-04-07T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "dob",
+      "t.0.sc",
+      "t.0.tt"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "and": [
+            {
+              "before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.dob"
+                    },
+                    6575,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            {
+              "after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.dob"
+                    },
+                    4749,
+                    "day"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.t.0.tt"
+                },
+                "LP6464-4"
+              ]
+            },
+            {
+              "before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.t.0.sc"
+                    },
+                    3,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if ((((/external.validationClock) +0 days) before ((/payload.dob) +6575 days)) and (((/external.validationClock) +0 days) after ((/payload.dob) +4749 days))) then (if ((/payload.t.0.tt) === (\"LP6464-4\")) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +3 days)) else (true)) else (true)"
+  }
+]

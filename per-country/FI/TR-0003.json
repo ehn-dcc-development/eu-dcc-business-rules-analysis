@@ -1,0 +1,49 @@
+[
+  {
+    "Identifier": "TR-FI-0003",
+    "Type": "Acceptance",
+    "Country": "FI",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Test",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Test result must be negative"
+      },
+      {
+        "lang": "fi",
+        "desc": "Testituloksen pitää olla negatiivinen"
+      },
+      {
+        "lang": "sv",
+        "desc": "Testresultatet måste vara negativt"
+      }
+    ],
+    "ValidFrom": "2022-04-06T15:30:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "t.0",
+      "t.0.tr"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.t.0"
+        },
+        {
+          "===": [
+            {
+              "var": "payload.t.0.tr"
+            },
+            "260415000"
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.t.0) then ((/payload.t.0.tr) === (\"260415000\")) else (true)"
+  }
+]

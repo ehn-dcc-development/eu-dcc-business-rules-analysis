@@ -1,25 +1,25 @@
 [
   {
-    "Identifier": "VR-MT-0008",
+    "Identifier": "TR-CY-0002",
     "Type": "Acceptance",
-    "Country": "MT",
-    "Version": "1.0.0",
+    "Country": "CY",
+    "Version": "2.1.4",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
-    "CertificateType": "Vaccination",
+    "CertificateType": "Test",
     "Description": [
       {
         "lang": "en",
-        "desc": "Verification Datetime must be less than 365 days after vaccination for 2nd dose for age <18"
+        "desc": "RAPID DateTime of Sample Collection must be less than 24 hours before the Verification Datetime if Age >= 18"
       }
     ],
-    "ValidFrom": "2022-01-20T00:00:00Z",
+    "ValidFrom": "2022-04-07T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "dob",
-      "v.0.dt",
-      "v.0.sd"
+      "t.0.sc",
+      "t.0.tt"
     ],
     "Logic": {
       "if": [
@@ -29,7 +29,7 @@
         {
           "if": [
             {
-              "not-after": [
+              "after": [
                 {
                   "plusTime": [
                     {
@@ -44,7 +44,7 @@
                     {
                       "var": "payload.dob"
                     },
-                    5844,
+                    6575,
                     "day"
                   ]
                 }
@@ -55,22 +55,13 @@
                 {
                   "===": [
                     {
-                      "var": "payload.v.0.sd"
+                      "var": "payload.t.0.tt"
                     },
-                    2
+                    "LP217198-3"
                   ]
                 },
                 {
-                  "not-after": [
-                    {
-                      "plusTime": [
-                        {
-                          "var": "payload.v.0.dt"
-                        },
-                        0,
-                        "day"
-                      ]
-                    },
+                  "before": [
                     {
                       "plusTime": [
                         {
@@ -83,10 +74,10 @@
                     {
                       "plusTime": [
                         {
-                          "var": "payload.v.0.dt"
+                          "var": "payload.t.0.sc"
                         },
-                        365,
-                        "day"
+                        24,
+                        "hour"
                       ]
                     }
                   ]
@@ -100,6 +91,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.dob) then (if (((/external.validationClock) +0 days) not-after ((/payload.dob) +5844 days)) then (if ((/payload.v.0.sd) === (2)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.dob) then (if (((/external.validationClock) +0 days) after ((/payload.dob) +6575 days)) then (if ((/payload.t.0.tt) === (\"LP217198-3\")) then (((/external.validationClock) +0 days) before ((/payload.t.0.sc) +24 hours)) else (true)) else (true)) else (true)"
   }
 ]

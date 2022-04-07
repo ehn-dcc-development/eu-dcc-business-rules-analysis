@@ -84,28 +84,30 @@ const optimise = (vaccineSpecs: VaccineSpec[]): VaccineSpec[] =>
 
 export const vaccineSpecsFromRules = (rules: Rule[], co: string): VaccineSpec[] => {
     console.log(`\tcountry=${co}`)
-    const andCertLogicExpr = and_(
+    const andExpr = and_(
         ...applicableRuleVersions(rules, co, "Acceptance", validationClock)
             .map((rule) => rule.Logic)
     )  // and(...all applicable versions of Acceptance rules...)
-    /*
-     * [DEBUG]
+    const andExprAfterReplacement = co in replacementsPerCountry
+        ? replaceSubExpression(andExpr, replacementsPerCountry[co])
+        : andExpr
     if (co in replacementsPerCountry) {
-        const replacedExpr = replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
-        if (!deepEqual(andCertLogicExpr, replacedExpr)) {
+        if (deepEqual(andExpr, andExprAfterReplacement)) {
+            console.log(`   ${co} has replacements configured but those are nilpotent - could remove configured replacements?`)
+        } else {
+        /*
+         * [DEBUG]
             console.log(`${co} has replacements; replaced expression:`)
-            console.log(pretty(replacedExpr))
-        }
+            console.log(pretty(andExprAfterReplacement))
+         */
     }
-     */
-    const combinedLogicForCountry = evaluatePartially(
-        co in replacementsPerCountry
-            ? replaceSubExpression(andCertLogicExpr, replacementsPerCountry[co])
-            : andCertLogicExpr,
-        inputDataFor(Unknown, Unknown, Unknown)
-    )
-    return optimise(
-        vaccineIds.map((mp) => specForVaccine(combinedLogicForCountry, mp))
-    )
+}
+const combinedLogicForCountry = evaluatePartially(
+    andExprAfterReplacement,
+    inputDataFor(Unknown, Unknown, Unknown)
+)
+return optimise(
+    vaccineIds.map((mp) => specForVaccine(combinedLogicForCountry, mp))
+)
 }
 

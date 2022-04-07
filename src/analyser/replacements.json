@@ -1,19 +1,150 @@
 {
-  "CH": [
+  "CY": [
     {
       "subExpr": {
-        "!": [
+        "after": [
           {
-            "!": [
+            "plusTime": [
               {
-                "var": "payload.v.0.dt"
-              }
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              6575,
+              "day"
             ]
           }
         ]
       },
       "replacementExpr": true,
-      "comment": "!!x === x"
+      "comment": "assume >= 18 years old; (2000-01-01 + 6575 days = 2018-01-01 = 18 years difference)"
+    },
+    {
+      "subExpr": {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              6575,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume < 18 years old; (2000-01-01 + 6575 days = 2018-01-01 = 18 years difference)"
+    },
+    {
+      "subExpr": {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              6575,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume < 18 years old; (2000-01-01 + 6575 days = 2018-01-01)"
+    }
+  ],
+  "DE": [
+    {
+      "subExpr": {
+        "===": [
+          {
+            "var": "payload.dob"
+          },
+          ""
+        ]
+      },
+      "replacementExpr": true,
+      "comment": "assume no DOB given => should not be considered a minor"
+    }
+  ],
+  "EE": [
+    {
+      "subExpr": {
+        "before": [
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              18,
+              "year"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true,
+      "comment": "assume >= 18 years old"
+    }
+  ],
+  "FI": [
+    {
+      "subExpr": {
+        "after": [
+          {
+            "dccDateOfBirth": [
+              {
+                "var": "payload.dob"
+              }
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              -18,
+              "year"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume >= 18 years old"
     }
   ],
   "FR": [

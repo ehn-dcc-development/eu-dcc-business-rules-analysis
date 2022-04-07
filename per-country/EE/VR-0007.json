@@ -3,7 +3,7 @@
     "Identifier": "VR-EE-0007",
     "Type": "Acceptance",
     "Country": "EE",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Tõhustusdoosist ei tohi olla möödas rohkem kui 365 päeva"
       }
     ],
-    "ValidFrom": "2022-02-01T00:00:00Z",
-    "ValidTo": "2023-02-01T00:00:00Z",
+    "ValidFrom": "2022-04-06T00:00:00Z",
+    "ValidTo": "2023-04-06T00:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dt",
@@ -42,25 +42,52 @@
               ]
             },
             {
-              "not-after": [
+              "if": [
                 {
-                  "plusTime": [
+                  "before": [
                     {
-                      "var": "external.validationClock"
+                      "plusTime": [
+                        {
+                          "var": "payload.dob"
+                        },
+                        18,
+                        "year"
+                      ]
                     },
-                    0,
-                    "day"
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    }
                   ]
                 },
                 {
-                  "plusTime": [
+                  "not-after": [
                     {
-                      "var": "payload.v.0.dt"
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
                     },
-                    365,
-                    "day"
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        365,
+                        "day"
+                      ]
+                    }
                   ]
-                }
+                },
+                true
               ]
             },
             true
@@ -69,6 +96,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) >= (3)) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) >= (3)) then (if (((/payload.dob) +18 years) before ((/external.validationClock) +0 days)) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +365 days)) else (true)) else (true)) else (true)"
   }
 ]

@@ -40,7 +40,7 @@
       problems for specific rules, as problems for the rules of a country as a
       set, are mentioned.
     </p>
-    <p>Date of generation: <em>2022-04-04</em></p>
+    <p>Date of generation: <em>2022-04-07</em></p>
     <table>
       <thead>
         <tr>
@@ -94,14 +94,136 @@
         <tr>
           <td colspan="4" class="country">Cyprus (CY - 🇨🇾)</td>
         </tr>
+        <tr>
+          <td>TR-CY-0002</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Test doesn't match with its AffectedFields [ "dob",
+            "t.0.sc", "t.0.tt" ]
+          </td>
+        </tr>
 
         <tr>
-          <td>*</td>
-          <td>-</td>
-          <td>set</td>
+          <td>TR-CY-0003</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Test doesn't match with its AffectedFields [ "dob",
+            "t.0.sc", "t.0.tt" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-CY-0005</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Test doesn't match with its AffectedFields [ "dob",
+            "t.0.sc", "t.0.tt" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-CY-0006</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
           <td class="warning">
-            country's rules don't cover all event types (which is NOT the same
-            as not accepting the event types that weren't covered)
+            affected fields declared were dob,t.0.sc but were computed as dob,
+            t.0.sc, t.0.tt
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-CY-0006</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Test doesn't match with its AffectedFields [ "dob",
+            "t.0.sc" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-CY-0007</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="warning">
+            affected fields declared were dob,t.0.sc but were computed as dob,
+            t.0.sc, t.0.tt
+          </td>
+        </tr>
+
+        <tr>
+          <td>TR-CY-0007</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Test doesn't match with its AffectedFields [ "dob",
+            "t.0.sc" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-CY-0006</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "dob", "v.0.dn", "v.0.dt", "v.0.sd" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-CY-0007</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "dob", "v.0.dn", "v.0.dt", "v.0.sd" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-CY-0009</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "dob", "v.0.dn", "v.0.dt", "v.0.sd" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-CY-0010</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "dob", "v.0.dn", "v.0.dt", "v.0.sd" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-CY-0011</td>
+          <td>2.1.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "v.0", "dob", "v.0.dn", "v.0.dt", "v.0.sd" ]
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4" class="country">Germany (DE - 🇩🇪)</td>
+        </tr>
+        <tr>
+          <td>VR-DE-0004</td>
+          <td>1.0.4</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "dob", "v.0", "v.0.dt", "v.0.sd", "v.0.dn" ]
           </td>
         </tr>
 
@@ -109,12 +231,45 @@
           <td colspan="4" class="country">Estonia (EE - 🇪🇪)</td>
         </tr>
         <tr>
-          <td>VR-EE-0007</td>
-          <td>1.0.4</td>
+          <td>VR-EE-0003</td>
+          <td>1.0.6</td>
           <td>metadata</td>
           <td class="warning">
             affected fields declared were v.0,v.0.dt,v.0.sd,v.0.dn but were
-            computed as v.0, v.0.dn, v.0.dt
+            computed as dob, v.0, v.0.dn, v.0.dt, v.0.sd
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-EE-0006</td>
+          <td>1.0.5</td>
+          <td>metadata</td>
+          <td class="warning">
+            affected fields declared were v.0,v.0.dt,v.0.sd,v.0.dn but were
+            computed as dob, v.0, v.0.dn, v.0.dt, v.0.sd
+          </td>
+        </tr>
+
+        <tr>
+          <td>VR-EE-0007</td>
+          <td>1.0.5</td>
+          <td>metadata</td>
+          <td class="warning">
+            affected fields declared were v.0,v.0.dt,v.0.sd,v.0.dn but were
+            computed as dob, v.0, v.0.dn, v.0.dt
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4" class="country">Finland (FI - 🇫🇮)</td>
+        </tr>
+        <tr>
+          <td>VR-FI-0004</td>
+          <td>1.0.2</td>
+          <td>metadata</td>
+          <td class="error">
+            CertificateType Vaccination doesn't match with its AffectedFields [
+            "dob", "v.0", "v.0.dt", "v.0.dn", "v.0.mp", "v.0.sd" ]
           </td>
         </tr>
 
@@ -210,16 +365,6 @@
         <tr>
           <td colspan="4" class="country">Malta (MT - 🇲🇹)</td>
         </tr>
-        <tr>
-          <td>VR-MT-0008</td>
-          <td>1.0.0</td>
-          <td>metadata</td>
-          <td class="error">
-            CertificateType Vaccination doesn't match with its AffectedFields [
-            "dob", "v.0.dt", "v.0.sd" ]
-          </td>
-        </tr>
-
         <tr>
           <td>VR-MT-0009</td>
           <td>1.0.0</td>

@@ -1,0 +1,52 @@
+[
+  {
+    "Identifier": "VR-FI-0001",
+    "Type": "Acceptance",
+    "Country": "FI",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Vaccination series is not full"
+      },
+      {
+        "lang": "fi",
+        "desc": "Rokotussarja ei ole täysi"
+      },
+      {
+        "lang": "sv",
+        "desc": "Vaccinationsserien är inte fullständig"
+      }
+    ],
+    "ValidFrom": "2022-04-06T15:30:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          ">=": [
+            {
+              "var": "payload.v.0.dn"
+            },
+            {
+              "var": "payload.v.0.sd"
+            }
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.dn) >= (/payload.v.0.sd)) else (true)"
+  }
+]

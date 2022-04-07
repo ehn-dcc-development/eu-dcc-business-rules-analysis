@@ -1,0 +1,126 @@
+[
+  {
+    "Identifier": "VR-CY-0007",
+    "Type": "Acceptance",
+    "Country": "CY",
+    "Version": "2.1.4",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "274 days after 1/1 is ok, and >=18"
+      }
+    ],
+    "ValidFrom": "2022-04-07T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "dob",
+      "v.0.dn",
+      "v.0.dt",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "and": [
+            {
+              "var": "payload.v.0"
+            },
+            {
+              "var": "payload.v.0.dn"
+            },
+            {
+              "var": "payload.v.0.sd"
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "after": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.dob"
+                    },
+                    6575,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  "and": [
+                    {
+                      "===": [
+                        1,
+                        {
+                          "var": "payload.v.0.dn"
+                        }
+                      ]
+                    },
+                    {
+                      "===": [
+                        1,
+                        {
+                          "var": "payload.v.0.sd"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "if": [
+                    {
+                      "after": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.v.0.dt"
+                            },
+                            274,
+                            "day"
+                          ]
+                        }
+                      ]
+                    },
+                    false,
+                    true
+                  ]
+                },
+                true
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if ((/payload.v.0) and (/payload.v.0.dn) and (/payload.v.0.sd)) then (if (((/external.validationClock) +0 days) after ((/payload.dob) +6575 days)) then (if (((1) === (/payload.v.0.dn)) and ((1) === (/payload.v.0.sd))) then (if (((/external.validationClock) +0 days) after ((/payload.v.0.dt) +274 days)) then (false) else (true)) else (true)) else (true)) else (true)"
+  }
+]

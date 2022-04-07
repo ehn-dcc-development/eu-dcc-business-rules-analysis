@@ -19,8 +19,8 @@
   },
   {
     "co": "CY",
-    "n": 1,
-    "nAcceptance": 1,
+    "n": 27,
+    "nAcceptance": 27,
     "nInvalidation": 0
   },
   {
@@ -45,6 +45,12 @@
     "co": "ES",
     "n": 12,
     "nAcceptance": 12,
+    "nInvalidation": 0
+  },
+  {
+    "co": "FI",
+    "n": 17,
+    "nAcceptance": 17,
     "nInvalidation": 0
   },
   {
@@ -91,8 +97,8 @@
   },
   {
     "co": "MT",
-    "n": 9,
-    "nAcceptance": 9,
+    "n": 8,
+    "nAcceptance": 8,
     "nInvalidation": 0
   },
   {

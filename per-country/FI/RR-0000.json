@@ -1,0 +1,39 @@
+[
+  {
+    "Identifier": "RR-FI-0000",
+    "Type": "Acceptance",
+    "Country": "FI",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Recovery",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Recovery certificate has more than one entry"
+      },
+      {
+        "lang": "fi",
+        "desc": "Sairastamistodistus ei ole määritysten mukainen"
+      },
+      {
+        "lang": "sv",
+        "desc": "Intyget om tillfrisknande från covid-19 uppfyller inte bestämningarna"
+      }
+    ],
+    "ValidFrom": "2022-04-06T15:30:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r.1"
+    ],
+    "Logic": {
+      "!": [
+        {
+          "var": "payload.r.1"
+        }
+      ]
+    },
+    "expr-as-text": "not (/payload.r.1)"
+  }
+]

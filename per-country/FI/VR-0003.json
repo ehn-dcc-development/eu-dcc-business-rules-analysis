@@ -1,0 +1,92 @@
+[
+  {
+    "Identifier": "VR-FI-0003",
+    "Type": "Acceptance",
+    "Country": "FI",
+    "Version": "1.0.2",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Full vaccination series is not valid yet (7 days)"
+      },
+      {
+        "lang": "fi",
+        "desc": "Täydestä rokotussarja ei ole vielä voimassa (7 päivää)"
+      },
+      {
+        "lang": "sv",
+        "desc": "Den fullständiga vaccinationsserien är inte ännu giltig (7 dagar)"
+      }
+    ],
+    "ValidFrom": "2022-04-06T15:30:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.dt",
+      "v.0.sd"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
+                  "<=": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "not-before": [
+                {
+                  "plusTime": [
+                    {
+                      "var": "external.validationClock"
+                    },
+                    0,
+                    "day"
+                  ]
+                },
+                {
+                  "plusTime": [
+                    {
+                      "var": "payload.v.0.dt"
+                    },
+                    7,
+                    "day"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2))) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +7 days)) else (true)) else (true)"
+  }
+]

@@ -50,7 +50,7 @@ export const treeFlatMap = <T>(root: CertLogicExpression, mapper: (expr: CertLog
             if ([ "===", "and", ">", "<", ">=", "<=", "in", "+", "after", "before", "not-after", "not-before" ].indexOf(operator) > -1) {
                 return [ ...(values.flatMap(map__)), ...mapper(expr, ancestors) ]
             }
-            if (operator === "!" || operator === "plusTime" || operator === "extractFromUVCI") {
+            if (operator === "!" || operator === "plusTime" || operator === "extractFromUVCI" || operator === "dccDateOfBirth") {
                 return [ ...map__(values[0]), ...mapper(expr, ancestors) ]
             }
             if (operator === "reduce") {
