@@ -318,7 +318,7 @@
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dt\", \"v.0.dn\", \"v.0.mp\", \"v.0.sd\" ]"
         ],
         "logicWarnings": [],
-        "version": "1.0.2"
+        "version": "1.0.4"
       }
     ],
     "ruleSetProblems": []
@@ -481,18 +481,6 @@
         "affectedFields": null,
         "metaDataErrors": [
           "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.0"
-      },
-      {
-        "ruleId": "VR-MT-0009",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.dn\" ]"
         ],
         "logicWarnings": [],
         "version": "1.0.0"

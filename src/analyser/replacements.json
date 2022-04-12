@@ -126,10 +126,12 @@
       "subExpr": {
         "after": [
           {
-            "dccDateOfBirth": [
+            "plusTime": [
               {
                 "var": "payload.dob"
-              }
+              },
+              0,
+              "year"
             ]
           },
           {
