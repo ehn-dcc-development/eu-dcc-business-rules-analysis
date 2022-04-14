@@ -1,0 +1,29 @@
+EU DCC:
+  * eHN GitHub org: https://github.com/ehn-dcc-development/
+    (eHN = EU eHealth Network)
+  * Online decoder: https://floysh.github.io/DCC-green-pass-decoder/
+  * Specification: https://ec.europa.eu/health/sites/default/files/ehealth/docs/covid-certificate_json_specification_en.pdf https://github.com/ehn-dcc-development/hcert-spec https://github.com/ehn-dcc-development/ehn-dcc-schema
+  * Mini-app to compute encoding: https://dcc-encoding.vercel.app/?events=R,1V,2V,R
+  * Blog on decoding DCCs: https://www.bartwolff.com/Blog/2021/08/08/decoding-the-eu-digital-covid-certificate-qr-code
+
+EU DCC business rules:
+  * GitHub repo: https://github.com/ehn-dcc-development/dgc-business-rules
+  * Analyses: https://github.com/ehn-dcc-development/dcc-business-rules-analysis
+    * Vaccine-country matrix: https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-country-matrix.html
+    * Vaccine acceptance per country: https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-specs-per-country.html
+  * Checking a DCC against rules of all participating countries: https://dcc-crosscheck.vercel.app/
+  * validation framework's spec: https://ec.europa.eu/health/sites/default/files/ehealth/docs/eu-dcc_validation-rules_en.pdf
+  * JS util for working with EU DCC business rules: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/dcc-business-rules-utils
+  * Possible extension of the framework: https://non-dcc-rules-prototype.vercel.app/
+
+CertLogic:
+  * CertLogic spec + test suite: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/certlogic/specification
+  * Playground: https://certlogic-fiddle.vercel.app/
+  * JS-impl.: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/certlogic/certlogic-js https://www.npmjs.com/package/certlogic-js
+  * JVM-impl.: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/certlogic/certlogic-kotlin
+  * Swift-impl.: https://github.com/eu-digital-green-certificates/json-logic-swift
+  * Dart-impl.: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/certlogic/certlogic-dart https://pub.dev/packages/certlogic_dart
+  * JS component to render CertLogic expressions in HTML: https://github.com/ehn-dcc-development/dgc-business-rules/tree/main/certlogic/certlogic-html https://www.npmjs.com/package/certlogic-html
+
+Re-Open Europe: https://reopen.europa.eu/
+
