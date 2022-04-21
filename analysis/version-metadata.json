@@ -2433,7 +2433,7 @@
   },
   {
     "country": "MT",
-    "latestValidFrom": "2022-04-11T00:00:00Z",
+    "latestValidFrom": "2022-04-21T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -2481,7 +2481,7 @@
         "versions": [
           {
             "version": "3.0.0",
-            "validFrom": "2022-01-20T00:00:00Z",
+            "validFrom": "2022-04-21T00:00:00Z",
             "validTo": "2031-12-15T23:00:00Z"
           }
         ]
