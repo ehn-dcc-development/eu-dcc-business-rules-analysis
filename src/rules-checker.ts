@@ -77,8 +77,8 @@ const validateRuleExt = (rule: Rule): ExtRuleValidationResult => {
 }
 
 export const validateRulesOfCountry = (rules: Rule[], co: string): ValidationResultForCountry => {
-    const rulesWithValidationProblems = rules.map(
-        (rule) => validateRuleExt(rule)).filter((result) => result.hasErrors
+    const rulesWithIssues = rules.map(
+        (rule) => validateRuleExt(rule)).filter((result) => result.hasErrors || result.logicWarnings.length > 0
     )
     const ruleSetProblems = []
     if (!hasRulesForAllEventTypes(rules)) {
@@ -86,7 +86,7 @@ export const validateRulesOfCountry = (rules: Rule[], co: string): ValidationRes
     }
     return {
         country: co,
-        rulesWithValidationProblems,
+        rulesWithValidationProblems: rulesWithIssues,
         ruleSetProblems
     }
 }
