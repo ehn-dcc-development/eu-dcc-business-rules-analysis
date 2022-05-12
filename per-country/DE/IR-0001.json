@@ -1,0 +1,87 @@
+[
+  {
+    "Identifier": "IR-DE-0001",
+    "Type": "Invalidation",
+    "Country": "DE",
+    "Version": "1.0.3",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.8.0",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The certificate must not be issued by an unauthorized party."
+      },
+      {
+        "lang": "de",
+        "desc": "Das Zertifikat darf nicht durch unberechtigte Ausgeber ausgestellt worden sein."
+      },
+      {
+        "lang": "fr",
+        "desc": "Le certificat ne doit pas avoir été établi par des émetteurs non autorisés."
+      },
+      {
+        "lang": "es",
+        "desc": "El certificado no puede haber sido expedido por emisores no autorizados."
+      },
+      {
+        "lang": "it",
+        "desc": "Il certificato non può essere rilasciato da un organismo non autorizzato."
+      }
+    ],
+    "ValidFrom": "2022-05-06T16:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v.0.ci"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0.ci"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "in": [
+                    {
+                      "extractFromUVCI": [
+                        {
+                          "var": "payload.v.0.ci"
+                        },
+                        1
+                      ]
+                    },
+                    [
+                      "A51018097",
+                      "A80013335"
+                    ]
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "extractFromUVCI": [
+                        {
+                          "var": "payload.v.0.ci"
+                        },
+                        0
+                      ]
+                    },
+                    "01DE"
+                  ]
+                }
+              ]
+            },
+            false,
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0.ci) then (if (((extract fragment 1 from UVCI (/payload.v.0.ci)) in ([ \"A51018097\", \"A80013335\" ])) and ((extract fragment 0 from UVCI (/payload.v.0.ci)) === (\"01DE\"))) then (false) else (true)) else (true)"
+  }
+]

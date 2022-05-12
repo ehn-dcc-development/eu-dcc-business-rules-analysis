@@ -14,7 +14,7 @@
 ## About
 
 The [Digital COVID Certificate (DCC)](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) allows determining whether a person is deemed fit-for-travel into a country-of-arrival (CoA) based on their vaccination, test, and recovery status.
-To make such determinations, [business (or validation, or verification) rules](https://github.com/ehn-dcc-development/dgc-business-rules) can be implemented in verifier apps.
+To make such determinations, [business (or validation, or verification) rules](https://github.com/ehn-dcc-development/eu-dcc-business-rules) can be implemented in verifier apps.
 
 This repository contains an analysis of the business rules that have been uploaded to the EU DCC Gateway.
 The analysis focuses almost entirely on rules pertaining to vaccination DCCs.
@@ -23,11 +23,11 @@ These JSON files are also presented in the form of an equal number of static, st
 
 These **dashboard pages** are:
 
-* [An inventory of what countries accept which vaccines, including waiting time and validity](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-specs-per-country.html)
-* [A matrix detailing which vaccines are accepted by which countries](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/vaccine-country-matrix.html)
-* [A dashboard detailing which countries have uploaded how many business rules](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/statistics.html)
-* [The result of validating all business rules](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/validation-results.html)
-* [An overview of which rule (versions) are _currently_ available](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/dcc-business-rules-analysis/blob/main/analysis/version-metadata.html), including their validity range - this is mainly per development purposes
+* [An inventory of what countries accept which vaccines, including waiting time and validity](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/blob/main/analysis/vaccine-specs-per-country.html)
+* [A matrix detailing which vaccines are accepted by which countries](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/blob/main/analysis/vaccine-country-matrix.html)
+* [A dashboard detailing which countries have uploaded how many business rules](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/blob/main/analysis/statistics.html)
+* [The result of validating all business rules](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/blob/main/analysis/validation-results.html)
+* [An overview of which rule (versions) are _currently_ available](https://htmlpreview.github.io/?https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/blob/main/analysis/version-metadata.html), including their validity range - this is mainly per development purposes
 
 These analysis files are persisted in this repository to be able to easily track changes to the business rules over time.
 The URLs in this list use a free, open-source external service to renders static HTML files on GitHub as Web pages.

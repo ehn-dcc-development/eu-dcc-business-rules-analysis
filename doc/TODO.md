@@ -28,8 +28,8 @@
   * [&#10003;] Number of types of rules.
   * [&#10003;] Number of EU MS, EEA/EFTA MS, EU candidate-MS, 3rd country.
 
-* [&#10003;] [Issue #1](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/1): Automate high-over analysis (“dashboard”)
-* [&#10005;] [Issue #2](https://github.com/ehn-dcc-development/dcc-business-rules-analysis/issues/2): Remove reliance on `jq` --
+* [&#10003;] [Issue #1](https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/issues/1): Automate high-over analysis (“dashboard”)
+* [&#10005;] [Issue #2](https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/issues/2): Remove reliance on `jq` --
     Not doing this entirely, but more intricate usages have been moved to JavaScript.
 
 * [&#10003;] Update `README.md`.
