@@ -3,7 +3,7 @@
     "Identifier": "VR-ES-0003",
     "Type": "Acceptance",
     "Country": "ES",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -11,26 +11,26 @@
     "Description": [
       {
         "lang": "en",
-        "desc": "Verification Datetime must be more than 14 days and less than 270 days after the last date of vaccination. No Booster"
+        "desc": "At least 14 days must have elapsed since completing the primary course of immunization. A booster shot is valid immediately."
       },
       {
         "lang": "de",
-        "desc": "Der Zeitpunkt der Verifizierung muss mehr als 14 Tage und weniger als 270 Tage nach dem letzten Impfdatum liegen. No Booster"
+        "desc": "Seit dem Abschluss der Grundimmunisierung müssen mindestens 14 Tage vergangen sein. Eine Auffrischimpfung ist sofort gültig."
       },
       {
         "lang": "fr",
-        "desc": "La date de vérification doit être supérieure à 14 jours et inférieure à 270 jours après la dernière date de vaccination. No Booster"
+        "desc": "Une fois la primo-vaccination effectuée, il faut attendre au moins 14 jours. Une injection de rappel est valable immédiatement."
       },
       {
         "lang": "es",
-        "desc": "La fecha de verificación debe ser superior a 14 días e inferior a 270 días después de la última fecha de vacunación en caso de no ser booster."
+        "desc": "Deben haber transcurrido al menos 14 días desde la finalización de la inmunización básica. Una vacuna de refuerzo será válida de forma inmediata."
       },
       {
         "lang": "it",
-        "desc": "La data di verifica deve essere più di 14 giorni e meno di 270 giorni dopo l'ultima data di vaccinazione. No Booster"
+        "desc": "Devono essere passati minimo 14 giorni dalla vaccinazione finale necessaria per l’immunizzazione di base. Il richiamo del vaccino è valido da subito."
       }
     ],
-    "ValidFrom": "2022-02-18T12:00:00Z",
+    "ValidFrom": "2022-05-23T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -46,38 +46,7 @@
         {
           "if": [
             {
-              "and": [
-                {
-                  "<": [
-                    {
-                      "var": "payload.v.0.sd"
-                    },
-                    3
-                  ]
-                },
-                {
-                  "===": [
-                    {
-                      "var": "payload.v.0.dn"
-                    },
-                    {
-                      "var": "payload.v.0.sd"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "not-after": [
-                {
-                  "plusTime": [
-                    {
-                      "var": "payload.v.0.dt"
-                    },
-                    14,
-                    "day"
-                  ]
-                },
+              "not-before": [
                 {
                   "plusTime": [
                     {
@@ -92,18 +61,41 @@
                     {
                       "var": "payload.v.0.dt"
                     },
-                    271,
+                    15,
                     "day"
                   ]
                 }
               ]
             },
-            true
+            true,
+            {
+              "if": [
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    2
+                  ]
+                },
+                true,
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.sd) < (3)) and ((/payload.v.0.dn) === (/payload.v.0.sd))) then (((/payload.v.0.dt) +14 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +271 days)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +15 days)) then (true) else (if ((/payload.v.0.dn) > (2)) then (true) else ((/payload.v.0.dn) > (/payload.v.0.sd)))) else (true)"
   }
 ]

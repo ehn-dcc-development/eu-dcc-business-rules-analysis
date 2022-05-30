@@ -3,7 +3,7 @@
     "Identifier": "VR-ES-0004",
     "Type": "Acceptance",
     "Country": "ES",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -11,32 +11,31 @@
     "Description": [
       {
         "lang": "en",
-        "desc": "Verification Datetime must be more than 0 days and less than 270 days after the last date of vaccination. Booster DN > SD"
+        "desc": "The primary vaccination may have been completed 270 days ago at most. For people under 18, the primary vaccination is valid for an unlimited period."
       },
       {
         "lang": "de",
-        "desc": "Der Zeitpunkt der Verifizierung muss mehr als 0 Tage und weniger als 270 Tage nach dem letzten Impfdatum liegen. Booster DN > SD"
+        "desc": " Seit dem Abschluss der Grundimmunisierung dürfen maximal 270 Tage vergangen sein. Bei Personen unter 18 Jahren ist die Grundimmunisierung unbegrenzt gültig."
       },
       {
         "lang": "fr",
-        "desc": "La date de vérification doit être supérieure à 0 jours et inférieure à 270 jours après la dernière date de vaccination. Booster DN > SD"
+        "desc": "Un maximum de 270 jours doit s'être écoulé depuis l'achèvement du schéma de primovaccination. Chez les personnes de moins de 18 ans, la durée de validité de la primovaccination est illimitée."
       },
       {
         "lang": "es",
-        "desc": "La fecha de verificación debe ser superior a 0 días e inferior a 270 días después de la última fecha de vacunación. Booster DN > SD"
+        "desc": "Puede transcurrir un máximo de 270 días una vez finalizada la inmunización de base. En menores de 18 años, la inmunización de base es válida indefinidamente."
       },
       {
         "lang": "it",
-        "desc": "La data di verifica deve essere più di 0 giorni e meno di 270 giorni dopo l'ultima data di vaccinazione. Booster DN > SD"
+        "desc": "Dalla conclusione del ciclo vaccinale primario può essere trascorso un massimo di 270 giorni. Per i minori di 18 anni, l’immunizzazione di base è valida illimitatamente."
       }
     ],
-    "ValidFrom": "2022-02-18T12:00:00Z",
+    "ValidFrom": "2022-05-23T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
+      "dob",
       "v.0",
-      "v.0.dt",
-      "v.0.dn",
-      "v.0.sd"
+      "v.0.dt"
     ],
     "Logic": {
       "if": [
@@ -46,26 +45,7 @@
         {
           "if": [
             {
-              ">": [
-                {
-                  "var": "payload.v.0.dn"
-                },
-                {
-                  "var": "payload.v.0.sd"
-                }
-              ]
-            },
-            {
               "not-after": [
-                {
-                  "plusTime": [
-                    {
-                      "var": "payload.v.0.dt"
-                    },
-                    0,
-                    "day"
-                  ]
-                },
                 {
                   "plusTime": [
                     {
@@ -80,18 +60,53 @@
                     {
                       "var": "payload.v.0.dt"
                     },
-                    271,
+                    270,
                     "day"
                   ]
                 }
               ]
             },
-            true
+            true,
+            {
+              "if": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.dob"
+                    },
+                    ""
+                  ]
+                },
+                false,
+                {
+                  "not-after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.dob"
+                        },
+                        6575,
+                        "day"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.dn) > (/payload.v.0.sd)) then (((/payload.v.0.dt) +0 days) not-after ((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +271 days)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +270 days)) then (true) else (if ((/payload.dob) === (\"\")) then (false) else (((/external.validationClock) +0 days) not-after ((/payload.dob) +6575 days)))) else (true)"
   }
 ]

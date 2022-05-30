@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "certlogic-js": "^1.2.1",
-    "dcc-business-rules-utils": "^0.4.1",
+    "dcc-business-rules-utils": "^0.5.1",
     "deep-equal": "^2.0.5",
     "semver": "7.3.5"
   },

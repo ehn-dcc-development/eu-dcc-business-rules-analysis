@@ -68,54 +68,6 @@
     "country": "CY",
     "rulesWithValidationProblems": [
       {
-        "ruleId": "VR-CY-0010",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"dob\", \"v.0.dn\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "VR-CY-0011",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"dob\", \"v.0.dn\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "TR-CY-0003",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"dob\", \"t.0.sc\", \"t.0.tt\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "TR-CY-0002",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"dob\", \"t.0.sc\", \"t.0.tt\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
         "ruleId": "TR-CY-0007",
         "hasErrors": true,
         "schemaValidationsErrors": [],
@@ -131,9 +83,7 @@
             "t.0.tt"
           ]
         },
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"dob\", \"t.0.sc\" ]"
-        ],
+        "metaDataErrors": [],
         "logicWarnings": [],
         "version": "2.1.4"
       },
@@ -153,57 +103,7 @@
             "t.0.tt"
           ]
         },
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"dob\", \"t.0.sc\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "TR-CY-0005",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Test doesn't match with its AffectedFields [ \"dob\", \"t.0.sc\", \"t.0.tt\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "VR-CY-0007",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"dob\", \"v.0.dn\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "VR-CY-0006",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"dob\", \"v.0.dn\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "2.1.4"
-      },
-      {
-        "ruleId": "VR-CY-0009",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"dob\", \"v.0.dn\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
+        "metaDataErrors": [],
         "logicWarnings": [],
         "version": "2.1.4"
       },
@@ -218,24 +118,6 @@
           "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"Covavax\", \"Covid-19-adsorvidainativada\""
         ],
         "version": "2.1.4"
-      }
-    ],
-    "ruleSetProblems": []
-  },
-  {
-    "country": "DE",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-DE-0004",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dt\", \"v.0.sd\", \"v.0.dn\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.4"
       }
     ],
     "ruleSetProblems": []
@@ -318,24 +200,6 @@
     "ruleSetProblems": []
   },
   {
-    "country": "FI",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-FI-0004",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dt\", \"v.0.dn\", \"v.0.mp\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.4"
-      }
-    ],
-    "ruleSetProblems": []
-  },
-  {
     "country": "FR",
     "rulesWithValidationProblems": [
       {
@@ -394,18 +258,6 @@
         "affectedFields": null,
         "metaDataErrors": [
           "validity range 2021-12-11T12:00:00Z - 2021-12-14T12:00:00Z of rule must be at least 72 hours long"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.3"
-      },
-      {
-        "ruleId": "VR-FR-0011",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"v.0\", \"v.0.dn\", \"v.0.dt\", \"dob\" ]"
         ],
         "logicWarnings": [],
         "version": "1.0.3"
@@ -507,59 +359,11 @@
     "ruleSetProblems": []
   },
   {
-    "country": "MT",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-MT-0010",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0.dt\", \"v.0.sd\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.0.0"
-      }
-    ],
-    "ruleSetProblems": []
-  },
-  {
     "country": "RO",
     "rulesWithValidationProblems": [],
     "ruleSetProblems": [
       "country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
     ]
-  },
-  {
-    "country": "SI",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-SI-0003",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.1.0"
-      },
-      {
-        "ruleId": "VR-SI-0004",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [
-          "CertificateType Vaccination doesn't match with its AffectedFields [ \"dob\", \"v.0\", \"v.0.dn\", \"v.0.sd\", \"v.0.dt\" ]"
-        ],
-        "logicWarnings": [],
-        "version": "1.1.0"
-      }
-    ],
-    "ruleSetProblems": []
   },
   {
     "country": "SK",
@@ -812,7 +616,7 @@
         "logicValidationErrors": [],
         "affectedFields": null,
         "metaDataErrors": [
-          "EngineVersion 2.0.1 is newer than the currently supported version 1.3.1"
+          "EngineVersion 2.0.1 is newer than the currently supported version 1.3.2"
         ],
         "logicWarnings": [],
         "version": "1.0.0"

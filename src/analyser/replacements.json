@@ -121,6 +121,34 @@
       "comment": "assume >= 18 years old"
     }
   ],
+  "ES": [
+    {
+      "subExpr": {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "payload.dob"
+              },
+              6575,
+              "day"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume >= 18 years old"
+    }
+  ],
   "FI": [
     {
       "subExpr": {
