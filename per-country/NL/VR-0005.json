@@ -3,7 +3,7 @@
     "Identifier": "VR-NL-0005",
     "Type": "Acceptance",
     "Country": "NL",
-    "Version": "1.3.2",
+    "Version": "1.4.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -34,7 +34,7 @@
         "desc": "Una vaccinazione è considerata protettiva a partire da 14 giorni dopo la seconda data di vaccinazione."
       }
     ],
-    "ValidFrom": "2022-06-02T00:00:00+01:00",
+    "ValidFrom": "2022-06-23T00:00:00+02:00",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -51,11 +51,14 @@
         {
           "if": [
             {
-              "===": [
+              "in": [
                 {
                   "var": "payload.v.0.mp"
                 },
-                "EU/1/20/1525"
+                [
+                  "EU/1/20/1525",
+                  "Convidecia"
+                ]
               ]
             },
             true,
@@ -113,6 +116,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/20/1525\")) then (true) else (if (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2))) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) else (true))) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) in ([ \"EU/1/20/1525\", \"Convidecia\" ])) then (true) else (if (((/payload.v.0.dn) === (/payload.v.0.sd)) and ((/payload.v.0.dn) <= (2))) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) else (true))) else (true)"
   }
 ]

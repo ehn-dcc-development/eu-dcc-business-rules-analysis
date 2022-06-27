@@ -3,7 +3,7 @@
     "Identifier": "VR-NL-0001",
     "Type": "Acceptance",
     "Country": "NL",
-    "Version": "1.4.2",
+    "Version": "1.5.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -34,7 +34,7 @@
         "desc": "Alleen vaccins die zijn goedgekeurd door het EMA en/of de WHO zijn toegestaan."
       }
     ],
-    "ValidFrom": "2022-06-02T00:00:00+01:00",
+    "ValidFrom": "2022-06-23T00:00:00+02:00",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.0",
@@ -60,13 +60,14 @@
               "BBIBP-CorV",
               "Covaxin",
               "NVX-CoV2373",
-              "EU/1/21/1618"
+              "EU/1/21/1618",
+              "Convidecia"
             ]
           ]
         },
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"CoronaVac\", \"BBIBP-CorV\", \"Covaxin\", \"NVX-CoV2373\", \"EU/1/21/1618\" ])) else (true)"
+    "expr-as-text": "if (/payload.v.0) then ((/payload.v.0.mp) in ([ \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"EU/1/20/1525\", \"Covishield\", \"CoronaVac\", \"BBIBP-CorV\", \"Covaxin\", \"NVX-CoV2373\", \"EU/1/21/1618\", \"Convidecia\" ])) else (true)"
   }
 ]

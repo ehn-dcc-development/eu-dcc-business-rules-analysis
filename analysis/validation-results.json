@@ -126,30 +126,6 @@
     "country": "EE",
     "rulesWithValidationProblems": [
       {
-        "ruleId": "VR-EE-0003",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": {
-          "actual": [
-            "v.0",
-            "v.0.dt",
-            "v.0.sd",
-            "v.0.dn"
-          ],
-          "computed": [
-            "dob",
-            "v.0",
-            "v.0.dn",
-            "v.0.dt",
-            "v.0.sd"
-          ]
-        },
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.6"
-      },
-      {
         "ruleId": "VR-EE-0007",
         "hasErrors": true,
         "schemaValidationsErrors": [],
@@ -195,6 +171,47 @@
         "metaDataErrors": [],
         "logicWarnings": [],
         "version": "1.0.5"
+      },
+      {
+        "ruleId": "VR-EE-0003",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0",
+            "v.0.dt",
+            "v.0.sd",
+            "v.0.dn"
+          ],
+          "computed": [
+            "dob",
+            "v.0",
+            "v.0.dn",
+            "v.0.dt",
+            "v.0.sd"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.6"
+      },
+      {
+        "ruleId": "GR-EE-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "v.0"
+          ],
+          "computed": [
+            "v"
+          ]
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.0"
       }
     ],
     "ruleSetProblems": []
