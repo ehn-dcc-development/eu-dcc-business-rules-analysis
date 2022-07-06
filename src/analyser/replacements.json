@@ -93,34 +93,6 @@
       "comment": "assume no DOB given => should not be considered a minor"
     }
   ],
-  "EE": [
-    {
-      "subExpr": {
-        "before": [
-          {
-            "plusTime": [
-              {
-                "var": "payload.dob"
-              },
-              18,
-              "year"
-            ]
-          },
-          {
-            "plusTime": [
-              {
-                "var": "external.validationClock"
-              },
-              0,
-              "day"
-            ]
-          }
-        ]
-      },
-      "replacementExpr": true,
-      "comment": "assume >= 18 years old"
-    }
-  ],
   "ES": [
     {
       "subExpr": {

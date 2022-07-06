@@ -1,0 +1,49 @@
+[
+  {
+    "Identifier": "GR-DE-0001",
+    "Type": "Acceptance",
+    "Country": "DE",
+    "Version": "1.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.8.0",
+    "CertificateType": "General",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "As of June 1, 2022, travelers entering Germany are now only obligated to register themselves, provide proof of their Covid status, or quarantine due to the pandemic if they have previously stayed in an area of variants of concern. No states/regions are currently classified as areas of variants of concern."
+      },
+      {
+        "lang": "de",
+        "desc": "Seit dem 1. Juni 2022 gilt eine pandemiebedingte Anmelde-, Nachweis- und Quarantänepflicht bei der Einreise nach Deutschland nur noch bei einem Voraufenthalt in einem Virusvariantengebiet. Derzeit gelten keine Staaten/Regionen als Virusvariantengebiete."
+      },
+      {
+        "lang": "fr",
+        "desc": "Depuis le 1er juin 2022, l’obligation d‘enregistrement, de présentation d’un justificatif et de quarantaine à l’entrée en Allemagne liée à la pandémie ne reste applicable que si vous avez préalablement séjourné dans une zone de circulation de virus variant. Actuellement, aucun état ni aucune région ne sont considérés comme zone de circulation de virus variant."
+      },
+      {
+        "lang": "es",
+        "desc": "Desde el 1 de junio de 2022, la obligación de notificación, comprobación y cuarentena relacionada con la pandemia para entrar en Alemania solo se aplica en el caso de una estancia previa en una zona con variantes del virus. Actualmente, no se considera que ningún estado o región sea una zona con variantes del virus."
+      },
+      {
+        "lang": "it",
+        "desc": "Dal 1 giugno 2022 per l’ingresso in Germania vige, in relazione all'andamento della pandemia, l’obbligo di registrazione, di presentazione della documentazione vaccinale e di quarantena solo in caso di provenienza da aree ad alta incidenza di varianti del virus. Nessuno Stato/regione al momento è classificato come tale."
+      }
+    ],
+    "ValidFrom": "2022-07-04T09:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "v"
+    ],
+    "Logic": {
+      "if": [
+        true,
+        true,
+        {
+          "var": "payload.v"
+        }
+      ]
+    },
+    "expr-as-text": "if (true) then (true) else (/payload.v)"
+  }
+]

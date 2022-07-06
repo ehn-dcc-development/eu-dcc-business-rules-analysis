@@ -866,9 +866,19 @@
   },
   {
     "country": "DE",
-    "latestValidFrom": "2022-05-06T16:00:00Z",
+    "latestValidFrom": "2022-07-04T09:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
+      {
+        "ruleId": "GR-DE-0001",
+        "versions": [
+          {
+            "version": "1.0.1",
+            "validFrom": "2022-07-04T09:00:00Z",
+            "validTo": "2030-06-01T00:00:00Z"
+          }
+        ]
+      },
       {
         "ruleId": "IR-DE-0001",
         "versions": [
@@ -994,7 +1004,7 @@
   {
     "country": "EE",
     "latestValidFrom": "2022-06-27T00:00:00Z",
-    "earliestValidTo": "2022-09-01T00:00:00Z",
+    "earliestValidTo": "2040-01-01",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-EE-0001",
@@ -1003,136 +1013,6 @@
             "version": "1.0.0",
             "validFrom": "2022-06-27T00:00:00Z",
             "validTo": "2099-01-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "GR-EE-0005",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-EE-0001",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-EE-0001",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-EE-0002",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-EE-0003",
-        "versions": [
-          {
-            "version": "1.0.3",
-            "validFrom": "2022-02-14T00:00:00Z",
-            "validTo": "2024-02-14T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-EE-0004",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-EE-0008",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0002",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2021-09-06T00:00:00Z",
-            "validTo": "2022-09-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0003",
-        "versions": [
-          {
-            "version": "1.0.6",
-            "validFrom": "2022-04-06T00:00:00Z",
-            "validTo": "2023-04-06T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0004",
-        "versions": [
-          {
-            "version": "1.0.5",
-            "validFrom": "2022-03-07T00:00:00Z",
-            "validTo": "2023-03-07T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0005",
-        "versions": [
-          {
-            "version": "1.0.5",
-            "validFrom": "2022-03-07T00:00:00Z",
-            "validTo": "2023-03-07T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0006",
-        "versions": [
-          {
-            "version": "1.0.5",
-            "validFrom": "2022-04-06T00:00:00Z",
-            "validTo": "2023-04-06T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-EE-0007",
-        "versions": [
-          {
-            "version": "1.0.5",
-            "validFrom": "2022-04-06T00:00:00Z",
-            "validTo": "2023-04-06T00:00:00Z"
           }
         ]
       }
