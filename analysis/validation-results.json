@@ -123,6 +123,13 @@
     "ruleSetProblems": []
   },
   {
+    "country": "DE",
+    "rulesWithValidationProblems": [],
+    "ruleSetProblems": [
+      "country's rules don't cover all event types (which is NOT the same as not accepting the event types that weren't covered)"
+    ]
+  },
+  {
     "country": "EE",
     "rulesWithValidationProblems": [
       {

@@ -888,116 +888,6 @@
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
-      },
-      {
-        "ruleId": "RR-DE-0001",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-DE-0002",
-        "versions": [
-          {
-            "version": "1.0.3",
-            "validFrom": "2022-02-24T17:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-DE-0001",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-DE-0002",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-DE-0003",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-DE-0004",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-DE-0005",
-        "versions": [
-          {
-            "version": "1.0.0",
-            "validFrom": "2021-07-03T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-DE-0001",
-        "versions": [
-          {
-            "version": "1.0.2",
-            "validFrom": "2022-03-18T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-DE-0002",
-        "versions": [
-          {
-            "version": "1.0.3",
-            "validFrom": "2022-03-28T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-DE-0003",
-        "versions": [
-          {
-            "version": "1.0.6",
-            "validFrom": "2022-02-24T17:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-DE-0004",
-        "versions": [
-          {
-            "version": "1.0.4",
-            "validFrom": "2022-04-04T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
       }
     ]
   },
@@ -1962,7 +1852,7 @@
   },
   {
     "country": "LU",
-    "latestValidFrom": "2022-02-02T15:00:00Z",
+    "latestValidFrom": "2022-07-07T18:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -2049,8 +1939,8 @@
         "ruleId": "VR-LU-0002",
         "versions": [
           {
-            "version": "1.5.0",
-            "validFrom": "2022-01-13T18:00:00Z",
+            "version": "1.6.0",
+            "validFrom": "2022-07-07T18:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -2714,7 +2604,7 @@
   },
   {
     "country": "RO",
-    "latestValidFrom": "2022-03-19T12:00:00Z",
+    "latestValidFrom": "2022-07-09T12:00:00Z",
     "earliestValidTo": "2031-01-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -2722,7 +2612,7 @@
         "versions": [
           {
             "version": "1.0.0",
-            "validFrom": "2022-03-19T12:00:00Z",
+            "validFrom": "2022-07-09T12:00:00Z",
             "validTo": "2031-01-01T00:00:00Z"
           }
         ]

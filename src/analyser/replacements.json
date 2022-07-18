@@ -79,20 +79,6 @@
       "comment": "assume < 18 years old; (2000-01-01 + 6575 days = 2018-01-01)"
     }
   ],
-  "DE": [
-    {
-      "subExpr": {
-        "===": [
-          {
-            "var": "payload.dob"
-          },
-          ""
-        ]
-      },
-      "replacementExpr": true,
-      "comment": "assume no DOB given => should not be considered a minor"
-    }
-  ],
   "ES": [
     {
       "subExpr": {
@@ -202,7 +188,33 @@
         ]
       },
       "replacementExpr": true,
-      "comment": "assume > 18 years old (post-birthday)"
+      "comment": "assume >= 18 years old (post-birthday)"
+    }
+  ],
+  "LU": [
+    {
+      "subExpr": {
+        "after": [
+          {
+            "dccDateOfBirth": [
+              {
+                "var": "payload.dob"
+              }
+            ]
+          },
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              -18,
+              "year"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume >= 18 years old"
     }
   ],
   "MT": [
@@ -230,7 +242,7 @@
         ]
       },
       "replacementExpr": true,
-      "comment": "assume > 18 years old (post-birthday); 6570/365 = 18 (exactly)"
+      "comment": "assume >= 18 years old (post-birthday); 6570/365 = 18 (exactly)"
     },
     {
       "subExpr": {
@@ -284,7 +296,7 @@
         ]
       },
       "replacementExpr": false,
-      "comment": "assume > 18 years old (post-birthday)"
+      "comment": "assume >= 18 years old (post-birthday)"
     }
   ]
 }
