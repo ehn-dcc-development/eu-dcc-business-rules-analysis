@@ -505,6 +505,32 @@
     ]
   },
   {
+    "vaccineId": "Soberana-02",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "DE",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "Soberana-Plus",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "DE",
+      "EE",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "Sputnik-Light",
     "acceptingCountries": [
       "AL",
@@ -556,6 +582,7 @@
       "CY",
       "DE",
       "EE",
+      "NL",
       "RO",
       "SI",
       "TG",
