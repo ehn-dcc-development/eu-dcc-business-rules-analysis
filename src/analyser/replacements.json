@@ -79,6 +79,32 @@
       "comment": "assume < 18 years old; (2000-01-01 + 6575 days = 2018-01-01)"
     }
   ],
+  "CZ": [
+    {
+      "subExpr": {
+        "not-after": [
+          {
+            "plusTime": [
+              {
+                "var": "external.validationClock"
+              },
+              0,
+              "day"
+            ]
+          },
+          {
+            "plusTime": [
+              { "var": "payload.dob" },
+              216,
+              "month"
+            ]
+          }
+        ]
+      },
+      "replacementExpr": true,
+      "comment": "assume < 72 years (=216 months) old (or on 72nd birthday)"
+    }
+  ],
   "ES": [
     {
       "subExpr": {

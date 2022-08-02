@@ -3,6 +3,212 @@
     "Identifier": "VR-CZ-0054",
     "Type": "Acceptance",
     "Country": "CZ",
+    "Version": "7.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Booster dose of vaccination VAXZEVRIA may not be older than 99 months"
+      },
+      {
+        "lang": "cs",
+        "desc": "Posilovací dávka očkování VAXZEVRIA nesmí být starší než 99 měsíců"
+      }
+    ],
+    "ValidFrom": "2022-08-04T22:00:00Z",
+    "ValidTo": "2032-08-04T22:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.mp",
+      "v.0.dt",
+      "v.0.dn",
+      "v.0.sd",
+      "dob"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.mp"
+                    },
+                    "EU/1/21/1529"
+                  ]
+                },
+                {
+                  "in": [
+                    true,
+                    [
+                      {
+                        "and": [
+                          {
+                            ">=": [
+                              {
+                                "var": "payload.v.0.dn"
+                              },
+                              {
+                                "var": "payload.v.0.sd"
+                              }
+                            ]
+                          },
+                          {
+                            ">": [
+                              {
+                                "var": "payload.v.0.sd"
+                              },
+                              2
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "and": [
+                          {
+                            ">": [
+                              {
+                                "var": "payload.v.0.dn"
+                              },
+                              {
+                                "var": "payload.v.0.sd"
+                              }
+                            ]
+                          },
+                          {
+                            "===": [
+                              {
+                                "var": "payload.v.0.sd"
+                              },
+                              1
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  "var": "payload.dob"
+                },
+                {
+                  "if": [
+                    {
+                      "not-after": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.dob"
+                            },
+                            216,
+                            "month"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "not-after": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.v.0.dt"
+                            },
+                            99,
+                            "month"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "not-after": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.v.0.dt"
+                            },
+                            99,
+                            "month"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "not-after": [
+                    {
+                      "plusTime": [
+                        {
+                          "var": "external.validationClock"
+                        },
+                        0,
+                        "day"
+                      ]
+                    },
+                    {
+                      "plusTime": [
+                        {
+                          "var": "payload.v.0.dt"
+                        },
+                        99,
+                        "month"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.mp) === (\"EU/1/21/1529\")) and ((true) in ([ ((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.sd) > (2)), ((/payload.v.0.dn) > (/payload.v.0.sd)) and ((/payload.v.0.sd) === (1)) ]))) then (if (/payload.dob) then (if (((/external.validationClock) +0 days) not-after ((/payload.dob) +216 months)) then (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +99 months)) else (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +99 months))) else (((/external.validationClock) +0 days) not-after ((/payload.v.0.dt) +99 months))) else (true)) else (true)"
+  },
+  {
+    "Identifier": "VR-CZ-0054",
+    "Type": "Acceptance",
+    "Country": "CZ",
     "Version": "6.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",

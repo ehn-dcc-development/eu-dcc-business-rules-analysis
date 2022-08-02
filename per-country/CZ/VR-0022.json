@@ -3,6 +3,184 @@
     "Identifier": "VR-CZ-0022",
     "Type": "Acceptance",
     "Country": "CZ",
+    "Version": "7.0.1",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Vaccination COVID-19 Vaccine Janssen must must be older than 14 days"
+      },
+      {
+        "lang": "cs",
+        "desc": "Od dokončeného očkování COVID-19 Vaccine Janssen musí uplynout alespoň 14 dnů"
+      }
+    ],
+    "ValidFrom": "2022-08-04T22:00:00Z",
+    "ValidTo": "2032-08-04T22:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.mp",
+      "v.0.dt",
+      "dob"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "and": [
+                {
+                  ">=": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    {
+                      "var": "payload.v.0.sd"
+                    }
+                  ]
+                },
+                {
+                  "===": [
+                    {
+                      "var": "payload.v.0.mp"
+                    },
+                    "EU/1/20/1525"
+                  ]
+                }
+              ]
+            },
+            {
+              "if": [
+                {
+                  ">": [
+                    {
+                      "var": "payload.v.0.dn"
+                    },
+                    1
+                  ]
+                },
+                true,
+                {
+                  "if": [
+                    {
+                      "var": "payload.dob"
+                    },
+                    {
+                      "if": [
+                        {
+                          "not-after": [
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "external.validationClock"
+                                },
+                                0,
+                                "day"
+                              ]
+                            },
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "payload.dob"
+                                },
+                                216,
+                                "month"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "not-before": [
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "external.validationClock"
+                                },
+                                0,
+                                "day"
+                              ]
+                            },
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "payload.v.0.dt"
+                                },
+                                14,
+                                "day"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "not-before": [
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "external.validationClock"
+                                },
+                                0,
+                                "day"
+                              ]
+                            },
+                            {
+                              "plusTime": [
+                                {
+                                  "var": "payload.v.0.dt"
+                                },
+                                14,
+                                "day"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "not-before": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.v.0.dt"
+                            },
+                            14,
+                            "day"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/20/1525\"))) then (if ((/payload.v.0.dn) > (1)) then (true) else (if (/payload.dob) then (if (((/external.validationClock) +0 days) not-after ((/payload.dob) +216 months)) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days))) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)))) else (true)) else (true)"
+  },
+  {
+    "Identifier": "VR-CZ-0022",
+    "Type": "Acceptance",
+    "Country": "CZ",
     "Version": "6.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
