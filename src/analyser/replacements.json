@@ -297,6 +297,42 @@
       "comment": "assume >= 16 years + 4 days old, which is 16 years with a normal number of leap days"
     }
   ],
+  "NL": [
+    {
+      "subExpr": {
+        "if": [
+          {
+            "var": "payload.dob"
+          },
+          {
+            "after": [
+              {
+                "plusTime": [
+                  {
+                    "var": "payload.dob"
+                  },
+                  0,
+                  "year"
+                ]
+              },
+              {
+                "plusTime": [
+                  {
+                    "var": "external.validationClock"
+                  },
+                  -18,
+                  "year"
+                ]
+              }
+            ]
+          },
+          false
+        ]
+      },
+      "replacementExpr": false,
+      "comment": "assume >= 18 years old"
+    }
+  ],
   "SI": [
     {
       "subExpr": {
