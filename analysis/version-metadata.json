@@ -539,12 +539,17 @@
   },
   {
     "country": "CZ",
-    "latestValidFrom": "2022-08-04T22:00:00Z",
-    "earliestValidTo": "2032-08-04T22:00:00Z",
+    "latestValidFrom": "2022-08-14T22:00:00Z",
+    "earliestValidTo": "2032-08-14T22:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "RR-CZ-0001",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -556,6 +561,11 @@
         "ruleId": "RR-CZ-0002",
         "versions": [
           {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -565,6 +575,11 @@
       {
         "ruleId": "TR-CZ-0001",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -576,6 +591,11 @@
         "ruleId": "TR-CZ-0002",
         "versions": [
           {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -585,6 +605,11 @@
       {
         "ruleId": "TR-CZ-0003",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -596,6 +621,11 @@
         "ruleId": "TR-CZ-0004",
         "versions": [
           {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -605,6 +635,11 @@
       {
         "ruleId": "TR-CZ-0005",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -616,6 +651,11 @@
         "ruleId": "TR-CZ-0006",
         "versions": [
           {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -625,6 +665,11 @@
       {
         "ruleId": "VR-CZ-0001",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -636,6 +681,11 @@
         "ruleId": "VR-CZ-0011",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -645,6 +695,11 @@
       {
         "ruleId": "VR-CZ-0012",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -656,6 +711,11 @@
         "ruleId": "VR-CZ-0013",
         "versions": [
           {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -666,6 +726,11 @@
         "ruleId": "VR-CZ-0014",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -673,8 +738,23 @@
         ]
       },
       {
+        "ruleId": "VR-CZ-0015",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          }
+        ]
+      },
+      {
         "ruleId": "VR-CZ-0021",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -686,6 +766,11 @@
         "ruleId": "VR-CZ-0022",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -696,6 +781,11 @@
         "ruleId": "VR-CZ-0024",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -703,8 +793,23 @@
         ]
       },
       {
+        "ruleId": "VR-CZ-0025",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          }
+        ]
+      },
+      {
         "ruleId": "VR-CZ-0031",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -716,6 +821,11 @@
         "ruleId": "VR-CZ-0032",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -725,6 +835,11 @@
       {
         "ruleId": "VR-CZ-0033",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -736,6 +851,11 @@
         "ruleId": "VR-CZ-0034",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -743,8 +863,23 @@
         ]
       },
       {
+        "ruleId": "VR-CZ-0035",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          }
+        ]
+      },
+      {
         "ruleId": "VR-CZ-0041",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -756,6 +891,11 @@
         "ruleId": "VR-CZ-0042",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -765,6 +905,11 @@
       {
         "ruleId": "VR-CZ-0043",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -776,6 +921,11 @@
         "ruleId": "VR-CZ-0044",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -783,8 +933,23 @@
         ]
       },
       {
+        "ruleId": "VR-CZ-0045",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          }
+        ]
+      },
+      {
         "ruleId": "VR-CZ-0051",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -796,6 +961,11 @@
         "ruleId": "VR-CZ-0052",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -805,6 +975,11 @@
       {
         "ruleId": "VR-CZ-0053",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -816,6 +991,11 @@
         "ruleId": "VR-CZ-0054",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -823,8 +1003,23 @@
         ]
       },
       {
+        "ruleId": "VR-CZ-0055",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          }
+        ]
+      },
+      {
         "ruleId": "VR-CZ-0061",
         "versions": [
+          {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -836,6 +1031,11 @@
         "ruleId": "VR-CZ-0062",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
@@ -845,6 +1045,11 @@
       {
         "ruleId": "VR-CZ-0063",
         "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
           {
             "version": "7.0.0",
             "validFrom": "2022-08-04T22:00:00Z",
@@ -856,9 +1061,24 @@
         "ruleId": "VR-CZ-0064",
         "versions": [
           {
+            "version": "8.0.1",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
+          },
+          {
             "version": "7.0.1",
             "validFrom": "2022-08-04T22:00:00Z",
             "validTo": "2032-08-04T22:00:00Z"
+          }
+        ]
+      },
+      {
+        "ruleId": "VR-CZ-0065",
+        "versions": [
+          {
+            "version": "8.0.0",
+            "validFrom": "2022-08-14T22:00:00Z",
+            "validTo": "2032-08-14T22:00:00Z"
           }
         ]
       }

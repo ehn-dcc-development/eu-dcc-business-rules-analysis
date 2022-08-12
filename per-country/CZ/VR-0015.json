@@ -1,0 +1,60 @@
+[
+  {
+    "Identifier": "VR-CZ-0015",
+    "Type": "Acceptance",
+    "Country": "CZ",
+    "Version": "8.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Vaccination SPIKEVAX has to contain a country property"
+      },
+      {
+        "lang": "cs",
+        "desc": "Očkování SPIKEVAX musí mít vyplněnou položku země"
+      }
+    ],
+    "ValidFrom": "2022-08-14T22:00:00Z",
+    "ValidTo": "2032-08-14T22:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.mp",
+      "v.0.co"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/20/1507"
+              ]
+            },
+            {
+              "if": [
+                {
+                  "var": "payload.v.0.co"
+                },
+                true,
+                false
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/20/1507\")) then (if (/payload.v.0.co) then (true) else (false)) else (true)) else (true)"
+  }
+]
