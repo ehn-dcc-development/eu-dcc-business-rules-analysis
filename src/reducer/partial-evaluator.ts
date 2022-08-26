@@ -120,7 +120,7 @@ const evaluateReduce = (operand: CLExtExpr, lambda: CLExtExpr, initial: CLExtExp
         throw new Error(`operand of reduce evaluated to a non-null non-array`)
     }
     // even if neither are constant, the evaluation result could be constant, so check afterwards:
-    const evaluation = evalOperand
+    const evaluation = (evalOperand as CLExtExpr[]) // (help type checking with an explicit cast)
         .reduce(
             (accumulator, current) =>
                 evaluate(lambda, { accumulator, current /* (patch:) , data */ }),
