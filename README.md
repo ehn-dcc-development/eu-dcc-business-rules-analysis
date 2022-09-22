@@ -95,7 +95,7 @@ An API for that information is available, and is [documented here](https://data.
 This code base contains some code to try and “harvest” that API, in the directory [`src/jrc/`](./src/jrc).
 You can run that code from the command-line as follows (from the repository's root):
 
-  $ source src/jrc/retrieve.sh
+    $ source src/jrc/retrieve.sh
 
 This produces various files in the directory `tmp/jrc`.
 
