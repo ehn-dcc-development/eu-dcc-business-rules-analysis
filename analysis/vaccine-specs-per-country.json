@@ -536,6 +536,7 @@
       {
         "vaccineIds": [
           "BBIBP-CorV",
+          "Convidecia",
           "CoronaVac",
           "Covaxin",
           "Covishield",
@@ -546,6 +547,7 @@
           "EU/1/21/1529",
           "EU/1/21/1618",
           "Inactivated-SARS-CoV-2-Vero-Cell",
+          "Vidprevtyn",
           "WIBP-CorV"
         ],
         "combos": {
@@ -593,7 +595,8 @@
           "EU/1/20/1507",
           "EU/1/20/1528",
           "EU/1/21/1529",
-          "EU/1/21/1618"
+          "EU/1/21/1618",
+          "VLA2001"
         ],
         "combos": {
           "1/1": [
