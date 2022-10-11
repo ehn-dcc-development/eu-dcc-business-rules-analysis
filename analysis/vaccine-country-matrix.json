@@ -366,6 +366,21 @@
     ]
   },
   {
+    "vaccineId": "EU/1/21/1624",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "DE",
+      "EE",
+      "ES",
+      "FI",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "EpiVacCorona",
     "acceptingCountries": [
       "AL",
@@ -578,7 +593,6 @@
       "CY",
       "DE",
       "EE",
-      "FI",
       "NL",
       "RO",
       "SI",

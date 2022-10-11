@@ -3,7 +3,7 @@
     "Identifier": "VR-FI-0000",
     "Type": "Acceptance",
     "Country": "FI",
-    "Version": "1.0.5",
+    "Version": "1.0.6",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -22,7 +22,7 @@
         "desc": "Intyget om coronavaccinationer uppfyller inte bestämningarna"
       }
     ],
-    "ValidFrom": "2022-09-23T00:00:00Z",
+    "ValidFrom": "2022-09-30T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "v.1"

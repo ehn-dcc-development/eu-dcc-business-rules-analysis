@@ -1087,15 +1087,15 @@
   },
   {
     "country": "FI",
-    "latestValidFrom": "2022-09-23T00:00:00Z",
+    "latestValidFrom": "2022-09-30T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-FI-0000",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1104,8 +1104,8 @@
         "ruleId": "GR-FI-0001",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1114,8 +1114,8 @@
         "ruleId": "GR-FI-0002",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1124,8 +1124,8 @@
         "ruleId": "RR-FI-0000",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1134,8 +1134,8 @@
         "ruleId": "RR-FI-0001",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1144,8 +1144,8 @@
         "ruleId": "RR-FI-0002",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1154,8 +1154,8 @@
         "ruleId": "RR-FI-0003",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1164,8 +1164,8 @@
         "ruleId": "TR-FI-0000",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1174,8 +1174,8 @@
         "ruleId": "TR-FI-0001",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1184,8 +1184,8 @@
         "ruleId": "TR-FI-0002",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1194,8 +1194,8 @@
         "ruleId": "TR-FI-0003",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1204,8 +1204,8 @@
         "ruleId": "VR-FI-0000",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1214,8 +1214,8 @@
         "ruleId": "VR-FI-0001",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1224,8 +1224,8 @@
         "ruleId": "VR-FI-0002",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1234,8 +1234,8 @@
         "ruleId": "VR-FI-0003",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1244,8 +1244,8 @@
         "ruleId": "VR-FI-0004",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1254,8 +1254,8 @@
         "ruleId": "VR-FI-0005",
         "versions": [
           {
-            "version": "1.0.5",
-            "validFrom": "2022-09-23T00:00:00Z",
+            "version": "1.0.6",
+            "validFrom": "2022-09-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
