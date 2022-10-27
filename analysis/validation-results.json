@@ -155,24 +155,6 @@
     ]
   },
   {
-    "country": "ES",
-    "rulesWithValidationProblems": [
-      {
-        "ruleId": "VR-ES-0002",
-        "hasErrors": false,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [],
-        "logicWarnings": [
-          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine ID: \"CT_PEI_21-154\""
-        ],
-        "version": "1.0.2"
-      }
-    ],
-    "ruleSetProblems": []
-  },
-  {
     "country": "FR",
     "rulesWithValidationProblems": [
       {

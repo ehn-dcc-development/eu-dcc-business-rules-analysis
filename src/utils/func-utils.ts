@@ -49,13 +49,13 @@ export const mapValues = <V, W>(map: Map<V>, valueFunc: (v: V) => W): Map<W> =>
     )
 
 
-export const sortArrayBy = <T>(array: T[], keyFunc: (t: T) => number) =>
-    [ ...array ].sort((l, r) => keyFunc(l) - keyFunc(r))
-
-
 export const unique = <T>(things: T[]): T[] =>
     [...new Set(things)]
 
+
+export const sortArrayBy = <T>(array: T[], keyFunc: (t: T) => number) =>
+    [...array]  // (defensive copy)
+        .sort((l, r) => keyFunc(l) - keyFunc(r))
 
 export type Comparer<T> = (l: T, r: T) => number
 
