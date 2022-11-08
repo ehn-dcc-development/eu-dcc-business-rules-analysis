@@ -209,10 +209,10 @@
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
 
-"dcc-business-rules-utils@^0.5.1":
-  "integrity" "sha512-dL6YpJvlD5l67K8c58Q8kEtVskTQnifBRe/MkfANbTQWsF1nGbSbp8vaBkwJWtVIh/A1N/xbzN2MXZsPO78CsA=="
-  "resolved" "https://registry.npmjs.org/dcc-business-rules-utils/-/dcc-business-rules-utils-0.5.1.tgz"
-  "version" "0.5.1"
+"dcc-business-rules-utils@^0.5.2":
+  "integrity" "sha512-FDQUA8uONDTyf1sHkb4GM0+QsCO0Ui1iDAFPgQVkrxr/e+kDwzzp/vJoCQHFlPACRkn//mbnlYC5CzeamF+GdA=="
+  "resolved" "https://registry.npmjs.org/dcc-business-rules-utils/-/dcc-business-rules-utils-0.5.2.tgz"
+  "version" "0.5.2"
   dependencies:
     "ajv" "^8.11.0"
     "ajv-formats" "^2.1.1"

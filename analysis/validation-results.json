@@ -158,6 +158,65 @@
     "country": "FR",
     "rulesWithValidationProblems": [
       {
+        "ruleId": "VR-FR-0008",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [
+          {
+            "expr": {
+              "if": [
+                {
+                  "var": "payload.v.0"
+                },
+                {
+                  "if": [
+                    {
+                      "in": [
+                        {
+                          "var": "payload.v.0.mp"
+                        },
+                        {
+                          "var": "external.valueSets.vaccines-covid-19-names-FR"
+                        }
+                      ]
+                    },
+                    {
+                      "not-before": [
+                        {
+                          "plusTime": [
+                            {
+                              "var": "external.validationClock"
+                            },
+                            0,
+                            "day"
+                          ]
+                        },
+                        {
+                          "plusTime": [
+                            {
+                              "var": "payload.v.0.dt"
+                            },
+                            7,
+                            "day"
+                          ]
+                        }
+                      ]
+                    },
+                    true
+                  ]
+                },
+                true
+              ]
+            },
+            "message": "value set(s) not supported: vaccines-covid-19-names-FR"
+          }
+        ],
+        "affectedFields": null,
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.5"
+      },
+      {
         "ruleId": "VR-FR-0006",
         "hasErrors": true,
         "schemaValidationsErrors": [],
@@ -204,6 +263,38 @@
         ],
         "logicWarnings": [],
         "version": "1.0.3"
+      },
+      {
+        "ruleId": "VR-FR-0001",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [
+          {
+            "expr": {
+              "if": [
+                {
+                  "var": "payload.v.0"
+                },
+                {
+                  "in": [
+                    {
+                      "var": "payload.v.0.mp"
+                    },
+                    {
+                      "var": "external.valueSets.vaccines-covid-19-names-FR"
+                    }
+                  ]
+                },
+                true
+              ]
+            },
+            "message": "value set(s) not supported: vaccines-covid-19-names-FR"
+          }
+        ],
+        "affectedFields": null,
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.8"
       },
       {
         "ruleId": "TR-FR-0003",
