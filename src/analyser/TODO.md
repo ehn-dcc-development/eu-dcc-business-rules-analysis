@@ -22,7 +22,8 @@
   * [&#10003;] Also persist country-wide constraint violations
   * [&#10003;] Make a dashboard page
 * [&#10003;] Improve performance by gradually reducing rules: `co` &rarr; `mp` &rarr; `dn`/`sd`
-* [ ] Furbish CLUnknown with an optional predicate, to do away with the need for replacements
+* [ ] Add an error type to CLExtExpr, so that execution failures (such as from type mismatches due to invalid data access paths) “bubble up” properly.
+* [ ] Furbish CLUnknown with an optional predicate, to do away with the need for replacements.
     (The predicate could also be a sufficiently representative value.)
     Goals:
     1. [ ] Be able to express `dn > sd` or `dn > 2` (possibly in combination), so we can summarise a large part of the “lower triangle” appropriately.

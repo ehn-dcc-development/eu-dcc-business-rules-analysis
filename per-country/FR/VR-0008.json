@@ -3,7 +3,7 @@
     "Identifier": "VR-FR-0008",
     "Type": "Acceptance",
     "Country": "FR",
-    "Version": "1.0.4",
+    "Version": "1.0.5",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Avec le vaccin autre que Jansen/Essais cliniques le schéma vaccinal est considéré comme complet 7 jours après la date de la dernière injection."
       }
     ],
-    "ValidFrom": "2022-04-06T10:00:00Z",
-    "ValidTo": "2032-04-06T10:00:00Z",
+    "ValidFrom": "2022-10-29T15:00:00Z",
+    "ValidTo": "2032-10-29T15:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dt",
@@ -37,21 +37,9 @@
                 {
                   "var": "payload.v.0.mp"
                 },
-                [
-                  "EU/1/21/1618",
-                  "EU/1/20/1528",
-                  "EU/1/20/1507",
-                  "EU/1/21/1529",
-                  "CT_NCT05124171",
-                  "CT_NCT04614948",
-                  "CT_NCT05037266",
-                  "CT_NCT04762680",
-                  "CT_PEI_21-154",
-                  "Covishield",
-                  "R-Covi",
-                  "R-COVI",
-                  "Covid-19 vaccine (recombinante)"
-                ]
+                {
+                  "var": "external.valueSets.vaccines-covid-19-names-FR"
+                }
               ]
             },
             {
@@ -82,6 +70,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) in ([ \"EU/1/21/1618\", \"EU/1/20/1528\", \"EU/1/20/1507\", \"EU/1/21/1529\", \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"Covishield\", \"R-Covi\", \"R-COVI\", \"Covid-19 vaccine (recombinante)\" ])) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +7 days)) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) in (/external.valueSets.vaccines-covid-19-names-FR)) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +7 days)) else (true)) else (true)"
   }
 ]
