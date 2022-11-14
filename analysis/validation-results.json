@@ -159,6 +159,30 @@
     "rulesWithValidationProblems": [
       {
         "ruleId": "VR-FR-0008",
+        "hasErrors": false,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [],
+        "logicWarnings": [
+          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
+        ],
+        "version": "1.0.11"
+      },
+      {
+        "ruleId": "VR-FR-0008",
+        "hasErrors": false,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [],
+        "logicWarnings": [
+          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
+        ],
+        "version": "1.0.8"
+      },
+      {
+        "ruleId": "VR-FR-0008",
         "hasErrors": true,
         "schemaValidationsErrors": [],
         "logicValidationErrors": [
@@ -263,6 +287,18 @@
         ],
         "logicWarnings": [],
         "version": "1.0.3"
+      },
+      {
+        "ruleId": "VR-FR-0001",
+        "hasErrors": false,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": null,
+        "metaDataErrors": [],
+        "logicWarnings": [
+          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
+        ],
+        "version": "1.0.9"
       },
       {
         "ruleId": "VR-FR-0001",
