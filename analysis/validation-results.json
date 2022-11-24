@@ -170,77 +170,6 @@
         "version": "1.0.11"
       },
       {
-        "ruleId": "VR-FR-0008",
-        "hasErrors": false,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [],
-        "affectedFields": null,
-        "metaDataErrors": [],
-        "logicWarnings": [
-          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
-        ],
-        "version": "1.0.8"
-      },
-      {
-        "ruleId": "VR-FR-0008",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [
-          {
-            "expr": {
-              "if": [
-                {
-                  "var": "payload.v.0"
-                },
-                {
-                  "if": [
-                    {
-                      "in": [
-                        {
-                          "var": "payload.v.0.mp"
-                        },
-                        {
-                          "var": "external.valueSets.vaccines-covid-19-names-FR"
-                        }
-                      ]
-                    },
-                    {
-                      "not-before": [
-                        {
-                          "plusTime": [
-                            {
-                              "var": "external.validationClock"
-                            },
-                            0,
-                            "day"
-                          ]
-                        },
-                        {
-                          "plusTime": [
-                            {
-                              "var": "payload.v.0.dt"
-                            },
-                            7,
-                            "day"
-                          ]
-                        }
-                      ]
-                    },
-                    true
-                  ]
-                },
-                true
-              ]
-            },
-            "message": "value set(s) not supported: vaccines-covid-19-names-FR"
-          }
-        ],
-        "affectedFields": null,
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.5"
-      },
-      {
         "ruleId": "VR-FR-0006",
         "hasErrors": true,
         "schemaValidationsErrors": [],
@@ -299,38 +228,6 @@
           "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
         ],
         "version": "1.0.9"
-      },
-      {
-        "ruleId": "VR-FR-0001",
-        "hasErrors": true,
-        "schemaValidationsErrors": [],
-        "logicValidationErrors": [
-          {
-            "expr": {
-              "if": [
-                {
-                  "var": "payload.v.0"
-                },
-                {
-                  "in": [
-                    {
-                      "var": "payload.v.0.mp"
-                    },
-                    {
-                      "var": "external.valueSets.vaccines-covid-19-names-FR"
-                    }
-                  ]
-                },
-                true
-              ]
-            },
-            "message": "value set(s) not supported: vaccines-covid-19-names-FR"
-          }
-        ],
-        "affectedFields": null,
-        "metaDataErrors": [],
-        "logicWarnings": [],
-        "version": "1.0.8"
       },
       {
         "ruleId": "TR-FR-0003",
