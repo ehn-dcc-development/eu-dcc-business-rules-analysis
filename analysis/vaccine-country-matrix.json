@@ -338,6 +338,20 @@
     ]
   },
   {
+    "vaccineId": "EU/1/21/1580",
+    "acceptingCountries": [
+      "AL",
+      "CH",
+      "DE",
+      "EE",
+      "NL",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "EU/1/21/1618",
     "acceptingCountries": [
       "AL",
