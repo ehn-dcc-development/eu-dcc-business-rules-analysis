@@ -98,12 +98,17 @@
   },
   {
     "country": "AT",
-    "latestValidFrom": "2021-12-09T00:00:00Z",
+    "latestValidFrom": "2022-12-24T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
         "ruleId": "GR-AT-0000",
         "versions": [
+          {
+            "version": "1.0.15",
+            "validFrom": "2022-12-24T00:00:00Z",
+            "validTo": "2030-06-01T00:00:00Z"
+          },
           {
             "version": "1.0.12",
             "validFrom": "2021-12-09T00:00:00Z",

@@ -3,6 +3,41 @@
     "Identifier": "GR-AT-0000",
     "Type": "Acceptance",
     "Country": "AT",
+    "Version": "1.0.15",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "General",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Currently no entry rules for AT."
+      },
+      {
+        "lang": "de",
+        "desc": "Aktuell keine Einreiseregeln in AT."
+      }
+    ],
+    "ValidFrom": "2022-12-24T00:00:00Z",
+    "ValidTo": "2030-06-01T00:00:00Z",
+    "AffectedFields": [
+      "r",
+      "t",
+      "v"
+    ],
+    "Logic": {
+      "if": [
+        true,
+        true,
+        true
+      ]
+    },
+    "expr-as-text": "if (true) then (true) else (true)"
+  },
+  {
+    "Identifier": "GR-AT-0000",
+    "Type": "Acceptance",
+    "Country": "AT",
     "Version": "1.0.12",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",

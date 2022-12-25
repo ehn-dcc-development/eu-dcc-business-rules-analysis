@@ -33,6 +33,23 @@
     "country": "AT",
     "rulesWithValidationProblems": [
       {
+        "ruleId": "GR-AT-0000",
+        "hasErrors": true,
+        "schemaValidationsErrors": [],
+        "logicValidationErrors": [],
+        "affectedFields": {
+          "actual": [
+            "r",
+            "t",
+            "v"
+          ],
+          "computed": []
+        },
+        "metaDataErrors": [],
+        "logicWarnings": [],
+        "version": "1.0.15"
+      },
+      {
         "ruleId": "VR-AT-0007",
         "hasErrors": true,
         "schemaValidationsErrors": [],
