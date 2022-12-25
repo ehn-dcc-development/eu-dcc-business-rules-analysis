@@ -1,7 +1,7 @@
 import {asISODate} from "../utils/date-utils"
 import {writeHtml} from "../utils/file-utils"
 import {lowerTriangular} from "../utils/func-utils"
-import {externalAnchor} from "../utils/html-utils"
+import {asDisplayList, externalAnchor} from "../utils/html-utils"
 import {
     country2CodeTo3Code,
     countryCode2DisplayName,
@@ -35,7 +35,7 @@ const comboAsHtml = (comboValue: ComboInfo) =>
 const combosShown = lowerTriangular(6).map(([ i, j ]) => `${i+1}/${j+1}`)
 const vaccineInfoAsHtml = (vaccineSpec: VaccineSpec, country: string) =>
     `<tr><!-- country: ${country} -->
-    <td class="vaccines">${vaccineSpec.vaccineIds.map(vaccineIdToDisplayName).join(", ")}</td>
+    <td class="vaccines">${asDisplayList(vaccineSpec.vaccineIds.map(vaccineIdToDisplayName))}</td>
 ${combosShown.map((combo) => comboAsHtml(vaccineSpec.combos[combo])).join("\n")}
 </tr>
 `

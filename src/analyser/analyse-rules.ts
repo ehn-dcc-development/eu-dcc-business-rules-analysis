@@ -10,6 +10,7 @@ import {vaccineIds} from "../refData/vaccine-data"
 import {analyse} from "./analyser"
 import {isUnanalysable, validityAsText} from "./types"
 import {inputDataFor, Replacement, replaceSubExpression} from "./helpers"
+import {asDisplayList} from "../utils/html-utils"
 
 
 const allRules: Rule[] = require("../../tmp/all-rules.json")
@@ -84,7 +85,7 @@ const analyseRules = (co: string, dn: number, sd: number, showDebug: boolean) =>
         console.log(`\t! ${nReplacements} replacement${nReplacements === 1 ? "" : "s"} present for co=${co}`)
     }
 
-    console.log(`applicable rule versions: ${applicableRuleVersions_.map((rule) => `${rule.Identifier}@${rule.Version}`).join(", ")}`)
+    console.log(`applicable rule versions: ${asDisplayList(applicableRuleVersions_.map((rule) => `${rule.Identifier}@${rule.Version}`))}`)
 
     console.log(`dn/sd = ${dn}/${sd}`)
     const preparedCertLogicExpr = applicableRuleVersionsAsExpressionForCombo(applicableRuleVersions_, co, dn, sd)

@@ -7,6 +7,7 @@ import {
     ValidationResultForCountry,
     validationResultsFile
 } from "../json-files"
+import {asDisplayList} from "../utils/html-utils"
 
 
 const issueRow = (ruleId: string, version: string, type: string, message: string, className: string): string =>
@@ -21,7 +22,7 @@ const issueRow = (ruleId: string, version: string, type: string, message: string
 const validationResultAsHtml = (validationResult: ExtRuleValidationResult): string[] =>
     [
         ...validationResult.logicWarnings.map((message) => issueRow(validationResult.ruleId, validationResult.version, "logic", message, "warning")),
-        ...(validationResult.affectedFields === null ? [] : [issueRow(validationResult.ruleId, validationResult.version, "metadata", `affected fields declared were ${validationResult.affectedFields.actual.join(",")} but were computed as ${validationResult.affectedFields.computed.join(", ")}`, "warning")]),
+        ...(validationResult.affectedFields === null ? [] : [issueRow(validationResult.ruleId, validationResult.version, "metadata", `affected fields declared were ${asDisplayList(validationResult.affectedFields.actual)} but were computed as ${asDisplayList(validationResult.affectedFields.computed)}`, "warning")]),
         ...validationResult.metaDataErrors.map((message) => issueRow(validationResult.ruleId, validationResult.version, "metadata", message, "error")),
         ...validationResult.schemaValidationsErrors.map((error) => issueRow(validationResult.ruleId, validationResult.version, "schema", error.message ?? "???", "error")),
         ...validationResult.logicValidationErrors.map((error) => issueRow(validationResult.ruleId, validationResult.version, "schema", error.message, "error"))

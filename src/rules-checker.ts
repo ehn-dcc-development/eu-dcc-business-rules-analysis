@@ -11,6 +11,7 @@ import {
     ExtRuleValidationResult,
     ValidationResultForCountry
 } from "./json-files"
+import {asDisplayList} from "./utils/html-utils"
 
 
 const isVaccineIdDataAccess = (expr: CertLogicExpression): boolean => {
@@ -58,7 +59,7 @@ const logicWarningsFor = (rule: Rule): string[] =>
                 if (couldBeOperation(parent)) {
                     const invalidIds = invalidVaccineIdsInComparison(parent)
                     if (invalidIds.length > 0) {
-                        warnings.push(`rule's logic compares the vaccine ID in the DCC against an invalid vaccine ID${invalidIds.length > 1 ? "s" : ""}: ${invalidIds.map((id) => `"${id}"`).join(", ")}`)
+                        warnings.push(`rule's logic compares the vaccine ID in the DCC against an invalid vaccine ID${invalidIds.length > 1 ? "s" : ""}: ${asDisplayList(invalidIds.map((id) => `"${id}"`))}`)
                     }
                 }
             }
