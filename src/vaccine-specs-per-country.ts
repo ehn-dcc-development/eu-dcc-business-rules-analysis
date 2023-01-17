@@ -23,7 +23,6 @@ import {isUnanalysable, validityAsCombo} from "./analyser/types"
 
 
 const validationClock = new Date()
-validationClock.setMonth(validationClock.getMonth() + 1)
 console.log(`verification timestamp ('validationClock'): ${validationClock.toISOString()}`)
 
 
