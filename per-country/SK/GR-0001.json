@@ -3,7 +3,7 @@
     "Identifier": "GR-SK-0001",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -18,7 +18,7 @@
         "desc": "QR kód neobsahuje validný digitálny COVID preukaz EÚ."
       }
     ],
-    "ValidFrom": "2022-02-06T13:42:12Z",
+    "ValidFrom": "2023-01-18T17:02:10Z",
     "ValidTo": "2030-07-26T00:00:00Z",
     "AffectedFields": [
       "r.0.tg",
@@ -36,9 +36,9 @@
                     {
                       "var": "payload.r.0.tg"
                     },
-                    {
-                      "var": "external.valueSets.disease-agent-targeted"
-                    }
+                    [
+                      "840539006"
+                    ]
                   ]
                 }
               ]
@@ -50,9 +50,9 @@
                     {
                       "var": "payload.t.0.tg"
                     },
-                    {
-                      "var": "external.valueSets.disease-agent-targeted"
-                    }
+                    [
+                      "840539006"
+                    ]
                   ]
                 }
               ]
@@ -64,9 +64,9 @@
                     {
                       "var": "payload.v.0.tg"
                     },
-                    {
-                      "var": "external.valueSets.disease-agent-targeted"
-                    }
+                    [
+                      "840539006"
+                    ]
                   ]
                 }
               ]
@@ -75,6 +75,6 @@
         }
       ]
     },
-    "expr-as-text": "not ((not ((/payload.r.0.tg) in (/external.valueSets.disease-agent-targeted))) and (not ((/payload.t.0.tg) in (/external.valueSets.disease-agent-targeted))) and (not ((/payload.v.0.tg) in (/external.valueSets.disease-agent-targeted))))"
+    "expr-as-text": "not ((not ((/payload.r.0.tg) in ([ \"840539006\" ]))) and (not ((/payload.t.0.tg) in ([ \"840539006\" ]))) and (not ((/payload.v.0.tg) in ([ \"840539006\" ]))))"
   }
 ]

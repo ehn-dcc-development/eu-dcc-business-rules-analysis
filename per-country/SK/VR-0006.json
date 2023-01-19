@@ -3,7 +3,7 @@
     "Identifier": "VR-SK-0006",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -18,7 +18,7 @@
         "desc": "Nevyhovuje podmienke plnej očkovanosti. Osoba je plne očkovaná najmenej 14 dní po aplikácii prvej dávky očkovacej látky proti ochoreniu COVID-19, ak bola prvá dávka očkovania proti ochoreniu COVID-19 podaná v intervale do 180 dní od prekonania ochorenia COVID-19, avšak nie viac ako 270 dní po aplikácii poslednej dávky."
       }
     ],
-    "ValidFrom": "2022-02-06T13:42:13Z",
+    "ValidFrom": "2023-01-18T17:02:10Z",
     "ValidTo": "2030-07-26T00:00:00Z",
     "AffectedFields": [
       "v.0",

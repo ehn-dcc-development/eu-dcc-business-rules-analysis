@@ -3,7 +3,7 @@
     "Identifier": "TR-SK-0001",
     "Type": "Acceptance",
     "Country": "SK",
-    "Version": "1.0.2",
+    "Version": "1.0.3",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.1.0",
@@ -18,7 +18,7 @@
         "desc": "Nepovolený typ testu."
       }
     ],
-    "ValidFrom": "2022-02-06T13:42:12Z",
+    "ValidFrom": "2023-01-18T17:02:10Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "t.0",
