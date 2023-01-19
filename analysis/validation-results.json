@@ -132,7 +132,7 @@
         "affectedFields": null,
         "metaDataErrors": [],
         "logicWarnings": [
-          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"Covavax\", \"Covid-19-adsorvidainativada\""
+          "rule's logic compares the vaccine ID in the DCC against invalid vaccine IDs: \"Covavax\", \"Covid-19-adsorvidainativada\""
         ],
         "version": "2.1.4"
       }
@@ -182,7 +182,7 @@
         "affectedFields": null,
         "metaDataErrors": [],
         "logicWarnings": [
-          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
+          "rule's logic compares the vaccine ID in the DCC against invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 (recombinant)\""
         ],
         "version": "1.0.12"
       },
@@ -242,7 +242,7 @@
         "affectedFields": null,
         "metaDataErrors": [],
         "logicWarnings": [
-          "rule's logic compares the vaccine ID in the DCC against an invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 vaccine (recombinante)\""
+          "rule's logic compares the vaccine ID in the DCC against invalid vaccine IDs: \"CT_NCT05124171\", \"CT_NCT04614948\", \"CT_NCT05037266\", \"CT_NCT04762680\", \"CT_PEI_21-154\", \"R-Covi\", \"Covid-19 (recombinant)\""
         ],
         "version": "1.0.10"
       },

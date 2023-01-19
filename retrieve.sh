@@ -17,13 +17,3 @@ echo "Split rules up per country."
 jq 'group_by(.Country) | map({ key: .[0].Country, value: (.|sort_by(.Identifier)|map({ key: .Identifier, value: .})|from_entries) }) | from_entries' tmp/all-rules.json > tmp/dcc-crosscheck.json
 echo "Stored all rules in the format compliant with DCC Crosscheck."
 
-node dist/check-rules.js
-echo "Checked (validated) all rules."
-
-node dist/serialise-version-metadata.js
-echo "Serialised rules' versions' metadata."
-
-echo "Computing vaccine info per country, per vaccine, per combo..."
-node dist/compute-vaccine-specs-per-country.js
-echo "Computed vaccine specs per country."
-

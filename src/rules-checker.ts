@@ -59,7 +59,8 @@ const logicWarningsFor = (rule: Rule): string[] =>
                 if (couldBeOperation(parent)) {
                     const invalidIds = invalidVaccineIdsInComparison(parent)
                     if (invalidIds.length > 0) {
-                        warnings.push(`rule's logic compares the vaccine ID in the DCC against an invalid vaccine ID${invalidIds.length > 1 ? "s" : ""}: ${asDisplayList(invalidIds.map((id) => `"${id}"`))}`)
+                        const plural = invalidIds.length > 1
+                        warnings.push(`rule's logic compares the vaccine ID in the DCC against ${plural ? "" : "an "}invalid vaccine ID${plural ? "s" : ""}: ${asDisplayList(invalidIds.map((id) => `"${id}"`))}`)
                     }
                 }
             }
