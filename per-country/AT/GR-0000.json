@@ -18,7 +18,7 @@
         "desc": "Aktuell keine Einreiseregeln in AT."
       }
     ],
-    "ValidFrom": "2022-12-24T00:00:00Z",
+    "ValidFrom": "2023-01-30T00:00:00Z",
     "ValidTo": "2030-06-01T00:00:00Z",
     "AffectedFields": [
       "r",

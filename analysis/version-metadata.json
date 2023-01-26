@@ -98,7 +98,7 @@
   },
   {
     "country": "AT",
-    "latestValidFrom": "2022-12-24T00:00:00Z",
+    "latestValidFrom": "2023-01-30T00:00:00Z",
     "earliestValidTo": "2030-06-01T00:00:00Z",
     "rulesVersionsMetadataPerRule": [
       {
@@ -106,137 +106,7 @@
         "versions": [
           {
             "version": "1.0.15",
-            "validFrom": "2022-12-24T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "GR-AT-0001",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-AT-0000",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-AT-0001",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "RR-AT-0002",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-AT-0000",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-AT-0001",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-AT-0004",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "TR-AT-0006",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-AT-0000",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-AT-0001",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-AT-0005",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-AT-0006",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
-            "validTo": "2030-06-01T00:00:00Z"
-          }
-        ]
-      },
-      {
-        "ruleId": "VR-AT-0007",
-        "versions": [
-          {
-            "version": "1.0.12",
-            "validFrom": "2021-12-09T00:00:00Z",
+            "validFrom": "2023-01-30T00:00:00Z",
             "validTo": "2030-06-01T00:00:00Z"
           }
         ]
@@ -1257,11 +1127,6 @@
             "version": "1.0.11",
             "validFrom": "2023-01-20T14:00:00Z",
             "validTo": "2033-01-20T14:00:00Z"
-          },
-          {
-            "version": "1.0.10",
-            "validFrom": "2023-01-07T12:00:00Z",
-            "validTo": "2033-01-07T12:00:00Z"
           }
         ]
       },
@@ -1332,11 +1197,6 @@
             "version": "1.0.13",
             "validFrom": "2023-01-20T14:00:00Z",
             "validTo": "2033-01-20T14:00:00Z"
-          },
-          {
-            "version": "1.0.12",
-            "validFrom": "2023-01-07T12:00:00Z",
-            "validTo": "2033-01-07T12:00:00Z"
           }
         ]
       },
