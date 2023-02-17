@@ -1,4 +1,10 @@
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
+import {
+    evaluatePartially,
+    CLExtExpr,
+    isCertLogicExpression,
+    Unknown
+} from "certlogic-utils-js/dist/partial-evaluator"
 const deepEqual = require("deep-equal")
 
 import {lowerTriangular} from "./utils/func-utils"
@@ -11,12 +17,6 @@ import {
 } from "./analyser/helpers"
 import {pretty, readJson} from "./utils/file-utils"
 import {and_} from "certlogic-js/dist/factories"
-import {
-    CLExtExpr,
-    isCertLogicExpression,
-    Unknown
-} from "./reducer/extended-types"
-import {evaluatePartially} from "./reducer/partial-evaluator"
 import {analyse} from "./analyser/analyser"
 import {isUnanalysable, validityAsCombo} from "./analyser/types"
 

@@ -1,9 +1,8 @@
 import {CertLogicExpression} from "certlogic-js"
 import {and_} from "certlogic-js/dist/factories"
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
+import {evaluatePartially, isCertLogicExpression, Unknown} from "certlogic-utils-js/dist/partial-evaluator"
 
-import {isCertLogicExpression, Unknown} from "../reducer/extended-types"
-import {evaluatePartially} from "../reducer/partial-evaluator"
 import {pretty, readJson} from "../utils/file-utils"
 import {groupBy, mapValues, unique} from "../utils/func-utils"
 import {vaccineIds} from "../refData/vaccine-data"

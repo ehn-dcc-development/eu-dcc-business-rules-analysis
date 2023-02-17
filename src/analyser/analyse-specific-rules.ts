@@ -1,8 +1,7 @@
 import {applicableRuleVersions, Rule} from "dcc-business-rules-utils"
+import {evaluatePartially, isCertLogicExpression, Unknown} from "certlogic-utils-js/dist/partial-evaluator"
 // import {and_} from "certlogic-js/dist/factories"
 
-import {isCertLogicExpression, Unknown} from "../reducer/extended-types"
-import {evaluatePartially} from "../reducer/partial-evaluator"
 import {inputDataFor, Replacement, replaceSubExpression} from "./helpers"
 import {pretty, readJson} from "../utils/file-utils"
 import {vaccineIds, vaccineIdToDisplayName} from "../refData/vaccine-data"

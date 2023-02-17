@@ -1,8 +1,7 @@
 import {CertLogicExpression, CertLogicOperation} from "certlogic-js"
+import {CLUnknown, isCertLogicLiteral, Unknown} from "certlogic-utils-js/dist/partial-evaluator"
 import deepEqual from "deep-equal"
 
-import {CLUnknown, Unknown} from "../reducer/extended-types"
-import {isCertLogicLiteral} from "../reducer/helpers"
 import {operationDataFrom} from "../utils/certlogic-utils"
 
 
