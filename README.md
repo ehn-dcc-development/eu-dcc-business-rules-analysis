@@ -48,7 +48,6 @@ These replacements can be found in [the `replacements.json` file](./src/analyser
 ### Organisation of this repository
 
 * [`analysis/`](./analysis): All generated analyses, in both JSON format (the source), and HTML files generated from that.
-* [`doc/`](./doc): Some documentation (in MarkDown format).
 * [`per-country/`](./per-country): For every country that uploaded business rules, a directory with all their rules retrieved from the EU DCC Gateway (or rather: one of the National Backends).
   All rules with the same rule identifier (ID, e.g. `VR-NL-0007`) are stored in one separate file, as <em>rule versions</em> (in anti-chronological order) under that rule ID.
   Remarks:
@@ -60,6 +59,7 @@ These replacements can be found in [the `replacements.json` file](./src/analyser
 * [`tmp/`]: A Git-ignored directory for storing temporary files, without committing these.
 
 Beyond that, the repository contains some shell scripts, and the usual license, and JavaScript- and TypeScript-related config files.
+Also: [`NOTES.md`](./NOTES.md) might be interesting to evaluate past (done and not-going-to-do) work, as well as possible future work.
 
 
 ## Running the analysis
