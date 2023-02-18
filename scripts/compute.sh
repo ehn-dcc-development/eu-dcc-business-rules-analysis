@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 node dist/check-rules.js
 echo "Checked (validated) all rules."

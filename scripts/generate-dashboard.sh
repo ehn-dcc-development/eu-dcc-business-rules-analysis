@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 node dist/dashboard/statistics.js
 echo "Generated dashboard page: business rules statistics."

@@ -1,20 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 npm ci
 echo "Installed JS (NPM) dependencies."
 
-# re-create the Yarn lock file:
-rm yarn.lock
-yarn
-
 # compile TypeScript sources:
 rm -rf dist
-tsc
+./node_modules/.bin/tsc
 echo "Compiled TypeScript sources."
 
-source retrieve.sh
+source scripts/retrieve.sh
 
-source compute.sh
+source scripts/compute.sh
 
-source generate-dashboard.sh
+source scripts/generate-dashboard.sh
 

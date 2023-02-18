@@ -2,14 +2,6 @@
  Digital COVID Certificates: Analysis of Business Rules
 </h1>
 
-<p align="center">
-    <a href="#about">About</a> •
-    <a href="#assumptions">Assumptions</a> •
-    <a href="#organisation">Organisation</a> •
-    <a href="#testing--status">Testing & Status</a> •
-    <a href="#licensing">Licensing</a>
-</p>
-
 
 ## About
 
@@ -45,7 +37,13 @@ The algorithm also replaces some sub expressions in the CertLogic part of busine
 These replacements can be found in [the `replacements.json` file](./src/analyser/replacements.json), and are organised per country.
 
 
-### Organisation of this repository
+### Testing & Status
+
+- If you found any problems, please create an [Issue](/../../issues).
+- Current status: Work-In-Progress.
+
+
+## Organisation of this repository
 
 * [`analysis/`](./analysis): All generated analyses, in both JSON format (the source), and HTML files generated from that.
 * [`per-country/`](./per-country): For every country that uploaded business rules, a directory with all their rules retrieved from the EU DCC Gateway (or rather: one of the National Backends).
@@ -55,11 +53,34 @@ These replacements can be found in [the `replacements.json` file](./src/analyser
     E.g., all rule versions 
   * Versions of a rule whose `ValidTo` date lies in the past is not in these files.
     (That's a consequence of the implementation of the API of the EU DCC Gateway.)
-* [`src/`]: All source code for JavaScript/Node.js programs.
-* [`tmp/`]: A Git-ignored directory for storing temporary files, without committing these.
+* [`scripts/`](./scripts): All scripts, except for the main build script.
+* [`src/`](./src): All source code for JavaScript/Node.js programs.
+* [`tmp/`](/.tmp): A Git-ignored directory for storing temporary files, without committing these.
 
 Beyond that, the repository contains some shell scripts, and the usual license, and JavaScript- and TypeScript-related config files.
-Also: [`NOTES.md`](./NOTES.md) might be interesting to evaluate past (done and not-going-to-do) work, as well as possible future work.
+
+Also of potential interest:
+
+* [`NOTES.md`](./NOTES.md) notes past (done and not-going-to-do) work, as well as possible future work.
+* The [`demo` branch](https://github.com/ehn-dcc-development/eu-dcc-business-rules-analysis/tree/demo) contains a demo for partial evaluation with EU DCC business rules.
+  It can be run from the command-line:
+
+    $ ./demo/run.sh
+
+  Note: no explanation is provided, and the branch is not maintained - not even kept up-to-date with the `main` branch.
+
+
+### Dependencies
+
+The analysis has the following dependencies:
+
+* UNIX/bash-like shell for running scripts
+* [Node.js](https://nodejs.org/en/) (includes NPM)
+* [`jq`](https://stedolan.github.io/jq/) (&larr; =link)
+
+*Note* that you can also use a [GitHub Codespace](https://github.com/features/codespaces).
+In particular, running `./build.sh` and the JRC-script in a terminal will work.
+*Mind* that commit signing from within a Codespace needs setting up separately.
 
 
 ## Running the analysis
@@ -73,21 +94,6 @@ The analysis that determines which countries accept which vaccines with which va
 Because of that, the build script is broken up into two phases: [1. retrieval](./retrieve.sh) of value sets, business rules, and generation of non-vaccination-related analysis artefacts, and [2. running the vaccine-centric analyses](./analyse.sh).
 
 
-### Dependencies
-
-The analysis has the following dependencies:
-
-* UNIX/zsh-like shell for running the [build script](./build.sh)
-* [Node.js, NPM](https://nodejs.org/en/) - alternative for NPM: [Yarn](https://yarnpkg.com/)
-* [`jq`](https://stedolan.github.io/jq/) (&larr; =link)
-
-
-## Testing & Status
-
-- If you found any problems, please create an [Issue](/../../issues).
-- Current status: Work-In-Progress.
-
-
 ## Re-open Europe API
 
 [Re-open Europe](https://reopen.europa.eu/en) is a website/app made by the EU [Joint Research Center (JRC)](https://ec.europa.eu/info/departments/joint-research-centre_en) to provide information on travel and health measures during the COVID-19 pandemic.
@@ -95,7 +101,7 @@ An API for that information is available, and is [documented here](https://data.
 This code base contains some code to try and “harvest” that API, in the directory [`src/jrc/`](./src/jrc).
 You can run that code from the command-line as follows (from the repository's root):
 
-    $ source src/jrc/retrieve.sh
+    $ ./sripts/harvest-jrc.sh
 
 This produces various files in the directory `tmp/jrc`.
 
