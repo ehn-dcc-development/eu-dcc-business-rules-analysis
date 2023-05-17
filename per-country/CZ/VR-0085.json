@@ -1,0 +1,60 @@
+[
+  {
+    "Identifier": "VR-CZ-0085",
+    "Type": "Acceptance",
+    "Country": "CZ",
+    "Version": "9.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "Vaccination VAXZEVRIA has to contain a country property"
+      },
+      {
+        "lang": "cs",
+        "desc": "Očkování VAXZEVRIA musí mít vyplněnou položku země"
+      }
+    ],
+    "ValidFrom": "2023-05-14T22:00:00Z",
+    "ValidTo": "2033-05-14T22:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.mp",
+      "v.0.co"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/21/1529"
+              ]
+            },
+            {
+              "if": [
+                {
+                  "var": "payload.v.0.co"
+                },
+                true,
+                false
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/21/1529\")) then (if (/payload.v.0.co) then (true) else (false)) else (true)) else (true)"
+  }
+]

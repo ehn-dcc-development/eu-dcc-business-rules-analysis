@@ -1,0 +1,62 @@
+[
+  {
+    "Identifier": "VR-CZ-0073",
+    "Type": "Acceptance",
+    "Country": "CZ",
+    "Version": "9.0.0",
+    "SchemaVersion": "1.0.0",
+    "Engine": "CERTLOGIC",
+    "EngineVersion": "0.7.5",
+    "CertificateType": "Vaccination",
+    "Description": [
+      {
+        "lang": "en",
+        "desc": "The certificate of the first dose of Comirnaty Original/Omicron BA.4/BA.5 is not accepted"
+      },
+      {
+        "lang": "cs",
+        "desc": "Certifikát první dávky Comirnaty Original/Omicron BA.4/BA.5 není akceptován"
+      }
+    ],
+    "ValidFrom": "2023-05-14T22:00:00Z",
+    "ValidTo": "2033-05-14T22:00:00Z",
+    "AffectedFields": [
+      "v.0",
+      "v.0.dn",
+      "v.0.sd",
+      "v.0.mp"
+    ],
+    "Logic": {
+      "if": [
+        {
+          "var": "payload.v.0"
+        },
+        {
+          "if": [
+            {
+              "===": [
+                {
+                  "var": "payload.v.0.mp"
+                },
+                "EU/1/20/1528"
+              ]
+            },
+            {
+              ">=": [
+                {
+                  "var": "payload.v.0.dn"
+                },
+                {
+                  "var": "payload.v.0.sd"
+                }
+              ]
+            },
+            true
+          ]
+        },
+        true
+      ]
+    },
+    "expr-as-text": "if (/payload.v.0) then (if ((/payload.v.0.mp) === (\"EU/1/20/1528\")) then ((/payload.v.0.dn) >= (/payload.v.0.sd)) else (true)) else (true)"
+  }
+]
