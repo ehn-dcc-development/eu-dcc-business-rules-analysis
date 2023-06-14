@@ -54,6 +54,21 @@
     ]
   },
   {
+    "vaccineId": "CT_EUCTR_2020-005997-82",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "DE",
+      "EE",
+      "NL",
+      "RO",
+      "SI",
+      "TG",
+      "UA"
+    ]
+  },
+  {
     "vaccineId": "CVnCoV",
     "acceptingCountries": [
       "AL",
@@ -404,6 +419,21 @@
       "RO",
       "SI",
       "SK",
+      "TG",
+      "UA"
+    ]
+  },
+  {
+    "vaccineId": "EU/1/22/1709",
+    "acceptingCountries": [
+      "AL",
+      "AT",
+      "CH",
+      "DE",
+      "EE",
+      "NL",
+      "RO",
+      "SI",
       "TG",
       "UA"
     ]
