@@ -3,7 +3,7 @@
     "Identifier": "VR-CZ-0105",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "9.0.0",
+    "Version": "10.0.0",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Očkování VidPrevtyn Beta musí mít vyplněnou položku země"
       }
     ],
-    "ValidFrom": "2023-05-14T22:00:00Z",
-    "ValidTo": "2033-05-14T22:00:00Z",
+    "ValidFrom": "2023-06-11T22:00:00Z",
+    "ValidTo": "2033-06-11T22:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.mp",

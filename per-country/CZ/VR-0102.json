@@ -3,7 +3,7 @@
     "Identifier": "VR-CZ-0102",
     "Type": "Acceptance",
     "Country": "CZ",
-    "Version": "9.0.1",
+    "Version": "10.0.1",
     "SchemaVersion": "1.0.0",
     "Engine": "CERTLOGIC",
     "EngineVersion": "0.7.5",
@@ -18,8 +18,8 @@
         "desc": "Od dokončeného očkování VidPrevtyn Beta musí uplynout alespoň 14 dnů"
       }
     ],
-    "ValidFrom": "2023-05-14T22:00:00Z",
-    "ValidTo": "2033-05-14T22:00:00Z",
+    "ValidFrom": "2023-06-11T22:00:00Z",
+    "ValidTo": "2033-06-11T22:00:00Z",
     "AffectedFields": [
       "v.0",
       "v.0.dn",
@@ -84,7 +84,7 @@
                                   {
                                     "var": "payload.dob"
                                   },
-                                  0,
+                                  216,
                                   "month"
                                 ]
                               }
@@ -106,7 +106,7 @@
                                   {
                                     "var": "payload.v.0.dt"
                                   },
-                                  0,
+                                  14,
                                   "day"
                                 ]
                               }
@@ -207,6 +207,6 @@
         true
       ]
     },
-    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/21/1618\"))) then ((true) in ([ if (/payload.dob) then (if (((/external.validationClock) +0 days) not-after ((/payload.dob) +0 months)) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +0 days)) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days))) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)), (/payload.v.0.dn) > (2), (/payload.v.0.dn) > (/payload.v.0.sd), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ])) else (true)) else (true)"
+    "expr-as-text": "if (/payload.v.0) then (if (((/payload.v.0.dn) >= (/payload.v.0.sd)) and ((/payload.v.0.mp) === (\"EU/1/21/1618\"))) then ((true) in ([ if (/payload.dob) then (if (((/external.validationClock) +0 days) not-after ((/payload.dob) +216 months)) then (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days))) else (((/external.validationClock) +0 days) not-before ((/payload.v.0.dt) +14 days)), (/payload.v.0.dn) > (2), (/payload.v.0.dn) > (/payload.v.0.sd), ((/payload.v.0.sd) === (1)) and ((/payload.v.0.dn) === (1)) ])) else (true)) else (true)"
   }
 ]
